@@ -16,5 +16,10 @@ namespace StudentDashboardApp.Model
         {
             InitializeComponent();
         }
+
+        private void Student_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

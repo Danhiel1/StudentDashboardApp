@@ -29,58 +29,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
-            button1 = new Button();
             GradeButton = new Button();
             StudentButton = new Button();
             CourseButton = new Button();
             HomeButton = new Button();
-            panel3 = new Panel();
-            button2 = new Button();
             panel2 = new Panel();
-            notifyIcon1 = new NotifyIcon(components);
-            fileSystemWatcher1 = new FileSystemWatcher();
-            bindingSource1 = new BindingSource(components);
+            panel3 = new Panel();
+            DTHS = new DataGridView();
+            MASV = new DataGridViewTextBoxColumn();
+            TENSV = new DataGridViewTextBoxColumn();
+            NGAYSINH = new DataGridViewTextBoxColumn();
+            NOISINH = new DataGridViewTextBoxColumn();
+            MALOP = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
-            panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DTHS).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.AutoSize = true;
             panel1.BackColor = Color.FromArgb(34, 43, 64);
-            panel1.Controls.Add(button1);
             panel1.Controls.Add(GradeButton);
             panel1.Controls.Add(StudentButton);
             panel1.Controls.Add(CourseButton);
             panel1.Controls.Add(HomeButton);
-            panel1.Controls.Add(panel3);
-            panel1.Dock = DockStyle.Left;
-            panel1.Location = new Point(0, 0);
+            panel1.Location = new Point(0, 70);
             panel1.Name = "panel1";
-            panel1.Size = new Size(200, 696);
+            panel1.Size = new Size(203, 626);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
-            // 
-            // button1
-            // 
-            button1.FlatAppearance.MouseDownBackColor = Color.Red;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.FromArgb(5, 197, 250);
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.Location = new Point(12, 625);
-            button1.Name = "button1";
-            button1.Size = new Size(174, 59);
-            button1.TabIndex = 2;
-            button1.Text = "Đăng nhập";
-            button1.TextAlign = ContentAlignment.MiddleRight;
-            button1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // GradeButton
             // 
@@ -113,6 +92,7 @@
             StudentButton.TextAlign = ContentAlignment.BottomCenter;
             StudentButton.TextImageRelation = TextImageRelation.ImageAboveText;
             StudentButton.UseVisualStyleBackColor = true;
+            StudentButton.Click += StudentButton_Click;
             // 
             // CourseButton
             // 
@@ -147,86 +127,116 @@
             HomeButton.UseVisualStyleBackColor = true;
             HomeButton.Click += button1_Click;
             // 
+            // panel2
+            // 
+            panel2.AutoScroll = true;
+            panel2.AutoSize = true;
+            panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(0, 66);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1064, 2);
+            panel2.TabIndex = 0;
+            panel2.Paint += panel2_Paint;
+            // 
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(24, 28, 38);
-            panel3.Controls.Add(button2);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(200, 73);
+            panel3.Size = new Size(1064, 66);
             panel3.TabIndex = 0;
             panel3.Paint += panel3_Paint;
             // 
-            // button2
+            // DTHS
             // 
-            button2.Dock = DockStyle.Top;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Century Gothic", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.FromArgb(5, 197, 250);
-            button2.Image = (Image)resources.GetObject("button2.Image");
-            button2.Location = new Point(0, 0);
-            button2.Name = "button2";
-            button2.Size = new Size(200, 73);
-            button2.TabIndex = 2;
-            button2.Text = "Dashboard";
-            button2.TextAlign = ContentAlignment.MiddleRight;
-            button2.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button1_Click;
+            DTHS.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DTHS.Columns.AddRange(new DataGridViewColumn[] { MASV, TENSV, NGAYSINH, NOISINH, MALOP });
+            DTHS.Location = new Point(209, 70);
+            DTHS.Name = "DTHS";
+            DTHS.RowHeadersWidth = 62;
+            DTHS.Size = new Size(830, 381);
+            DTHS.TabIndex = 1;
+            DTHS.CellContentClick += dataGridView1_CellContentClick_2;
             // 
-            // panel2
+            // MASV
             // 
-            panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(200, 0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(864, 73);
-            panel2.TabIndex = 0;
+            MASV.DataPropertyName = "MASV";
+            MASV.HeaderText = "Mã SV";
+            MASV.MinimumWidth = 8;
+            MASV.Name = "MASV";
+            MASV.Width = 150;
             // 
-            // notifyIcon1
+            // TENSV
             // 
-            notifyIcon1.Text = "notifyIcon1";
-            notifyIcon1.Visible = true;
+            TENSV.DataPropertyName = "TENSV";
+            TENSV.HeaderText = "  TÊN SV";
+            TENSV.MinimumWidth = 8;
+            TENSV.Name = "TENSV";
+            TENSV.Width = 150;
             // 
-            // fileSystemWatcher1
+            // NGAYSINH
             // 
-            fileSystemWatcher1.EnableRaisingEvents = true;
-            fileSystemWatcher1.SynchronizingObject = this;
+            NGAYSINH.DataPropertyName = "NGAYSINH";
+            NGAYSINH.HeaderText = "Ngày Sinh";
+            NGAYSINH.MinimumWidth = 8;
+            NGAYSINH.Name = "NGAYSINH";
+            NGAYSINH.Width = 150;
+            // 
+            // NOISINH
+            // 
+            NOISINH.DataPropertyName = "NOISINH";
+            NOISINH.HeaderText = "Nơi Sinh";
+            NOISINH.MinimumWidth = 8;
+            NOISINH.Name = "NOISINH";
+            NOISINH.Width = 150;
+            // 
+            // MALOP
+            // 
+            MALOP.DataPropertyName = "MALOP";
+            MALOP.HeaderText = "Mã Lớp";
+            MALOP.MinimumWidth = 8;
+            MALOP.Name = "MALOP";
+            MALOP.Width = 150;
             // 
             // Form1
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(41, 44, 51);
+            BackgroundImageLayout = ImageLayout.None;
+            CancelButton = StudentButton;
             ClientSize = new Size(1064, 696);
+            Controls.Add(DTHS);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Controls.Add(panel3);
             Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ForeColor = Color.FromArgb(62, 120, 138);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
             panel1.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DTHS).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Panel panel1;
-        private Panel panel3;
         private Panel panel2;
-        private Button HomeButton;
         private Button GradeButton;
         private Button StudentButton;
         private Button CourseButton;
-        private NotifyIcon notifyIcon1;
-        private Button button2;
-        private Button button1;
-        private FileSystemWatcher fileSystemWatcher1;
-        private BindingSource bindingSource1;
+        private Panel panel3;
+        public Button HomeButton;
+        private DataGridView DTHS;
+        private DataGridViewTextBoxColumn MASV;
+        private DataGridViewTextBoxColumn TENSV;
+        private DataGridViewTextBoxColumn NGAYSINH;
+        private DataGridViewTextBoxColumn NOISINH;
+        private DataGridViewTextBoxColumn MALOP;
     }
 }

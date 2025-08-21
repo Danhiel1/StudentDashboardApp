@@ -6,5 +6,10 @@ namespace Model
         {
             InitializeComponent();
         }
+
+        private void Course_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
