@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Diagnostics;
 
 namespace StudentDashboardApp.Services
@@ -10,24 +10,25 @@ namespace StudentDashboardApp.Services
         private readonly string connectionString =
             "Data Source=DESKTOP-QPFPA2B;Initial Catalog=QLSV;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;";
 
-        public int ExecuteNonQuery(string query)
+public int ExecuteNonQuery(string connectionString, string query)
+{
+    using (SqlConnection connection = new SqlConnection(connectionString))
+    {
+        try
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    SqlCommand command = new SqlCommand(query, connection);
-                    int rowsAffected = command.ExecuteNonQuery();
-                    return rowsAffected;
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine("Error executing query: " + ex.Message);
-                    return -1; // Indicate failure
-                }
-            }
+            connection.Open();
+            SqlCommand command = new SqlCommand(query, connection);
+            int rowsAffected = command.ExecuteNonQuery();
+            return rowsAffected;
         }
+        catch (Exception ex)
+        {
+            Debug.WriteLine("Error executing query: " + ex.Message);
+            return -1; // Indicate failure
+        }
+    }
+}
+
 
         public DataTable ExecuteQuery(string query)
         {
@@ -37,7 +38,7 @@ namespace StudentDashboardApp.Services
                 try
                 {
                     connection.Open();
-                    SqlCommand command = new SqlCommand(query, connection);
+                    SqlCommand command = new SqlCommand("Select * from SINHVIEN ", connection);
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
                     adapter.Fill(dataTable);
                 }
