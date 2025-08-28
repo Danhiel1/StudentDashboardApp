@@ -41,28 +41,27 @@
             barSubItem2 = new DevExpress.XtraBars.BarSubItem();
             barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             barListItem2 = new DevExpress.XtraBars.BarListItem();
+            barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
             ((System.ComponentModel.ISupportInitialize)ribbon).BeginInit();
             SuspendLayout();
             // 
             // ribbon
             // 
-            ribbon.EmptyAreaImageOptions.ImagePadding = new Padding(45, 46, 45, 46);
             ribbon.ExpandCollapseItem.Id = 0;
-            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, barButtonItem1, barButtonGroup1, barButtonItem2, barDockingMenuItem1, barDockingMenuItem2, barButtonItem3, barListItem1, barSubItem1, barSubItem2, barButtonItem4, barListItem2 });
+            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, barButtonItem1, barButtonGroup1, barButtonItem2, barDockingMenuItem1, barDockingMenuItem2, barButtonItem3, barListItem1, barSubItem1, barSubItem2, barButtonItem4, barListItem2, barButtonItem5 });
             ribbon.Location = new Point(0, 0);
-            ribbon.Margin = new Padding(4);
-            ribbon.MaxItemId = 24;
+            ribbon.MaxItemId = 25;
             ribbon.Name = "ribbon";
-            ribbon.OptionsMenuMinWidth = 495;
             ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage1, ribbonPage2, ribbonPage3 });
-            ribbon.Size = new Size(1264, 293);
+            ribbon.Size = new Size(1090, 201);
             ribbon.StatusBar = ribbonStatusBar;
             // 
             // barButtonItem1
@@ -139,6 +138,13 @@
             barListItem2.Name = "barListItem2";
             barListItem2.ListItemClick += barListItem2_ListItemClick;
             // 
+            // barButtonItem5
+            // 
+            barButtonItem5.Caption = "Tra Cứu Thông Tin Sinh Viên";
+            barButtonItem5.Id = 24;
+            barButtonItem5.Name = "barButtonItem5";
+            barButtonItem5.ItemClick += barButtonItem5_ItemClick;
+            // 
             // ribbonPage1
             // 
             ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup1 });
@@ -160,12 +166,13 @@
             // 
             // ribbonPageGroup2
             // 
+            ribbonPageGroup2.ItemLinks.Add(barButtonItem5);
             ribbonPageGroup2.Name = "ribbonPageGroup2";
             ribbonPageGroup2.Text = "ribbonPageGroup2";
             // 
             // ribbonPage3
             // 
-            ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup3 });
+            ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup3, ribbonPageGroup4 });
             ribbonPage3.Name = "ribbonPage3";
             ribbonPage3.Text = "Ngành";
             // 
@@ -174,24 +181,28 @@
             ribbonPageGroup3.Name = "ribbonPageGroup3";
             ribbonPageGroup3.Text = "ribbonPageGroup3";
             // 
+            // ribbonPageGroup4
+            // 
+            ribbonPageGroup4.Name = "ribbonPageGroup4";
+            ribbonPageGroup4.Text = "ribbonPageGroup4";
+            // 
             // ribbonStatusBar
             // 
-            ribbonStatusBar.Location = new Point(0, 785);
-            ribbonStatusBar.Margin = new Padding(4);
+            ribbonStatusBar.Location = new Point(0, 509);
             ribbonStatusBar.Name = "ribbonStatusBar";
             ribbonStatusBar.Ribbon = ribbon;
-            ribbonStatusBar.Size = new Size(1264, 55);
+            ribbonStatusBar.Size = new Size(1090, 37);
             // 
             // DashboardStudent
             // 
             Appearance.Options.UseFont = true;
-            AutoScaleDimensions = new SizeF(9F, 20F);
+            AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1264, 840);
+            ClientSize = new Size(1090, 546);
             Controls.Add(ribbonStatusBar);
             Controls.Add(ribbon);
+            Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             IconOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("DashboardStudent.IconOptions.SvgImage");
-            Margin = new Padding(4);
             Name = "DashboardStudent";
             Ribbon = ribbon;
             StatusBar = ribbonStatusBar;
@@ -223,5 +234,7 @@
         private DevExpress.XtraBars.BarSubItem barSubItem2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.BarListItem barListItem2;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem5;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
     }
 }
