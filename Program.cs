@@ -1,9 +1,8 @@
-using StudentDashboardApp.Forms;
-using System.Data.SqlClient;
+using StudentDashboardApp.Model;
 
 namespace MyApp
 {
-    
+
 
     internal static class Program
     {
@@ -11,7 +10,7 @@ namespace MyApp
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new DashBoardStudent());
+            Application.Run(new DashboardStudent());
         }
     }
 }
