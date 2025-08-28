@@ -48,6 +48,11 @@
             ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)ribbon).BeginInit();
             SuspendLayout();
             // 
@@ -55,10 +60,10 @@
             // 
             ribbon.EmptyAreaImageOptions.ImagePadding = new Padding(45, 46, 45, 46);
             ribbon.ExpandCollapseItem.Id = 0;
-            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, barButtonItem1, barButtonGroup1, barButtonItem2, barDockingMenuItem1, barDockingMenuItem2, barButtonItem3, barListItem1, barSubItem1, barSubItem2, barButtonItem4, barListItem2 });
+            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, barButtonItem1, barButtonGroup1, barButtonItem2, barDockingMenuItem1, barDockingMenuItem2, barButtonItem3, barListItem1, barSubItem1, barSubItem2, barButtonItem4, barListItem2, barButtonItem5, barButtonItem6, barButtonItem7 });
             ribbon.Location = new Point(0, 0);
             ribbon.Margin = new Padding(4);
-            ribbon.MaxItemId = 24;
+            ribbon.MaxItemId = 27;
             ribbon.Name = "ribbon";
             ribbon.OptionsMenuMinWidth = 495;
             ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage1, ribbonPage2, ribbonPage3 });
@@ -121,14 +126,16 @@
             barSubItem2.Caption = "Import";
             barSubItem2.Id = 21;
             barSubItem2.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
+            barSubItem2.ImageOptions.DisabledImage = (Image)resources.GetObject("barSubItem2.ImageOptions.DisabledImage");
             barSubItem2.ImageOptions.Image = (Image)resources.GetObject("barSubItem2.ImageOptions.Image");
-            barSubItem2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(barButtonItem4) });
+            barSubItem2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] { new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, barButtonItem4, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph) });
             barSubItem2.Name = "barSubItem2";
             // 
             // barButtonItem4
             // 
             barButtonItem4.Caption = "barButtonItem4";
             barButtonItem4.Id = 22;
+            barButtonItem4.ImageOptions.Image = (Image)resources.GetObject("barButtonItem4.ImageOptions.Image");
             barButtonItem4.Name = "barButtonItem4";
             barButtonItem4.ItemClick += barButtonItem4_ItemClick;
             // 
@@ -154,12 +161,13 @@
             // 
             // ribbonPage2
             // 
-            ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup2 });
+            ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup2, ribbonPageGroup4, ribbonPageGroup5 });
             ribbonPage2.Name = "ribbonPage2";
             ribbonPage2.Text = "Sinh Viên";
             // 
             // ribbonPageGroup2
             // 
+            ribbonPageGroup2.ItemLinks.Add(barButtonItem6);
             ribbonPageGroup2.Name = "ribbonPageGroup2";
             ribbonPageGroup2.Text = "ribbonPageGroup2";
             // 
@@ -176,11 +184,41 @@
             // 
             // ribbonStatusBar
             // 
-            ribbonStatusBar.Location = new Point(0, 785);
+            ribbonStatusBar.Location = new Point(0, 787);
             ribbonStatusBar.Margin = new Padding(4);
             ribbonStatusBar.Name = "ribbonStatusBar";
             ribbonStatusBar.Ribbon = ribbon;
-            ribbonStatusBar.Size = new Size(1264, 55);
+            ribbonStatusBar.Size = new Size(1264, 53);
+            // 
+            // ribbonPageGroup4
+            // 
+            ribbonPageGroup4.ItemLinks.Add(barButtonItem5);
+            ribbonPageGroup4.Name = "ribbonPageGroup4";
+            ribbonPageGroup4.Text = "ribbonPageGroup4";
+            // 
+            // ribbonPageGroup5
+            // 
+            ribbonPageGroup5.ItemLinks.Add(barButtonItem7);
+            ribbonPageGroup5.Name = "ribbonPageGroup5";
+            ribbonPageGroup5.Text = "ribbonPageGroup5";
+            // 
+            // barButtonItem5
+            // 
+            barButtonItem5.Caption = "barButtonItem5";
+            barButtonItem5.Id = 24;
+            barButtonItem5.Name = "barButtonItem5";
+            // 
+            // barButtonItem6
+            // 
+            barButtonItem6.Caption = "barButtonItem6";
+            barButtonItem6.Id = 25;
+            barButtonItem6.Name = "barButtonItem6";
+            // 
+            // barButtonItem7
+            // 
+            barButtonItem7.Caption = "barButtonItem7";
+            barButtonItem7.Id = 26;
+            barButtonItem7.Name = "barButtonItem7";
             // 
             // DashboardStudent
             // 
@@ -190,6 +228,7 @@
             ClientSize = new Size(1264, 840);
             Controls.Add(ribbonStatusBar);
             Controls.Add(ribbon);
+            Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             IconOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("DashboardStudent.IconOptions.SvgImage");
             Margin = new Padding(4);
             Name = "DashboardStudent";
@@ -223,5 +262,10 @@
         private DevExpress.XtraBars.BarSubItem barSubItem2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.BarListItem barListItem2;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem5;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem6;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem7;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
     }
 }
