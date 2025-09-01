@@ -34,9 +34,10 @@ namespace StudentDashboardApp.Model
 
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {
+            // Removed ApplicationConfiguration.Initialize(); as it does not exist in this context
+            var importForm = new ImportForm();
+            importForm.ShowDialog();
 
-            ImportForm frm = new ImportForm();
-            frm.ShowDialog();
         }
 
         private void xtraOpenFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
