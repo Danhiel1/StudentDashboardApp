@@ -1,6 +1,9 @@
 ﻿using DevExpress.XtraBars;
 using System;
 using System.Linq;
+using System.Windows;
+using System.Windows.Forms;
+
 
 namespace StudentDashboardApp.Model
 {
@@ -34,9 +37,10 @@ namespace StudentDashboardApp.Model
 
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {
+            // Removed ApplicationConfiguration.Initialize(); as it does not exist in this context
+            var importForm = new ImportForm();
+            importForm.ShowDialog();
 
-            ImportForm frm = new ImportForm();
-            frm.ShowDialog();
         }
 
         private void xtraOpenFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
@@ -48,5 +52,27 @@ namespace StudentDashboardApp.Model
         {
 
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void barButtonItem4_ItemClick_1(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void panelControl1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void studentRepositoryBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }
