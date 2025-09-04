@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardStudent));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             barButtonGroup1 = new DevExpress.XtraBars.BarButtonGroup();
@@ -63,8 +66,8 @@
             ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            navigationFrame1 = new DevExpress.XtraBars.Navigation.NavigationFrame();
-            themsinhvienpage = new DevExpress.XtraBars.Navigation.NavigationPage();
+            nav = new DevExpress.XtraBars.Navigation.NavigationFrame();
+            cc = new DevExpress.XtraBars.Navigation.NavigationPage();
             textBox5 = new TextBox();
             textBox3 = new TextBox();
             textBox4 = new TextBox();
@@ -77,16 +80,23 @@
             textBox1 = new TextBox();
             label1 = new Label();
             suasinhvienpage = new DevExpress.XtraBars.Navigation.NavigationPage();
-            textBox42 = new TextBox();
-            label42 = new Label();
-            textBox41 = new TextBox();
-            label41 = new Label();
+            panel7 = new Panel();
+            label57 = new Label();
+            panel9 = new Panel();
+            label46 = new Label();
+            panel1 = new Panel();
+            label21 = new Label();
+            textBox21 = new TextBox();
+            label39 = new Label();
             textBox40 = new TextBox();
+            textBox41 = new TextBox();
             label40 = new Label();
             textBox39 = new TextBox();
-            label39 = new Label();
             textBox38 = new TextBox();
+            label41 = new Label();
             label38 = new Label();
+            textBox42 = new TextBox();
+            label42 = new Label();
             navigationPage4 = new DevExpress.XtraBars.Navigation.NavigationPage();
             textBox22 = new TextBox();
             label22 = new Label();
@@ -127,9 +137,6 @@
             label36 = new Label();
             textBox37 = new TextBox();
             label37 = new Label();
-            textBox21 = new TextBox();
-            label21 = new Label();
-            button5 = new Button();
             navigationPage3 = new DevExpress.XtraBars.Navigation.NavigationPage();
             button4 = new Button();
             textBox16 = new TextBox();
@@ -166,30 +173,41 @@
             label9 = new Label();
             textBox10 = new TextBox();
             label10 = new Label();
-            showallthongke = new DevExpress.XtraBars.Navigation.NavigationPage();
-            panel7 = new Panel();
-            panel8 = new Panel();
-            chartControl4 = new DevExpress.XtraCharts.ChartControl();
-            label46 = new Label();
+            themsinhvienpage = new DevExpress.XtraBars.Navigation.NavigationPage();
             panel5 = new Panel();
-            panel6 = new Panel();
-            chartControl3 = new DevExpress.XtraCharts.ChartControl();
-            label45 = new Label();
-            panel2 = new Panel();
+            label54 = new Label();
+            panel10 = new Panel();
+            label55 = new Label();
             panel3 = new Panel();
-            chartControl2 = new DevExpress.XtraCharts.ChartControl();
-            label44 = new Label();
-            panel1 = new Panel();
+            label47 = new Label();
+            textBox43 = new TextBox();
+            textBox48 = new TextBox();
+            textBox49 = new TextBox();
+            label52 = new Label();
+            label49 = new Label();
+            label53 = new Label();
+            textBox44 = new TextBox();
+            textBox45 = new TextBox();
+            label48 = new Label();
+            navigationPage8 = new DevExpress.XtraBars.Navigation.NavigationPage();
+            textBox46 = new TextBox();
+            label50 = new Label();
+            textBox47 = new TextBox();
+            label51 = new Label();
+            tracuu = new DevExpress.XtraBars.Navigation.NavigationPage();
             panel4 = new Panel();
-            chartControl1 = new DevExpress.XtraCharts.ChartControl();
-            label43 = new Label();
+            panel6 = new Panel();
+            label56 = new Label();
+            dataGridView1 = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)ribbon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemTextEdit2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemTextEdit1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)navigationFrame1).BeginInit();
-            navigationFrame1.SuspendLayout();
-            themsinhvienpage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nav).BeginInit();
+            nav.SuspendLayout();
+            cc.SuspendLayout();
             suasinhvienpage.SuspendLayout();
+            panel7.SuspendLayout();
+            panel9.SuspendLayout();
             navigationPage4.SuspendLayout();
             navigationPage5.SuspendLayout();
             navigationPage6.SuspendLayout();
@@ -197,19 +215,13 @@
             navigationPage3.SuspendLayout();
             navigationPage2.SuspendLayout();
             navigationPage1.SuspendLayout();
-            showallthongke.SuspendLayout();
-            panel7.SuspendLayout();
-            panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)chartControl4).BeginInit();
+            themsinhvienpage.SuspendLayout();
             panel5.SuspendLayout();
-            panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)chartControl3).BeginInit();
-            panel2.SuspendLayout();
-            panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)chartControl2).BeginInit();
-            panel1.SuspendLayout();
+            panel10.SuspendLayout();
+            navigationPage8.SuspendLayout();
             panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)chartControl1).BeginInit();
+            panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // ribbon
@@ -217,11 +229,11 @@
             ribbon.ExpandCollapseItem.Id = 0;
             ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, barButtonItem1, barButtonGroup1, barButtonItem2, barDockingMenuItem1, barDockingMenuItem2, barButtonItem3, barListItem1, barSubItem1, barSubItem2, barButtonItem4, barListItem2, barStaticItem1, barEditItem1, barButtonItem5, barButtonItem6, barButtonItem7, barButtonItem8, barButtonItem9, barButtonItem10, barButtonItem11, barButtonItem12 });
             ribbon.Location = new Point(0, 0);
-            ribbon.MaxItemId = 39;
+            ribbon.MaxItemId = 40;
             ribbon.Name = "ribbon";
             ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage1, ribbonPage2, ribbonPage3 });
             ribbon.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemTextEdit1, repositoryItemTextEdit2 });
-            ribbon.Size = new Size(1298, 201);
+            ribbon.Size = new Size(1938, 201);
             ribbon.StatusBar = ribbonStatusBar;
             ribbon.PageGroupCaptionButtonClick += ribbon_PageGroupCaptionButtonClick;
             ribbon.SelectedPageChanged += ribbon_SelectedPageChanged;
@@ -451,40 +463,41 @@
             ribbonStatusBar.Location = new Point(0, 1062);
             ribbonStatusBar.Name = "ribbonStatusBar";
             ribbonStatusBar.Ribbon = ribbon;
-            ribbonStatusBar.Size = new Size(1298, 37);
+            ribbonStatusBar.Size = new Size(1938, 37);
             ribbonStatusBar.Click += ribbonStatusBar_Click;
             // 
-            // navigationFrame1
+            // nav
             // 
-            navigationFrame1.Controls.Add(themsinhvienpage);
-            navigationFrame1.Controls.Add(suasinhvienpage);
-            navigationFrame1.Controls.Add(showallthongke);
-            navigationFrame1.Dock = DockStyle.Fill;
-            navigationFrame1.Location = new Point(0, 201);
-            navigationFrame1.Name = "navigationFrame1";
-            navigationFrame1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] { themsinhvienpage, suasinhvienpage, showallthongke });
-            navigationFrame1.SelectedPage = themsinhvienpage;
-            navigationFrame1.Size = new Size(1298, 861);
-            navigationFrame1.TabIndex = 8;
-            navigationFrame1.Text = "navigationFrame1";
+            nav.Controls.Add(cc);
+            nav.Controls.Add(suasinhvienpage);
+            nav.Controls.Add(themsinhvienpage);
+            nav.Controls.Add(tracuu);
+            nav.Dock = DockStyle.Left;
+            nav.Location = new Point(0, 201);
+            nav.Name = "nav";
+            nav.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] { suasinhvienpage, themsinhvienpage, tracuu });
+            nav.SelectedPage = suasinhvienpage;
+            nav.Size = new Size(1435, 861);
+            nav.TabIndex = 8;
+            nav.Text = "navigationFrame1";
             // 
-            // themsinhvienpage
+            // cc
             // 
-            themsinhvienpage.Caption = "themsinhvienpage";
-            themsinhvienpage.Controls.Add(textBox5);
-            themsinhvienpage.Controls.Add(textBox3);
-            themsinhvienpage.Controls.Add(textBox4);
-            themsinhvienpage.Controls.Add(textBox2);
-            themsinhvienpage.Controls.Add(button1);
-            themsinhvienpage.Controls.Add(label5);
-            themsinhvienpage.Controls.Add(label4);
-            themsinhvienpage.Controls.Add(label3);
-            themsinhvienpage.Controls.Add(label2);
-            themsinhvienpage.Controls.Add(textBox1);
-            themsinhvienpage.Controls.Add(label1);
-            themsinhvienpage.Name = "themsinhvienpage";
-            themsinhvienpage.Size = new Size(1298, 861);
-            themsinhvienpage.Paint += themsinhvienpage_Paint;
+            cc.Caption = "themsinhvienpage";
+            cc.Controls.Add(textBox5);
+            cc.Controls.Add(textBox3);
+            cc.Controls.Add(textBox4);
+            cc.Controls.Add(textBox2);
+            cc.Controls.Add(button1);
+            cc.Controls.Add(label5);
+            cc.Controls.Add(label4);
+            cc.Controls.Add(label3);
+            cc.Controls.Add(label2);
+            cc.Controls.Add(textBox1);
+            cc.Controls.Add(label1);
+            cc.Name = "cc";
+            cc.Size = new Size(1298, 861);
+            cc.Paint += themsinhvienpage_Paint;
             // 
             // textBox5
             // 
@@ -536,16 +549,10 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.Transparent;
-            button1.BackgroundImageLayout = ImageLayout.None;
-            button1.ForeColor = Color.Black;
-            button1.Location = new Point(314, 167);
+            button1.Location = new Point(0, 0);
             button1.Name = "button1";
-            button1.Size = new Size(103, 25);
-            button1.TabIndex = 10;
-            button1.Text = "Thêm Sinh Viên";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 15;
             // 
             // label5
             // 
@@ -612,127 +619,217 @@
             // suasinhvienpage
             // 
             suasinhvienpage.Caption = "suasinhvienpage";
+            suasinhvienpage.Controls.Add(panel7);
+            suasinhvienpage.Controls.Add(panel9);
             suasinhvienpage.Controls.Add(textBox42);
             suasinhvienpage.Controls.Add(label42);
-            suasinhvienpage.Controls.Add(textBox41);
-            suasinhvienpage.Controls.Add(label41);
-            suasinhvienpage.Controls.Add(textBox40);
-            suasinhvienpage.Controls.Add(label40);
-            suasinhvienpage.Controls.Add(textBox39);
-            suasinhvienpage.Controls.Add(label39);
-            suasinhvienpage.Controls.Add(textBox38);
-            suasinhvienpage.Controls.Add(label38);
             suasinhvienpage.Controls.Add(navigationPage4);
-            suasinhvienpage.Controls.Add(textBox21);
-            suasinhvienpage.Controls.Add(label21);
-            suasinhvienpage.Controls.Add(button5);
             suasinhvienpage.Controls.Add(navigationPage3);
             suasinhvienpage.Controls.Add(navigationPage2);
             suasinhvienpage.Controls.Add(navigationPage1);
             suasinhvienpage.Name = "suasinhvienpage";
-            suasinhvienpage.Size = new Size(1298, 861);
+            suasinhvienpage.Size = new Size(1435, 861);
+            suasinhvienpage.Paint += suasinhvienpage_Paint;
             // 
-            // textBox42
+            // panel7
             // 
-            textBox42.Location = new Point(174, 33);
-            textBox42.Name = "textBox42";
-            textBox42.Size = new Size(249, 20);
-            textBox42.TabIndex = 31;
+            panel7.BackColor = Color.Navy;
+            panel7.Controls.Add(label57);
+            panel7.Dock = DockStyle.Top;
+            panel7.Location = new Point(0, 0);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(1435, 56);
+            panel7.TabIndex = 41;
             // 
-            // label42
+            // label57
             // 
-            label42.AutoSize = true;
-            label42.Location = new Point(56, 36);
-            label42.Name = "label42";
-            label42.Size = new Size(110, 13);
-            label42.TabIndex = 30;
-            label42.Text = "Nhập MSSV cần sửa:";
-            label42.Click += label42_Click;
+            label57.AutoSize = true;
+            label57.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold);
+            label57.Location = new Point(15, 13);
+            label57.Name = "label57";
+            label57.Size = new Size(321, 30);
+            label57.TabIndex = 0;
+            label57.Text = "Chỉnh Sửa Thông Tin Sinh Viên";
+            // 
+            // panel9
+            // 
+            panel9.BackColor = Color.FromArgb(32, 32, 32);
+            panel9.Controls.Add(label46);
+            panel9.Controls.Add(panel1);
+            panel9.Controls.Add(label21);
+            panel9.Controls.Add(textBox21);
+            panel9.Controls.Add(label39);
+            panel9.Controls.Add(textBox40);
+            panel9.Controls.Add(textBox41);
+            panel9.Controls.Add(label40);
+            panel9.Controls.Add(textBox39);
+            panel9.Controls.Add(textBox38);
+            panel9.Controls.Add(label41);
+            panel9.Controls.Add(label38);
+            panel9.Location = new Point(174, 190);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(661, 312);
+            panel9.TabIndex = 36;
+            panel9.Paint += panel9_Paint;
+            // 
+            // label46
+            // 
+            label46.AutoSize = true;
+            label46.Font = new Font("Segoe UI", 11.25F);
+            label46.Location = new Point(501, 263);
+            label46.Name = "label46";
+            label46.Size = new Size(101, 20);
+            label46.TabIndex = 31;
+            label46.Text = "Xác Nhận Sửa";
+            // 
+            // panel1
+            // 
+            panel1.BackgroundImage = (Image)resources.GetObject("panel1.BackgroundImage");
+            panel1.BackgroundImageLayout = ImageLayout.Stretch;
+            panel1.Location = new Point(463, 263);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(32, 20);
+            panel1.TabIndex = 30;
+            // 
+            // label21
+            // 
+            label21.Anchor = AnchorStyles.None;
+            label21.AutoSize = true;
+            label21.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label21.Location = new Point(59, 31);
+            label21.Name = "label21";
+            label21.Size = new Size(98, 20);
+            label21.TabIndex = 15;
+            label21.Text = "Mã Sinh Viên:";
+            label21.Click += label21_Click;
+            // 
+            // textBox21
+            // 
+            textBox21.Anchor = AnchorStyles.None;
+            textBox21.BackColor = Color.FromArgb(32, 32, 32);
+            textBox21.BorderStyle = BorderStyle.None;
+            textBox21.ForeColor = Color.White;
+            textBox21.Location = new Point(163, 36);
+            textBox21.Multiline = true;
+            textBox21.Name = "textBox21";
+            textBox21.Size = new Size(165, 19);
+            textBox21.TabIndex = 16;
+            textBox21.TextChanged += textBox21_TextChanged;
+            // 
+            // label39
+            // 
+            label39.Anchor = AnchorStyles.None;
+            label39.AutoSize = true;
+            label39.Font = new Font("Segoe UI", 11.25F);
+            label39.Location = new Point(59, 100);
+            label39.Name = "label39";
+            label39.Size = new Size(83, 20);
+            label39.TabIndex = 24;
+            label39.Text = "Ngày Sinh: ";
+            label39.Click += label39_Click;
+            // 
+            // textBox40
+            // 
+            textBox40.Anchor = AnchorStyles.None;
+            textBox40.BackColor = Color.FromArgb(32, 32, 32);
+            textBox40.BorderStyle = BorderStyle.None;
+            textBox40.ForeColor = Color.White;
+            textBox40.Location = new Point(418, 105);
+            textBox40.Multiline = true;
+            textBox40.Name = "textBox40";
+            textBox40.Size = new Size(100, 19);
+            textBox40.TabIndex = 27;
             // 
             // textBox41
             // 
             textBox41.BackColor = Color.FromArgb(32, 32, 32);
             textBox41.BorderStyle = BorderStyle.None;
             textBox41.ForeColor = Color.White;
-            textBox41.Location = new Point(135, 231);
+            textBox41.Location = new Point(124, 170);
             textBox41.Multiline = true;
             textBox41.Name = "textBox41";
             textBox41.Size = new Size(100, 19);
             textBox41.TabIndex = 29;
             // 
-            // label41
-            // 
-            label41.AutoSize = true;
-            label41.Location = new Point(56, 231);
-            label41.Name = "label41";
-            label41.Size = new Size(42, 13);
-            label41.TabIndex = 28;
-            label41.Text = "Mã lớp:";
-            label41.Click += label41_Click;
-            // 
-            // textBox40
-            // 
-            textBox40.BackColor = Color.FromArgb(32, 32, 32);
-            textBox40.BorderStyle = BorderStyle.None;
-            textBox40.ForeColor = Color.White;
-            textBox40.Location = new Point(382, 167);
-            textBox40.Multiline = true;
-            textBox40.Name = "textBox40";
-            textBox40.Size = new Size(100, 19);
-            textBox40.TabIndex = 27;
-            // 
             // label40
             // 
+            label40.Anchor = AnchorStyles.None;
             label40.AutoSize = true;
-            label40.Location = new Point(326, 167);
+            label40.Font = new Font("Segoe UI", 11.25F);
+            label40.Location = new Point(344, 104);
             label40.Name = "label40";
-            label40.Size = new Size(50, 13);
+            label40.Size = new Size(68, 20);
             label40.TabIndex = 26;
             label40.Text = "Nơi Sinh:";
             label40.Click += label40_Click;
             // 
             // textBox39
             // 
+            textBox39.Anchor = AnchorStyles.None;
             textBox39.BackColor = Color.FromArgb(32, 32, 32);
             textBox39.BorderStyle = BorderStyle.None;
             textBox39.ForeColor = Color.White;
-            textBox39.Location = new Point(135, 167);
+            textBox39.Location = new Point(148, 105);
             textBox39.Multiline = true;
             textBox39.Name = "textBox39";
-            textBox39.Size = new Size(100, 19);
+            textBox39.Size = new Size(140, 19);
             textBox39.TabIndex = 25;
-            // 
-            // label39
-            // 
-            label39.AutoSize = true;
-            label39.Location = new Point(56, 167);
-            label39.Name = "label39";
-            label39.Size = new Size(62, 13);
-            label39.TabIndex = 24;
-            label39.Text = "Ngày Sinh: ";
-            label39.Click += label39_Click;
             // 
             // textBox38
             // 
+            textBox38.Anchor = AnchorStyles.None;
             textBox38.BackColor = Color.FromArgb(32, 32, 32);
             textBox38.BorderStyle = BorderStyle.None;
             textBox38.ForeColor = Color.White;
-            textBox38.Location = new Point(429, 96);
+            textBox38.Location = new Point(478, 36);
             textBox38.Multiline = true;
             textBox38.Name = "textBox38";
             textBox38.Size = new Size(100, 19);
             textBox38.TabIndex = 23;
             textBox38.TextChanged += textBox38_TextChanged;
             // 
+            // label41
+            // 
+            label41.Anchor = AnchorStyles.None;
+            label41.AutoSize = true;
+            label41.Font = new Font("Segoe UI", 11.25F);
+            label41.Location = new Point(59, 164);
+            label41.Name = "label41";
+            label41.Size = new Size(59, 20);
+            label41.TabIndex = 28;
+            label41.Text = "Mã lớp:";
+            label41.Click += label41_Click;
+            // 
             // label38
             // 
+            label38.Anchor = AnchorStyles.None;
             label38.AutoSize = true;
-            label38.Location = new Point(326, 96);
+            label38.Font = new Font("Segoe UI", 11.25F);
+            label38.Location = new Point(344, 31);
             label38.Name = "label38";
-            label38.Size = new Size(97, 13);
+            label38.Size = new Size(128, 20);
             label38.TabIndex = 22;
             label38.Text = "Họ Tên Sinh Viên: ";
             label38.Click += label38_Click;
+            // 
+            // textBox42
+            // 
+            textBox42.Location = new Point(444, 135);
+            textBox42.Multiline = true;
+            textBox42.Name = "textBox42";
+            textBox42.Size = new Size(338, 21);
+            textBox42.TabIndex = 31;
+            // 
+            // label42
+            // 
+            label42.AutoSize = true;
+            label42.Font = new Font("Segoe UI", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label42.Location = new Point(234, 129);
+            label42.Name = "label42";
+            label42.Size = new Size(180, 25);
+            label42.TabIndex = 30;
+            label42.Text = "Nhập MSSV cần sửa:";
+            label42.Click += label42_Click;
             // 
             // navigationPage4
             // 
@@ -1097,39 +1194,6 @@
             label37.TabIndex = 0;
             label37.Text = "Mã Sinh Viên:";
             // 
-            // textBox21
-            // 
-            textBox21.BackColor = Color.FromArgb(32, 32, 32);
-            textBox21.BorderStyle = BorderStyle.None;
-            textBox21.ForeColor = Color.White;
-            textBox21.Location = new Point(135, 96);
-            textBox21.Multiline = true;
-            textBox21.Name = "textBox21";
-            textBox21.Size = new Size(100, 19);
-            textBox21.TabIndex = 16;
-            textBox21.TextChanged += textBox21_TextChanged;
-            // 
-            // label21
-            // 
-            label21.AutoSize = true;
-            label21.Location = new Point(56, 96);
-            label21.Name = "label21";
-            label21.Size = new Size(73, 13);
-            label21.TabIndex = 15;
-            label21.Text = "Mã Sinh Viên:";
-            label21.Click += label21_Click;
-            // 
-            // button5
-            // 
-            button5.ForeColor = Color.Black;
-            button5.Location = new Point(326, 225);
-            button5.Name = "button5";
-            button5.Size = new Size(103, 24);
-            button5.TabIndex = 11;
-            button5.Text = "Xác Nhận Sửa";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += button5_Click;
-            // 
             // navigationPage3
             // 
             navigationPage3.Caption = "navigationPage3";
@@ -1451,165 +1515,335 @@
             label10.TabIndex = 0;
             label10.Text = "Mã Sinh Viên:";
             // 
-            // showallthongke
+            // themsinhvienpage
             // 
-            showallthongke.Caption = "navigationPage8";
-            showallthongke.Controls.Add(panel7);
-            showallthongke.Controls.Add(panel5);
-            showallthongke.Controls.Add(panel2);
-            showallthongke.Controls.Add(panel1);
-            showallthongke.Name = "showallthongke";
-            showallthongke.Size = new Size(1298, 861);
-            // 
-            // panel7
-            // 
-            panel7.Controls.Add(panel8);
-            panel7.Controls.Add(label46);
-            panel7.Location = new Point(12, 442);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(420, 397);
-            panel7.TabIndex = 3;
-            // 
-            // panel8
-            // 
-            panel8.Controls.Add(chartControl4);
-            panel8.Location = new Point(0, 67);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(420, 350);
-            panel8.TabIndex = 1;
-            // 
-            // chartControl4
-            // 
-            chartControl4.Dock = DockStyle.Fill;
-            chartControl4.Location = new Point(0, 0);
-            chartControl4.Name = "chartControl4";
-            chartControl4.Size = new Size(420, 350);
-            chartControl4.TabIndex = 0;
-            // 
-            // label46
-            // 
-            label46.AutoSize = true;
-            label46.Font = new Font("Times New Roman", 15.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label46.Location = new Point(91, 20);
-            label46.Name = "label46";
-            label46.Size = new Size(226, 24);
-            label46.TabIndex = 0;
-            label46.Text = "Chi Tiết Điểm Theo Môn";
+            themsinhvienpage.Caption = "themsinhvienpage";
+            themsinhvienpage.Controls.Add(panel5);
+            themsinhvienpage.Controls.Add(panel10);
+            themsinhvienpage.Controls.Add(navigationPage8);
+            themsinhvienpage.Name = "themsinhvienpage";
+            themsinhvienpage.Size = new Size(1435, 861);
             // 
             // panel5
             // 
-            panel5.Controls.Add(panel6);
-            panel5.Controls.Add(label45);
-            panel5.Location = new Point(864, 16);
+            panel5.BackColor = Color.Navy;
+            panel5.BorderStyle = BorderStyle.FixedSingle;
+            panel5.Controls.Add(label54);
+            panel5.Dock = DockStyle.Top;
+            panel5.Location = new Point(0, 0);
             panel5.Name = "panel5";
-            panel5.Size = new Size(420, 420);
-            panel5.TabIndex = 2;
+            panel5.Size = new Size(1435, 56);
+            panel5.TabIndex = 40;
             // 
-            // panel6
+            // label54
             // 
-            panel6.Controls.Add(chartControl3);
-            panel6.Location = new Point(0, 67);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(420, 350);
-            panel6.TabIndex = 1;
+            label54.AutoSize = true;
+            label54.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label54.Location = new Point(41, 10);
+            label54.Name = "label54";
+            label54.Size = new Size(213, 30);
+            label54.TabIndex = 38;
+            label54.Text = "Thêm Sinh Viên Mới";
             // 
-            // chartControl3
+            // panel10
             // 
-            chartControl3.Dock = DockStyle.Fill;
-            chartControl3.Location = new Point(0, 0);
-            chartControl3.Name = "chartControl3";
-            chartControl3.Size = new Size(420, 350);
-            chartControl3.TabIndex = 0;
+            panel10.BackColor = Color.FromArgb(32, 32, 32);
+            panel10.Controls.Add(label55);
+            panel10.Controls.Add(panel3);
+            panel10.Controls.Add(label47);
+            panel10.Controls.Add(textBox43);
+            panel10.Controls.Add(textBox48);
+            panel10.Controls.Add(textBox49);
+            panel10.Controls.Add(label52);
+            panel10.Controls.Add(label49);
+            panel10.Controls.Add(label53);
+            panel10.Controls.Add(textBox44);
+            panel10.Controls.Add(textBox45);
+            panel10.Controls.Add(label48);
+            panel10.Location = new Point(199, 108);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(651, 311);
+            panel10.TabIndex = 36;
+            panel10.Paint += panel10_Paint;
             // 
-            // label45
+            // label55
             // 
-            label45.AutoSize = true;
-            label45.Font = new Font("Times New Roman", 15.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label45.Location = new Point(96, 19);
-            label45.Name = "label45";
-            label45.Size = new Size(254, 24);
-            label45.TabIndex = 0;
-            label45.Text = "Điểm Trung Bình Theo Lớp";
-            label45.Click += label45_Click;
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(panel3);
-            panel2.Controls.Add(label44);
-            panel2.Location = new Point(438, 16);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(420, 420);
-            panel2.TabIndex = 1;
+            label55.AutoSize = true;
+            label55.Font = new Font("Segoe UI", 11.25F);
+            label55.Location = new Point(474, 253);
+            label55.Name = "label55";
+            label55.Size = new Size(111, 20);
+            label55.TabIndex = 35;
+            label55.Text = "Thêm Sinh Viên";
+            label55.Click += label55_Click;
             // 
             // panel3
             // 
-            panel3.Controls.Add(chartControl2);
-            panel3.Location = new Point(0, 67);
+            panel3.BackgroundImage = (Image)resources.GetObject("panel3.BackgroundImage");
+            panel3.BackgroundImageLayout = ImageLayout.Stretch;
+            panel3.Location = new Point(436, 253);
             panel3.Name = "panel3";
-            panel3.Size = new Size(420, 350);
-            panel3.TabIndex = 1;
+            panel3.Size = new Size(32, 20);
+            panel3.TabIndex = 34;
             // 
-            // chartControl2
+            // label47
             // 
-            chartControl2.Dock = DockStyle.Fill;
-            chartControl2.Location = new Point(0, 0);
-            chartControl2.Name = "chartControl2";
-            chartControl2.Size = new Size(420, 350);
-            chartControl2.TabIndex = 0;
+            label47.Anchor = AnchorStyles.None;
+            label47.AutoSize = true;
+            label47.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label47.Location = new Point(93, 17);
+            label47.Name = "label47";
+            label47.Size = new Size(98, 20);
+            label47.TabIndex = 17;
+            label47.Text = "Mã Sinh Viên:";
+            label47.Click += label47_Click;
             // 
-            // label44
+            // textBox43
             // 
-            label44.AutoSize = true;
-            label44.Font = new Font("Times New Roman", 15.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label44.Location = new Point(103, 19);
-            label44.Name = "label44";
-            label44.Size = new Size(231, 24);
-            label44.TabIndex = 0;
-            label44.Text = "Số Môn Rớt Theo Học Kỳ";
-            label44.Click += label44_Click;
+            textBox43.Anchor = AnchorStyles.None;
+            textBox43.BackColor = Color.FromArgb(32, 32, 32);
+            textBox43.BorderStyle = BorderStyle.None;
+            textBox43.ForeColor = Color.White;
+            textBox43.Location = new Point(200, 22);
+            textBox43.Multiline = true;
+            textBox43.Name = "textBox43";
+            textBox43.Size = new Size(100, 19);
+            textBox43.TabIndex = 18;
             // 
-            // panel1
+            // textBox48
             // 
-            panel1.Controls.Add(panel4);
-            panel1.Controls.Add(label43);
-            panel1.Location = new Point(12, 16);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(420, 420);
-            panel1.TabIndex = 0;
+            textBox48.Anchor = AnchorStyles.None;
+            textBox48.BackColor = Color.FromArgb(32, 32, 32);
+            textBox48.BorderStyle = BorderStyle.None;
+            textBox48.ForeColor = Color.White;
+            textBox48.Location = new Point(414, 98);
+            textBox48.Multiline = true;
+            textBox48.Name = "textBox48";
+            textBox48.Size = new Size(100, 19);
+            textBox48.TabIndex = 31;
+            // 
+            // textBox49
+            // 
+            textBox49.Anchor = AnchorStyles.None;
+            textBox49.BackColor = Color.FromArgb(32, 32, 32);
+            textBox49.BorderStyle = BorderStyle.None;
+            textBox49.ForeColor = Color.White;
+            textBox49.Location = new Point(158, 182);
+            textBox49.Multiline = true;
+            textBox49.Name = "textBox49";
+            textBox49.Size = new Size(100, 19);
+            textBox49.TabIndex = 33;
+            // 
+            // label52
+            // 
+            label52.Anchor = AnchorStyles.None;
+            label52.AutoSize = true;
+            label52.Font = new Font("Segoe UI", 11.25F);
+            label52.Location = new Point(340, 93);
+            label52.Name = "label52";
+            label52.Size = new Size(68, 20);
+            label52.TabIndex = 30;
+            label52.Text = "Nơi Sinh:";
+            label52.Click += label52_Click;
+            // 
+            // label49
+            // 
+            label49.Anchor = AnchorStyles.None;
+            label49.AutoSize = true;
+            label49.Font = new Font("Segoe UI", 11.25F);
+            label49.Location = new Point(93, 93);
+            label49.Name = "label49";
+            label49.Size = new Size(83, 20);
+            label49.TabIndex = 27;
+            label49.Text = "Ngày Sinh: ";
+            label49.Click += label49_Click;
+            // 
+            // label53
+            // 
+            label53.Anchor = AnchorStyles.None;
+            label53.AutoSize = true;
+            label53.Font = new Font("Segoe UI", 11.25F);
+            label53.Location = new Point(93, 177);
+            label53.Name = "label53";
+            label53.Size = new Size(59, 20);
+            label53.TabIndex = 32;
+            label53.Text = "Mã lớp:";
+            label53.Click += label53_Click;
+            // 
+            // textBox44
+            // 
+            textBox44.Anchor = AnchorStyles.None;
+            textBox44.BackColor = Color.FromArgb(32, 32, 32);
+            textBox44.BorderStyle = BorderStyle.None;
+            textBox44.ForeColor = Color.White;
+            textBox44.Location = new Point(474, 22);
+            textBox44.Multiline = true;
+            textBox44.Name = "textBox44";
+            textBox44.Size = new Size(100, 19);
+            textBox44.TabIndex = 25;
+            // 
+            // textBox45
+            // 
+            textBox45.Anchor = AnchorStyles.None;
+            textBox45.BackColor = Color.FromArgb(32, 32, 32);
+            textBox45.BorderStyle = BorderStyle.None;
+            textBox45.ForeColor = Color.White;
+            textBox45.Location = new Point(182, 98);
+            textBox45.Multiline = true;
+            textBox45.Name = "textBox45";
+            textBox45.Size = new Size(100, 19);
+            textBox45.TabIndex = 28;
+            // 
+            // label48
+            // 
+            label48.Anchor = AnchorStyles.None;
+            label48.AutoSize = true;
+            label48.Font = new Font("Segoe UI", 11.25F);
+            label48.Location = new Point(340, 17);
+            label48.Name = "label48";
+            label48.Size = new Size(128, 20);
+            label48.TabIndex = 24;
+            label48.Text = "Họ Tên Sinh Viên: ";
+            label48.Click += label48_Click;
+            // 
+            // navigationPage8
+            // 
+            navigationPage8.Caption = "navigationPage8";
+            navigationPage8.Controls.Add(textBox46);
+            navigationPage8.Controls.Add(label50);
+            navigationPage8.Controls.Add(textBox47);
+            navigationPage8.Controls.Add(label51);
+            navigationPage8.Name = "navigationPage8";
+            navigationPage8.Size = new Size(1298, 861);
+            // 
+            // textBox46
+            // 
+            textBox46.BackColor = Color.FromArgb(32, 32, 32);
+            textBox46.BorderStyle = BorderStyle.None;
+            textBox46.ForeColor = Color.White;
+            textBox46.Location = new Point(354, 50);
+            textBox46.Multiline = true;
+            textBox46.Name = "textBox46";
+            textBox46.Size = new Size(100, 19);
+            textBox46.TabIndex = 25;
+            // 
+            // label50
+            // 
+            label50.AutoSize = true;
+            label50.Location = new Point(251, 50);
+            label50.Name = "label50";
+            label50.Size = new Size(97, 13);
+            label50.TabIndex = 24;
+            label50.Text = "Họ Tên Sinh Viên: ";
+            // 
+            // textBox47
+            // 
+            textBox47.Anchor = AnchorStyles.None;
+            textBox47.BackColor = Color.FromArgb(32, 32, 32);
+            textBox47.BorderStyle = BorderStyle.None;
+            textBox47.ForeColor = Color.White;
+            textBox47.Location = new Point(668, 430);
+            textBox47.Multiline = true;
+            textBox47.Name = "textBox47";
+            textBox47.Size = new Size(100, 19);
+            textBox47.TabIndex = 18;
+            // 
+            // label51
+            // 
+            label51.Anchor = AnchorStyles.None;
+            label51.AutoSize = true;
+            label51.Location = new Point(589, 430);
+            label51.Name = "label51";
+            label51.Size = new Size(73, 13);
+            label51.TabIndex = 17;
+            label51.Text = "Mã Sinh Viên:";
+            // 
+            // tracuu
+            // 
+            tracuu.Caption = "tracuu";
+            tracuu.Name = "tracuu";
+            tracuu.Size = new Size(1435, 861);
             // 
             // panel4
             // 
-            panel4.Controls.Add(chartControl1);
-            panel4.Location = new Point(0, 67);
+            panel4.BorderStyle = BorderStyle.FixedSingle;
+            panel4.Controls.Add(panel6);
+            panel4.Controls.Add(dataGridView1);
+            panel4.Dock = DockStyle.Right;
+            panel4.ForeColor = Color.White;
+            panel4.Location = new Point(1441, 201);
             panel4.Name = "panel4";
-            panel4.Size = new Size(420, 350);
-            panel4.TabIndex = 1;
+            panel4.Size = new Size(497, 861);
+            panel4.TabIndex = 17;
             // 
-            // chartControl1
+            // panel6
             // 
-            chartControl1.Dock = DockStyle.Fill;
-            chartControl1.Location = new Point(0, 0);
-            chartControl1.Name = "chartControl1";
-            chartControl1.Size = new Size(420, 350);
-            chartControl1.TabIndex = 0;
+            panel6.BackColor = Color.Navy;
+            panel6.Controls.Add(label56);
+            panel6.Dock = DockStyle.Top;
+            panel6.Location = new Point(0, 0);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(495, 55);
+            panel6.TabIndex = 2;
             // 
-            // label43
+            // label56
             // 
-            label43.AutoSize = true;
-            label43.Font = new Font("Times New Roman", 15.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label43.Location = new Point(128, 19);
-            label43.Name = "label43";
-            label43.Size = new Size(139, 24);
-            label43.TabIndex = 0;
-            label43.Text = "Tỷ Lệ Đậu/Rớt";
+            label56.AutoSize = true;
+            label56.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label56.ForeColor = Color.Transparent;
+            label56.Location = new Point(13, 12);
+            label56.Name = "label56";
+            label56.Size = new Size(258, 30);
+            label56.TabIndex = 0;
+            label56.Text = "Hiển Thị Bảng Sinh  Viên";
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.BackgroundColor = Color.FromArgb(32, 32, 32);
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(32, 32, 32);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(32, 32, 32);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridView1.Dock = DockStyle.Bottom;
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.GridColor = Color.FromArgb(32, 32, 32);
+            dataGridView1.Location = new Point(0, 61);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(32, 32, 32);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(64, 64, 64);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridView1.Size = new Size(495, 798);
+            dataGridView1.TabIndex = 1;
             // 
             // DashboardStudent
             // 
             Appearance.Options.UseFont = true;
             AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1298, 1099);
-            Controls.Add(navigationFrame1);
+            ClientSize = new Size(1938, 1099);
+            Controls.Add(panel4);
+            Controls.Add(nav);
             Controls.Add(ribbonStatusBar);
             Controls.Add(ribbon);
             IconOptions.Image = (Image)resources.GetObject("DashboardStudent.IconOptions.Image");
@@ -1621,12 +1855,16 @@
             ((System.ComponentModel.ISupportInitialize)ribbon).EndInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemTextEdit2).EndInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemTextEdit1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)navigationFrame1).EndInit();
-            navigationFrame1.ResumeLayout(false);
-            themsinhvienpage.ResumeLayout(false);
-            themsinhvienpage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nav).EndInit();
+            nav.ResumeLayout(false);
+            cc.ResumeLayout(false);
+            cc.PerformLayout();
             suasinhvienpage.ResumeLayout(false);
             suasinhvienpage.PerformLayout();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
+            panel9.ResumeLayout(false);
+            panel9.PerformLayout();
             navigationPage4.ResumeLayout(false);
             navigationPage4.PerformLayout();
             navigationPage5.ResumeLayout(false);
@@ -1641,23 +1879,17 @@
             navigationPage2.PerformLayout();
             navigationPage1.ResumeLayout(false);
             navigationPage1.PerformLayout();
-            showallthongke.ResumeLayout(false);
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
-            panel8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)chartControl4).EndInit();
+            themsinhvienpage.ResumeLayout(false);
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
-            panel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)chartControl3).EndInit();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)chartControl2).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            panel10.ResumeLayout(false);
+            panel10.PerformLayout();
+            navigationPage8.ResumeLayout(false);
+            navigationPage8.PerformLayout();
             panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)chartControl1).EndInit();
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1693,16 +1925,8 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem6;
         private DevExpress.XtraBars.BarButtonItem barButtonItem7;
         private DevExpress.XtraBars.Navigation.NavigationPage sinhvienpage;
-        private DevExpress.XtraBars.Navigation.NavigationFrame navigationFrame1;
-        private DevExpress.XtraBars.Navigation.NavigationPage themsinhvienpage;
+        private DevExpress.XtraBars.Navigation.NavigationFrame nav;
         private DevExpress.XtraBars.Navigation.NavigationPage suasinhvienpage;
-        private TextBox textBox1;
-        private Label label1;
-        private Label label5;
-        private Label label4;
-        private Label label3;
-        private Label label2;
-        private Button button1;
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPage3;
         private Button button4;
         private TextBox textBox16;
@@ -1739,21 +1963,6 @@
         private Label label9;
         private TextBox textBox10;
         private Label label10;
-        private Button button5;
-        private TextBox textBox4;
-        private TextBox textBox2;
-        private TextBox textBox5;
-        private TextBox textBox3;
-        private TextBox textBox21;
-        private Label label21;
-        private TextBox textBox41;
-        private Label label41;
-        private TextBox textBox40;
-        private Label label40;
-        private TextBox textBox39;
-        private Label label39;
-        private TextBox textBox38;
-        private Label label38;
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPage4;
         private TextBox textBox22;
         private Label label22;
@@ -1797,27 +2006,63 @@
         private TextBox textBox42;
         private Label label42;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
-        private DevExpress.XtraBars.Navigation.NavigationPage showallthongke;
         private DevExpress.XtraBars.BarButtonItem barButtonItem8;
         private DevExpress.XtraBars.BarButtonItem barButtonItem9;
         private DevExpress.XtraBars.BarButtonItem barButtonItem10;
         private DevExpress.XtraBars.BarButtonItem barButtonItem11;
         private DevExpress.XtraBars.BarButtonItem barButtonItem12;
+        private DevExpress.XtraBars.Navigation.NavigationPage cc;
+        private TextBox textBox5;
+        private TextBox textBox3;
+        private TextBox textBox4;
+        private TextBox textBox2;
+        private Button button1;
+        private Label label5;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private TextBox textBox1;
+        private Label label1;
+        private DevExpress.XtraBars.Navigation.NavigationPage themsinhvienpage;
+        private TextBox textBox43;
+        private Label label47;
+        private TextBox textBox49;
+        private Label label53;
+        private TextBox textBox48;
+        private Label label52;
+        private TextBox textBox45;
+        private Label label49;
+        private DevExpress.XtraBars.Navigation.NavigationPage navigationPage8;
+        private TextBox textBox46;
+        private Label label50;
+        private TextBox textBox47;
+        private Label label51;
+        private TextBox textBox44;
+        private Label label48;
+        private Panel panel10;
+        private Label label54;
+        private Panel panel9;
+        private Label label21;
+        private TextBox textBox21;
+        private Label label39;
+        private TextBox textBox40;
+        private TextBox textBox41;
+        private Label label40;
+        private TextBox textBox39;
+        private TextBox textBox38;
+        private Label label41;
+        private Label label38;
+        private Label label46;
         private Panel panel1;
+        private Label label55;
+        private Panel panel3;
+        private Panel panel4;
+        private Label label56;
+        private DataGridView dataGridView1;
         private Panel panel5;
         private Panel panel6;
-        private DevExpress.XtraCharts.ChartControl chartControl3;
-        private Label label45;
-        private Panel panel2;
-        private Panel panel3;
-        private DevExpress.XtraCharts.ChartControl chartControl2;
-        private Label label44;
-        private Panel panel4;
-        private DevExpress.XtraCharts.ChartControl chartControl1;
-        private Label label43;
         private Panel panel7;
-        private Panel panel8;
-        private DevExpress.XtraCharts.ChartControl chartControl4;
-        private Label label46;
+        private Label label57;
+        private DevExpress.XtraBars.Navigation.NavigationPage tracuu;
     }
 }
