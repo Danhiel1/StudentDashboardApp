@@ -90,9 +90,9 @@ namespace StudentDashboardApp.Model
                 currentSheetIndex = 0;
                 ShowCurrentSheet();
                 btnNext.Enabled = true;
-                btnNext.Visible= true;
+                btnNext.Visible = true;
                 btnPrevious.Enabled = true;
-                btnPrevious.Visible= true;
+                btnPrevious.Visible = true;
             }
             else
             {
@@ -116,8 +116,7 @@ namespace StudentDashboardApp.Model
                 dataGridView1.AllowUserToResizeRows = false;
                 dataGridView1.RowHeadersVisible = false;
 
-                dataGridView1.BackgroundColor = Color.White;
-                dataGridView1.DefaultCellStyle.BackColor = Color.White;
+               
             }
         }
 
@@ -145,5 +144,33 @@ namespace StudentDashboardApp.Model
         {
 
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+   private void btnImport_Click(object sender, EventArgs e)
+        {
+            string connectionString = "Server=.;Database=QLSV;Trusted_Connection=True;Encrypt=False;";
+
+            var service = new BusinessLayer.StudentService(connectionString);
+
+            DataTable dt = dsSheets.Tables[currentSheetIndex]; // lấy sheet hiện tại
+
+            try
+            {
+                service.ImportStudents(dt);
+
+                int total = service.GetStudentCount();  // ✅ kiểm tra tổng số sinh viên
+                MessageBox.Show($"Import dữ liệu thành công! Tổng số bản ghi hiện tại: {total}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
+
     }
 }
+

@@ -1,6 +1,9 @@
 ﻿using DevExpress.XtraBars;
 using System;
 using System.Linq;
+using System.Windows;
+using System.Windows.Forms;
+
 
 namespace StudentDashboardApp.Model
 {
@@ -49,5 +52,27 @@ namespace StudentDashboardApp.Model
         {
 
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void barButtonItem4_ItemClick_1(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void panelControl1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void studentRepositoryBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

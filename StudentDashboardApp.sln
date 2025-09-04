@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{A51809C8-58BC-41C5-97DB-8DBB7BFBC2FC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{03492310-35AB-403C-987C-F77F681FF02A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A51809C8-58BC-41C5-97DB-8DBB7BFBC2FC} = {A51809C8-58BC-41C5-97DB-8DBB7BFBC2FC}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

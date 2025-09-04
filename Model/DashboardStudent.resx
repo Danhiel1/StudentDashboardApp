@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="barSubItem2.ImageOptions.DisabledImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="BarImportItem.ImageOptions.DisabledImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DgAACw4BQL7hQQAAA0xJREFUaEPtmVtIFFEYx33pvbegp95rZndmNStJK8U0N12TLkKaaNgNrEAUdaYt
+        DAAACwwBP0AiyAAAA0xJREFUaEPtmVtIFFEYx33pvbegp95rZndmNStJK8U0N12TLkKaaNgNrEAUdaYt
         zYwKbAXzQpAXMu3ihkq2Zruha0UlJK10IVq01KB0jbytuXvinJjD7JlitdZ2dpk//JD5zneY/1/3m5l1
         QkIUKVKkSJFIKr1qpapIs4Xi2RMUz9avKwhfRfbIToyeWU0VqWMojj1OcWwDxbGDNMe6aJ4FAiq9ag25
         z6+Cpmme2UnxzGmKZ9ppjhkTG/4TfguiydasUHGqtTSnTqc4xkBxjJXm2O+kwcXy34PQnIanOXaA4pl5
@@ -138,7 +138,7 @@
         UhSQr94Wq4B8GapIkSJFy66flqlGEZUZX90AAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="barSubItem2.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="BarImportItem.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
         DAAACwwBP0AiyAAAAMdJREFUWEftkUEKwlAMBd/CK1jwti49inicuvA4yge/lMdXk2lAFx0IQjWToUob
@@ -147,10 +147,10 @@
         sTbg0/FQxNoAJ+1LL3wh7fPXRcd9YVxEx30/YwsYBjwAUOzF0aXu3CwAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="barButtonItem4.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="ImportItem1.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DgAACw4BQL7hQQAAA0xJREFUaEPtmVtIFFEYx33pvbegp95rZndmNStJK8U0N12TLkKaaNgNrEAUdaYt
+        DAAACwwBP0AiyAAAA0xJREFUaEPtmVtIFFEYx33pvbegp95rZndmNStJK8U0N12TLkKaaNgNrEAUdaYt
         zYwKbAXzQpAXMu3ihkq2Zruha0UlJK10IVq01KB0jbytuXvinJjD7JlitdZ2dpk//JD5zneY/1/3m5l1
         QkIUKVKkSJFIKr1qpapIs4Xi2RMUz9avKwhfRfbIToyeWU0VqWMojj1OcWwDxbGDNMe6aJ4FAiq9ag25
         z6+Cpmme2UnxzGmKZ9ppjhkTG/4TfguiydasUHGqtTSnTqc4xkBxjJXm2O+kwcXy34PQnIanOXaA4pl5
