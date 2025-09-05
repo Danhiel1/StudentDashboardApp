@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardStudent));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             barButtonGroup1 = new DevExpress.XtraBars.BarButtonGroup();
@@ -63,6 +60,7 @@
             ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
@@ -200,32 +198,27 @@
             label56 = new Label();
             dataGridView1 = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)ribbon).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryItemTextEdit2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryItemTextEdit1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nav).BeginInit();
-            nav.SuspendLayout();
-            cc.SuspendLayout();
-            suasinhvienpage.SuspendLayout();
-            panel7.SuspendLayout();
-            panel9.SuspendLayout();
-            navigationPage4.SuspendLayout();
-            navigationPage5.SuspendLayout();
-            navigationPage6.SuspendLayout();
-            navigationPage7.SuspendLayout();
-            navigationPage3.SuspendLayout();
-            navigationPage2.SuspendLayout();
-            navigationPage1.SuspendLayout();
-            themsinhvienpage.SuspendLayout();
-            panel5.SuspendLayout();
-            panel10.SuspendLayout();
-            navigationPage8.SuspendLayout();
-            panel4.SuspendLayout();
-            panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)chartControl1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)xyDiagram1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)series1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)stackedSplineAreaSeriesView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)series2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)stackedSplineAreaSeriesView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)series3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)stackedSplineAreaSeriesView3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridControl1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)panelControl1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)chartControl2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)series4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pieSeriesView1).BeginInit();
             SuspendLayout();
             // 
             // ribbon
             // 
+            ribbon.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            ribbon.Dock = DockStyle.None;
+            ribbon.EmptyAreaImageOptions.ImagePadding = new Padding(40, 37, 40, 37);
             ribbon.ExpandCollapseItem.Id = 0;
             ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, barButtonItem1, barButtonGroup1, barButtonItem2, barDockingMenuItem1, barDockingMenuItem2, barButtonItem3, barListItem1, barSubItem1, barSubItem2, barButtonItem4, barListItem2, barStaticItem1, barEditItem1, barButtonItem5, barButtonItem6, barButtonItem7, barButtonItem8, barButtonItem9, barButtonItem10, barButtonItem11, barButtonItem12 });
             ribbon.Location = new Point(0, 0);
@@ -1566,285 +1559,128 @@
             panel10.TabIndex = 36;
             panel10.Paint += panel10_Paint;
             // 
-            // label55
+            // panel2
             // 
-            label55.AutoSize = true;
-            label55.Font = new Font("Segoe UI", 11.25F);
-            label55.Location = new Point(474, 253);
-            label55.Name = "label55";
-            label55.Size = new Size(111, 20);
-            label55.TabIndex = 35;
-            label55.Text = "Thêm Sinh Viên";
-            label55.Click += label55_Click;
+            panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            panel2.Location = new Point(48, 339);
+            panel2.Margin = new Padding(2);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(178, 80);
+            panel2.TabIndex = 2;
+            panel2.Paint += panel1_Paint;
             // 
-            // panel3
+            // Root
             // 
-            panel3.BackgroundImage = (Image)resources.GetObject("panel3.BackgroundImage");
-            panel3.BackgroundImageLayout = ImageLayout.Stretch;
-            panel3.Location = new Point(436, 253);
+            panel3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            panel3.Location = new Point(48, 446);
+            panel3.Margin = new Padding(2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(32, 20);
-            panel3.TabIndex = 34;
-            // 
-            // label47
-            // 
-            label47.Anchor = AnchorStyles.None;
-            label47.AutoSize = true;
-            label47.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label47.Location = new Point(93, 17);
-            label47.Name = "label47";
-            label47.Size = new Size(98, 20);
-            label47.TabIndex = 17;
-            label47.Text = "Mã Sinh Viên:";
-            label47.Click += label47_Click;
-            // 
-            // textBox43
-            // 
-            textBox43.Anchor = AnchorStyles.None;
-            textBox43.BackColor = Color.FromArgb(32, 32, 32);
-            textBox43.BorderStyle = BorderStyle.None;
-            textBox43.ForeColor = Color.White;
-            textBox43.Location = new Point(200, 22);
-            textBox43.Multiline = true;
-            textBox43.Name = "textBox43";
-            textBox43.Size = new Size(100, 19);
-            textBox43.TabIndex = 18;
-            // 
-            // textBox48
-            // 
-            textBox48.Anchor = AnchorStyles.None;
-            textBox48.BackColor = Color.FromArgb(32, 32, 32);
-            textBox48.BorderStyle = BorderStyle.None;
-            textBox48.ForeColor = Color.White;
-            textBox48.Location = new Point(414, 98);
-            textBox48.Multiline = true;
-            textBox48.Name = "textBox48";
-            textBox48.Size = new Size(100, 19);
-            textBox48.TabIndex = 31;
-            // 
-            // textBox49
-            // 
-            textBox49.Anchor = AnchorStyles.None;
-            textBox49.BackColor = Color.FromArgb(32, 32, 32);
-            textBox49.BorderStyle = BorderStyle.None;
-            textBox49.ForeColor = Color.White;
-            textBox49.Location = new Point(158, 182);
-            textBox49.Multiline = true;
-            textBox49.Name = "textBox49";
-            textBox49.Size = new Size(100, 19);
-            textBox49.TabIndex = 33;
-            // 
-            // label52
-            // 
-            label52.Anchor = AnchorStyles.None;
-            label52.AutoSize = true;
-            label52.Font = new Font("Segoe UI", 11.25F);
-            label52.Location = new Point(340, 93);
-            label52.Name = "label52";
-            label52.Size = new Size(68, 20);
-            label52.TabIndex = 30;
-            label52.Text = "Nơi Sinh:";
-            label52.Click += label52_Click;
-            // 
-            // label49
-            // 
-            label49.Anchor = AnchorStyles.None;
-            label49.AutoSize = true;
-            label49.Font = new Font("Segoe UI", 11.25F);
-            label49.Location = new Point(93, 93);
-            label49.Name = "label49";
-            label49.Size = new Size(83, 20);
-            label49.TabIndex = 27;
-            label49.Text = "Ngày Sinh: ";
-            label49.Click += label49_Click;
-            // 
-            // label53
-            // 
-            label53.Anchor = AnchorStyles.None;
-            label53.AutoSize = true;
-            label53.Font = new Font("Segoe UI", 11.25F);
-            label53.Location = new Point(93, 177);
-            label53.Name = "label53";
-            label53.Size = new Size(59, 20);
-            label53.TabIndex = 32;
-            label53.Text = "Mã lớp:";
-            label53.Click += label53_Click;
-            // 
-            // textBox44
-            // 
-            textBox44.Anchor = AnchorStyles.None;
-            textBox44.BackColor = Color.FromArgb(32, 32, 32);
-            textBox44.BorderStyle = BorderStyle.None;
-            textBox44.ForeColor = Color.White;
-            textBox44.Location = new Point(474, 22);
-            textBox44.Multiline = true;
-            textBox44.Name = "textBox44";
-            textBox44.Size = new Size(100, 19);
-            textBox44.TabIndex = 25;
-            // 
-            // textBox45
-            // 
-            textBox45.Anchor = AnchorStyles.None;
-            textBox45.BackColor = Color.FromArgb(32, 32, 32);
-            textBox45.BorderStyle = BorderStyle.None;
-            textBox45.ForeColor = Color.White;
-            textBox45.Location = new Point(182, 98);
-            textBox45.Multiline = true;
-            textBox45.Name = "textBox45";
-            textBox45.Size = new Size(100, 19);
-            textBox45.TabIndex = 28;
-            // 
-            // label48
-            // 
-            label48.Anchor = AnchorStyles.None;
-            label48.AutoSize = true;
-            label48.Font = new Font("Segoe UI", 11.25F);
-            label48.Location = new Point(340, 17);
-            label48.Name = "label48";
-            label48.Size = new Size(128, 20);
-            label48.TabIndex = 24;
-            label48.Text = "Họ Tên Sinh Viên: ";
-            label48.Click += label48_Click;
-            // 
-            // navigationPage8
-            // 
-            navigationPage8.Caption = "navigationPage8";
-            navigationPage8.Controls.Add(textBox46);
-            navigationPage8.Controls.Add(label50);
-            navigationPage8.Controls.Add(textBox47);
-            navigationPage8.Controls.Add(label51);
-            navigationPage8.Name = "navigationPage8";
-            navigationPage8.Size = new Size(1298, 861);
-            // 
-            // textBox46
-            // 
-            textBox46.BackColor = Color.FromArgb(32, 32, 32);
-            textBox46.BorderStyle = BorderStyle.None;
-            textBox46.ForeColor = Color.White;
-            textBox46.Location = new Point(354, 50);
-            textBox46.Multiline = true;
-            textBox46.Name = "textBox46";
-            textBox46.Size = new Size(100, 19);
-            textBox46.TabIndex = 25;
-            // 
-            // label50
-            // 
-            label50.AutoSize = true;
-            label50.Location = new Point(251, 50);
-            label50.Name = "label50";
-            label50.Size = new Size(97, 13);
-            label50.TabIndex = 24;
-            label50.Text = "Họ Tên Sinh Viên: ";
-            // 
-            // textBox47
-            // 
-            textBox47.Anchor = AnchorStyles.None;
-            textBox47.BackColor = Color.FromArgb(32, 32, 32);
-            textBox47.BorderStyle = BorderStyle.None;
-            textBox47.ForeColor = Color.White;
-            textBox47.Location = new Point(668, 430);
-            textBox47.Multiline = true;
-            textBox47.Name = "textBox47";
-            textBox47.Size = new Size(100, 19);
-            textBox47.TabIndex = 18;
-            // 
-            // label51
-            // 
-            label51.Anchor = AnchorStyles.None;
-            label51.AutoSize = true;
-            label51.Location = new Point(589, 430);
-            label51.Name = "label51";
-            label51.Size = new Size(73, 13);
-            label51.TabIndex = 17;
-            label51.Text = "Mã Sinh Viên:";
-            // 
-            // tracuu
-            // 
-            tracuu.Caption = "tracuu";
-            tracuu.Name = "tracuu";
-            tracuu.Size = new Size(1435, 861);
+            panel3.Size = new Size(178, 80);
+            panel3.TabIndex = 2;
+            panel3.Paint += panel1_Paint;
             // 
             // panel4
             // 
-            panel4.BorderStyle = BorderStyle.FixedSingle;
-            panel4.Controls.Add(panel6);
-            panel4.Controls.Add(dataGridView1);
-            panel4.Dock = DockStyle.Right;
-            panel4.ForeColor = Color.White;
-            panel4.Location = new Point(1441, 201);
+            panel4.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            panel4.Location = new Point(48, 554);
+            panel4.Margin = new Padding(2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(497, 861);
-            panel4.TabIndex = 17;
+            panel4.Size = new Size(178, 80);
+            panel4.TabIndex = 2;
+            panel4.Paint += panel1_Paint;
             // 
-            // panel6
+            // chartControl1
             // 
-            panel6.BackColor = Color.Navy;
-            panel6.Controls.Add(label56);
-            panel6.Dock = DockStyle.Top;
-            panel6.Location = new Point(0, 0);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(495, 55);
-            panel6.TabIndex = 2;
+            chartControl1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
+            xyDiagram1.AxisX.WholeRange.EndSideMargin = 0D;
+            xyDiagram1.AxisX.WholeRange.StartSideMargin = 0D;
+            xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
+            chartControl1.Diagram = xyDiagram1;
+            chartControl1.Location = new Point(261, 229);
+            chartControl1.Margin = new Padding(2);
+            chartControl1.Name = "chartControl1";
+            series1.Name = "Series 1";
+            series1.SeriesID = 9;
+            stackedSplineAreaSeriesView1.EmptyPointOptions.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Solid;
+            series1.View = stackedSplineAreaSeriesView1;
+            series2.Name = "Series 2";
+            series2.SeriesID = 10;
+            stackedSplineAreaSeriesView2.EmptyPointOptions.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Solid;
+            series2.View = stackedSplineAreaSeriesView2;
+            series3.Name = "Series 3";
+            series3.SeriesID = 10;
+            stackedSplineAreaSeriesView3.EmptyPointOptions.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Solid;
+            series3.View = stackedSplineAreaSeriesView3;
+            chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[]
+    {
+    series1,
+    series2,
+    series3
+    };
+            chartControl1.Size = new Size(497, 227);
+            chartControl1.TabIndex = 5;
             // 
-            // label56
+            // gridView1
             // 
-            label56.AutoSize = true;
-            label56.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label56.ForeColor = Color.Transparent;
-            label56.Location = new Point(13, 12);
-            label56.Name = "label56";
-            label56.Size = new Size(258, 30);
-            label56.TabIndex = 0;
-            label56.Text = "Hiển Thị Bảng Sinh  Viên";
+            gridView1.DetailHeight = 280;
+            gridView1.GridControl = gridControl1;
+            gridView1.Name = "gridView1";
+            gridView1.OptionsEditForm.PopupEditFormWidth = 711;
             // 
-            // dataGridView1
+            // gridControl1
             // 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.BackgroundColor = Color.FromArgb(32, 32, 32);
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(32, 32, 32);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(32, 32, 32);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle2.SelectionForeColor = Color.White;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            dataGridView1.Dock = DockStyle.Bottom;
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.GridColor = Color.FromArgb(32, 32, 32);
-            dataGridView1.Location = new Point(0, 61);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(32, 32, 32);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(64, 64, 64);
-            dataGridViewCellStyle3.SelectionForeColor = Color.White;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dataGridView1.Size = new Size(495, 798);
-            dataGridView1.TabIndex = 1;
+            gridControl1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            gridControl1.EmbeddedNavigator.Margin = new Padding(2, 3, 2, 3);
+            gridControl1.Location = new Point(261, 475);
+            gridControl1.MainView = gridView1;
+            gridControl1.Margin = new Padding(2);
+            gridControl1.MenuManager = ribbon;
+            gridControl1.Name = "gridControl1";
+            gridControl1.Size = new Size(401, 159);
+            gridControl1.TabIndex = 6;
+            gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView1 });
+            // 
+            // panelControl1
+            // 
+            panelControl1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panelControl1.Location = new Point(692, 475);
+            panelControl1.Margin = new Padding(2);
+            panelControl1.Name = "panelControl1";
+            panelControl1.Size = new Size(389, 159);
+            panelControl1.TabIndex = 7;
+            panelControl1.Paint += panelControl1_Paint;
+            // 
+            // chartControl2
+            // 
+            chartControl2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            chartControl2.Location = new Point(786, 229);
+            chartControl2.Margin = new Padding(2);
+            chartControl2.Name = "chartControl2";
+            series4.Name = "Series 1";
+            series4.SeriesID = 13;
+            series4.View = pieSeriesView1;
+            chartControl2.SeriesSerializable = new DevExpress.XtraCharts.Series[]
+    {
+    series4
+    };
+            chartControl2.Size = new Size(295, 227);
+            chartControl2.TabIndex = 8;
             // 
             // DashboardStudent
             // 
             Appearance.Options.UseFont = true;
             AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1938, 1099);
+            ClientSize = new Size(1123, 672);
+            Controls.Add(panel1);
+            Controls.Add(chartControl2);
+            Controls.Add(chartControl1);
+            Controls.Add(panel2);
+            Controls.Add(panel3);
             Controls.Add(panel4);
-            Controls.Add(nav);
-            Controls.Add(ribbonStatusBar);
+            Controls.Add(gridControl1);
+            Controls.Add(panelControl1);
             Controls.Add(ribbon);
             IconOptions.Image = (Image)resources.GetObject("DashboardStudent.IconOptions.Image");
             Name = "DashboardStudent";
@@ -1853,43 +1689,20 @@
             Text = "DashboardStudent";
             Load += DashboardStudent_Load;
             ((System.ComponentModel.ISupportInitialize)ribbon).EndInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryItemTextEdit2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)repositoryItemTextEdit1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nav).EndInit();
-            nav.ResumeLayout(false);
-            cc.ResumeLayout(false);
-            cc.PerformLayout();
-            suasinhvienpage.ResumeLayout(false);
-            suasinhvienpage.PerformLayout();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
-            panel9.ResumeLayout(false);
-            panel9.PerformLayout();
-            navigationPage4.ResumeLayout(false);
-            navigationPage4.PerformLayout();
-            navigationPage5.ResumeLayout(false);
-            navigationPage5.PerformLayout();
-            navigationPage6.ResumeLayout(false);
-            navigationPage6.PerformLayout();
-            navigationPage7.ResumeLayout(false);
-            navigationPage7.PerformLayout();
-            navigationPage3.ResumeLayout(false);
-            navigationPage3.PerformLayout();
-            navigationPage2.ResumeLayout(false);
-            navigationPage2.PerformLayout();
-            navigationPage1.ResumeLayout(false);
-            navigationPage1.PerformLayout();
-            themsinhvienpage.ResumeLayout(false);
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
-            panel10.ResumeLayout(false);
-            panel10.PerformLayout();
-            navigationPage8.ResumeLayout(false);
-            navigationPage8.PerformLayout();
-            panel4.ResumeLayout(false);
-            panel6.ResumeLayout(false);
-            panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)xyDiagram1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)stackedSplineAreaSeriesView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)series1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)stackedSplineAreaSeriesView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)series2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)stackedSplineAreaSeriesView3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)series3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)chartControl1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridControl1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)panelControl1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pieSeriesView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)series4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)chartControl2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1924,145 +1737,33 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
         private DevExpress.XtraBars.BarButtonItem barButtonItem6;
         private DevExpress.XtraBars.BarButtonItem barButtonItem7;
-        private DevExpress.XtraBars.Navigation.NavigationPage sinhvienpage;
-        private DevExpress.XtraBars.Navigation.NavigationFrame nav;
-        private DevExpress.XtraBars.Navigation.NavigationPage suasinhvienpage;
-        private DevExpress.XtraBars.Navigation.NavigationPage navigationPage3;
-        private Button button4;
-        private TextBox textBox16;
-        private Label label16;
-        private TextBox textBox17;
-        private Label label17;
-        private TextBox textBox18;
-        private Label label18;
-        private TextBox textBox19;
-        private Label label19;
-        private TextBox textBox20;
-        private Label label20;
-        private DevExpress.XtraBars.Navigation.NavigationPage navigationPage2;
-        private Button button3;
-        private TextBox textBox11;
-        private Label label11;
-        private TextBox textBox12;
-        private Label label12;
-        private TextBox textBox13;
-        private Label label13;
-        private TextBox textBox14;
-        private Label label14;
-        private TextBox textBox15;
-        private Label label15;
-        private DevExpress.XtraBars.Navigation.NavigationPage navigationPage1;
-        private Button button2;
-        private TextBox textBox6;
-        private Label label6;
-        private TextBox textBox7;
-        private Label label7;
-        private TextBox textBox8;
-        private Label label8;
-        private TextBox textBox9;
-        private Label label9;
-        private TextBox textBox10;
-        private Label label10;
-        private DevExpress.XtraBars.Navigation.NavigationPage navigationPage4;
-        private TextBox textBox22;
-        private Label label22;
-        private Button button6;
-        private DevExpress.XtraBars.Navigation.NavigationPage navigationPage5;
-        private Button button7;
-        private TextBox textBox23;
-        private Label label23;
-        private TextBox textBox24;
-        private Label label24;
-        private TextBox textBox25;
-        private Label label25;
-        private TextBox textBox26;
-        private Label label26;
-        private TextBox textBox27;
-        private Label label27;
-        private DevExpress.XtraBars.Navigation.NavigationPage navigationPage6;
-        private Button button8;
-        private TextBox textBox28;
-        private Label label28;
-        private TextBox textBox29;
-        private Label label29;
-        private TextBox textBox30;
-        private Label label30;
-        private TextBox textBox31;
-        private Label label31;
-        private TextBox textBox32;
-        private Label label32;
-        private DevExpress.XtraBars.Navigation.NavigationPage navigationPage7;
-        private Button button9;
-        private TextBox textBox33;
-        private Label label33;
-        private TextBox textBox34;
-        private Label label34;
-        private TextBox textBox35;
-        private Label label35;
-        private TextBox textBox36;
-        private Label label36;
-        private TextBox textBox37;
-        private Label label37;
-        private TextBox textBox42;
-        private Label label42;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem8;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem9;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem10;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem11;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem12;
-        private DevExpress.XtraBars.Navigation.NavigationPage cc;
-        private TextBox textBox5;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox2;
-        private Button button1;
-        private Label label5;
-        private Label label4;
-        private Label label3;
-        private Label label2;
-        private TextBox textBox1;
-        private Label label1;
-        private DevExpress.XtraBars.Navigation.NavigationPage themsinhvienpage;
-        private TextBox textBox43;
-        private Label label47;
-        private TextBox textBox49;
-        private Label label53;
-        private TextBox textBox48;
-        private Label label52;
-        private TextBox textBox45;
-        private Label label49;
-        private DevExpress.XtraBars.Navigation.NavigationPage navigationPage8;
-        private TextBox textBox46;
-        private Label label50;
-        private TextBox textBox47;
-        private Label label51;
-        private TextBox textBox44;
-        private Label label48;
-        private Panel panel10;
-        private Label label54;
-        private Panel panel9;
-        private Label label21;
-        private TextBox textBox21;
-        private Label label39;
-        private TextBox textBox40;
-        private TextBox textBox41;
-        private Label label40;
-        private TextBox textBox39;
-        private TextBox textBox38;
-        private Label label41;
-        private Label label38;
-        private Label label46;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup RibbonData;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage3;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private Panel panel1;
-        private Label label55;
+        private Panel panel2;
         private Panel panel3;
         private Panel panel4;
-        private Label label56;
-        private DataGridView dataGridView1;
-        private Panel panel5;
-        private Panel panel6;
-        private Panel panel7;
-        private Label label57;
-        private DevExpress.XtraBars.Navigation.NavigationPage tracuu;
+        private DevExpress.XtraCharts.ChartControl chartControl1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraCharts.ChartControl chartControl2;
+        private DevExpress.XtraBars.BarButtonItem btnDatabase;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonSystemSettinngs;
+        private DevExpress.XtraBars.BarButtonItem btnParameters;
+        private DevExpress.XtraBars.BarButtonItem btnActLog;
+        private DevExpress.XtraBars.BarButtonItem btnCkUpdate;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonSupport;
+        private DevExpress.XtraBars.BarButtonItem btnRestore;
+        private DevExpress.XtraBars.BarButtonItem btnBackup;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem4;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem8;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem9;
+        private DevExpress.XtraBars.SkinDropDownButtonItem skinDropDownButtonItem1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
     }
 }

@@ -63,7 +63,21 @@
             groupControl1.Size = new Size(691, 161);
             groupControl1.TabIndex = 0;
             groupControl1.Text = "groupControl1";
-            groupControl1.Paint += groupControl1_Paint;
+            // 
+            // lblSheetName
+            // 
+            lblSheetName.AccessibleDescription = "";
+            lblSheetName.AutoSize = true;
+            lblSheetName.Dock = DockStyle.Fill;
+            lblSheetName.ForeColor = Color.Transparent;
+            lblSheetName.Location = new Point(0, 0);
+            lblSheetName.Name = "lblSheetName";
+            lblSheetName.Size = new Size(66, 13);
+            lblSheetName.TabIndex = 0;
+            lblSheetName.Text = "Name Sheet";
+            lblSheetName.Click += lblSheetName_Click;
+            // 
+            // xtraScrollableControl1
             // 
             // ImportForm
             // 
@@ -74,7 +88,7 @@
             Controls.Add(fluentDesignFormContainer1);
             Controls.Add(fluentDesignFormControl1);
             FluentDesignFormControl = fluentDesignFormControl1;
-            Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Name = "ImportForm";
             Text = "ImportForm";
             fluentDesignFormContainer1.ResumeLayout(false);
