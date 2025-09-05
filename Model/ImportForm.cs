@@ -73,7 +73,6 @@ namespace StudentDashboardApp.Model
             }
             return ds;
         }
-
         // Preview file
         private void btnPreview_Click(object sender, EventArgs e)
         {
@@ -116,7 +115,7 @@ namespace StudentDashboardApp.Model
                 dataGridView1.AllowUserToResizeRows = false;
                 dataGridView1.RowHeadersVisible = false;
 
-               
+
             }
         }
 
@@ -140,30 +139,39 @@ namespace StudentDashboardApp.Model
             }
         }
 
-        private void lblSheetName_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-   private void btnImport_Click(object sender, EventArgs e)
+        private void btnImport_Click(object sender, EventArgs e)
         {
             string connectionString = "Server=.;Database=QLSV;Trusted_Connection=True;Encrypt=False;";
-
             var service = new BusinessLayer.StudentService(connectionString);
 
             DataTable dt = dsSheets.Tables[currentSheetIndex]; // lấy sheet hiện tại
+            string sheetName = dt.TableName;
 
             try
             {
-                service.ImportStudents(dt);
+                // ✅ Tìm config theo tên sheet
+                if (BusinessLayer.SheetConfig.SheetMappings.TryGetValue(sheetName, out var config))
+                {
+                    // Map cột Excel -> cột DB
+                    dt = DataAccessLayer.ExcelMapper.MapColumns(dt, config.Mapping);
 
-                int total = service.GetStudentCount();  // ✅ kiểm tra tổng số sinh viên
-                MessageBox.Show($"Import dữ liệu thành công! Tổng số bản ghi hiện tại: {total}");
+                    // Import vào DB
+                    service.ImportGeneric(dt, config.TableName);
+
+                    MessageBox.Show($"Import sheet '{sheetName}' vào bảng '{config.TableName}' thành công!");
+                }
+                else
+                {
+                    MessageBox.Show($"❌ Không tìm thấy mapping cho sheet: {sheetName}");
+                    return;
+                }
+
+                // ✅ Nếu sheet là Sinh_Vien thì hiển thị số lượng
+                if (sheetName.Equals("Sinh_Vien", StringComparison.OrdinalIgnoreCase))
+                {
+                    int total = service.GetStudentCount();
+                    MessageBox.Show($"Tổng số sinh viên hiện tại: {total}");
+                }
             }
             catch (Exception ex)
             {

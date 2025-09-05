@@ -12,10 +12,11 @@ namespace BusinessLayer
             _repo = new StudentRepository(connectionString);
         }
 
-        public void ImportStudents(DataTable dt)
+        public void ImportGeneric(DataTable dt, string tableName)
         {
-            _repo.BulkInsert(dt, "Sinh_Vien");
+            _repo.BulkInsert(dt, tableName);
         }
+
 
         // ✅ Lấy tổng số sinh viên trong DB
         public int GetStudentCount()
@@ -23,5 +24,22 @@ namespace BusinessLayer
             return _repo.CountStudents();
         }
     }
+    public static class SheetConfig
+    {
+        public static readonly Dictionary<string, (string TableName, Dictionary<string, string> Mapping)> SheetMappings =
+            new(StringComparer.OrdinalIgnoreCase)
+            {
+            { "Khoa", ("Khoa", ExcelMapper.KhoaMapping) },
+            { "Nganh", ("Nganh", ExcelMapper.NganhMapping) },
+            { "Nien_Khoa", ("Nien_Khoa", ExcelMapper.NienKhoaMapping) },
+            { "Chuong_Trinh_Dao_Tao", ("Chuong_Trinh_Dao_Tao", ExcelMapper.CTDTMapping) },
+            { "Giao_Vien", ("Giao_Vien", ExcelMapper.GiaoVienMapping) },
+            { "Lop", ("Lop", ExcelMapper.LopMapping) },
+            { "Sinh_Vien", ("Sinh_Vien", ExcelMapper.SinhVienMapping) },
+            { "Mon_Hoc", ("Mon_Hoc", ExcelMapper.MonHocMapping) },
+            { "Diem", ("Diem", ExcelMapper.DiemMapping) }
+            };
+    }
+
 
 }
