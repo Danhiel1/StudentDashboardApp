@@ -116,7 +116,6 @@
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.Size = new Size(691, 331);
             dataGridView1.TabIndex = 1;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // groupControl1
             // 
@@ -147,7 +146,6 @@
             lblSheetName.Size = new Size(65, 13);
             lblSheetName.TabIndex = 0;
             lblSheetName.Text = "Name Sheet";
-            lblSheetName.Click += lblSheetName_Click;
             // 
             // xtraScrollableControl1
             // 
