@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
+using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 
 namespace DataAccessLayer
@@ -13,14 +15,20 @@ namespace DataAccessLayer
             _connectionString = connectionString;
         }
 
+        // ✅ BulkInsert: Nạp dữ liệu nhanh vào SQL
         public void BulkInsert(DataTable dt, string tableName)
         {
+            if (dt == null || dt.Rows.Count == 0) return;
+
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
+
                 using (SqlBulkCopy bulk = new SqlBulkCopy(conn))
                 {
                     bulk.DestinationTableName = tableName;
+                    bulk.BatchSize = 1000; // xử lý theo lô
+                    bulk.BulkCopyTimeout = 60;
 
                     foreach (DataColumn col in dt.Columns)
                     {
@@ -32,128 +40,77 @@ namespace DataAccessLayer
             }
         }
 
-
-        // ✅ Đếm số lượng sinh viên trong DB
+        // ✅ Đếm số lượng sinh viên
         public int CountStudents()
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Sinh_Vien", conn))
             {
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Sinh_Vien", conn))
+                return (int)cmd.ExecuteScalar();
+            }
+        }
+
+        // ✅ Upsert (Insert nếu chưa có, Update nếu tồn tại)
+        public void Upsert(string tableName, string keyColumn, DataTable data)
+        {
+            if (data == null || data.Rows.Count == 0) return;
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                // lấy danh sách khóa hiện có trong DB
+                HashSet<string> existing = new HashSet<string>();
+                using (SqlCommand cmd = new SqlCommand($"SELECT {keyColumn} FROM {tableName}", conn))
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    return (int)cmd.ExecuteScalar();
+                    while (reader.Read())
+                    {
+                        existing.Add(reader[keyColumn].ToString());
+                    }
+                }
+
+                foreach (DataRow row in data.Rows)
+                {
+                    string keyValue = row[keyColumn].ToString();
+
+                    if (existing.Contains(keyValue)) // update
+                    {
+                        string setClause = string.Join(", ",
+                            data.Columns.Cast<DataColumn>()
+                            .Where(c => c.ColumnName != keyColumn)
+                            .Select(c => $"{c.ColumnName}=@{c.ColumnName}"));
+
+                        string updateSql = $"UPDATE {tableName} SET {setClause} WHERE {keyColumn}=@{keyColumn}";
+
+                        using (SqlCommand updateCmd = new SqlCommand(updateSql, conn))
+                        {
+                            foreach (DataColumn col in data.Columns)
+                            {
+                                updateCmd.Parameters.AddWithValue("@" + col.ColumnName, row[col] ?? DBNull.Value);
+                            }
+                            updateCmd.ExecuteNonQuery();
+                        }
+                    }
+                    else // insert
+                    {
+                        string cols = string.Join(", ", data.Columns.Cast<DataColumn>().Select(c => c.ColumnName));
+                        string vals = string.Join(", ", data.Columns.Cast<DataColumn>().Select(c => "@" + c.ColumnName));
+
+                        string insertSql = $"INSERT INTO {tableName} ({cols}) VALUES ({vals})";
+
+                        using (SqlCommand insertCmd = new SqlCommand(insertSql, conn))
+                        {
+                            foreach (DataColumn col in data.Columns)
+                            {
+                                insertCmd.Parameters.AddWithValue("@" + col.ColumnName, row[col] ?? DBNull.Value);
+                            }
+                            insertCmd.ExecuteNonQuery();
+                        }
+                    }
                 }
             }
         }
-
-    }
-    public static class ExcelMapper
-    {
-        // KHOA
-        public static readonly Dictionary<string, string> KhoaMapping = new()
-    {
-        { "Mã khoa", "MaKhoa" },
-        { "Tên khoa", "TenKhoa" }
-    };
-
-        // NGÀNH
-        public static readonly Dictionary<string, string> NganhMapping = new()
-    {
-        { "Mã ngành", "MaNganh" },
-        { "Tên ngành", "TenNganh" },
-        { "Mã khoa", "MaKhoa" }
-    };
-
-        // NIÊN KHÓA
-        public static readonly Dictionary<string, string> NienKhoaMapping = new()
-    {
-        { "Mã niên khóa", "MaNienKhoa" },
-        { "Tên niên khóa", "TenNienKhoa" },
-        { "Năm bắt đầu", "NamBatDau" },
-        { "Năm kết thúc", "NamKetThuc" }
-    };
-
-        // CHƯƠNG TRÌNH ĐÀO TẠO
-        public static readonly Dictionary<string, string> CTDTMapping = new()
-    {
-        { "Mã CTDT", "MaCTDT" },
-        { "Tên CTDT", "TenCTDT" },
-        { "Mã ngành", "MaNganh" }
-    };
-
-        // GIÁO VIÊN
-        public static readonly Dictionary<string, string> GiaoVienMapping = new()
-    {
-        { "Mã GV", "MaGV" },
-        { "Tên GV", "TenGV" },
-        { "Ngày sinh", "NgaySinh" },
-        { "Giới tính", "GioiTinh" },
-        { "Email", "Email" },
-        { "Mã khoa", "MaKhoa" },
-        { "Học vị", "HocVi" },
-        { "Chuyên môn", "ChuyenMon" }
-    };
-
-        // LỚP
-        public static readonly Dictionary<string, string> LopMapping = new()
-    {
-        { "Mã lớp", "MaLop" },
-        { "Tên lớp", "TenLop" },
-        { "Mã ngành", "MaNganh" },
-        { "Mã CTDT", "MaCTDT" },
-        { "Mã niên khóa", "MaNienKhoa" },
-        { "Mã GVCN", "MaGVCN" }
-    };
-
-        // SINH VIÊN
-        public static readonly Dictionary<string, string> SinhVienMapping = new()
-    {
-        { "Mã SV", "MaSV" },
-        { "Tên SV", "TenSV" },
-        { "Ngày sinh", "NgaySinh" },
-        { "Nơi sinh", "NoiSinh" },
-        { "Mã lớp", "MaLop" },
-        { "Giới tính", "GioiTinh" },
-        { "Email", "Email" },
-        { "Năm học", "NamHoc" }
-    };
-
-        // MÔN HỌC
-        public static readonly Dictionary<string, string> MonHocMapping = new()
-    {
-        { "Mã CTDT", "MaCTDT" },
-        { "Mã môn", "MaMon" },
-        { "Tên môn", "TenMon" },
-        { "Mã GV", "MaGV" },
-        { "Thời gian lý thuyết", "ThoiGianLyThuyet" },
-        { "Thời gian thực hành", "ThoiGianThucHanh" },
-        { "Số tín chỉ", "SoTinChi" }
-    };
-
-        // ĐIỂM
-        public static readonly Dictionary<string, string> DiemMapping = new()
-    {
-        { "Mã SV", "MaSV" },
-        { "Mã môn", "MaMon" },
-        { "Học kỳ", "HocKy" },
-        { "Mã niên khóa", "MaNienKhoa" },
-        { "Điểm thường xuyên", "DiemThuongXuyen" },
-        { "Điểm định kỳ", "DiemDinhKy" },
-        { "Điểm trung bình", "DiemTrungBinh" },
-        { "Điểm thi", "DiemThi" },
-        { "Điểm tổng kết", "DiemTongKet" }
-    };
-
-        // Hàm MapColumns
-        public static DataTable MapColumns(DataTable dt, Dictionary<string, string> mapping)
-        {
-            foreach (var map in mapping)
-            {
-                if (dt.Columns.Contains(map.Key))
-                    dt.Columns[map.Key].ColumnName = map.Value;
-            }
-            return dt;
-        }
     }
 }
-
