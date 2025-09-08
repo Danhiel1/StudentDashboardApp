@@ -73,6 +73,14 @@ namespace StudentDashboardApp.Model
 
         }
 
-        
+        private void labelControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void layoutControl2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

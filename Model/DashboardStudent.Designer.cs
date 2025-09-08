@@ -29,10 +29,17 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardStudent));
+            DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.PieSeriesView pieSeriesView1 = new DevExpress.XtraCharts.PieSeriesView();
+            DevExpress.XtraLayout.ColumnDefinition columnDefinition5 = new DevExpress.XtraLayout.ColumnDefinition();
+            DevExpress.XtraLayout.ColumnDefinition columnDefinition6 = new DevExpress.XtraLayout.ColumnDefinition();
+            DevExpress.XtraLayout.RowDefinition rowDefinition2 = new DevExpress.XtraLayout.RowDefinition();
+            DevExpress.XtraLayout.RowDefinition rowDefinition3 = new DevExpress.XtraLayout.RowDefinition();
             DevExpress.XtraLayout.ColumnDefinition columnDefinition1 = new DevExpress.XtraLayout.ColumnDefinition();
             DevExpress.XtraLayout.ColumnDefinition columnDefinition2 = new DevExpress.XtraLayout.ColumnDefinition();
+            DevExpress.XtraLayout.ColumnDefinition columnDefinition3 = new DevExpress.XtraLayout.ColumnDefinition();
+            DevExpress.XtraLayout.ColumnDefinition columnDefinition4 = new DevExpress.XtraLayout.ColumnDefinition();
             DevExpress.XtraLayout.RowDefinition rowDefinition1 = new DevExpress.XtraLayout.RowDefinition();
-            DevExpress.XtraLayout.RowDefinition rowDefinition2 = new DevExpress.XtraLayout.RowDefinition();
             ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             barButtonGroup1 = new DevExpress.XtraBars.BarButtonGroup();
@@ -69,30 +76,43 @@
             ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             Root = new DevExpress.XtraLayout.LayoutControlGroup();
-            chartControl1 = new DevExpress.XtraCharts.ChartControl();
-            layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            chartControl2 = new DevExpress.XtraCharts.ChartControl();
             layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            chartControl3 = new DevExpress.XtraCharts.ChartControl();
-            layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
+            chartControl1 = new DevExpress.XtraCharts.ChartControl();
             gridControl1 = new DevExpress.XtraGrid.GridControl();
             gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
             layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
+            layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
+            layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
+            layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
+            tabbedControlGroup1 = new DevExpress.XtraLayout.TabbedControlGroup();
             ((System.ComponentModel.ISupportInitialize)ribbon).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
-            layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Root).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)chartControl1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)chartControl2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)chartControl3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControl3).BeginInit();
+            layoutControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chartControl1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)series1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pieSeriesView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridControl1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlGroup4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
+            layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlGroup3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlGroup2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControl2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tabbedControlGroup1).BeginInit();
             SuspendLayout();
             // 
             // ribbon
@@ -330,96 +350,56 @@
             ribbonPageGroup5.Name = "ribbonPageGroup5";
             ribbonPageGroup5.Text = "ribbonPageGroup5";
             // 
-            // layoutControl1
-            // 
-            layoutControl1.Controls.Add(gridControl1);
-            layoutControl1.Controls.Add(chartControl3);
-            layoutControl1.Controls.Add(chartControl2);
-            layoutControl1.Controls.Add(chartControl1);
-            layoutControl1.Dock = DockStyle.Fill;
-            layoutControl1.Location = new Point(0, 201);
-            layoutControl1.Name = "layoutControl1";
-            layoutControl1.Root = Root;
-            layoutControl1.Size = new Size(1123, 471);
-            layoutControl1.TabIndex = 10;
-            layoutControl1.Text = "layoutControl1";
-            // 
             // Root
             // 
             Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             Root.GroupBordersVisible = false;
-            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2, layoutControlItem3, layoutControlItem4 });
-            Root.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
+            Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem1, layoutControlItem2 });
             Root.Name = "Root";
-            columnDefinition1.SizeType = SizeType.Percent;
-            columnDefinition1.Width = 100D;
-            columnDefinition2.SizeType = SizeType.Percent;
-            columnDefinition2.Width = 100D;
-            Root.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] { columnDefinition1, columnDefinition2 });
-            rowDefinition1.Height = 100D;
-            rowDefinition1.SizeType = SizeType.Percent;
-            rowDefinition2.Height = 100D;
-            rowDefinition2.SizeType = SizeType.Percent;
-            Root.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] { rowDefinition1, rowDefinition2 });
             Root.Size = new Size(1123, 471);
             Root.TextVisible = false;
+            // 
+            // layoutControlItem2
+            // 
+            layoutControlItem2.Control = layoutControl3;
+            layoutControlItem2.Location = new Point(273, 0);
+            layoutControlItem2.Name = "layoutControlItem2";
+            layoutControlItem2.Size = new Size(824, 445);
+            layoutControlItem2.TextVisible = false;
+            // 
+            // layoutControl3
+            // 
+            layoutControl3.Controls.Add(chartControl1);
+            layoutControl3.Controls.Add(gridControl1);
+            layoutControl3.Location = new Point(289, 16);
+            layoutControl3.Name = "layoutControl3";
+            layoutControl3.Root = layoutControlGroup4;
+            layoutControl3.Size = new Size(818, 439);
+            layoutControl3.TabIndex = 2;
+            layoutControl3.Text = "layoutControl3";
             // 
             // chartControl1
             // 
             chartControl1.Location = new Point(16, 16);
             chartControl1.Name = "chartControl1";
-            chartControl1.Size = new Size(542, 216);
-            chartControl1.TabIndex = 4;
-            // 
-            // layoutControlItem1
-            // 
-            layoutControlItem1.Control = chartControl1;
-            layoutControlItem1.Location = new Point(0, 0);
-            layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new Size(548, 222);
-            layoutControlItem1.TextVisible = false;
-            // 
-            // chartControl2
-            // 
-            chartControl2.Location = new Point(564, 16);
-            chartControl2.Name = "chartControl2";
-            chartControl2.Size = new Size(543, 216);
-            chartControl2.TabIndex = 4;
-            // 
-            // layoutControlItem2
-            // 
-            layoutControlItem2.Control = chartControl2;
-            layoutControlItem2.Location = new Point(548, 0);
-            layoutControlItem2.Name = "layoutControlItem2";
-            layoutControlItem2.OptionsTableLayoutItem.ColumnIndex = 1;
-            layoutControlItem2.Size = new Size(549, 222);
-            layoutControlItem2.TextVisible = false;
-            // 
-            // chartControl3
-            // 
-            chartControl3.Location = new Point(564, 238);
-            chartControl3.Name = "chartControl3";
-            chartControl3.Size = new Size(543, 217);
-            chartControl3.TabIndex = 4;
-            // 
-            // layoutControlItem3
-            // 
-            layoutControlItem3.Control = chartControl3;
-            layoutControlItem3.Location = new Point(548, 222);
-            layoutControlItem3.Name = "layoutControlItem3";
-            layoutControlItem3.OptionsTableLayoutItem.ColumnIndex = 1;
-            layoutControlItem3.OptionsTableLayoutItem.RowIndex = 1;
-            layoutControlItem3.Size = new Size(549, 223);
-            layoutControlItem3.TextVisible = false;
+            series1.Name = "Series 1";
+            series1.SeriesID = 0;
+            series1.View = pieSeriesView1;
+            chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[]
+    {
+    series1
+    };
+            chartControl1.Size = new Size(447, 266);
+            chartControl1.TabIndex = 0;
             // 
             // gridControl1
             // 
-            gridControl1.Location = new Point(16, 238);
+            gridControl1.Location = new Point(16, 288);
             gridControl1.MainView = gridView1;
             gridControl1.MenuManager = ribbon;
             gridControl1.Name = "gridControl1";
-            gridControl1.Size = new Size(542, 217);
-            gridControl1.TabIndex = 5;
+            gridControl1.Size = new Size(447, 135);
+            gridControl1.TabIndex = 2;
             gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView1 });
             // 
             // gridView1
@@ -427,14 +407,115 @@
             gridView1.GridControl = gridControl1;
             gridView1.Name = "gridView1";
             // 
+            // layoutControlGroup4
+            // 
+            layoutControlGroup4.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            layoutControlGroup4.GroupBordersVisible = false;
+            layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem4, layoutControlItem3 });
+            layoutControlGroup4.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
+            layoutControlGroup4.Name = "Root";
+            columnDefinition5.SizeType = SizeType.Percent;
+            columnDefinition5.Width = 80D;
+            columnDefinition6.SizeType = SizeType.Percent;
+            columnDefinition6.Width = 60D;
+            layoutControlGroup4.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] { columnDefinition5, columnDefinition6 });
+            rowDefinition2.Height = 272D;
+            rowDefinition2.SizeType = SizeType.Percent;
+            rowDefinition3.Height = 141D;
+            rowDefinition3.SizeType = SizeType.Percent;
+            layoutControlGroup4.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] { rowDefinition2, rowDefinition3 });
+            layoutControlGroup4.Size = new Size(818, 439);
+            layoutControlGroup4.TextVisible = false;
+            // 
             // layoutControlItem4
             // 
-            layoutControlItem4.Control = gridControl1;
-            layoutControlItem4.Location = new Point(0, 222);
+            layoutControlItem4.Control = chartControl1;
+            layoutControlItem4.Location = new Point(0, 0);
             layoutControlItem4.Name = "layoutControlItem4";
-            layoutControlItem4.OptionsTableLayoutItem.RowIndex = 1;
-            layoutControlItem4.Size = new Size(548, 223);
+            layoutControlItem4.Size = new Size(453, 272);
             layoutControlItem4.TextVisible = false;
+            // 
+            // layoutControlItem3
+            // 
+            layoutControlItem3.Control = gridControl1;
+            layoutControlItem3.Location = new Point(0, 272);
+            layoutControlItem3.Name = "layoutControlItem3";
+            layoutControlItem3.OptionsTableLayoutItem.RowIndex = 1;
+            layoutControlItem3.Size = new Size(453, 141);
+            layoutControlItem3.TextVisible = false;
+            // 
+            // layoutControl1
+            // 
+            layoutControl1.Controls.Add(layoutControl3);
+            layoutControl1.Controls.Add(layoutControl2);
+            layoutControl1.Dock = DockStyle.Fill;
+            layoutControl1.Location = new Point(0, 201);
+            layoutControl1.Name = "layoutControl1";
+            layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new Rectangle(1171, 380, 650, 400);
+            layoutControl1.Root = Root;
+            layoutControl1.Size = new Size(1123, 471);
+            layoutControl1.TabIndex = 10;
+            layoutControl1.Text = "layoutControl1";
+            // 
+            // layoutControlGroup1
+            // 
+            layoutControlGroup1.Location = new Point(0, 0);
+            layoutControlGroup1.Name = "layoutControlGroup1";
+            layoutControlGroup1.Size = new Size(516, 161);
+            // 
+            // layoutControlGroup3
+            // 
+            layoutControlGroup3.Location = new Point(0, 222);
+            layoutControlGroup3.Name = "layoutControlGroup3";
+            layoutControlGroup3.OptionsTableLayoutItem.RowIndex = 1;
+            layoutControlGroup3.Size = new Size(548, 223);
+            // 
+            // layoutControlItem1
+            // 
+            layoutControlItem1.Control = layoutControl2;
+            layoutControlItem1.Location = new Point(0, 0);
+            layoutControlItem1.Name = "layoutControlItem1";
+            layoutControlItem1.Size = new Size(273, 445);
+            layoutControlItem1.TextVisible = false;
+            // 
+            // layoutControlGroup2
+            // 
+            layoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            layoutControlGroup2.GroupBordersVisible = false;
+            layoutControlGroup2.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
+            layoutControlGroup2.Name = "Root";
+            columnDefinition1.SizeType = SizeType.Percent;
+            columnDefinition1.Width = 100D;
+            columnDefinition2.SizeType = SizeType.AutoSize;
+            columnDefinition2.Width = 20D;
+            columnDefinition3.SizeType = SizeType.AutoSize;
+            columnDefinition3.Width = 20D;
+            columnDefinition4.SizeType = SizeType.AutoSize;
+            columnDefinition4.Width = 141D;
+            layoutControlGroup2.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] { columnDefinition1, columnDefinition2, columnDefinition3, columnDefinition4 });
+            rowDefinition1.Height = 100D;
+            rowDefinition1.SizeType = SizeType.Percent;
+            layoutControlGroup2.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] { rowDefinition1 });
+            layoutControlGroup2.Size = new Size(267, 439);
+            layoutControlGroup2.TextVisible = false;
+            // 
+            // layoutControl2
+            // 
+            layoutControl2.Location = new Point(16, 16);
+            layoutControl2.Name = "layoutControl2";
+            layoutControl2.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new Rectangle(479, 364, 650, 400);
+            layoutControl2.Root = layoutControlGroup2;
+            layoutControl2.Size = new Size(267, 439);
+            layoutControl2.TabIndex = 0;
+            layoutControl2.Text = "layoutControl2";
+            layoutControl2.Click += layoutControl2_Click;
+            // 
+            // tabbedControlGroup1
+            // 
+            tabbedControlGroup1.Location = new Point(0, 1);
+            tabbedControlGroup1.Name = "tabbedControlGroup1";
+            tabbedControlGroup1.SelectedTabPage = null;
+            tabbedControlGroup1.Size = new Size(241, 412);
             // 
             // DashboardStudent
             // 
@@ -451,18 +532,26 @@
             Text = "DashboardStudent";
             Load += DashboardStudent_Load;
             ((System.ComponentModel.ISupportInitialize)ribbon).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
-            layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)Root).EndInit();
-            ((System.ComponentModel.ISupportInitialize)chartControl1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)chartControl2).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)chartControl3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControl3).EndInit();
+            layoutControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pieSeriesView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)series1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)chartControl1).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridControl1).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlGroup4).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
+            layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlGroup3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlGroup2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControl2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tabbedControlGroup1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -505,16 +594,21 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem9;
         private DevExpress.XtraBars.SkinDropDownButtonItem skinDropDownButtonItem1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
+        private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraLayout.LayoutControl layoutControl1;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraLayout.LayoutControl layoutControl3;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraCharts.ChartControl chartControl3;
-        private DevExpress.XtraCharts.ChartControl chartControl2;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup4;
         private DevExpress.XtraCharts.ChartControl chartControl1;
-        private DevExpress.XtraLayout.LayoutControlGroup Root;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraLayout.LayoutControl layoutControl2;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
+        private DevExpress.XtraLayout.TabbedControlGroup tabbedControlGroup1;
     }
 }

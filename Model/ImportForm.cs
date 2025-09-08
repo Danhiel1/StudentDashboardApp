@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraBars;
 using ClosedXML.Excel;
+using DataAccessLayer;
 
 namespace StudentDashboardApp.Model
 {
@@ -144,30 +145,41 @@ namespace StudentDashboardApp.Model
             string connectionString = "Server=.;Database=QLSV;Trusted_Connection=True;Encrypt=False;";
             var service = new BusinessLayer.StudentService(connectionString);
 
-            DataTable dt = dsSheets.Tables[currentSheetIndex]; // lấy sheet hiện tại
+            if (dsSheets == null || dsSheets.Tables.Count == 0)
+            {
+                MessageBox.Show("❌ Chưa có dữ liệu để import!");
+                return;
+            }
+
+            DataTable dt = dsSheets.Tables[currentSheetIndex]; // sheet hiện tại
             string sheetName = dt.TableName;
 
             try
             {
                 // ✅ Tìm config theo tên sheet
-                if (BusinessLayer.SheetConfig.SheetMappings.TryGetValue(sheetName, out var config))
-                {
-                    // Map cột Excel -> cột DB
-                    dt = DataAccessLayer.ExcelMapper.MapColumns(dt, config.Mapping);
-
-                    // Import vào DB
-                    service.ImportGeneric(dt, config.TableName);
-
-                    MessageBox.Show($"Import sheet '{sheetName}' vào bảng '{config.TableName}' thành công!");
-                }
-                else
+                if (!BusinessLayer.SheetConfig.SheetMappings.TryGetValue(sheetName, out var config))
                 {
                     MessageBox.Show($"❌ Không tìm thấy mapping cho sheet: {sheetName}");
                     return;
                 }
 
-                // ✅ Nếu sheet là Sinh_Vien thì hiển thị số lượng
-                if (sheetName.Equals("Sinh_Vien", StringComparison.OrdinalIgnoreCase))
+                // ✅ Map cột Excel → DB
+                dt = DataAccessLayer.ExcelMapper.MapColumns(dt, config.Mapping);
+
+                // ✅ Dùng Upsert nếu có cột khóa, ngược lại BulkInsert
+                if (!string.IsNullOrEmpty(config.KeyColumn))
+                {
+                    service.UpsertGeneric(config.TableName, config.KeyColumn, dt);
+                    MessageBox.Show($"Upsert sheet '{sheetName}' vào bảng '{config.TableName}' thành công!");
+                }
+                else
+                {
+                    service.ImportGeneric(dt, config.TableName);
+                    MessageBox.Show($"Import sheet '{sheetName}' vào bảng '{config.TableName}' thành công!");
+                }
+
+                // ✅ Nếu là Sinh_Vien thì báo số lượng
+                if (config.TableName.Equals("Sinh_Vien", StringComparison.OrdinalIgnoreCase))
                 {
                     int total = service.GetStudentCount();
                     MessageBox.Show($"Tổng số sinh viên hiện tại: {total}");
@@ -175,10 +187,10 @@ namespace StudentDashboardApp.Model
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message);
+                MessageBox.Show("Lỗi khi import: " + ex.Message);
             }
         }
+    }
 
     }
-}
 
