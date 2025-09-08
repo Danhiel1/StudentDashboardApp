@@ -29,6 +29,17 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardStudent));
+            DevExpress.XtraLayout.ColumnDefinition columnDefinition1 = new DevExpress.XtraLayout.ColumnDefinition();
+            DevExpress.XtraLayout.ColumnDefinition columnDefinition2 = new DevExpress.XtraLayout.ColumnDefinition();
+            DevExpress.XtraLayout.ColumnDefinition columnDefinition3 = new DevExpress.XtraLayout.ColumnDefinition();
+            DevExpress.XtraLayout.ColumnDefinition columnDefinition4 = new DevExpress.XtraLayout.ColumnDefinition();
+            DevExpress.XtraLayout.RowDefinition rowDefinition1 = new DevExpress.XtraLayout.RowDefinition();
+            DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.PieSeriesView pieSeriesView1 = new DevExpress.XtraCharts.PieSeriesView();
+            DevExpress.XtraLayout.ColumnDefinition columnDefinition5 = new DevExpress.XtraLayout.ColumnDefinition();
+            DevExpress.XtraLayout.ColumnDefinition columnDefinition6 = new DevExpress.XtraLayout.ColumnDefinition();
+            DevExpress.XtraLayout.RowDefinition rowDefinition2 = new DevExpress.XtraLayout.RowDefinition();
+            DevExpress.XtraLayout.RowDefinition rowDefinition3 = new DevExpress.XtraLayout.RowDefinition();
             ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             barButtonGroup1 = new DevExpress.XtraBars.BarButtonGroup();
@@ -198,6 +209,13 @@
             label56 = new Label();
             dataGridView1 = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)ribbon).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Root).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControl2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlGroup2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControl3).BeginInit();
+            layoutControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)chartControl1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)xyDiagram1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)series1).BeginInit();
@@ -1483,7 +1501,47 @@
             textBox9.Size = new Size(100, 20);
             textBox9.TabIndex = 3;
             // 
-            // label9
+            // layoutControlItem1
+            // 
+            layoutControlItem1.Control = layoutControl2;
+            layoutControlItem1.Location = new Point(0, 0);
+            layoutControlItem1.Name = "layoutControlItem1";
+            layoutControlItem1.Size = new Size(273, 445);
+            layoutControlItem1.TextVisible = false;
+            // 
+            // layoutControl2
+            // 
+            layoutControl2.Location = new Point(16, 16);
+            layoutControl2.Name = "layoutControl2";
+            layoutControl2.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new Rectangle(479, 364, 650, 400);
+            layoutControl2.Root = layoutControlGroup2;
+            layoutControl2.Size = new Size(267, 439);
+            layoutControl2.TabIndex = 0;
+            layoutControl2.Text = "layoutControl2";
+            layoutControl2.Click += layoutControl2_Click;
+            // 
+            // layoutControlGroup2
+            // 
+            layoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            layoutControlGroup2.GroupBordersVisible = false;
+            layoutControlGroup2.LayoutMode = DevExpress.XtraLayout.Utils.LayoutMode.Table;
+            layoutControlGroup2.Name = "Root";
+            columnDefinition1.SizeType = SizeType.Percent;
+            columnDefinition1.Width = 100D;
+            columnDefinition2.SizeType = SizeType.AutoSize;
+            columnDefinition2.Width = 20D;
+            columnDefinition3.SizeType = SizeType.AutoSize;
+            columnDefinition3.Width = 20D;
+            columnDefinition4.SizeType = SizeType.AutoSize;
+            columnDefinition4.Width = 141D;
+            layoutControlGroup2.OptionsTableLayoutGroup.ColumnDefinitions.AddRange(new DevExpress.XtraLayout.ColumnDefinition[] { columnDefinition1, columnDefinition2, columnDefinition3, columnDefinition4 });
+            rowDefinition1.Height = 100D;
+            rowDefinition1.SizeType = SizeType.Percent;
+            layoutControlGroup2.OptionsTableLayoutGroup.RowDefinitions.AddRange(new DevExpress.XtraLayout.RowDefinition[] { rowDefinition1 });
+            layoutControlGroup2.Size = new Size(267, 439);
+            layoutControlGroup2.TextVisible = false;
+            // 
+            // layoutControlItem2
             // 
             label9.AutoSize = true;
             label9.Location = new Point(314, 51);
@@ -1689,8 +1747,14 @@
             Text = "DashboardStudent";
             Load += DashboardStudent_Load;
             ((System.ComponentModel.ISupportInitialize)ribbon).EndInit();
-            ((System.ComponentModel.ISupportInitialize)xyDiagram1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)stackedSplineAreaSeriesView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Root).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControl2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlGroup2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControl3).EndInit();
+            layoutControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pieSeriesView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)series1).EndInit();
             ((System.ComponentModel.ISupportInitialize)stackedSplineAreaSeriesView2).EndInit();
             ((System.ComponentModel.ISupportInitialize)series2).EndInit();
@@ -1703,6 +1767,15 @@
             ((System.ComponentModel.ISupportInitialize)pieSeriesView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)series4).EndInit();
             ((System.ComponentModel.ISupportInitialize)chartControl2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlGroup4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
+            layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlGroup3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tabbedControlGroup1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
