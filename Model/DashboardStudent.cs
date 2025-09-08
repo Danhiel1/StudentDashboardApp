@@ -8,6 +8,7 @@ using System.Data;
 
 
 using DevExpress.XtraCharts.Native;
+using BusinessLayer;
 
 namespace StudentDashboardApp.Model
 {
@@ -46,10 +47,9 @@ namespace StudentDashboardApp.Model
         }
         private void DashboardStudent_Load(object sender, EventArgs e)
         {
-            nav.Visible = false;
-            LoadSinhVien();
+            navRibbonSinhVien.Visible = false;
             panel4.Visible = false;
-            // Opacity = 150 (0-255), Màu = xám đậm (32,32,32)
+
             //BlurHelper.EnableBlur(this);
         }
         private void barButtonItem5_ItemClick(object sender, ItemClickEventArgs e)
@@ -64,7 +64,7 @@ namespace StudentDashboardApp.Model
         {
             if (ribbon.SelectedPage.Text != "Sinh Viên")
             {
-                nav.Visible = false;
+                navRibbonSinhVien.Visible = false;
                 panel4.Visible = false;
             }
         }
@@ -78,16 +78,29 @@ namespace StudentDashboardApp.Model
         }
         private void barButtonItem7_ItemClick(object sender, ItemClickEventArgs e)
         {
-            #region ẩn hiện các nav và panel
-            nav.Visible = true;
-            panel4.Visible = false;
-            themsinhvienpage.PageVisible = false;
-            suasinhvienpage.PageVisible = false;
-            tracuu.PageVisible = true;
-            nav.SelectedPage = tracuu;
-            #endregion
 
-            string mssv = barEditItem1.EditValue?.ToString();//lấy dữ liệu từ baredit vào biến mssv
+            // Lấy MSSV từ barEditItem1
+            string mssv = barEditItemNhapMssv.EditValue?.ToString();
+
+            // Gọi service
+            var service = new StudentService();
+            var result = service.checkTextBox(mssv);
+            if (result == null)
+            {
+                MessageBox.Show("Mã Số Sinh Viên Không Được Để Trống");
+            }
+            else
+            {
+                MessageBox.Show($"Bạn Chưa Làm Phần Show Thông Tin Tra Cứu.\nMã số bạn nhập là: {result}");
+                #region ẩn hiện các nav và panel
+                navRibbonSinhVien.Visible = true;
+                panel4.Visible = true;
+                themsinhvienpage.PageVisible = false;
+                suasinhvienpage.PageVisible = false;
+                tracuu.PageVisible = true;
+                navRibbonSinhVien.SelectedPage = tracuu;
+                #endregion
+            }
 
 
         }
@@ -109,21 +122,25 @@ namespace StudentDashboardApp.Model
         }
         private void barButtonItem6_ItemClick(object sender, ItemClickEventArgs e)
         {
-            nav.Visible = true;
+            #region ẩn hiện page và panel
+            navRibbonSinhVien.Visible = true;
             panel4.Visible = true;
             themsinhvienpage.PageVisible = false;
             tracuu.PageVisible = false;
             suasinhvienpage.PageVisible = true;
-            nav.SelectedPage = suasinhvienpage;
+            navRibbonSinhVien.SelectedPage = suasinhvienpage;
+            #endregion
         }
         private void barButtonItem5_ItemClick_1(object sender, ItemClickEventArgs e)
         {
+            #region ẩn hiện page và panel
             panel4.Visible = true;
-            nav.Visible = true;
+            navRibbonSinhVien.Visible = true;
             tracuu.PageVisible = false;
             themsinhvienpage.PageVisible = true;
             suasinhvienpage.PageVisible = false;
-            nav.SelectedPage = themsinhvienpage;
+            navRibbonSinhVien.SelectedPage = themsinhvienpage;
+            #endregion
         }
         private void label1_Click_1(object sender, EventArgs e)
         {
@@ -179,19 +196,19 @@ namespace StudentDashboardApp.Model
         }
         private void label21_Click(object sender, EventArgs e)
         {
-            textBox21.Focus();
+            textBoxmssv1.Focus();
         }
         private void label39_Click(object sender, EventArgs e)
         {
-            textBox39.Focus();
+            textBoxngaysinh1.Focus();
         }
         private void label41_Click(object sender, EventArgs e)
         {
-            textBox41.Focus();
+            textBoxmalop1.Focus();
         }
         private void label40_Click(object sender, EventArgs e)
         {
-            textBox40.Focus();
+            textBoxnoisinh.Focus();
         }
         private void textBox38_TextChanged(object sender, EventArgs e)
         {
@@ -199,11 +216,11 @@ namespace StudentDashboardApp.Model
         }
         private void label38_Click(object sender, EventArgs e)
         {
-            textBox38.Focus();
+            textBoxten1.Focus();
         }
         private void label42_Click(object sender, EventArgs e)
         {
-            textBox42.Focus();
+            textBoxNhapMssv.Focus();
         }
         private void barButtonItem11_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -231,23 +248,23 @@ namespace StudentDashboardApp.Model
         }
         private void label47_Click(object sender, EventArgs e)
         {
-            textBox43.Focus();
+            textBoxMssv2.Focus();
         }
         private void label48_Click(object sender, EventArgs e)
         {
-            textBox44.Focus();
+            textBoxTen2.Focus();
         }
         private void label49_Click(object sender, EventArgs e)
         {
-            textBox45.Focus();
+            textBoxNgaySinh2.Focus();
         }
         private void label52_Click(object sender, EventArgs e)
         {
-            textBox48.Focus();
+            textBoxNoiSinh2.Focus();
         }
         private void label53_Click(object sender, EventArgs e)
         {
-            textBox49.Focus();
+            textBoxMaLop2.Focus();
         }
         private void button10_Click(object sender, EventArgs e)
         {
@@ -263,40 +280,58 @@ namespace StudentDashboardApp.Model
         }
         private void label55_Click(object sender, EventArgs e)
         {
-            TextBox[] tbs = { textBox43, textBox44, textBox45, textBox48, textBox49 };
+            TextBox[] tbs = { textBoxMssv2, textBoxTen2, textBoxNgaySinh2, textBoxNoiSinh2, textBoxMaLop2, textBoxGioiTinh2 };
             foreach (var tb in tbs)
             {
-                tb.Clear();
+                string tbss = tb.Text;
+                if (string.IsNullOrEmpty(tbss))
+                {
+                    MessageBox.Show("Vui Lòng Điền Đủ Thông Tin.");
+                    return;
+                }
             }
-        }
-        //textdulieu
-        private void LoadSinhVien()
-        {
-            string connString = @"Data Source=TUANCHAN;Initial Catalog=QLSV;Persist Security Info=True;User ID=sa;Password=123;Encrypt=False";
-
-            string query = "SELECT MaSV, TenSV, NgaySinh, NoiSinh, MaLop FROM Sinh_Vien";
-
-            using (SqlConnection conn = new SqlConnection(connString))
+            MessageBox.Show("Thêm Thành Công");
+            TextBox[] tbs1 = { textBoxMssv2, textBoxTen2, textBoxNgaySinh2, textBoxNoiSinh2, textBoxMaLop2, textBoxGioiTinh2 };
+            foreach (var tb1 in tbs1)
             {
-                try
-                {
-                    conn.Open(); // ✅ thử mở kết nối
-                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-
-                    if (dt.Rows.Count == 0)
-                    {
-                        MessageBox.Show("Không có dữ liệu trong bảng Sinh_Vien.");
-                    }
-
-                    dataGridView1.DataSource = dt;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi kết nối hoặc query: " + ex.Message);
-                }
+                tb1.Clear();
             }
+
+        }
+
+        private void label43_Click_1(object sender, EventArgs e)
+        {
+            textBoxGioiTinh.Focus();
+        }
+
+        private void label44_Click_1(object sender, EventArgs e)
+        {
+            textBoxGioiTinh2.Focus();
+        }
+
+        private void label63_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox58_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox61_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label46_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Sửa Thành Công");
+        }
+
+        private void textBox49_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
