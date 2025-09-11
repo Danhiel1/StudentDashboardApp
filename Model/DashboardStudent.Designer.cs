@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardStudent));
+            DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.PieSeriesView pieSeriesView1 = new DevExpress.XtraCharts.PieSeriesView();
+            DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.PieSeriesView pieSeriesView2 = new DevExpress.XtraCharts.PieSeriesView();
             ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             barButtonGroup1 = new DevExpress.XtraBars.BarButtonGroup();
@@ -68,14 +72,37 @@
             layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
             tabbedControlGroup1 = new DevExpress.XtraLayout.TabbedControlGroup();
             navigationFrameSTD = new DevExpress.XtraBars.Navigation.NavigationFrame();
-            navigationSystem = new DevExpress.XtraBars.Navigation.NavigationPage();
+            navigationSystemPage1 = new DevExpress.XtraBars.Navigation.NavigationPage();
+            layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            chartControl1 = new DevExpress.XtraCharts.ChartControl();
+            LayoutControlPage1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            splitterItem1 = new DevExpress.XtraLayout.SplitterItem();
+            simpleSeparator1 = new DevExpress.XtraLayout.SimpleSeparator();
+            emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
+            layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             navigationPage2 = new DevExpress.XtraBars.Navigation.NavigationPage();
+            navigationPage1 = new DevExpress.XtraBars.Navigation.NavigationPage();
             ((System.ComponentModel.ISupportInitialize)ribbon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tabbedControlGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)navigationFrameSTD).BeginInit();
             navigationFrameSTD.SuspendLayout();
+            navigationSystemPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
+            layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chartControl1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)series1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pieSeriesView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)series2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pieSeriesView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)LayoutControlPage1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)splitterItem1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)simpleSeparator1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)emptySpaceItem3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
             SuspendLayout();
             // 
             // ribbon
@@ -89,6 +116,8 @@
             ribbon.OptionsMenuMinWidth = 440;
             ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage1, ribbonPage2, ribbonPage3 });
             ribbon.Size = new Size(1123, 201);
+            ribbon.SelectedPageChanged += ribbon_SelectedPageChanged;
+            ribbon.Click += ribbon_Click;
             // 
             // barButtonItem1
             // 
@@ -327,26 +356,106 @@
             // 
             // navigationFrameSTD
             // 
-            navigationFrameSTD.Controls.Add(navigationSystem);
+            navigationFrameSTD.Controls.Add(navigationSystemPage1);
             navigationFrameSTD.Controls.Add(navigationPage2);
+            navigationFrameSTD.Controls.Add(navigationPage1);
             navigationFrameSTD.Dock = DockStyle.Fill;
             navigationFrameSTD.Location = new Point(0, 201);
             navigationFrameSTD.Name = "navigationFrameSTD";
-            navigationFrameSTD.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] { navigationSystem, navigationPage2 });
-            navigationFrameSTD.SelectedPage = navigationSystem;
+            navigationFrameSTD.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] { navigationSystemPage1, navigationPage2, navigationPage1 });
+            navigationFrameSTD.SelectedPage = navigationSystemPage1;
             navigationFrameSTD.Size = new Size(1123, 471);
             navigationFrameSTD.TabIndex = 12;
             navigationFrameSTD.Text = "navigationFrame1";
             // 
-            // navigationSystem
+            // navigationSystemPage1
             // 
-            navigationSystem.Name = "navigationSystem";
-            navigationSystem.Size = new Size(1123, 471);
+            navigationSystemPage1.Caption = "navigationSystemPage1";
+            navigationSystemPage1.Controls.Add(layoutControl1);
+            navigationSystemPage1.Name = "navigationSystemPage1";
+            navigationSystemPage1.Size = new Size(1123, 471);
+            // 
+            // layoutControl1
+            // 
+            layoutControl1.Controls.Add(chartControl1);
+            layoutControl1.Dock = DockStyle.Fill;
+            layoutControl1.Location = new Point(0, 0);
+            layoutControl1.Name = "layoutControl1";
+            layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new Rectangle(142, 371, 650, 400);
+            layoutControl1.Root = LayoutControlPage1;
+            layoutControl1.Size = new Size(1123, 471);
+            layoutControl1.TabIndex = 0;
+            layoutControl1.Text = "layoutControl1";
+            // 
+            // chartControl1
+            // 
+            chartControl1.Location = new Point(562, 16);
+            chartControl1.Name = "chartControl1";
+            series1.Name = "Series 1";
+            series1.SeriesID = 0;
+            series1.View = pieSeriesView1;
+            series2.Name = "Series 2";
+            series2.SeriesID = 0;
+            series2.View = pieSeriesView2;
+            chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[]
+    {
+    series1,
+    series2
+    };
+            chartControl1.Size = new Size(529, 439);
+            chartControl1.TabIndex = 0;
+            // 
+            // LayoutControlPage1
+            // 
+            LayoutControlPage1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            LayoutControlPage1.GroupBordersVisible = false;
+            LayoutControlPage1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { emptySpaceItem1, splitterItem1, simpleSeparator1, emptySpaceItem3, layoutControlItem1 });
+            LayoutControlPage1.Name = "Root";
+            LayoutControlPage1.Size = new Size(1123, 471);
+            LayoutControlPage1.TextVisible = false;
+            // 
+            // emptySpaceItem1
+            // 
+            emptySpaceItem1.Location = new Point(0, 0);
+            emptySpaceItem1.Name = "emptySpaceItem1";
+            emptySpaceItem1.Size = new Size(546, 223);
+            // 
+            // splitterItem1
+            // 
+            splitterItem1.Location = new Point(1081, 0);
+            splitterItem1.Name = "splitterItem1";
+            splitterItem1.Size = new Size(16, 445);
+            // 
+            // simpleSeparator1
+            // 
+            simpleSeparator1.Location = new Point(0, 444);
+            simpleSeparator1.Name = "simpleSeparator1";
+            simpleSeparator1.Size = new Size(546, 1);
+            // 
+            // emptySpaceItem3
+            // 
+            emptySpaceItem3.Location = new Point(0, 223);
+            emptySpaceItem3.Name = "emptySpaceItem3";
+            emptySpaceItem3.Size = new Size(546, 221);
+            // 
+            // layoutControlItem1
+            // 
+            layoutControlItem1.Control = chartControl1;
+            layoutControlItem1.Location = new Point(546, 0);
+            layoutControlItem1.Name = "layoutControlItem1";
+            layoutControlItem1.Size = new Size(535, 445);
+            layoutControlItem1.TextVisible = false;
             // 
             // navigationPage2
             // 
+            navigationPage2.Caption = "navigationPage2";
             navigationPage2.Name = "navigationPage2";
             navigationPage2.Size = new Size(1123, 471);
+            // 
+            // navigationPage1
+            // 
+            navigationPage1.Name = "navigationPage1";
+            navigationPage1.Size = new Size(1123, 471);
             // 
             // DashboardStudent
             // 
@@ -368,6 +477,20 @@
             ((System.ComponentModel.ISupportInitialize)tabbedControlGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)navigationFrameSTD).EndInit();
             navigationFrameSTD.ResumeLayout(false);
+            navigationSystemPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
+            layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pieSeriesView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)series1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pieSeriesView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)series2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)chartControl1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)LayoutControlPage1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)splitterItem1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)simpleSeparator1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)emptySpaceItem3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -413,7 +536,16 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup3;
         private DevExpress.XtraLayout.TabbedControlGroup tabbedControlGroup1;
         private DevExpress.XtraBars.Navigation.NavigationFrame navigationFrameSTD;
-        private DevExpress.XtraBars.Navigation.NavigationPage navigationSystem;
+        private DevExpress.XtraBars.Navigation.NavigationPage navigationSystemPage1;
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPage2;
+        private DevExpress.XtraLayout.LayoutControl layoutControl1;
+        private DevExpress.XtraLayout.LayoutControlGroup LayoutControlPage1;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.XtraLayout.SplitterItem splitterItem1;
+        private DevExpress.XtraLayout.SimpleSeparator simpleSeparator1;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
+        private DevExpress.XtraCharts.ChartControl chartControl1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
+        private DevExpress.XtraBars.Navigation.NavigationPage navigationPage1;
     }
 }
