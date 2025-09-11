@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
 using DevExpress.XtraBars;
 using ClosedXML.Excel;
 using DataAccessLayer;
@@ -32,7 +33,7 @@ namespace StudentDashboardApp.Model
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    txtFilePath.Text = openFileDialog.FileName;
+                    textFileExcel.Text = openFileDialog.FileName;
                 }
             }
         }
@@ -54,16 +55,54 @@ namespace StudentDashboardApp.Model
                         if (firstRow)
                         {
                             foreach (var cell in row.Cells())
-                                dt.Columns.Add(cell.Value.ToString());
+                            {
+                                string colName = cell.Value.ToString();
+
+                                // ✅ Nếu là sheet "Diem" thì set kiểu double cho các cột điểm
+                                if (worksheet.Name.Equals("Diem", StringComparison.OrdinalIgnoreCase) &&
+                                    (colName == "DiemThuongXuyen" ||
+                                     colName == "DiemDinhKy" ||
+                                     colName == "DiemTrungBinh" ||
+                                     colName == "DiemThi" ||
+                                     colName == "DiemTongKet"))
+                                {
+                                    dt.Columns.Add(colName, typeof(double));
+                                }
+                                else
+                                {
+                                    dt.Columns.Add(colName, typeof(string));
+                                }
+                            }
                             firstRow = false;
                         }
                         else
                         {
                             DataRow toInsert = dt.NewRow();
                             int cellIndex = 0;
+
                             foreach (var cell in row.Cells(1, dt.Columns.Count))
                             {
-                                toInsert[cellIndex] = cell.Value.ToString();
+                                if (cell.Value.IsBlank)
+                                {
+                                    toInsert[cellIndex] = DBNull.Value;
+                                }
+                                else
+                                {
+                                    object raw = cell.Value;
+
+                                    // ✅ Gán đúng kiểu
+                                    if (dt.Columns[cellIndex].DataType == typeof(double))
+                                    {
+                                        if (double.TryParse(raw.ToString(), out double d))
+                                            toInsert[cellIndex] = d;
+                                        else
+                                            toInsert[cellIndex] = DBNull.Value;
+                                    }
+                                    else
+                                    {
+                                        toInsert[cellIndex] = raw.ToString();
+                                    }
+                                }
                                 cellIndex++;
                             }
                             dt.Rows.Add(toInsert);
@@ -71,19 +110,23 @@ namespace StudentDashboardApp.Model
                     }
                     ds.Tables.Add(dt);
                 }
+
             }
             return ds;
         }
+
+
+
         // Preview file
         private void btnPreview_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtFilePath.Text))
+            if (string.IsNullOrEmpty(textFileExcel.Text))
             {
                 MessageBox.Show("Vui lòng chọn file Excel trước!");
                 return;
             }
 
-            dsSheets = ReadExcelMultiSheet(txtFilePath.Text);
+            dsSheets = ReadExcelMultiSheet(textFileExcel.Text);
 
             if (dsSheets.Tables.Count > 0)
             {
@@ -105,16 +148,16 @@ namespace StudentDashboardApp.Model
         {
             if (dsSheets != null && dsSheets.Tables.Count > 0)
             {
-                dataGridView1.DataSource = dsSheets.Tables[currentSheetIndex];
+                dataGridViewExcel.DataSource = dsSheets.Tables[currentSheetIndex];
 
                 lblSheetName.Text = $"Sheet: {dsSheets.Tables[currentSheetIndex].TableName} " +
                                     $"({currentSheetIndex + 1}/{dsSheets.Tables.Count})";
 
                 // Cấu hình hiển thị
-                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                dataGridView1.AllowUserToResizeColumns = false;
-                dataGridView1.AllowUserToResizeRows = false;
-                dataGridView1.RowHeadersVisible = false;
+                dataGridViewExcel.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dataGridViewExcel.AllowUserToResizeColumns = false;
+                dataGridViewExcel.AllowUserToResizeRows = false;
+                dataGridViewExcel.RowHeadersVisible = false;
 
 
             }
@@ -165,11 +208,11 @@ namespace StudentDashboardApp.Model
 
                 // ✅ Map cột Excel → DB
                 dt = DataAccessLayer.ExcelMapper.MapColumns(dt, config.Mapping);
-
+              
                 // ✅ Dùng Upsert nếu có cột khóa, ngược lại BulkInsert
-                if (!string.IsNullOrEmpty(config.KeyColumn))
+                if (config.KeyColumns != null && config.KeyColumns.Length > 0)
                 {
-                    service.UpsertGeneric(config.TableName, config.KeyColumn, dt);
+                    service.UpsertGeneric(config.TableName, config.KeyColumns, dt);
                     MessageBox.Show($"Upsert sheet '{sheetName}' vào bảng '{config.TableName}' thành công!");
                 }
                 else
@@ -177,6 +220,9 @@ namespace StudentDashboardApp.Model
                     service.ImportGeneric(dt, config.TableName);
                     MessageBox.Show($"Import sheet '{sheetName}' vào bảng '{config.TableName}' thành công!");
                 }
+                
+
+
 
                 // ✅ Nếu là Sinh_Vien thì báo số lượng
                 if (config.TableName.Equals("Sinh_Vien", StringComparison.OrdinalIgnoreCase))
@@ -190,7 +236,17 @@ namespace StudentDashboardApp.Model
                 MessageBox.Show("Lỗi khi import: " + ex.Message);
             }
         }
+
+        private void txtFilePath_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridViewExcel_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 
-    }
+}
 

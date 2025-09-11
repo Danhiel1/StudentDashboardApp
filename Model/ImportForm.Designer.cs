@@ -35,8 +35,8 @@
             recentlyUsedItemsComboBox1 = new DevExpress.XtraReports.UserDesigner.RecentlyUsedItemsComboBox();
             designRepositoryItemComboBox1 = new DevExpress.XtraReports.UserDesigner.DesignRepositoryItemComboBox();
             fluentDesignFormContainer1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer();
-            dataGridView1 = new DataGridView();
-            groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            dataGridViewExcel = new DataGridView();
+            groupControlExcel = new DevExpress.XtraEditors.GroupControl();
             lblSheetName = new Label();
             xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             btnNext = new Button();
@@ -44,14 +44,14 @@
             btnImport = new Button();
             btnPreview = new Button();
             btnBrowse = new Button();
-            txtFilePath = new TextBox();
+            textFileExcel = new TextBox();
             fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
             ((System.ComponentModel.ISupportInitialize)recentlyUsedItemsComboBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)designRepositoryItemComboBox1).BeginInit();
             fluentDesignFormContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)groupControl1).BeginInit();
-            groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewExcel).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)groupControlExcel).BeginInit();
+            groupControlExcel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)fluentDesignFormControl1).BeginInit();
             SuspendLayout();
             // 
@@ -71,20 +71,20 @@
             // 
             // fluentDesignFormContainer1
             // 
-            fluentDesignFormContainer1.Controls.Add(dataGridView1);
-            fluentDesignFormContainer1.Controls.Add(groupControl1);
+            fluentDesignFormContainer1.Controls.Add(dataGridViewExcel);
+            fluentDesignFormContainer1.Controls.Add(groupControlExcel);
             fluentDesignFormContainer1.Dock = DockStyle.Fill;
-            fluentDesignFormContainer1.Location = new Point(0, 33);
+            fluentDesignFormContainer1.Location = new Point(0, 31);
             fluentDesignFormContainer1.Name = "fluentDesignFormContainer1";
-            fluentDesignFormContainer1.Size = new Size(691, 440);
+            fluentDesignFormContainer1.Size = new Size(691, 442);
             fluentDesignFormContainer1.TabIndex = 0;
             // 
-            // dataGridView1
+            // dataGridViewExcel
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dataGridView1.BackgroundColor = Color.White;
-            dataGridView1.BorderStyle = BorderStyle.Fixed3D;
+            dataGridViewExcel.AllowUserToAddRows = false;
+            dataGridViewExcel.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridViewExcel.BackgroundColor = Color.White;
+            dataGridViewExcel.BorderStyle = BorderStyle.Fixed3D;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.Transparent;
             dataGridViewCellStyle1.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -92,8 +92,8 @@
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewExcel.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewExcel.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.White;
             dataGridViewCellStyle2.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -101,10 +101,10 @@
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(0, 0);
-            dataGridView1.Name = "dataGridView1";
+            dataGridViewExcel.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewExcel.Dock = DockStyle.Fill;
+            dataGridViewExcel.Location = new Point(0, 0);
+            dataGridViewExcel.Name = "dataGridViewExcel";
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = SystemColors.Control;
             dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -112,28 +112,29 @@
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(691, 331);
-            dataGridView1.TabIndex = 1;
+            dataGridViewExcel.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewExcel.RowHeadersWidth = 62;
+            dataGridViewExcel.Size = new Size(691, 333);
+            dataGridViewExcel.TabIndex = 1;
+            dataGridViewExcel.CellContentClick += dataGridViewExcel_CellContentClick;
             // 
-            // groupControl1
+            // groupControlExcel
             // 
-            groupControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            groupControl1.Controls.Add(lblSheetName);
-            groupControl1.Controls.Add(xtraScrollableControl1);
-            groupControl1.Controls.Add(btnNext);
-            groupControl1.Controls.Add(btnPrevious);
-            groupControl1.Controls.Add(btnImport);
-            groupControl1.Controls.Add(btnPreview);
-            groupControl1.Controls.Add(btnBrowse);
-            groupControl1.Controls.Add(txtFilePath);
-            groupControl1.Dock = DockStyle.Bottom;
-            groupControl1.Location = new Point(0, 331);
-            groupControl1.Name = "groupControl1";
-            groupControl1.Size = new Size(691, 109);
-            groupControl1.TabIndex = 0;
-            groupControl1.Text = "groupControl1";
+            groupControlExcel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            groupControlExcel.Controls.Add(lblSheetName);
+            groupControlExcel.Controls.Add(xtraScrollableControl1);
+            groupControlExcel.Controls.Add(btnNext);
+            groupControlExcel.Controls.Add(btnPrevious);
+            groupControlExcel.Controls.Add(btnImport);
+            groupControlExcel.Controls.Add(btnPreview);
+            groupControlExcel.Controls.Add(btnBrowse);
+            groupControlExcel.Controls.Add(textFileExcel);
+            groupControlExcel.Dock = DockStyle.Bottom;
+            groupControlExcel.Location = new Point(0, 333);
+            groupControlExcel.Name = "groupControlExcel";
+            groupControlExcel.Size = new Size(691, 109);
+            groupControlExcel.TabIndex = 0;
+            groupControlExcel.Text = "groupControl1";
             // 
             // lblSheetName
             // 
@@ -222,26 +223,27 @@
             btnBrowse.UseVisualStyleBackColor = false;
             btnBrowse.Click += btnBrowse_Click;
             // 
-            // txtFilePath
+            // textFileExcel
             // 
-            txtFilePath.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            txtFilePath.BackColor = Color.White;
-            txtFilePath.BorderStyle = BorderStyle.None;
-            txtFilePath.ForeColor = SystemColors.Desktop;
-            txtFilePath.ImeMode = ImeMode.NoControl;
-            txtFilePath.Location = new Point(12, 45);
-            txtFilePath.Multiline = true;
-            txtFilePath.Name = "txtFilePath";
-            txtFilePath.ReadOnly = true;
-            txtFilePath.Size = new Size(447, 29);
-            txtFilePath.TabIndex = 0;
+            textFileExcel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            textFileExcel.BackColor = Color.White;
+            textFileExcel.BorderStyle = BorderStyle.None;
+            textFileExcel.ForeColor = SystemColors.Desktop;
+            textFileExcel.ImeMode = ImeMode.NoControl;
+            textFileExcel.Location = new Point(12, 45);
+            textFileExcel.Multiline = true;
+            textFileExcel.Name = "textFileExcel";
+            textFileExcel.ReadOnly = true;
+            textFileExcel.Size = new Size(447, 29);
+            textFileExcel.TabIndex = 0;
+            textFileExcel.TextChanged += txtFilePath_TextChanged;
             // 
             // fluentDesignFormControl1
             // 
             fluentDesignFormControl1.FluentDesignForm = this;
             fluentDesignFormControl1.Location = new Point(0, 0);
             fluentDesignFormControl1.Name = "fluentDesignFormControl1";
-            fluentDesignFormControl1.Size = new Size(691, 33);
+            fluentDesignFormControl1.Size = new Size(691, 31);
             fluentDesignFormControl1.TabIndex = 2;
             fluentDesignFormControl1.TabStop = false;
             // 
@@ -257,16 +259,15 @@
             Controls.Add(fluentDesignFormContainer1);
             Controls.Add(fluentDesignFormControl1);
             FluentDesignFormControl = fluentDesignFormControl1;
-            Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Name = "ImportForm";
             Text = "ImportForm";
             ((System.ComponentModel.ISupportInitialize)recentlyUsedItemsComboBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)designRepositoryItemComboBox1).EndInit();
             fluentDesignFormContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)groupControl1).EndInit();
-            groupControl1.ResumeLayout(false);
-            groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewExcel).EndInit();
+            ((System.ComponentModel.ISupportInitialize)groupControlExcel).EndInit();
+            groupControlExcel.ResumeLayout(false);
+            groupControlExcel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)fluentDesignFormControl1).EndInit();
             ResumeLayout(false);
 
@@ -275,14 +276,14 @@
         #endregion
         private DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer fluentDesignFormContainer1;
         private DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl fluentDesignFormControl1;
-        private DevExpress.XtraEditors.GroupControl groupControl1;
-        private TextBox txtFilePath;
+        private DevExpress.XtraEditors.GroupControl groupControlExcel;
+        private TextBox textFileExcel;
         private Button btnBrowse;
         private DevExpress.XtraReports.UserDesigner.RecentlyUsedItemsComboBox recentlyUsedItemsComboBox1;
         private DevExpress.XtraReports.UserDesigner.DesignRepositoryItemComboBox designRepositoryItemComboBox1;
         private Button btnImport;
         private Button btnPreview;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridViewExcel;
         private Button btnPrevious;
         private Button btnNext;
         private Label lblSheetName;
