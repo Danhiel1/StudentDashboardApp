@@ -167,6 +167,33 @@
         UhSQr94Wq4B8GapIkSJFy66flqlGEZUZX90AAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="barButtonItemFindStudent.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
   <assembly alias="DevExpress.Data.v25.1" name="DevExpress.Data.v25.1, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="DashboardStudent.IconOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v25.1" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

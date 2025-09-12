@@ -41,7 +41,6 @@ namespace StudentDashboardApp.Model
 
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {
-            // Removed ApplicationConfiguration.Initialize(); as it does not exist in this context
             var importForm = new ImportForm();
             importForm.ShowDialog();
 
@@ -55,15 +54,8 @@ namespace StudentDashboardApp.Model
 
         private void DashboardStudent_Load(object sender, EventArgs e)
         {
-            var mapping = new Dictionary<RibbonPage, NavigationPage>
-    {
-        { ribbonPage1, navigationSystemPage1 },
-        { ribbonPage2, navigationPage1 },
-        { ribbonPage3, navigationPage2 }
-    };
-
-            // Gọi constructor với mapping
-            navService = new StudentDashboardApp.Services.NavigationService(mapping);
+         
+            navigationFrameSTD.Visible = false;
         }
 
 
@@ -104,20 +96,26 @@ namespace StudentDashboardApp.Model
 
         private void ribbon_SelectedPageChanged(object sender, EventArgs e)
         {
-            var navPage = navService.GetNavigationPage(ribbon.SelectedPage);
-            if (navPage != null)
-            {
-                // Tắt animation khi đổi
-                navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
-                navigationFrameSTD.SelectedPage = navPage;
-                navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True; // bật lại nếu cần
-            }
-            navigationFrameSTD.SelectedPage = navPage;
+            navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
+            navigationFrameSTD.SelectedPage = navigationPageEmpty;
         }
 
         private void ribbon_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void barButtonItemFindStudent_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            navigationFrameSTD.Visible = true;
+            navigationFrameSTD.SelectedPage = navigationPageFindStudent;
+        }
+
+        private void barButtonItemAddST_ItemClick(object sender, ItemClickEventArgs e)
+        {
+          
+            navigationFrameSTD.Visible = true;
+            navigationFrameSTD.SelectedPage = navigationPageAddST;
         }
     }
 }
