@@ -6,13 +6,15 @@ using System.Windows.Navigation;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Navigation;
 using DevExpress.XtraBars.Ribbon;
-
+using StudentDashboardApp.Services;
 
 
 namespace StudentDashboardApp.Model
 {
     public partial class DashboardStudent : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        private NavigationHelper navHelper;// khai báo fild để tạo cho đối tượng trong DashboardStudent_Load
+
         public DashboardStudent()
         {
             InitializeComponent();
@@ -50,12 +52,14 @@ namespace StudentDashboardApp.Model
         {
 
         }
-        private StudentDashboardApp.Services.NavigationService navService;
+     
 
         private void DashboardStudent_Load(object sender, EventArgs e)
         {
-         
-            navigationFrameSTD.Visible = false;
+            navHelper = new NavigationHelper(navigationFrameSTD); // tạo đối tượng để sử dụng hàm trong class đc tạo
+            navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False; // bỏ hiệu ứng chuyển nav
+            navigationFrameSTD.SelectedPage = navigationPageEmpty; // chọn navpage rỗng làm mặc định 
+       
         }
 
 
@@ -96,26 +100,24 @@ namespace StudentDashboardApp.Model
 
         private void ribbon_SelectedPageChanged(object sender, EventArgs e)
         {
-            navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
-            navigationFrameSTD.SelectedPage = navigationPageEmpty;
+            navigationFrameSTD.SelectedPage = navigationPageEmpty; // mỗi khi chuyển ribbon sẽ tự chọn lại navpage rỗng 
         }
 
         private void ribbon_Click(object sender, EventArgs e)
         {
 
         }
-
+       
         private void barButtonItemFindStudent_ItemClick(object sender, ItemClickEventArgs e)
         {
-            navigationFrameSTD.Visible = true;
-            navigationFrameSTD.SelectedPage = navigationPageFindStudent;
+
+            navHelper.ShowNavigationPage(navigationPageFindStudent); // gáng những page muốn mở vào những sự kiện của nút như đây là ví dụ điển hình, làm tương tự như những cái ở dưới
         }
 
         private void barButtonItemAddST_ItemClick(object sender, ItemClickEventArgs e)
         {
-          
-            navigationFrameSTD.Visible = true;
-            navigationFrameSTD.SelectedPage = navigationPageAddST;
+
+            navHelper.ShowNavigationPage(navigationPageAddST);
         }
     }
 }
