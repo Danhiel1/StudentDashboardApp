@@ -43,18 +43,18 @@ namespace StudentDashboardApp.Model
         {
             DataSet ds = new DataSet();
 
-            using (var workbook = new XLWorkbook(path))
+            using (XLWorkbook workbook = new XLWorkbook(path))
             {
-                foreach (var worksheet in workbook.Worksheets)
+                foreach (IXLWorksheet worksheet in workbook.Worksheets)
                 {
                     DataTable dt = new DataTable(worksheet.Name);
                     bool firstRow = true;
 
-                    foreach (var row in worksheet.RowsUsed())
+                    foreach (IXLRow row in worksheet.RowsUsed())
                     {
                         if (firstRow)
                         {
-                            foreach (var cell in row.Cells())
+                            foreach (IXLCell cell in row.Cells())
                             {
                                 string colName = cell.Value.ToString();
 
@@ -80,7 +80,7 @@ namespace StudentDashboardApp.Model
                             DataRow toInsert = dt.NewRow();
                             int cellIndex = 0;
 
-                            foreach (var cell in row.Cells(1, dt.Columns.Count))
+                            foreach (IXLCell cell in row.Cells(1, dt.Columns.Count))
                             {
                                 if (cell.Value.IsBlank)
                                 {
@@ -110,10 +110,10 @@ namespace StudentDashboardApp.Model
                     }
                     ds.Tables.Add(dt);
                 }
-
             }
             return ds;
         }
+
 
 
 
@@ -186,7 +186,7 @@ namespace StudentDashboardApp.Model
         private void btnImport_Click(object sender, EventArgs e)
         {
             string connectionString = "Server=.;Database=QLSV;Trusted_Connection=True;Encrypt=False;";
-            var service = new BusinessLayer.StudentService(connectionString);
+            BusinessLayer.StudentService service = new BusinessLayer.StudentService(connectionString);
 
             if (dsSheets == null || dsSheets.Tables.Count == 0)
             {
@@ -200,7 +200,8 @@ namespace StudentDashboardApp.Model
             try
             {
                 // ✅ Tìm config theo tên sheet
-                if (!BusinessLayer.SheetConfig.SheetMappings.TryGetValue(sheetName, out var config))
+                (string TableName, Dictionary<string, string> Mapping, string[] KeyColumns) config;
+                if (!BusinessLayer.SheetConfig.SheetMappings.TryGetValue(sheetName, out config))
                 {
                     MessageBox.Show($"❌ Không tìm thấy mapping cho sheet: {sheetName}");
                     return;
@@ -208,7 +209,7 @@ namespace StudentDashboardApp.Model
 
                 // ✅ Map cột Excel → DB
                 dt = DataAccessLayer.ExcelMapper.MapColumns(dt, config.Mapping);
-              
+
                 // ✅ Dùng Upsert nếu có cột khóa, ngược lại BulkInsert
                 if (config.KeyColumns != null && config.KeyColumns.Length > 0)
                 {
@@ -220,9 +221,6 @@ namespace StudentDashboardApp.Model
                     service.ImportGeneric(dt, config.TableName);
                     MessageBox.Show($"Import sheet '{sheetName}' vào bảng '{config.TableName}' thành công!");
                 }
-                
-
-
 
                 // ✅ Nếu là Sinh_Vien thì báo số lượng
                 if (config.TableName.Equals("Sinh_Vien", StringComparison.OrdinalIgnoreCase))
@@ -236,6 +234,8 @@ namespace StudentDashboardApp.Model
                 MessageBox.Show("Lỗi khi import: " + ex.Message);
             }
         }
+
+
 
         private void txtFilePath_TextChanged(object sender, EventArgs e)
         {

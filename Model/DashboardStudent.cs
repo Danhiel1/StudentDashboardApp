@@ -41,11 +41,10 @@ namespace StudentDashboardApp.Model
 
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {
-            // Removed ApplicationConfiguration.Initialize(); as it does not exist in this context
-            var importForm = new ImportForm();
+            ImportForm importForm = new ImportForm();
             importForm.ShowDialog();
-
         }
+
 
         private void xtraOpenFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -55,7 +54,7 @@ namespace StudentDashboardApp.Model
 
         private void DashboardStudent_Load(object sender, EventArgs e)
         {
-            var mapping = new Dictionary<RibbonPage, NavigationPage>
+            Dictionary<RibbonPage, NavigationPage> mapping = new Dictionary<RibbonPage, NavigationPage>
     {
         { ribbonPage1, navigationSystemPage1 },
         { ribbonPage2, navigationPage1 },
@@ -65,6 +64,7 @@ namespace StudentDashboardApp.Model
             // Gọi constructor với mapping
             navService = new StudentDashboardApp.Services.NavigationService(mapping);
         }
+
 
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -104,16 +104,15 @@ namespace StudentDashboardApp.Model
 
         private void ribbon_SelectedPageChanged(object sender, EventArgs e)
         {
-            var navPage = navService.GetNavigationPage(ribbon.SelectedPage);
+            NavigationPage navPage = navService.GetNavigationPage(ribbon.SelectedPage);
             if (navPage != null)
             {
-                // Tắt animation khi đổi
                 navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
                 navigationFrameSTD.SelectedPage = navPage;
-                navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True; // bật lại nếu cần
+                navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True;
             }
-            navigationFrameSTD.SelectedPage = navPage;
         }
+
 
         private void ribbon_Click(object sender, EventArgs e)
         {

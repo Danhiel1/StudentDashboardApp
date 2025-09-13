@@ -19,15 +19,17 @@ namespace StudentDashboardApp.Services
         {
             if (ribbonPage == null) return null;
 
-            return ribbonToNavMap.TryGetValue(ribbonPage, out var navPage)
+            NavigationPage navPage;
+            return ribbonToNavMap.TryGetValue(ribbonPage, out navPage)
                 ? navPage
                 : null;
         }
 
+
         // (tuỳ chọn) Lấy RibbonPage từ NavigationPage (nếu muốn đồng bộ 2 chiều)
         public RibbonPage GetRibbonPage(NavigationPage navPage)
         {
-            foreach (var kvp in ribbonToNavMap)
+            foreach (KeyValuePair<RibbonPage, NavigationPage> kvp in ribbonToNavMap)
             {
                 if (kvp.Value == navPage)
                     return kvp.Key;

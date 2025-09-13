@@ -74,9 +74,9 @@
             fluentDesignFormContainer1.Controls.Add(dataGridViewExcel);
             fluentDesignFormContainer1.Controls.Add(groupControlExcel);
             fluentDesignFormContainer1.Dock = DockStyle.Fill;
-            fluentDesignFormContainer1.Location = new Point(0, 31);
+            fluentDesignFormContainer1.Location = new Point(0, 33);
             fluentDesignFormContainer1.Name = "fluentDesignFormContainer1";
-            fluentDesignFormContainer1.Size = new Size(691, 442);
+            fluentDesignFormContainer1.Size = new Size(691, 440);
             fluentDesignFormContainer1.TabIndex = 0;
             // 
             // dataGridViewExcel
@@ -114,7 +114,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dataGridViewExcel.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridViewExcel.RowHeadersWidth = 62;
-            dataGridViewExcel.Size = new Size(691, 333);
+            dataGridViewExcel.Size = new Size(691, 331);
             dataGridViewExcel.TabIndex = 1;
             dataGridViewExcel.CellContentClick += dataGridViewExcel_CellContentClick;
             // 
@@ -130,7 +130,7 @@
             groupControlExcel.Controls.Add(btnBrowse);
             groupControlExcel.Controls.Add(textFileExcel);
             groupControlExcel.Dock = DockStyle.Bottom;
-            groupControlExcel.Location = new Point(0, 333);
+            groupControlExcel.Location = new Point(0, 331);
             groupControlExcel.Name = "groupControlExcel";
             groupControlExcel.Size = new Size(691, 109);
             groupControlExcel.TabIndex = 0;
@@ -144,7 +144,7 @@
             lblSheetName.ForeColor = Color.Transparent;
             lblSheetName.Location = new Point(0, 0);
             lblSheetName.Name = "lblSheetName";
-            lblSheetName.Size = new Size(65, 13);
+            lblSheetName.Size = new Size(66, 13);
             lblSheetName.TabIndex = 0;
             lblSheetName.Text = "Name Sheet";
             // 
@@ -243,7 +243,7 @@
             fluentDesignFormControl1.FluentDesignForm = this;
             fluentDesignFormControl1.Location = new Point(0, 0);
             fluentDesignFormControl1.Name = "fluentDesignFormControl1";
-            fluentDesignFormControl1.Size = new Size(691, 31);
+            fluentDesignFormControl1.Size = new Size(691, 33);
             fluentDesignFormControl1.TabIndex = 2;
             fluentDesignFormControl1.TabStop = false;
             // 
