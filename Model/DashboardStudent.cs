@@ -13,8 +13,8 @@ namespace StudentDashboardApp.Model
 {
     public partial class DashboardStudent : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        private NavigationHelper navHelper;// khai báo fild để tạo cho đối tượng trong DashboardStudent_Load
 
+        private NavigationHelper navHelper;
         public DashboardStudent()
         {
             InitializeComponent();
@@ -52,14 +52,23 @@ namespace StudentDashboardApp.Model
         {
 
         }
-     
 
+        
         private void DashboardStudent_Load(object sender, EventArgs e)
         {
-            navHelper = new NavigationHelper(navigationFrameSTD); // tạo đối tượng để sử dụng hàm trong class đc tạo
-            navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False; // bỏ hiệu ứng chuyển nav
-            navigationFrameSTD.SelectedPage = navigationPageEmpty; // chọn navpage rỗng làm mặc định 
-       
+            var pageMap = new Dictionary<BarButtonItem, NavigationPage>()
+    {
+                // thêm nút khác và page cần hiển thị tại đây
+        { barButtonItemFindStudent, navigationPageFindStudent },
+        { barButtonItemAddST, navigationPageAddST },
+      
+        
+    };
+
+            navHelper = new NavigationHelper(navigationFrameSTD, pageMap); // đưa cho hàm ăn tham số của frame và Dictionary lần lượt là navigationFrameSTD và pageMap
+            navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False; // tắt transition của frame    
+            navHelper.ShowEmptyPage(navigationPageEmpty);// mặc định khi mở form sễ tự chọn form rỗng thay vì trả frame về false sẽ dễ gay ra lỗi linh tinh gì gì đó
+
         }
 
 
@@ -100,7 +109,7 @@ namespace StudentDashboardApp.Model
 
         private void ribbon_SelectedPageChanged(object sender, EventArgs e)
         {
-            navigationFrameSTD.SelectedPage = navigationPageEmpty; // mỗi khi chuyển ribbon sẽ tự chọn lại navpage rỗng 
+            navHelper.ShowEmptyPage(navigationPageEmpty);// mỗi khi chuyển page sẽ tự động trả về page rỗng
         }
 
         private void ribbon_Click(object sender, EventArgs e)
@@ -111,13 +120,13 @@ namespace StudentDashboardApp.Model
         private void barButtonItemFindStudent_ItemClick(object sender, ItemClickEventArgs e)
         {
 
-            navHelper.ShowNavigationPage(navigationPageFindStudent); // gáng những page muốn mở vào những sự kiện của nút như đây là ví dụ điển hình, làm tương tự như những cái ở dưới
+           
         }
 
         private void barButtonItemAddST_ItemClick(object sender, ItemClickEventArgs e)
         {
 
-            navHelper.ShowNavigationPage(navigationPageAddST);
+           
         }
     }
 }
