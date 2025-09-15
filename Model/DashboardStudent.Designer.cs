@@ -457,6 +457,14 @@
             navigationPage1.Name = "navigationPage1";
             navigationPage1.Size = new Size(1123, 471);
             // 
+            // gridLookUpEdit1
+            // 
+          
+            // 
+            // gridLookUpEdit1View
+            // 
+            
+            // 
             // DashboardStudent
             // 
             Appearance.Options.UseFont = true;
