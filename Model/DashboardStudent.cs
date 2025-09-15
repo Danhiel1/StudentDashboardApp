@@ -1,8 +1,12 @@
-﻿using DevExpress.XtraBars;
-using System;
+﻿using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Navigation;
+using DevExpress.XtraBars;
+using DevExpress.XtraBars.Navigation;
+using DevExpress.XtraBars.Ribbon;
+
 
 
 namespace StudentDashboardApp.Model
@@ -47,11 +51,21 @@ namespace StudentDashboardApp.Model
         {
 
         }
+        private StudentDashboardApp.Services.NavigationService navService;
 
         private void DashboardStudent_Load(object sender, EventArgs e)
         {
+            var mapping = new Dictionary<RibbonPage, NavigationPage>
+    {
+        { ribbonPage1, navigationSystemPage1 },
+        { ribbonPage2, navigationPage1 },
+        { ribbonPage3, navigationPage2 }
+    };
 
+            // Gọi constructor với mapping
+            navService = new StudentDashboardApp.Services.NavigationService(mapping);
         }
+
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -82,5 +96,29 @@ namespace StudentDashboardApp.Model
         {
 
         }
+
+        private void btnDatabase_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void ribbon_SelectedPageChanged(object sender, EventArgs e)
+        {
+            var navPage = navService.GetNavigationPage(ribbon.SelectedPage);
+            if (navPage != null)
+            {
+                // Tắt animation khi đổi
+                navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
+                navigationFrameSTD.SelectedPage = navPage;
+                navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True; // bật lại nếu cần
+            }
+            navigationFrameSTD.SelectedPage = navPage;
+        }
+
+        private void ribbon_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+
