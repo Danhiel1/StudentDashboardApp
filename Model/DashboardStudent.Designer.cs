@@ -516,11 +516,33 @@
             navigationPageEmpty.Name = "navigationPageEmpty";
             navigationPageEmpty.Size = new Size(1123, 471);
             // 
+
             // ribbonPageGroupEditST
             // 
             ribbonPageGroupEditST.Name = "ribbonPageGroupEditST";
             ribbonPageGroupEditST.Text = "Chỉnh Sửa Thông Tin";
            
+            // navigationPageEditST
+            // 
+            navigationPageEditST.Caption = "navigationPageEditST";
+            navigationPageEditST.Controls.Add(labeleditst);
+            navigationPageEditST.Name = "navigationPageEditST";
+            navigationPageEditST.Size = new Size(1123, 471);
+            // 
+            // labeleditst
+            // 
+            labeleditst.AutoSize = true;
+            labeleditst.Location = new Point(449, 170);
+            labeleditst.Name = "labeleditst";
+            labeleditst.Size = new Size(69, 13);
+            labeleditst.TabIndex = 0;
+            labeleditst.Text = "sửa sinh viên";
+            labeleditst.Click += labeleditst_Click;
+            // 
+            // gridLookUpEdit1
+            // 
+     
+
             // 
             // DashboardStudent
             // 
