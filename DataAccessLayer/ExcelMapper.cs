@@ -107,11 +107,11 @@ public static class  ExcelMapper
 
         public static DataTable MapColumns(DataTable dt, Dictionary<string, string> mapping)
         {
-            foreach (var map in mapping)
+            foreach (KeyValuePair<string, string> map in mapping)
             {
                 if (dt.Columns.Contains(map.Key))
                 {
-                    var column = dt.Columns[map.Key];
+                    DataColumn column = dt.Columns[map.Key];
                     if (column != null)
                     {
                         column.ColumnName = map.Value;
@@ -120,5 +120,6 @@ public static class  ExcelMapper
             }
             return dt;
         }
+
     }
 }
