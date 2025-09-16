@@ -6,13 +6,15 @@ using System.Windows.Navigation;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Navigation;
 using DevExpress.XtraBars.Ribbon;
-
+using StudentDashboardApp.Services;
 
 
 namespace StudentDashboardApp.Model
 {
     public partial class DashboardStudent : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+
+        private NavigationHelper navHelper;
         public DashboardStudent()
         {
             InitializeComponent();
@@ -50,19 +52,23 @@ namespace StudentDashboardApp.Model
         {
 
         }
-        private StudentDashboardApp.Services.NavigationService navService;
 
+        
         private void DashboardStudent_Load(object sender, EventArgs e)
         {
             Dictionary<RibbonPage, NavigationPage> mapping = new Dictionary<RibbonPage, NavigationPage>
     {
-        { ribbonPage1, navigationSystemPage1 },
-        { ribbonPage2, navigationPage1 },
-        { ribbonPage3, navigationPage2 }
+                // thêm nút khác và page cần hiển thị tại đây
+        { barButtonItemFindStudent, navigationPageFindStudent },
+        { barButtonItemAddST, navigationPageAddST },
+      
+        
     };
 
-            // Gọi constructor với mapping
-            navService = new StudentDashboardApp.Services.NavigationService(mapping);
+            navHelper = new NavigationHelper(navigationFrameSTD, pageMap); // đưa cho hàm ăn tham số của frame và Dictionary lần lượt là navigationFrameSTD và pageMap
+            navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False; // tắt transition của frame    
+            navHelper.ShowEmptyPage(navigationPageEmpty);// mặc định khi mở form sễ tự chọn form rỗng thay vì trả frame về false sẽ dễ gay ra lỗi linh tinh gì gì đó
+
         }
 
 
@@ -117,6 +123,7 @@ namespace StudentDashboardApp.Model
         private void ribbon_Click(object sender, EventArgs e)
         {
 
+           
         }
     }
 }
