@@ -66,6 +66,7 @@
             ribbonSupport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroupquery = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            ribbonPageGroupEditST = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -90,7 +91,6 @@
             navigationPageAddST = new DevExpress.XtraBars.Navigation.NavigationPage();
             labelAddST = new Label();
             navigationPageEmpty = new DevExpress.XtraBars.Navigation.NavigationPage();
-            ribbonPageGroupEditST = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)ribbon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup3).BeginInit();
@@ -342,6 +342,11 @@
             ribbonPageGroupquery.Name = "ribbonPageGroupquery";
             ribbonPageGroupquery.Text = "Tra Cứu";
             // 
+            // ribbonPageGroupEditST
+            // 
+            ribbonPageGroupEditST.Name = "ribbonPageGroupEditST";
+            ribbonPageGroupEditST.Text = "Chỉnh Sửa Thông Tin";
+            // 
             // ribbonPage3
             // 
             ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup3 });
@@ -527,11 +532,6 @@
             navigationPageEmpty.Caption = "navigationPageEmpty";
             navigationPageEmpty.Name = "navigationPageEmpty";
             navigationPageEmpty.Size = new Size(1123, 471);
-            // 
-            // ribbonPageGroupEditST
-            // 
-            ribbonPageGroupEditST.Name = "ribbonPageGroupEditST";
-            ribbonPageGroupEditST.Text = "Chỉnh Sửa Thông Tin";
             // 
             // DashboardStudent
             // 
