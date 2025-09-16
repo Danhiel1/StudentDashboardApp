@@ -53,23 +53,35 @@ namespace StudentDashboardApp.Model
 
         }
 
-        
+        private StudentDashboardApp.Services.NavigationService navService;
         private void DashboardStudent_Load(object sender, EventArgs e)
         {
-            Dictionary<RibbonPage, NavigationPage> mapping = new Dictionary<RibbonPage, NavigationPage>
-    {
-                // thêm nút khác và page cần hiển thị tại đây
-        { barButtonItemFindStudent, navigationPageFindStudent },
-        { barButtonItemAddST, navigationPageAddST },
-      
-        
-    };
+            // Map RibbonPage → NavigationPage
+            Dictionary<RibbonPage, NavigationPage> ribbonMap = new Dictionary<RibbonPage, NavigationPage>
+            {
+            { ribbonPage1, navigationSystemPage1 },
+            { ribbonPage2, navigationPage1 },
+            { ribbonPage3, navigationPage2 }
+            };
 
-            navHelper = new NavigationHelper(navigationFrameSTD, pageMap); // đưa cho hàm ăn tham số của frame và Dictionary lần lượt là navigationFrameSTD và pageMap
-            navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False; // tắt transition của frame    
-            navHelper.ShowEmptyPage(navigationPageEmpty);// mặc định khi mở form sễ tự chọn form rỗng thay vì trả frame về false sẽ dễ gay ra lỗi linh tinh gì gì đó
+            // Map BarButtonItem → NavigationPage
+            Dictionary<BarButtonItem, NavigationPage> buttonMap = new Dictionary<BarButtonItem, NavigationPage>
+            {
+            { barButtonItemFindStudent, navigationPageFindStudent },
+            { barButtonItemAddST, navigationPageAddST }
+            };
 
+            // Khởi tạo NavigationHelper (cho button)
+            navHelper = new NavigationHelper(navigationFrameSTD, buttonMap);
+            navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
+            navigationFrameSTD.SelectedPage = navigationSystemPage1; // 👈 chọn page mặc định khi mở
+            navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True;
+
+
+            // Khởi tạo NavigationService (cho ribbon)
+            navService = new StudentDashboardApp.Services.NavigationService(ribbonMap);
         }
+
 
 
 
@@ -117,6 +129,7 @@ namespace StudentDashboardApp.Model
                 navigationFrameSTD.SelectedPage = navPage;
                 navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True;
             }
+           // navHelper.ShowEmptyPage(navigationPageEmpty);// mỗi khi chuyển page sẽ tự động trả về page rỗng
         }
 
 
@@ -125,6 +138,7 @@ namespace StudentDashboardApp.Model
 
            
         }
+       
     }
 }
 
