@@ -313,7 +313,7 @@
             // 
             ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { RibbonData, ribbonSystemSettinngs, ribbonSupport });
             ribbonPage1.Name = "ribbonPage1";
-            ribbonPage1.Text = "Hệ Thống";
+            ribbonPage1.Text = "System";
             // 
             // RibbonData
             // 
@@ -343,7 +343,7 @@
             // 
             ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroupquery, ribbonPageGroupEditST });
             ribbonPage2.Name = "ribbonPage2";
-            ribbonPage2.Text = "Sinh Viên";
+            ribbonPage2.Text = "Student";
             // 
             // ribbonPageGroupquery
             // 
@@ -362,7 +362,7 @@
             // 
             ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup3 });
             ribbonPage3.Name = "ribbonPage3";
-            ribbonPage3.Text = "Ngành";
+            ribbonPage3.Text = "Class";
             // 
             // ribbonPageGroup3
             // 
@@ -404,42 +404,7 @@
             tabbedControlGroup1.SelectedTabPage = null;
             tabbedControlGroup1.Size = new Size(241, 412);
             // 
-            // navigationFrameSTD
-            // 
-            navigationFrameSTD.Controls.Add(navigationSystemPage1);
-            navigationFrameSTD.Controls.Add(navigationPageFindStudent);
-            navigationFrameSTD.Controls.Add(navigationPageAddST);
-            navigationFrameSTD.Controls.Add(navigationPageEmpty);
-            navigationFrameSTD.Controls.Add(navigationPageEditST);
-            navigationFrameSTD.Dock = DockStyle.Fill;
-            navigationFrameSTD.Location = new Point(0, 201);
-            navigationFrameSTD.Name = "navigationFrameSTD";
-            navigationFrameSTD.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] { navigationSystemPage1, navigationPageFindStudent, navigationPageAddST, navigationPageEmpty, navigationPageEditST });
-            navigationFrameSTD.SelectedPage = navigationSystemPage1;
-            navigationFrameSTD.Size = new Size(1123, 471);
-            navigationFrameSTD.TabIndex = 12;
-            navigationFrameSTD.Text = "navigationFrame1";
-            // 
-            // navigationSystemPage1
-            // 
-            navigationSystemPage1.Caption = "navigationSystemPage1";
-            navigationSystemPage1.Controls.Add(layoutControl1);
-            navigationSystemPage1.Name = "navigationSystemPage1";
-            navigationSystemPage1.Size = new Size(1123, 471);
-            // 
-            // layoutControl1
-            // 
-            layoutControl1.Controls.Add(chartControl1);
-            layoutControl1.Dock = DockStyle.Fill;
-            layoutControl1.Location = new Point(0, 0);
-            layoutControl1.Name = "layoutControl1";
-            layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new Rectangle(142, 371, 650, 400);
-            layoutControl1.Root = LayoutControlPage1;
-            layoutControl1.Size = new Size(1123, 471);
-            layoutControl1.TabIndex = 0;
-            layoutControl1.Text = "layoutControl1";
-            // 
-            // chartControl1
+
             // 
             chartControl1.Location = new Point(562, 16);
             chartControl1.Name = "chartControl1";
@@ -562,6 +527,23 @@
             labeleditst.Text = "sửa sinh viên";
             labeleditst.Click += labeleditst_Click;
             // 
+            // gridLookUpEdit1
+            // 
+            gridLookUpEdit1.Location = new Point(230, 12);
+            gridLookUpEdit1.MenuManager = ribbon;
+            gridLookUpEdit1.Name = "gridLookUpEdit1";
+            gridLookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            gridLookUpEdit1.Properties.PopupView = gridLookUpEdit1View;
+            gridLookUpEdit1.Size = new Size(100, 28);
+            gridLookUpEdit1.TabIndex = 14;
+            // 
+            // gridLookUpEdit1View
+            // 
+            gridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            gridLookUpEdit1View.Name = "gridLookUpEdit1View";
+            gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
             // DashboardStudent
             // 
             Appearance.Options.UseFont = true;
@@ -571,7 +553,7 @@
             Controls.Add(navigationFrameSTD);
             Controls.Add(ribbon);
             Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            IconOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("DashboardStudent.IconOptions.SvgImage");
+            IconOptions.Image = (Image)resources.GetObject("DashboardStudent.IconOptions.Image");
             Name = "DashboardStudent";
             Ribbon = ribbon;
             Text = "DashboardStudent";
