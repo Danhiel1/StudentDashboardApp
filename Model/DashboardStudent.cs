@@ -53,20 +53,20 @@ namespace StudentDashboardApp.Model
 
         }
 
-
+        
         private void DashboardStudent_Load(object sender, EventArgs e)
         {
             var pageMap = new Dictionary<BarButtonItem, NavigationPage>()
-        {
+    {
                 // thêm nút khác và page cần hiển thị tại đây
         { barButtonItemFindStudent, navigationPageFindStudent },
         { barButtonItemAddST, navigationPageAddST },
-        { barButtonItemEditST, navigationPageEditST },
-
-
+      
+        
     };
+
             navHelper = new NavigationHelper(navigationFrameSTD, pageMap); // đưa cho hàm ăn tham số của frame và Dictionary lần lượt là navigationFrameSTD và pageMap
-            navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False; // tắt transition của frame 
+            navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False; // tắt transition của frame    
             navHelper.ShowEmptyPage(navigationPageEmpty);// mặc định khi mở form sễ tự chọn form rỗng thay vì trả frame về false sẽ dễ gay ra lỗi linh tinh gì gì đó
 
         }
@@ -116,22 +116,17 @@ namespace StudentDashboardApp.Model
         {
 
         }
-
+       
         private void barButtonItemFindStudent_ItemClick(object sender, ItemClickEventArgs e)
         {
 
-
+           
         }
 
         private void barButtonItemAddST_ItemClick(object sender, ItemClickEventArgs e)
         {
 
-
-        }
-
-        private void labeleditst_Click(object sender, EventArgs e)
-        {
-
+           
         }
     }
 }

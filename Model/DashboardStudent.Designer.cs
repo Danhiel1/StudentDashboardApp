@@ -60,14 +60,12 @@
             skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             barButtonItemFindStudent = new DevExpress.XtraBars.BarButtonItem();
             barButtonItemAddST = new DevExpress.XtraBars.BarButtonItem();
-            barButtonItemEditST = new DevExpress.XtraBars.BarButtonItem();
             ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             RibbonData = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonSystemSettinngs = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonSupport = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroupquery = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            ribbonPageGroupEditST = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -92,8 +90,7 @@
             navigationPageAddST = new DevExpress.XtraBars.Navigation.NavigationPage();
             labelAddST = new Label();
             navigationPageEmpty = new DevExpress.XtraBars.Navigation.NavigationPage();
-            navigationPageEditST = new DevExpress.XtraBars.Navigation.NavigationPage();
-            labeleditst = new Label();
+            ribbonPageGroupEditST = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)ribbon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup3).BeginInit();
@@ -117,16 +114,15 @@
             navigationPageFindStudent.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
             navigationPageAddST.SuspendLayout();
-            navigationPageEditST.SuspendLayout();
             SuspendLayout();
             // 
             // ribbon
             // 
             ribbon.EmptyAreaImageOptions.ImagePadding = new Padding(40, 37, 40, 37);
             ribbon.ExpandCollapseItem.Id = 0;
-            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, barButtonItem1, barButtonGroup1, barButtonItem2, barDockingMenuItem1, barDockingMenuItem2, barButtonItem3, barListItem1, barSubItem1, BarImportItem, ImportItem1, barListItem2, barButtonItem5, barButtonItem6, barButtonItem7, btnDatabase, btnParameters, btnActLog, btnCkUpdate, btnRestore, btnBackup, barButtonItem4, barButtonItem8, barButtonItem9, skinDropDownButtonItem1, barButtonItemFindStudent, barButtonItemAddST, barButtonItemEditST });
+            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, barButtonItem1, barButtonGroup1, barButtonItem2, barDockingMenuItem1, barDockingMenuItem2, barButtonItem3, barListItem1, barSubItem1, BarImportItem, ImportItem1, barListItem2, barButtonItem5, barButtonItem6, barButtonItem7, btnDatabase, btnParameters, btnActLog, btnCkUpdate, btnRestore, btnBackup, barButtonItem4, barButtonItem8, barButtonItem9, skinDropDownButtonItem1, barButtonItemFindStudent, barButtonItemAddST });
             ribbon.Location = new Point(0, 0);
-            ribbon.MaxItemId = 40;
+            ribbon.MaxItemId = 39;
             ribbon.Name = "ribbon";
             ribbon.OptionsMenuMinWidth = 440;
             ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage1, ribbonPage2, ribbonPage3 });
@@ -303,12 +299,6 @@
             barButtonItemAddST.Name = "barButtonItemAddST";
             barButtonItemAddST.ItemClick += barButtonItemAddST_ItemClick;
             // 
-            // barButtonItemEditST
-            // 
-            barButtonItemEditST.Caption = "Sửa sinh viên";
-            barButtonItemEditST.Id = 39;
-            barButtonItemEditST.Name = "barButtonItemEditST";
-            // 
             // ribbonPage1
             // 
             ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { RibbonData, ribbonSystemSettinngs, ribbonSupport });
@@ -349,14 +339,8 @@
             // 
             ribbonPageGroupquery.ItemLinks.Add(barButtonItemFindStudent);
             ribbonPageGroupquery.ItemLinks.Add(barButtonItemAddST);
-            ribbonPageGroupquery.ItemLinks.Add(barButtonItemEditST);
             ribbonPageGroupquery.Name = "ribbonPageGroupquery";
             ribbonPageGroupquery.Text = "Tra Cứu";
-            // 
-            // ribbonPageGroupEditST
-            // 
-            ribbonPageGroupEditST.Name = "ribbonPageGroupEditST";
-            ribbonPageGroupEditST.Text = "Chỉnh Sửa Thông Tin";
             // 
             // ribbonPage3
             // 
@@ -404,7 +388,29 @@
             tabbedControlGroup1.SelectedTabPage = null;
             tabbedControlGroup1.Size = new Size(241, 412);
             // 
-
+            // navigationFrameSTD
+            // 
+            navigationFrameSTD.Controls.Add(navigationSystemPage1);
+            navigationFrameSTD.Controls.Add(navigationPageFindStudent);
+            navigationFrameSTD.Controls.Add(navigationPageAddST);
+            navigationFrameSTD.Controls.Add(navigationPageEmpty);
+            navigationFrameSTD.Dock = DockStyle.Fill;
+            navigationFrameSTD.Location = new Point(0, 201);
+            navigationFrameSTD.Name = "navigationFrameSTD";
+            navigationFrameSTD.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] { navigationSystemPage1, navigationPageFindStudent, navigationPageAddST, navigationPageEmpty });
+            navigationFrameSTD.SelectedPage = navigationSystemPage1;
+            navigationFrameSTD.Size = new Size(1123, 471);
+            navigationFrameSTD.TabIndex = 12;
+            navigationFrameSTD.Text = "navigationFrame1";
+            // 
+            // navigationSystemPage1
+            // 
+            navigationSystemPage1.Caption = "navigationSystemPage1";
+            navigationSystemPage1.Controls.Add(layoutControl1);
+            navigationSystemPage1.Name = "navigationSystemPage1";
+            navigationSystemPage1.Size = new Size(1123, 471);
+            // 
+            // layoutControl1
             // 
             chartControl1.Location = new Point(562, 16);
             chartControl1.Name = "chartControl1";
@@ -510,22 +516,10 @@
             navigationPageEmpty.Name = "navigationPageEmpty";
             navigationPageEmpty.Size = new Size(1123, 471);
             // 
-            // navigationPageEditST
+            // ribbonPageGroupEditST
             // 
-            navigationPageEditST.Caption = "navigationPageEditST";
-            navigationPageEditST.Controls.Add(labeleditst);
-            navigationPageEditST.Name = "navigationPageEditST";
-            navigationPageEditST.Size = new Size(1123, 471);
-            // 
-            // labeleditst
-            // 
-            labeleditst.AutoSize = true;
-            labeleditst.Location = new Point(449, 170);
-            labeleditst.Name = "labeleditst";
-            labeleditst.Size = new Size(69, 13);
-            labeleditst.TabIndex = 0;
-            labeleditst.Text = "sửa sinh viên";
-            labeleditst.Click += labeleditst_Click;
+            ribbonPageGroupEditST.Name = "ribbonPageGroupEditST";
+            ribbonPageGroupEditST.Text = "Chỉnh Sửa Thông Tin";
             // 
             // gridLookUpEdit1
             // 
@@ -583,8 +577,6 @@
             flowLayoutPanel1.PerformLayout();
             navigationPageAddST.ResumeLayout(false);
             navigationPageAddST.PerformLayout();
-            navigationPageEditST.ResumeLayout(false);
-            navigationPageEditST.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -648,8 +640,5 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItemAddST;
         private Label labelAddST;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupEditST;
-        private DevExpress.XtraBars.BarButtonItem barButtonItemEditST;
-        private DevExpress.XtraBars.Navigation.NavigationPage navigationPageEditST;
-        private Label labeleditst;
     }
 }
