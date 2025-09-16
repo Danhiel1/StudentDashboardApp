@@ -520,23 +520,7 @@
             // 
             ribbonPageGroupEditST.Name = "ribbonPageGroupEditST";
             ribbonPageGroupEditST.Text = "Chỉnh Sửa Thông Tin";
-            // 
-            // gridLookUpEdit1
-            // 
-            gridLookUpEdit1.Location = new Point(230, 12);
-            gridLookUpEdit1.MenuManager = ribbon;
-            gridLookUpEdit1.Name = "gridLookUpEdit1";
-            gridLookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            gridLookUpEdit1.Properties.PopupView = gridLookUpEdit1View;
-            gridLookUpEdit1.Size = new Size(100, 28);
-            gridLookUpEdit1.TabIndex = 14;
-            // 
-            // gridLookUpEdit1View
-            // 
-            gridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            gridLookUpEdit1View.Name = "gridLookUpEdit1View";
-            gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+           
             // 
             // DashboardStudent
             // 
