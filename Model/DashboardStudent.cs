@@ -3,11 +3,9 @@ using DevExpress.XtraBars;
 using DevExpress.XtraCharts;
 using System;
 using System.Linq;
-using System.Data.SqlClient;
-using System.Data;
+using System.Windows;
+using System.Windows.Forms;
 
-
-using DevExpress.XtraCharts.Native;
 
 namespace StudentDashboardApp.Model
 {
@@ -36,9 +34,10 @@ namespace StudentDashboardApp.Model
         }
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {
+            // Removed ApplicationConfiguration.Initialize(); as it does not exist in this context
+            var importForm = new ImportForm();
+            importForm.ShowDialog();
 
-            ImportForm frm = new ImportForm();
-            frm.ShowDialog();
         }
         private void xtraOpenFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -297,6 +296,41 @@ namespace StudentDashboardApp.Model
                     MessageBox.Show("Lỗi kết nối hoặc query: " + ex.Message);
                 }
             }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void barButtonItem4_ItemClick_1(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void panelControl1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void studentRepositoryBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void layoutControl2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDatabase_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
         }
     }
 }
