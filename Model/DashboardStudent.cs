@@ -3,21 +3,30 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Navigation;
+using BusinessLayer;
+using BusinessLayer.Models;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Navigation;
 using DevExpress.XtraBars.Ribbon;
+using DevExpress.XtraCharts;
+using DevExpress.XtraCharts;
+using StudentDashboardApp.Common;
 using StudentDashboardApp.Services;
+
 
 
 namespace StudentDashboardApp.Model
 {
-    public partial class DashboardStudent : DevExpress.XtraBars.Ribbon.RibbonForm
+    public partial class DashboardStudent : BaseForm
     {
 
         private NavigationHelper navHelper;
+        private BusinessLayer.StudentService _service;
         public DashboardStudent()
         {
             InitializeComponent();
+            string connectionString = "Server=.;Database=QLSV;Trusted_Connection=True;Encrypt=False;";
+            _service = new StudentService(connectionString);
         }
 
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
@@ -56,31 +65,51 @@ namespace StudentDashboardApp.Model
         private StudentDashboardApp.Services.NavigationService navService;
         private void DashboardStudent_Load(object sender, EventArgs e)
         {
+            // Pie Chart: Số SV theo Niên khóa
+            ChartService.LoadChart(
+                chartControlCountPerNienKhoa,
+                _service.GetStudentCountPerNienKhoa(),
+                argumentMember: "MaNienKhoa",
+                valueMember: "StudentCount",
+                viewType: ViewType.Pie,
+                chartTitle: "Số SV theo Niên khóa"
+            );
+
+            // Bar Chart: Số SV theo Khoa
+            ChartService.LoadChart(
+                chartControCountPerFaculty,
+                _service.GetStudentCountPerFaculty(),
+                argumentMember: "FacultyName",
+                valueMember: "StudentCount",
+                viewType: ViewType.Bar,
+                chartTitle: "Số SV theo Khoa"
+            );
+
             // Map RibbonPage → NavigationPage
             Dictionary<RibbonPage, NavigationPage> ribbonMap = new Dictionary<RibbonPage, NavigationPage>
-            {
-            { ribbonPage1, navigationSystemPage1 },
-            { ribbonPage2, navigationPage1 },
-            { ribbonPage3, navigationPage2 }
-            };
+    {
+        { ribbonPage1, navigationSystemPage1 },
+        { ribbonPage2, navigationPage1 },
+        { ribbonPage3, navigationPage2 }
+    };
 
             // Map BarButtonItem → NavigationPage
             Dictionary<BarButtonItem, NavigationPage> buttonMap = new Dictionary<BarButtonItem, NavigationPage>
-            {
-            { barButtonItemFindStudent, navigationPageFindStudent },
-            { barButtonItemAddST, navigationPageAddST }
-            };
+    {
+        { barButtonItemFindStudent, navigationPageFindStudent },
+        { barButtonItemAddST, navigationPageAddST }
+    };
 
-            // Khởi tạo NavigationHelper (cho button)
+            // NavigationHelper (cho button)
             navHelper = new NavigationHelper(navigationFrameSTD, buttonMap);
             navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
-            navigationFrameSTD.SelectedPage = navigationSystemPage1; // 👈 chọn page mặc định khi mở
+            navigationFrameSTD.SelectedPage = navigationSystemPage1; // page mặc định
             navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True;
 
-
-            // Khởi tạo NavigationService (cho ribbon)
+            // NavigationService (cho ribbon)
             navService = new StudentDashboardApp.Services.NavigationService(ribbonMap);
         }
+
 
 
 
@@ -129,16 +158,25 @@ namespace StudentDashboardApp.Model
                 navigationFrameSTD.SelectedPage = navPage;
                 navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True;
             }
-           // navHelper.ShowEmptyPage(navigationPageEmpty);// mỗi khi chuyển page sẽ tự động trả về page rỗng
+            // navHelper.ShowEmptyPage(navigationPageEmpty);// mỗi khi chuyển page sẽ tự động trả về page rỗng
         }
 
 
         private void ribbon_Click(object sender, EventArgs e)
         {
 
-           
+
         }
-       
+
+        private void chartControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+
+
     }
 }
 
