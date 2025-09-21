@@ -130,5 +130,135 @@ namespace DataAccessLayer
             return "NVARCHAR(MAX)"; // fallback
         }
 
+
+        public DataTable GetStudentCountPerNienKhoa()
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = new SqlCommand(@"
+        SELECT L.MaNienKhoa, COUNT(*) AS StudentCount
+        FROM Sinh_Vien SV
+        JOIN Lop L ON SV.MaLop = L.MaLop
+        GROUP BY L.MaNienKhoa", conn))
+
+            {
+                conn.Open();
+                DataTable dt = new DataTable();
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    da.Fill(dt);
+                }
+                return dt;
+            }
+        }
+        // ✅ Students per Faculty (Pie / Bar Chart)
+        public DataTable GetStudentCountPerFaculty()
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = new SqlCommand(@"
+        SELECT K.TenKhoa AS FacultyName, COUNT(SV.MaSV) AS StudentCount
+        FROM Sinh_Vien SV
+        JOIN Lop L ON SV.MaLop = L.MaLop
+        JOIN Nganh N ON L.MaNganh = N.MaNganh
+        JOIN Khoa K ON N.MaKhoa = K.MaKhoa
+        GROUP BY K.TenKhoa", conn))
+            {
+                conn.Open();
+                DataTable dt = new DataTable();
+                new SqlDataAdapter(cmd).Fill(dt);
+                return dt;
+            }
+        }
+
+
+        // ✅ Students per Major (Pie / Bar Chart)
+        public DataTable GetStudentCountPerMajor()
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = new SqlCommand(@"
+        SELECT N.TenNganh AS MajorName, COUNT(SV.MaSV) AS StudentCount
+        FROM Sinh_Vien SV
+        JOIN Lop L ON SV.MaLop = L.MaLop
+        JOIN Nganh N ON L.MaNganh = N.MaNganh
+        GROUP BY N.TenNganh", conn))
+            {
+                conn.Open();
+                DataTable dt = new DataTable();
+                new SqlDataAdapter(cmd).Fill(dt);
+                return dt;
+            }
+        }
+
+        // ✅ Average GPA per Faculty (Bar Chart)
+        public DataTable GetAverageGPAByFaculty()
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = new SqlCommand(@"
+        SELECT K.TenKhoa AS FacultyName, AVG(D.DiemTongKet) AS AvgGPA
+        FROM Diem D
+        JOIN Sinh_Vien SV ON D.MaSV = SV.MaSV
+        JOIN Lop L ON SV.MaLop = L.MaLop
+        JOIN Khoa K ON L.MaKhoa = K.MaKhoa
+        GROUP BY K.TenKhoa", conn))
+            {
+                conn.Open();
+                DataTable dt = new DataTable();
+                new SqlDataAdapter(cmd).Fill(dt);
+                return dt;
+            }
+        }
+
+        // ✅ Pass vs Fail Ratio (Pie Chart)
+        public DataTable GetPassFailRatio()
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = new SqlCommand(@"
+        SELECT CASE WHEN D.DiemTongKet >= 5 THEN 'Pass' ELSE 'Fail' END AS Result,
+               COUNT(*) AS CountResult
+        FROM Diem D
+        GROUP BY CASE WHEN D.DiemTongKet >= 5 THEN 'Pass' ELSE 'Fail' END", conn))
+            {
+                conn.Open();
+                DataTable dt = new DataTable();
+                new SqlDataAdapter(cmd).Fill(dt);
+                return dt;
+            }
+        }
+
+        // ✅ Teachers per Faculty (Pie Chart)
+        public DataTable GetTeacherCountPerFaculty()
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = new SqlCommand(@"
+        SELECT K.TenKhoa AS FacultyName, COUNT(GV.MaGV) AS TeacherCount
+        FROM Giao_Vien GV
+        JOIN Khoa K ON GV.MaKhoa = K.MaKhoa
+        GROUP BY K.TenKhoa", conn))
+            {
+                conn.Open();
+                DataTable dt = new DataTable();
+                new SqlDataAdapter(cmd).Fill(dt);
+                return dt;
+            }
+        }
+
+        // ✅ Top 5 Students by GPA (Bar Chart Horizontal)
+        public DataTable GetTop5Students()
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = new SqlCommand(@"
+        SELECT TOP 5 SV.TenSV AS StudentName, AVG(D.DiemTongKet) AS AvgGPA
+        FROM Diem D
+        JOIN Sinh_Vien SV ON D.MaSV = SV.MaSV
+        GROUP BY SV.TenSV
+        ORDER BY AvgGPA DESC", conn))
+            {
+                conn.Open();
+                DataTable dt = new DataTable();
+                new SqlDataAdapter(cmd).Fill(dt);
+                return dt;
+            }
+        }
+
+
     }
 }
