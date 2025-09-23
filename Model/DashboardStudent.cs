@@ -65,7 +65,10 @@ namespace StudentDashboardApp.Model
         private StudentDashboardApp.Services.NavigationService navService;
         private void DashboardStudent_Load(object sender, EventArgs e)
         {
-            // Pie Chart: Số SV theo Niên khóa
+            infoCardStudent.SetData("Số Sinh Viên", _service.GetStudentCount().ToString(), Properties.Resources.student);
+            infoCardTeacher.SetData("Số Giáo Viên", _service.GetTeacherCount().ToString(), Properties.Resources.student);
+
+
             ChartService.LoadChart(
                 chartControlCountPerNienKhoa,
                 _service.GetStudentCountPerNienKhoa(),
@@ -173,10 +176,15 @@ namespace StudentDashboardApp.Model
 
         }
 
+        private void infoCard1_Load(object sender, EventArgs e)
+        {
 
+        }
 
+        private void chartControlCountPerNienKhoa_Click(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }
 
