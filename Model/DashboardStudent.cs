@@ -15,6 +15,8 @@ namespace StudentDashboardApp.Model
     {
 
         private NavigationHelper navHelper;
+        private StudentDashboardApp.Services.NavigationService _navService;
+
         public DashboardStudent()
         {
             InitializeComponent();
@@ -56,20 +58,35 @@ namespace StudentDashboardApp.Model
         
         private void DashboardStudent_Load(object sender, EventArgs e)
         {
-            var pageMap = new Dictionary<BarButtonItem, NavigationPage>()
+            // Map RibbonPage → NavigationPage
+            Dictionary<RibbonPage, NavigationPage> ribbonMap = new Dictionary<RibbonPage, NavigationPage>
     {
-                // thêm nút khác và page cần hiển thị tại đây
-        { barButtonItemFindStudent, navigationPageFindStudent },
-        { barButtonItemAddST, navigationPageAddST },
-      
-        
+        { ribbonPage1, navigationSystemPage1 },
+        { ribbonPage2, navigationPageStudent },
+
     };
 
-            navHelper = new NavigationHelper(navigationFrameSTD, pageMap); // đưa cho hàm ăn tham số của frame và Dictionary lần lượt là navigationFrameSTD và pageMap
-            navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False; // tắt transition của frame    
-            navHelper.ShowEmptyPage(navigationPageEmpty);// mặc định khi mở form sễ tự chọn form rỗng thay vì trả frame về false sẽ dễ gay ra lỗi linh tinh gì gì đó
+            _navService = new StudentDashboardApp.Services.NavigationService(ribbonMap);
+
+
+    //        //Mặc định khi load, chọn page 1
+    //        navigationFrameSTD.SelectedPage = navigationSystemPage1;
+
+
+
+
+    //        var map = new Dictionary<DevExpress.XtraBars.BarButtonItem, (DevExpress.XtraBars.Navigation.NavigationPage, UserControl)>
+    //{
+    //    { barButtonItemAddST, (navigationPageStudent, new AddStudentControl()) },
+    //    { barButtonItemFindStudent, (navigationPageStudent, new UserControl1()) }
+
+    //};
+    //        navHelper = new NavigationHelper(navigationFrameSTD, map);
 
         }
+
+
+
 
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -109,7 +126,7 @@ namespace StudentDashboardApp.Model
 
         private void ribbon_SelectedPageChanged(object sender, EventArgs e)
         {
-            navHelper.ShowEmptyPage(navigationPageEmpty);// mỗi khi chuyển page sẽ tự động trả về page rỗng
+            
         }
 
         private void ribbon_Click(object sender, EventArgs e)
@@ -120,12 +137,21 @@ namespace StudentDashboardApp.Model
         private void barButtonItemFindStudent_ItemClick(object sender, ItemClickEventArgs e)
         {
 
-           
+
         }
 
-        private void barButtonItemAddST_ItemClick(object sender, ItemClickEventArgs e)
+        private void labelHeaderFindStudent_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void textEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void simpleButtonEnterStudentID_Click(object sender, EventArgs e)
+        {
            
         }
     }

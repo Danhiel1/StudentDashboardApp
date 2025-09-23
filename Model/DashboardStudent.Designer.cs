@@ -60,6 +60,8 @@
             skinDropDownButtonItem1 = new DevExpress.XtraBars.SkinDropDownButtonItem();
             barButtonItemFindStudent = new DevExpress.XtraBars.BarButtonItem();
             barButtonItemAddST = new DevExpress.XtraBars.BarButtonItem();
+            barEditItem1 = new DevExpress.XtraBars.BarEditItem();
+            repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             RibbonData = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonSystemSettinngs = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -76,7 +78,11 @@
             tabbedControlGroup1 = new DevExpress.XtraLayout.TabbedControlGroup();
             navigationFrameSTD = new DevExpress.XtraBars.Navigation.NavigationFrame();
             navigationSystemPage1 = new DevExpress.XtraBars.Navigation.NavigationPage();
-            layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            navigationPageStudent = new DevExpress.XtraBars.Navigation.NavigationPage();
+            navigationPageEmpty = new DevExpress.XtraBars.Navigation.NavigationPage();
+            panelHeaderShowStudentFSTD = new Panel();
+            pictureBoxHeaderShowTableFST = new PictureBox();
+            labelHeaderShowTableFST = new Label();
             chartControl1 = new DevExpress.XtraCharts.ChartControl();
             LayoutControlPage1 = new DevExpress.XtraLayout.LayoutControlGroup();
             emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -92,14 +98,14 @@
             navigationPageEmpty = new DevExpress.XtraBars.Navigation.NavigationPage();
             ribbonPageGroupEditST = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)ribbon).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemTextEdit1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tabbedControlGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)navigationFrameSTD).BeginInit();
             navigationFrameSTD.SuspendLayout();
-            navigationSystemPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
-            layoutControl1.SuspendLayout();
+            panelHeaderShowStudentFSTD.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxHeaderShowTableFST).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chartControl1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)series1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pieSeriesView1).BeginInit();
@@ -120,12 +126,13 @@
             // 
             ribbon.EmptyAreaImageOptions.ImagePadding = new Padding(40, 37, 40, 37);
             ribbon.ExpandCollapseItem.Id = 0;
-            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, barButtonItem1, barButtonGroup1, barButtonItem2, barDockingMenuItem1, barDockingMenuItem2, barButtonItem3, barListItem1, barSubItem1, BarImportItem, ImportItem1, barListItem2, barButtonItem5, barButtonItem6, barButtonItem7, btnDatabase, btnParameters, btnActLog, btnCkUpdate, btnRestore, btnBackup, barButtonItem4, barButtonItem8, barButtonItem9, skinDropDownButtonItem1, barButtonItemFindStudent, barButtonItemAddST });
+            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, barButtonItem1, barButtonGroup1, barButtonItem2, barDockingMenuItem1, barDockingMenuItem2, barButtonItem3, barListItem1, barSubItem1, BarImportItem, ImportItem1, barListItem2, barButtonItem5, barButtonItem6, barButtonItem7, btnDatabase, btnParameters, btnActLog, btnCkUpdate, btnRestore, btnBackup, barButtonItem4, barButtonItem8, barButtonItem9, skinDropDownButtonItem1, barButtonItemFindStudent, barButtonItemAddST, barEditItem1 });
             ribbon.Location = new Point(0, 0);
-            ribbon.MaxItemId = 39;
+            ribbon.MaxItemId = 40;
             ribbon.Name = "ribbon";
             ribbon.OptionsMenuMinWidth = 440;
             ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage1, ribbonPage2, ribbonPage3 });
+            ribbon.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemTextEdit1 });
             ribbon.Size = new Size(1123, 201);
             ribbon.SelectedPageChanged += ribbon_SelectedPageChanged;
             ribbon.Click += ribbon_Click;
@@ -286,7 +293,7 @@
             // 
             // barButtonItemFindStudent
             // 
-            barButtonItemFindStudent.Caption = "Tìm Sinh Viên";
+            barButtonItemFindStudent.Caption = "Find Student";
             barButtonItemFindStudent.Id = 37;
             barButtonItemFindStudent.ImageOptions.Image = (Image)resources.GetObject("barButtonItemFindStudent.ImageOptions.Image");
             barButtonItemFindStudent.Name = "barButtonItemFindStudent";
@@ -294,10 +301,22 @@
             // 
             // barButtonItemAddST
             // 
-            barButtonItemAddST.Caption = "Thêm Sinh Viên";
+            barButtonItemAddST.Caption = "Add Student";
             barButtonItemAddST.Id = 38;
             barButtonItemAddST.Name = "barButtonItemAddST";
             barButtonItemAddST.ItemClick += barButtonItemAddST_ItemClick;
+            // 
+            // barEditItem1
+            // 
+            barEditItem1.Caption = "barEditItem1";
+            barEditItem1.Edit = repositoryItemTextEdit1;
+            barEditItem1.Id = 39;
+            barEditItem1.Name = "barEditItem1";
+            // 
+            // repositoryItemTextEdit1
+            // 
+            repositoryItemTextEdit1.AutoHeight = false;
+            repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
             // 
             // ribbonPage1
             // 
@@ -391,13 +410,12 @@
             // navigationFrameSTD
             // 
             navigationFrameSTD.Controls.Add(navigationSystemPage1);
-            navigationFrameSTD.Controls.Add(navigationPageFindStudent);
-            navigationFrameSTD.Controls.Add(navigationPageAddST);
+            navigationFrameSTD.Controls.Add(navigationPageStudent);
             navigationFrameSTD.Controls.Add(navigationPageEmpty);
             navigationFrameSTD.Dock = DockStyle.Fill;
             navigationFrameSTD.Location = new Point(0, 201);
             navigationFrameSTD.Name = "navigationFrameSTD";
-            navigationFrameSTD.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] { navigationSystemPage1, navigationPageFindStudent, navigationPageAddST, navigationPageEmpty });
+            navigationFrameSTD.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] { navigationSystemPage1, navigationPageStudent, navigationPageEmpty });
             navigationFrameSTD.SelectedPage = navigationSystemPage1;
             navigationFrameSTD.Size = new Size(1123, 471);
             navigationFrameSTD.TabIndex = 12;
@@ -406,109 +424,14 @@
             // navigationSystemPage1
             // 
             navigationSystemPage1.Caption = "navigationSystemPage1";
-            navigationSystemPage1.Controls.Add(layoutControl1);
             navigationSystemPage1.Name = "navigationSystemPage1";
             navigationSystemPage1.Size = new Size(1123, 471);
             // 
-            // layoutControl1
+            // navigationPageStudent
             // 
-            chartControl1.Location = new Point(562, 16);
-            chartControl1.Name = "chartControl1";
-            series1.Name = "Series 1";
-            series1.SeriesID = 0;
-            series1.View = pieSeriesView1;
-            series2.Name = "Series 2";
-            series2.SeriesID = 0;
-            series2.View = pieSeriesView2;
-            chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[]
-    {
-    series1,
-    series2
-    };
-            chartControl1.Size = new Size(529, 439);
-            chartControl1.TabIndex = 0;
-            // 
-            // LayoutControlPage1
-            // 
-            LayoutControlPage1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            LayoutControlPage1.GroupBordersVisible = false;
-            LayoutControlPage1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { emptySpaceItem1, splitterItem1, simpleSeparator1, emptySpaceItem3, layoutControlItem1 });
-            LayoutControlPage1.Name = "Root";
-            LayoutControlPage1.Size = new Size(1123, 471);
-            LayoutControlPage1.TextVisible = false;
-            // 
-            // emptySpaceItem1
-            // 
-            emptySpaceItem1.Location = new Point(0, 0);
-            emptySpaceItem1.Name = "emptySpaceItem1";
-            emptySpaceItem1.Size = new Size(546, 223);
-            // 
-            // splitterItem1
-            // 
-            splitterItem1.Location = new Point(1081, 0);
-            splitterItem1.Name = "splitterItem1";
-            splitterItem1.Size = new Size(16, 445);
-            // 
-            // simpleSeparator1
-            // 
-            simpleSeparator1.Location = new Point(0, 444);
-            simpleSeparator1.Name = "simpleSeparator1";
-            simpleSeparator1.Size = new Size(546, 1);
-            // 
-            // emptySpaceItem3
-            // 
-            emptySpaceItem3.Location = new Point(0, 223);
-            emptySpaceItem3.Name = "emptySpaceItem3";
-            emptySpaceItem3.Size = new Size(546, 221);
-            // 
-            // layoutControlItem1
-            // 
-            layoutControlItem1.Control = chartControl1;
-            layoutControlItem1.Location = new Point(546, 0);
-            layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new Size(535, 445);
-            layoutControlItem1.TextVisible = false;
-            // 
-            // navigationPageFindStudent
-            // 
-            navigationPageFindStudent.Caption = "navigationPage2";
-            navigationPageFindStudent.Controls.Add(flowLayoutPanel1);
-            navigationPageFindStudent.Name = "navigationPageFindStudent";
-            navigationPageFindStudent.Size = new Size(1123, 471);
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Controls.Add(label1);
-            flowLayoutPanel1.Location = new Point(393, 189);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(148, 119);
-            flowLayoutPanel1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            label1.Anchor = AnchorStyles.None;
-            label1.AutoSize = true;
-            label1.Location = new Point(3, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(45, 13);
-            label1.TabIndex = 0;
-            label1.Text = "text  thử";
-            // 
-            // navigationPageAddST
-            // 
-            navigationPageAddST.Caption = "navigationPage1";
-            navigationPageAddST.Controls.Add(labelAddST);
-            navigationPageAddST.Name = "navigationPageAddST";
-            navigationPageAddST.Size = new Size(1123, 471);
-            // 
-            // labelAddST
-            // 
-            labelAddST.AutoSize = true;
-            labelAddST.Location = new Point(494, 210);
-            labelAddST.Name = "labelAddST";
-            labelAddST.Size = new Size(75, 13);
-            labelAddST.TabIndex = 0;
-            labelAddST.Text = "thêm sinh viên";
+            navigationPageStudent.Caption = "navigationPage2";
+            navigationPageStudent.Name = "navigationPageStudent";
+            navigationPageStudent.Size = new Size(1123, 471);
             // 
             // navigationPageEmpty
             // 
@@ -516,13 +439,35 @@
             navigationPageEmpty.Name = "navigationPageEmpty";
             navigationPageEmpty.Size = new Size(1123, 471);
             // 
-
-            // ribbonPageGroupEditST
+            // panelHeaderShowStudentFSTD
             // 
-            ribbonPageGroupEditST.Name = "ribbonPageGroupEditST";
-            ribbonPageGroupEditST.Text = "Chỉnh Sửa Thông Tin";
-           
-            // navigationPageEditST
+            panelHeaderShowStudentFSTD.BackColor = Color.FromArgb(62, 64, 149);
+            panelHeaderShowStudentFSTD.Controls.Add(pictureBoxHeaderShowTableFST);
+            panelHeaderShowStudentFSTD.Controls.Add(labelHeaderShowTableFST);
+            panelHeaderShowStudentFSTD.Location = new Point(0, 3);
+            panelHeaderShowStudentFSTD.Name = "panelHeaderShowStudentFSTD";
+            panelHeaderShowStudentFSTD.Size = new Size(367, 50);
+            panelHeaderShowStudentFSTD.TabIndex = 2;
+            // 
+            // pictureBoxHeaderShowTableFST
+            // 
+            pictureBoxHeaderShowTableFST.BackgroundImage = (Image)resources.GetObject("pictureBoxHeaderShowTableFST.BackgroundImage");
+            pictureBoxHeaderShowTableFST.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBoxHeaderShowTableFST.Location = new Point(3, 7);
+            pictureBoxHeaderShowTableFST.Name = "pictureBoxHeaderShowTableFST";
+            pictureBoxHeaderShowTableFST.Size = new Size(32, 32);
+            pictureBoxHeaderShowTableFST.TabIndex = 1;
+            pictureBoxHeaderShowTableFST.TabStop = false;
+            // 
+            // labelHeaderShowTableFST
+            // 
+            labelHeaderShowTableFST.AutoSize = true;
+            labelHeaderShowTableFST.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelHeaderShowTableFST.Location = new Point(41, 14);
+            labelHeaderShowTableFST.Name = "labelHeaderShowTableFST";
+            labelHeaderShowTableFST.Size = new Size(223, 25);
+            labelHeaderShowTableFST.TabIndex = 0;
+            labelHeaderShowTableFST.Text = "Show Student Table\n";
             // 
             navigationPageEditST.Caption = "navigationPageEditST";
             navigationPageEditST.Controls.Add(labeleditst);
@@ -559,14 +504,15 @@
             Text = "DashboardStudent";
             Load += DashboardStudent_Load;
             ((System.ComponentModel.ISupportInitialize)ribbon).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemTextEdit1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup3).EndInit();
             ((System.ComponentModel.ISupportInitialize)tabbedControlGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)navigationFrameSTD).EndInit();
             navigationFrameSTD.ResumeLayout(false);
-            navigationSystemPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
-            layoutControl1.ResumeLayout(false);
+            panelHeaderShowStudentFSTD.ResumeLayout(false);
+            panelHeaderShowStudentFSTD.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxHeaderShowTableFST).EndInit();
             ((System.ComponentModel.ISupportInitialize)pieSeriesView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)series1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pieSeriesView2).EndInit();
@@ -629,8 +575,7 @@
         private DevExpress.XtraLayout.TabbedControlGroup tabbedControlGroup1;
         private DevExpress.XtraBars.Navigation.NavigationFrame navigationFrameSTD;
         private DevExpress.XtraBars.Navigation.NavigationPage navigationSystemPage1;
-        private DevExpress.XtraBars.Navigation.NavigationPage navigationPageFindStudent;
-        private DevExpress.XtraLayout.LayoutControl layoutControl1;
+        private DevExpress.XtraBars.Navigation.NavigationPage navigationPageStudent;
         private DevExpress.XtraLayout.LayoutControlGroup LayoutControlPage1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.SplitterItem splitterItem1;
@@ -638,13 +583,16 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraCharts.ChartControl chartControl1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraBars.Navigation.NavigationPage navigationPageAddST;
         private DevExpress.XtraBars.BarButtonItem barButtonItemFindStudent;
-        private FlowLayoutPanel flowLayoutPanel1;
-        private Label label1;
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPageEmpty;
         private DevExpress.XtraBars.BarButtonItem barButtonItemAddST;
-        private Label labelAddST;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupEditST;
+        private DevExpress.XtraBars.BarEditItem barEditItem1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
+        private Panel panel2;
+        private DataGridView dataGridViewShow;
+        private Panel panelHeaderShowStudentFSTD;
+        private PictureBox pictureBoxHeaderShowTableFST;
+        private Label labelHeaderShowTableFST;
     }
 }
