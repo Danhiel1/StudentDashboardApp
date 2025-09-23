@@ -90,11 +90,7 @@
             simpleSeparator1 = new DevExpress.XtraLayout.SimpleSeparator();
             emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            navigationPageFindStudent = new DevExpress.XtraBars.Navigation.NavigationPage();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            label1 = new Label();
-            navigationPageAddST = new DevExpress.XtraBars.Navigation.NavigationPage();
-            labelAddST = new Label();
+           
             navigationPageEmpty = new DevExpress.XtraBars.Navigation.NavigationPage();
             ribbonPageGroupEditST = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ((System.ComponentModel.ISupportInitialize)ribbon).BeginInit();
@@ -117,9 +113,7 @@
             ((System.ComponentModel.ISupportInitialize)simpleSeparator1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)emptySpaceItem3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
-            navigationPageFindStudent.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
-            navigationPageAddST.SuspendLayout();
+           
             SuspendLayout();
             // 
             // ribbon
@@ -304,7 +298,7 @@
             barButtonItemAddST.Caption = "Add Student";
             barButtonItemAddST.Id = 38;
             barButtonItemAddST.Name = "barButtonItemAddST";
-            barButtonItemAddST.ItemClick += barButtonItemAddST_ItemClick;
+           
             // 
             // barEditItem1
             // 
@@ -469,20 +463,7 @@
             labelHeaderShowTableFST.TabIndex = 0;
             labelHeaderShowTableFST.Text = "Show Student Table\n";
             // 
-            navigationPageEditST.Caption = "navigationPageEditST";
-            navigationPageEditST.Controls.Add(labeleditst);
-            navigationPageEditST.Name = "navigationPageEditST";
-            navigationPageEditST.Size = new Size(1123, 471);
-            // 
-            // labeleditst
-            // 
-            labeleditst.AutoSize = true;
-            labeleditst.Location = new Point(449, 170);
-            labeleditst.Name = "labeleditst";
-            labeleditst.Size = new Size(69, 13);
-            labeleditst.TabIndex = 0;
-            labeleditst.Text = "sửa sinh viên";
-            labeleditst.Click += labeleditst_Click;
+          
             // 
             // gridLookUpEdit1
             // 
@@ -524,11 +505,7 @@
             ((System.ComponentModel.ISupportInitialize)simpleSeparator1).EndInit();
             ((System.ComponentModel.ISupportInitialize)emptySpaceItem3).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
-            navigationPageFindStudent.ResumeLayout(false);
-            flowLayoutPanel1.ResumeLayout(false);
-            flowLayoutPanel1.PerformLayout();
-            navigationPageAddST.ResumeLayout(false);
-            navigationPageAddST.PerformLayout();
+          
             ResumeLayout(false);
             PerformLayout();
         }

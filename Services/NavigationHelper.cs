@@ -23,12 +23,31 @@ namespace StudentDashboardApp.Services
 
         private void OnButtonClick(object sender, ItemClickEventArgs e)
         {
-            if (e.Item is BarButtonItem btn && _pageMap.TryGetValue(btn, out var page))// nếu ấn vào nút dạng baritem đưa name của nút đó vào btn và trygetvalue kiểm tra xem trong hashmap Dictionary có tồn tại page tương ứng với name của button không, nếu có thì show page
+            if (e.Item is BarButtonItem btn && _map.TryGetValue(btn, out var target))
             {
-                ShowNavigationPage(page);
+                var page = target.page;
+                var control = target.control;
+
+                // Nếu chưa add vào page thì add
+                if (!page.Controls.Contains(control))
+                {
+                    control.Dock = DockStyle.Fill;
+                    page.Controls.Add(control);
+                }
+
+                // Hiện page chứa control
+                _frame.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
+                _frame.SelectedPage = page;
+                _frame.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True;
+
+                // Đưa control lên trên cùng
+                control.BringToFront();
             }
         }
 
+        /// <summary>
+        /// Chuyển tới 1 page bất kỳ
+        /// </summary>
         public void ShowNavigationPage(NavigationPage page)
         {
             if (page == null) return;
@@ -59,3 +78,4 @@ namespace StudentDashboardApp.Services
         }
     }
 }
+

@@ -15,8 +15,7 @@ namespace StudentDashboardApp.Model
     {
 
         private NavigationHelper navHelper;
-        private StudentDashboardApp.Services.NavigationService _navService;
-
+     
         public DashboardStudent()
         {
             InitializeComponent();
@@ -58,30 +57,24 @@ namespace StudentDashboardApp.Model
         
         private void DashboardStudent_Load(object sender, EventArgs e)
         {
-            // Map RibbonPage → NavigationPage
-            Dictionary<RibbonPage, NavigationPage> ribbonMap = new Dictionary<RibbonPage, NavigationPage>
+           
+           
+
+
+
+            //Mặc định khi load, chọn page 1
+            navigationFrameSTD.SelectedPage = navigationSystemPage1;
+
+
+
+
+            var map = new Dictionary<DevExpress.XtraBars.BarButtonItem, (DevExpress.XtraBars.Navigation.NavigationPage, UserControl)>
     {
-        { ribbonPage1, navigationSystemPage1 },
-        { ribbonPage2, navigationPageStudent },
+        { barButtonItemAddST, (navigationPageStudent, new AddStudentControl()) },
+        { barButtonItemFindStudent, (navigationPageStudent, new UserControl1()) }
 
     };
-
-            _navService = new StudentDashboardApp.Services.NavigationService(ribbonMap);
-
-
-    //        //Mặc định khi load, chọn page 1
-    //        navigationFrameSTD.SelectedPage = navigationSystemPage1;
-
-
-
-
-    //        var map = new Dictionary<DevExpress.XtraBars.BarButtonItem, (DevExpress.XtraBars.Navigation.NavigationPage, UserControl)>
-    //{
-    //    { barButtonItemAddST, (navigationPageStudent, new AddStudentControl()) },
-    //    { barButtonItemFindStudent, (navigationPageStudent, new UserControl1()) }
-
-    //};
-    //        navHelper = new NavigationHelper(navigationFrameSTD, map);
+            navHelper = new NavigationHelper(navigationFrameSTD, map);
 
         }
 
@@ -126,7 +119,16 @@ namespace StudentDashboardApp.Model
 
         private void ribbon_SelectedPageChanged(object sender, EventArgs e)
         {
-            
+
+            navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
+            if (ribbon.SelectedPage == ribbonPage1)
+            {
+                navigationFrameSTD.SelectedPage = navigationSystemPage1;
+            }
+            if (ribbon.SelectedPage == ribbonPage2)
+            {
+                navigationFrameSTD.SelectedPage = navigationPageStudent;
+            }
         }
 
         private void ribbon_Click(object sender, EventArgs e)
