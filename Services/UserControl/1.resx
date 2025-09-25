@@ -118,6 +118,29 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBoxHeaderShowAllDT.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAA/9JREFUaEPtmTeoFFEUhs2iIChiQjFbmHMCQ6WdViqKASu1EzMmFG0EtRIrFQtT
+        YSViFlQQFQMYMIJZwRwwJz75lzOPu2fmLbu8DWP4YHnz5p7w7+zde8+5W6tWDQDqA0OAGcBaYA9wFrgF
+        PATeAD/spWvd05hsZLsGmG4x6vv4JQXoAywDjgIfKR6KdQRYCvT2eYsC0ASYA1zw2UvIecvZxOspGKAe
+        MAt45rOUkVfAEqCB15cXQDfgmo9aQaSlq9eZE2AU8NpHSgH6dEZ5vYkAXYB3PkKKeAt08rpjALu9ZwrZ
+        6XXHsHecdt543TH+pjeyy3ulkB1edwyg8x/wZe/odScCjLSlLm28BEZ4vYkAreyvluErPlIFuSxNocac
+        APeAHnatEkX1znMftYwotzTUM009gftedwxzViU6H6hr91Q0quY655KUEpX6ypkpGu2hLgQ+adDrjuGC
+        aWpNBOoE43oii4FDwAdnXxMU6yCwKJoRlq8OMAm4GhpXCa6O0DjgtiVo62z1lAYBU4HVtnSfAW7o47dm
+        6ru9dK17GpONbOUjX8XITJ0gdjt7YHe8GBHaJuIdHL+Ak8ByYJhPXhPsoQwHVgCnLFe1eP8YBXZ9X4CL
+        wFZgATBZy6O1AC2AZkBte+la9zQmmyk257dZDMXKlw9edwxgv/dKIfu87hjWkxfydMrNZ6CX150IML7A
+        KVYupGmc15uI5rP97WebY1q4C/QNNeYE2As0susGwNwKl/baX7RMR5oa5ttYCa0i/YN7zYF5Za69lEs5
+        mwc6BgCXNFgluDqCQDod3AS0d+P9gZXA8ahcKBKKdcz2kX4uZwdgM/AzMg7HE8mOnUG7snbhMVHtFdhq
+        6g21I1Mdf6rfz3dnl6185KsYWedWtkGONTs91CxC20S8g0OV6BYrK7LKlWJgZck0y/HCJw/xvjEKnC6P
+        gcPABiu1tWzr6XaynbxZEDfzv42pvJGtfDbama9i5cunbNUJWFWbdg543TGAgcA375kivoYrak6sB0lj
+        maLyZILXmxNgMPDIR6og0jLI66wWYHu0FAKN7Uj/vY9aRlRfrQtaXi35273uGOZ8Guge3Gtpb0h7QLm4
+        bh1iy0BHD9uD8lp+I/SFXw+0duP6vU+1z4kif480/xVzlaa1y9nGlnhtrBnC8USyY2fQKqEuTr+ZVB1C
+        mK0KOLWnM92PoTeBBwk7u+5pLPoxVD7yVYyGLrYOHUbbVJeGLELbRLyD44nVPDrVyPqkioE9ecVWjqc+
+        eYj3jVFgQ6UnrCMcTUGdQY2zqaciT7t40yBuU7unMdnIdrb5ahNWrHz537OniX+sZ49Ic89eMGns2WtE
+        Wnr2olKJnr3klLJn/8+fzm/tJ8HU1r0TyAAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="pictureBoxHeaderFindStudent.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEIAAABCCAYAAADjVADoAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL

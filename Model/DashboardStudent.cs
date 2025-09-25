@@ -57,13 +57,10 @@ namespace StudentDashboardApp.Model
         
         private void DashboardStudent_Load(object sender, EventArgs e)
         {
-           
-           
 
 
 
-            //Mặc định khi load, chọn page 1
-            navigationFrameSTD.SelectedPage = navigationSystemPage1;
+
 
 
 
@@ -71,7 +68,7 @@ namespace StudentDashboardApp.Model
             var map = new Dictionary<DevExpress.XtraBars.BarButtonItem, (DevExpress.XtraBars.Navigation.NavigationPage, UserControl)>
     {
         { barButtonItemAddST, (navigationPageStudent, new AddStudentControl()) },
-        { barButtonItemFindStudent, (navigationPageStudent, new UserControl1()) }
+        { barButtonItemFindStudent, (navigationPageStudent, new FindStudentControl()) }
 
     };
             navHelper = new NavigationHelper(navigationFrameSTD, map);
