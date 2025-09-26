@@ -92,21 +92,23 @@ namespace StudentDashboardApp.Model
             Dictionary<RibbonPage, NavigationPage> ribbonMap = new Dictionary<RibbonPage, NavigationPage>
     {
         { ribbonPage1, navigationSystemPage1 },
-        { ribbonPage2, navigationPage1 },
-        { ribbonPage3, navigationPage2 }
+        { ribbonPage2, navigationPageEmpty},
+        { ribbonPage3, navigationPageStudent }
     };
 
-            // Map BarButtonItem → NavigationPage
-            Dictionary<BarButtonItem, NavigationPage> buttonMap = new Dictionary<BarButtonItem, NavigationPage>
-    {
-        { barButtonItemFindStudent, navigationPageStudent },
-        { barButtonItemAddST, navigationPageAddST }
-    };
+            var buttonMap = new Dictionary<BarButtonItem, (NavigationPage, UserControl)>
+            {
+            { barButtonItemFindStudent, (navigationPageStudent, new FindStudentControl()) },
+            { barButtonItemAddST, (navigationPageStudent, new AddStudentControl()) }
+            };
+
+
+
 
             // NavigationHelper (cho button)
             navHelper = new NavigationHelper(navigationFrameSTD, buttonMap);
             navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
-            navigationFrameSTD.SelectedPage = navigationSystemPage1; // page mặc định
+            navigationFrameSTD.SelectedPage = navigationPageStudent; // page mặc định
             navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True;
 
             // NavigationService (cho ribbon)

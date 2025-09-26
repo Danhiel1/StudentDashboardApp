@@ -23,14 +23,22 @@ namespace StudentDashboardApp.Services
 
         private void OnButtonClick(object sender, ItemClickEventArgs e)
         {
-            if (e.Item is BarButtonItem btn && _pageMap.TryGetValue(btn, out var page))
+            if (e.Item is BarButtonItem btn && _map.TryGetValue(btn, out var entry))
             {
-                // Tắt transition trước khi đổi page
+                var (page, control) = entry;
+
                 _frame.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
                 _frame.SelectedPage = page;
                 _frame.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True;
+
+                if (control != null)
+                {
+                    FillUserControlIntoPage(page, control);
+                }
             }
         }
+
+
 
 
         public void ShowNavigationPage(NavigationPage page)

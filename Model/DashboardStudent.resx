@@ -167,9 +167,6 @@
         UhSQr94Wq4B8GapIkSJFy66flqlGEZUZX90AAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="chartBarController1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="pictureBoxHeaderShowTableFST.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
@@ -193,6 +190,9 @@
         Wnr2olKJnr3klLJn/8+fzm/tJ8HU1r0TyAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="chartBarController1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="DashboardStudent.IconOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAA8AAAAJKCAYAAADjiiyRAAAABGdBTUEAALGPC/xhBQAA/8dJREFUeF7s
