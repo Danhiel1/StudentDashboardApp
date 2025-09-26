@@ -227,6 +227,17 @@
             selectPeriodRepositoryItemComboBox1 = new DevExpress.XtraCharts.UI.SelectPeriodRepositoryItemComboBox();
             addVerticalConstantLineBarItem1 = new DevExpress.XtraCharts.UI.AddVerticalConstantLineBarItem();
             addHorizontalConstantLineBarItem1 = new DevExpress.XtraCharts.UI.AddHorizontalConstantLineBarItem();
+            barEditItem1 = new DevExpress.XtraBars.BarEditItem();
+            repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            barButtonItemEditST = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItemEditStudentScore = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItemViewStudentDetails = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItemViewTranscript = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItemClassEnrollment = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItemAttendance = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItemListbyClassorYear = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItemTopStudents = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItemWarningList = new DevExpress.XtraBars.BarButtonItem();
             ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             RibbonData = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonSystemSettinngs = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -234,6 +245,9 @@
             ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroupquery = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPageGroupEditST = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            RibbonPageGroupEditST = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            ribbonPageGroupAcademic = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            ribbonPageGroupStatisticsAndReports = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -252,6 +266,17 @@
             emptySpaceItem2Page1 = new DevExpress.XtraLayout.EmptySpaceItem();
             layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            navigationPageStudent = new DevExpress.XtraBars.Navigation.NavigationPage();
+            navigationPageEmpty = new DevExpress.XtraBars.Navigation.NavigationPage();
+            panelHeaderShowStudentFSTD = new Panel();
+            pictureBoxHeaderShowTableFST = new PictureBox();
+            labelHeaderShowTableFST = new Label();
+            chartControl1 = new DevExpress.XtraCharts.ChartControl();
+            LayoutControlPage1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            splitterItem1 = new DevExpress.XtraLayout.SplitterItem();
+            simpleSeparator1 = new DevExpress.XtraLayout.SimpleSeparator();
+            emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -262,6 +287,8 @@
             chartBarController1 = new DevExpress.XtraCharts.UI.ChartBarController(components);
             layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             layoutControlGroup1Page1 = new DevExpress.XtraLayout.LayoutControlGroup();
+            layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            Root = new DevExpress.XtraLayout.LayoutControlGroup();
             ((System.ComponentModel.ISupportInitialize)ribbon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)commandBarGalleryDropDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)commandBarGalleryDropDown2).BeginInit();
@@ -275,6 +302,10 @@
             ((System.ComponentModel.ISupportInitialize)commandBarGalleryDropDown8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)selectAxisMeasureUnitRepositoryItemComboBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)selectPeriodRepositoryItemComboBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemTextEdit1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlGroup3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tabbedControlGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)navigationFrameSTD).BeginInit();
             navigationFrameSTD.SuspendLayout();
             navigationSystemPage1.SuspendLayout();
@@ -287,6 +318,15 @@
             ((System.ComponentModel.ISupportInitialize)emptySpaceItem2Page1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).BeginInit();
+            navigationPageStudent.SuspendLayout();
+            panelHeaderShowStudentFSTD.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxHeaderShowTableFST).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)chartControl1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)LayoutControlPage1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)splitterItem1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)simpleSeparator1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)emptySpaceItem3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem5).BeginInit();
@@ -295,6 +335,8 @@
             ((System.ComponentModel.ISupportInitialize)chartBarController1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1Page1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Root).BeginInit();
             SuspendLayout();
             // 
             // ribbon
@@ -302,12 +344,15 @@
             ribbon.EmptyAreaImageOptions.ImagePadding = new Padding(40, 37, 40, 37);
             ribbon.ExpandCollapseItem.Id = 0;
             ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, barButtonItem1, barButtonGroup1, barButtonItem2, barDockingMenuItem1, barDockingMenuItem2, barButtonItem3, barListItem1, barSubItem1, BarImportItem, ImportItem1, barListItem2, barButtonItem5, barButtonItem6, barButtonItem7, btnDatabase, btnParameters, btnActLog, btnCkUpdate, btnRestore, btnBackup, barButtonItem4, barButtonItem8, barButtonItem9, skinDropDownButtonItem1, barButtonItemFindStudent, barButtonItemAddST, createBarBaseItem1, createLineBaseItem1, createPieBaseItem1, createRotatedBarBaseItem1, createAreaBaseItem1, createOtherSeriesTypesBaseItem1, changePaletteGalleryBaseItem1, changeAppearanceGalleryBaseItem1, runDesignerChartItem1, saveAsTemplateChartItem1, loadTemplateChartItem1, printPreviewChartItem1, printChartItem1, createExportBaseItem1, exportTopdfChartItem1, exportTohtmlChartItem1, exportTomhtChartItem1, exportToxlsChartItem1, exportToxlsxChartItem1, exportTortfChartItem1, exportTobmpChartItem1, exportTogifChartItem1, exportTojpegChartItem1, exportTopngChartItem1, exportTotiffChartItem1, createExportToImageBaseItem1, selectSeriesBarItem1, changeSeriesViewBarItem1, drawTrendLineIndicatorBarItem1, drawFibonacciArcsIndicatorBarItem1, drawFibonacciFansIndicatorBarItem1, drawFibonacciRetracementIndicatorBarItem1, removeIndicatorBarItem1, addIndicatorBarItem1, addTextAnnotationBarItem1, addImageAnnotationBarItem1, selectAxisMeasureUnitBarItem1, selectPeriodBarItem1, addVerticalConstantLineBarItem1, addHorizontalConstantLineBarItem1 });
+            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, barButtonItem1, barButtonGroup1, barButtonItem2, barDockingMenuItem1, barDockingMenuItem2, barButtonItem3, barListItem1, barSubItem1, BarImportItem, ImportItem1, barListItem2, barButtonItem5, barButtonItem6, barButtonItem7, btnDatabase, btnParameters, btnActLog, btnCkUpdate, btnRestore, btnBackup, barButtonItem4, barButtonItem8, barButtonItem9, skinDropDownButtonItem1, barButtonItemFindStudent, barButtonItemAddST, barEditItem1, barButtonItemEditST, barButtonItemEditStudentScore, barButtonItemViewStudentDetails, barButtonItemViewTranscript, barButtonItemClassEnrollment, barButtonItemAttendance, barButtonItemListbyClassorYear, barButtonItemTopStudents, barButtonItemWarningList });
             ribbon.Location = new Point(0, 0);
             ribbon.MaxItemId = 105;
+            ribbon.MaxItemId = 50;
             ribbon.Name = "ribbon";
             ribbon.OptionsMenuMinWidth = 440;
             ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage1, ribbonPage2, ribbonPage3 });
             ribbon.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { selectSeriesRepositoryItemComboBox1, changeSeriesViewRepositoryItemComboBox1, selectAxisMeasureUnitRepositoryItemComboBox1, selectPeriodRepositoryItemComboBox1 });
+            ribbon.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemTextEdit1 });
             ribbon.Size = new Size(1123, 201);
             ribbon.SelectedPageChanged += ribbon_SelectedPageChanged;
             ribbon.Click += ribbon_Click;
@@ -474,7 +519,7 @@
             // 
             // barButtonItemAddST
             // 
-            barButtonItemAddST.Caption = "Thêm Sinh Viên";
+            barButtonItemAddST.Caption = "Add Student";
             barButtonItemAddST.Id = 38;
             barButtonItemAddST.Name = "barButtonItemAddST";
             // 
@@ -942,6 +987,72 @@
             addHorizontalConstantLineBarItem1.Id = 104;
             addHorizontalConstantLineBarItem1.Name = "addHorizontalConstantLineBarItem1";
             // 
+            // barEditItem1
+            // 
+            barEditItem1.Caption = "barEditItem1";
+            barEditItem1.Edit = repositoryItemTextEdit1;
+            barEditItem1.Id = 39;
+            barEditItem1.Name = "barEditItem1";
+            // 
+            // repositoryItemTextEdit1
+            // 
+            repositoryItemTextEdit1.AutoHeight = false;
+            repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            // 
+            // barButtonItemEditST
+            // 
+            barButtonItemEditST.Caption = "Edit Student";
+            barButtonItemEditST.Id = 40;
+            barButtonItemEditST.Name = "barButtonItemEditST";
+            // 
+            // barButtonItemEditStudentScore
+            // 
+            barButtonItemEditStudentScore.Caption = "Edit Student Score";
+            barButtonItemEditStudentScore.Id = 41;
+            barButtonItemEditStudentScore.Name = "barButtonItemEditStudentScore";
+            // 
+            // barButtonItemViewStudentDetails
+            // 
+            barButtonItemViewStudentDetails.Caption = "View Student Details";
+            barButtonItemViewStudentDetails.Id = 42;
+            barButtonItemViewStudentDetails.Name = "barButtonItemViewStudentDetails";
+            // 
+            // barButtonItemViewTranscript
+            // 
+            barButtonItemViewTranscript.Caption = "View Transcript";
+            barButtonItemViewTranscript.Id = 43;
+            barButtonItemViewTranscript.Name = "barButtonItemViewTranscript";
+            // 
+            // barButtonItemClassEnrollment
+            // 
+            barButtonItemClassEnrollment.Caption = "Class Enrollment";
+            barButtonItemClassEnrollment.Id = 45;
+            barButtonItemClassEnrollment.Name = "barButtonItemClassEnrollment";
+            // 
+            // barButtonItemAttendance
+            // 
+            barButtonItemAttendance.Caption = "Attendance";
+            barButtonItemAttendance.Id = 46;
+            barButtonItemAttendance.Name = "barButtonItemAttendance";
+            // 
+            // barButtonItemListbyClassorYear
+            // 
+            barButtonItemListbyClassorYear.Caption = "List by Class or Year";
+            barButtonItemListbyClassorYear.Id = 47;
+            barButtonItemListbyClassorYear.Name = "barButtonItemListbyClassorYear";
+            // 
+            // barButtonItemTopStudents
+            // 
+            barButtonItemTopStudents.Caption = "Top Students";
+            barButtonItemTopStudents.Id = 48;
+            barButtonItemTopStudents.Name = "barButtonItemTopStudents";
+            // 
+            // barButtonItemWarningList
+            // 
+            barButtonItemWarningList.Caption = "LayoutControl";
+            barButtonItemWarningList.Id = 49;
+            barButtonItemWarningList.Name = "barButtonItemWarningList";
+            // 
             // ribbonPage1
             // 
             ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { RibbonData, ribbonSystemSettinngs, ribbonSupport });
@@ -974,7 +1085,7 @@
             // 
             // ribbonPage2
             // 
-            ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroupquery, ribbonPageGroupEditST });
+            ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroupquery, RibbonPageGroupEditST, ribbonPageGroupAcademic, ribbonPageGroupStatisticsAndReports });
             ribbonPage2.Name = "ribbonPage2";
             ribbonPage2.Text = "Student";
             // 
@@ -988,6 +1099,32 @@
             // 
             ribbonPageGroupEditST.Name = "ribbonPageGroupEditST";
             ribbonPageGroupEditST.Text = "Manage";
+            ribbonPageGroupquery.Text = "Search";
+            // 
+            // RibbonPageGroupEditST
+            // 
+            RibbonPageGroupEditST.ItemLinks.Add(barButtonItemAddST);
+            RibbonPageGroupEditST.ItemLinks.Add(barButtonItemEditST);
+            RibbonPageGroupEditST.ItemLinks.Add(barButtonItemViewStudentDetails);
+            RibbonPageGroupEditST.Name = "RibbonPageGroupEditST";
+            RibbonPageGroupEditST.Text = "Manage";
+            // 
+            // ribbonPageGroupAcademic
+            // 
+            ribbonPageGroupAcademic.ItemLinks.Add(barButtonItemViewTranscript);
+            ribbonPageGroupAcademic.ItemLinks.Add(barButtonItemEditStudentScore);
+            ribbonPageGroupAcademic.ItemLinks.Add(barButtonItemClassEnrollment);
+            ribbonPageGroupAcademic.ItemLinks.Add(barButtonItemAttendance);
+            ribbonPageGroupAcademic.Name = "ribbonPageGroupAcademic";
+            ribbonPageGroupAcademic.Text = "Academic Information";
+            // 
+            // ribbonPageGroupStatisticsAndReports
+            // 
+            ribbonPageGroupStatisticsAndReports.ItemLinks.Add(barButtonItemListbyClassorYear);
+            ribbonPageGroupStatisticsAndReports.ItemLinks.Add(barButtonItemTopStudents);
+            ribbonPageGroupStatisticsAndReports.ItemLinks.Add(barButtonItemWarningList);
+            ribbonPageGroupStatisticsAndReports.Name = "ribbonPageGroupStatisticsAndReports";
+            ribbonPageGroupStatisticsAndReports.Text = "Statistics And Reports";
             // 
             // ribbonPage3
             // 
@@ -1032,11 +1169,43 @@
             // navigationSystemPage1
             // 
             navigationSystemPage1.Caption = "navigationSystemPage1";
-            navigationSystemPage1.Controls.Add(layoutControl1);
             navigationSystemPage1.Name = "navigationSystemPage1";
             navigationSystemPage1.Size = new Size(1123, 471);
             // 
-            // layoutControl1
+            // navigationPageStudent
+            // 
+            navigationPageStudent.Caption = "navigationPage2";
+            navigationPageStudent.Controls.Add(layoutControl1);
+            navigationPageStudent.Name = "navigationPageStudent";
+            navigationPageStudent.Size = new Size(1123, 471);
+            // 
+            // navigationPageEmpty
+            // 
+            navigationPageEmpty.Caption = "navigationPageEmpty";
+            navigationPageEmpty.Name = "navigationPageEmpty";
+            navigationPageEmpty.Size = new Size(1123, 471);
+            // 
+            // panelHeaderShowStudentFSTD
+            // 
+            panelHeaderShowStudentFSTD.BackColor = Color.FromArgb(62, 64, 149);
+            panelHeaderShowStudentFSTD.Controls.Add(pictureBoxHeaderShowTableFST);
+            panelHeaderShowStudentFSTD.Controls.Add(labelHeaderShowTableFST);
+            panelHeaderShowStudentFSTD.Location = new Point(0, 3);
+            panelHeaderShowStudentFSTD.Name = "panelHeaderShowStudentFSTD";
+            panelHeaderShowStudentFSTD.Size = new Size(367, 50);
+            panelHeaderShowStudentFSTD.TabIndex = 2;
+            // 
+            // pictureBoxHeaderShowTableFST
+            // 
+            pictureBoxHeaderShowTableFST.BackgroundImage = (Image)resources.GetObject("pictureBoxHeaderShowTableFST.BackgroundImage");
+            pictureBoxHeaderShowTableFST.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBoxHeaderShowTableFST.Location = new Point(3, 7);
+            pictureBoxHeaderShowTableFST.Name = "pictureBoxHeaderShowTableFST";
+            pictureBoxHeaderShowTableFST.Size = new Size(32, 32);
+            pictureBoxHeaderShowTableFST.TabIndex = 1;
+            pictureBoxHeaderShowTableFST.TabStop = false;
+            // 
+            // labelHeaderShowTableFST
             // 
             layoutControl1.AllowCustomization = false;
             layoutControl1.Controls.Add(infoCard2);
@@ -1074,6 +1243,20 @@
             infoCardStudent.Name = "infoCardStudent";
             infoCardStudent.Size = new Size(198, 79);
             infoCardStudent.TabIndex = 5;
+            labelHeaderShowTableFST.AutoSize = true;
+            labelHeaderShowTableFST.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelHeaderShowTableFST.Location = new Point(41, 14);
+            labelHeaderShowTableFST.Name = "labelHeaderShowTableFST";
+            labelHeaderShowTableFST.Size = new Size(223, 25);
+            labelHeaderShowTableFST.TabIndex = 0;
+            labelHeaderShowTableFST.Text = "Show Student Table\n";
+            // 
+            // chartControl1
+            // 
+            chartControl1.Location = new Point(0, 0);
+            chartControl1.Name = "chartControl1";
+            chartControl1.Size = new Size(300, 200);
+            chartControl1.TabIndex = 0;
             // 
             // chartControlCountPerNienKhoa
             // 
@@ -1082,6 +1265,9 @@
             chartControlCountPerNienKhoa.Size = new Size(433, 259);
             chartControlCountPerNienKhoa.TabIndex = 4;
             chartControlCountPerNienKhoa.Click += chartControlCountPerNienKhoa_Click;
+            LayoutControlPage1.Location = new Point(0, 0);
+            LayoutControlPage1.Name = "LayoutControlPage1";
+            LayoutControlPage1.Size = new Size(50, 25);
             // 
             // chartControCountPerFaculty
             // 
@@ -1089,6 +1275,8 @@
             chartControCountPerFaculty.Name = "chartControCountPerFaculty";
             chartControCountPerFaculty.Size = new Size(448, 439);
             chartControCountPerFaculty.TabIndex = 0;
+            emptySpaceItem1.Location = new Point(0, 0);
+            emptySpaceItem1.Name = "emptySpaceItem1";
             // 
             // RootPage1
             // 
@@ -1100,18 +1288,26 @@
             RootPage1.ShowInCustomizationForm = false;
             RootPage1.Size = new Size(1123, 471);
             RootPage1.TextVisible = false;
+            splitterItem1.Location = new Point(0, 0);
+            splitterItem1.Name = "splitterItem1";
+            splitterItem1.Size = new Size(0, 0);
             // 
             // emptySpaceItem1Page1
             // 
             emptySpaceItem1Page1.Location = new Point(0, 265);
             emptySpaceItem1Page1.Name = "emptySpaceItem1Page1";
             emptySpaceItem1Page1.Size = new Size(204, 180);
+            simpleSeparator1.Location = new Point(0, 0);
+            simpleSeparator1.Name = "simpleSeparator1";
+            simpleSeparator1.Size = new Size(0, 0);
             // 
             // emptySpaceItem2Page1
             // 
             emptySpaceItem2Page1.Location = new Point(204, 265);
             emptySpaceItem2Page1.Name = "emptySpaceItem2Page1";
             emptySpaceItem2Page1.Size = new Size(439, 180);
+            emptySpaceItem3.Location = new Point(0, 0);
+            emptySpaceItem3.Name = "emptySpaceItem3";
             // 
             // layoutControlItem3
             // 
@@ -1130,22 +1326,39 @@
             layoutControlItem2.TextVisible = false;
             // 
             // layoutControlItem1
+            layoutControlItem1.Location = new Point(0, 0);
+            layoutControlItem1.Name = "layoutControlItem1";
+            layoutControlItem1.TextSize = new Size(50, 20);
             // 
             layoutControlItem1.Control = chartControCountPerFaculty;
             layoutControlItem1.Location = new Point(643, 0);
             layoutControlItem1.Name = "layoutControlItem1";
             layoutControlItem1.Size = new Size(454, 445);
             layoutControlItem1.TextVisible = false;
+            // layoutControl1
             // 
             // layoutControlItem4
+            layoutControl1.Dock = DockStyle.Fill;
+            layoutControl1.Location = new Point(0, 0);
+            layoutControl1.Name = "layoutControl1";
+            layoutControl1.Root = Root;
+            layoutControl1.Size = new Size(1123, 471);
+            layoutControl1.TabIndex = 0;
+            layoutControl1.Text = "layoutControl1";
             // 
             layoutControlItem4.Control = infoCardTeacher;
             layoutControlItem4.Location = new Point(0, 85);
             layoutControlItem4.Name = "layoutControlItem4";
             layoutControlItem4.Size = new Size(204, 90);
             layoutControlItem4.TextVisible = false;
+            // Root
             // 
             // layoutControlItem5
+            Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            Root.GroupBordersVisible = false;
+            Root.Name = "Root";
+            Root.Size = new Size(1123, 471);
+            Root.TextVisible = false;
             // 
             layoutControlItem5.Control = infoCard2;
             layoutControlItem5.Location = new Point(0, 175);
@@ -1263,6 +1476,10 @@
             ((System.ComponentModel.ISupportInitialize)commandBarGalleryDropDown8).EndInit();
             ((System.ComponentModel.ISupportInitialize)selectAxisMeasureUnitRepositoryItemComboBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)selectPeriodRepositoryItemComboBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)repositoryItemTextEdit1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControlGroup3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tabbedControlGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)navigationFrameSTD).EndInit();
             navigationFrameSTD.ResumeLayout(false);
             navigationSystemPage1.ResumeLayout(false);
@@ -1275,6 +1492,16 @@
             ((System.ComponentModel.ISupportInitialize)emptySpaceItem2Page1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem3).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).EndInit();
+            navigationPageStudent.ResumeLayout(false);
+            panelHeaderShowStudentFSTD.ResumeLayout(false);
+            panelHeaderShowStudentFSTD.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxHeaderShowTableFST).EndInit();
+            ((System.ComponentModel.ISupportInitialize)chartControl1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)LayoutControlPage1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)emptySpaceItem1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)splitterItem1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)simpleSeparator1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)emptySpaceItem3).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem5).EndInit();
@@ -1283,6 +1510,8 @@
             ((System.ComponentModel.ISupportInitialize)chartBarController1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup2).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1Page1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Root).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1327,6 +1556,14 @@
         private DevExpress.XtraBars.Navigation.NavigationFrame navigationFrameSTD;
         private DevExpress.XtraBars.Navigation.NavigationPage navigationSystemPage1;
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPageStudent;
+        private DevExpress.XtraBars.Navigation.NavigationPage navigationPageStudent;
+        private DevExpress.XtraLayout.LayoutControlGroup LayoutControlPage1;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
+        private DevExpress.XtraLayout.SplitterItem splitterItem1;
+        private DevExpress.XtraLayout.SimpleSeparator simpleSeparator1;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
+        private DevExpress.XtraCharts.ChartControl chartControl1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonItemFindStudent;
         private DevExpress.XtraBars.Navigation.NavigationPage navigationPageEmpty;
         private DevExpress.XtraBars.BarButtonItem barButtonItemAddST;
@@ -1406,5 +1643,26 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private Controls.InfoCard infoCard2;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup RibbonPageGroupEditST;
+        private DevExpress.XtraBars.BarEditItem barEditItem1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
+        private Panel panel2;
+        private DataGridView dataGridViewShow;
+        private Panel panelHeaderShowStudentFSTD;
+        private PictureBox pictureBoxHeaderShowTableFST;
+        private Label labelHeaderShowTableFST;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemEditST;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemEditStudentScore;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupAcademic;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemViewStudentDetails;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemViewTranscript;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemClassEnrollment;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemAttendance;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupStatisticsAndReports;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemListbyClassorYear;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemTopStudents;
+        private DevExpress.XtraBars.BarButtonItem barButtonItemWarningList;
+        private DevExpress.XtraLayout.LayoutControl layoutControl1;
+        private DevExpress.XtraLayout.LayoutControlGroup Root;
     }
 }

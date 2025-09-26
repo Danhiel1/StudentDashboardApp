@@ -185,6 +185,11 @@ namespace StudentDashboardApp.Model
         {
 
         }
+
+        private void simpleButtonEnterStudentID_Click(object sender, EventArgs e)
+        {
+           
+        }
     }
 }
 
