@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Navigation;
 
@@ -7,38 +8,62 @@ namespace StudentDashboardApp.Services
     public class NavigationHelper
     {
         private readonly NavigationFrame _frame;
-        private readonly Dictionary<BarButtonItem, NavigationPage> _pageMap;
+        private readonly Dictionary<BarButtonItem, (NavigationPage page, UserControl control)> _map;
 
-        public NavigationHelper(NavigationFrame frame, Dictionary<BarButtonItem, NavigationPage> pageMap)// khởi tạo hàm có tham số truyền vào để nhận diện các frame và page
+        public NavigationHelper(
+            NavigationFrame frame,
+            Dictionary<BarButtonItem, (NavigationPage, UserControl)> map)
         {
-            _frame = frame; // đưa giá trị frame được truyền vào
-            _pageMap = pageMap;// đư agias trị các page và các nút được truyền vào
+            _frame = frame;
+            _map = map;
 
-            
-            foreach (var btn in _pageMap.Keys) //duyệt qua từng phần tử nút trong page map vừa lưu và khi có dấu hiệu ấn thì hàm OnButtonClick sẽ được thực thi (_pageMap.Keys lấy tất cả các key có trong hashmap)
-                btn.ItemClick+= OnButtonClick; // gắn thuộc tính sự kiện cho từng nút trong Dictionary vì thế kh cần sử dụng hàm sự kiện của form nữa chỉ cần khai bào trong load của form thôi nhó hiếu-chan
+            foreach (var btn in _map.Keys)
+                btn.ItemClick += OnButtonClick;
         }
 
         private void OnButtonClick(object sender, ItemClickEventArgs e)
         {
-            if (e.Item is BarButtonItem btn && _pageMap.TryGetValue(btn, out var page))
+            if (e.Item is BarButtonItem btn && _map.TryGetValue(btn, out var entry))
             {
-                // Tắt transition trước khi đổi page
+                var (page, control) = entry;
+
                 _frame.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
                 _frame.SelectedPage = page;
                 _frame.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True;
+
+                if (control != null)
+                {
+                    FillUserControlIntoPage(page, control);
+                }
             }
         }
 
 
+
+
         public void ShowNavigationPage(NavigationPage page)
         {
-            if (page == null) return; // nếu biến page chưa được gán giá trị của page nào tắt hàm
-            _frame.Visible = true; // qua được phần điều kiện thì hiển thị lại frame
-            _frame.SelectedPage = page;// và chọn page đc tham chiếu trong Dictionary
+            if (page == null) return;
+            _frame.Visible = true;
+            _frame.SelectedPage = page;
         }
 
-        public void ShowEmptyPage(NavigationPage emptyPage) // cái này kh cần sài cx được nhưng muốn ngầu hơn thì sài cái này
+        /// <summary>
+        /// Đưa UserControl vào 1 page
+        /// </summary>
+        public void FillUserControlIntoPage(NavigationPage page, UserControl usc)
+        {
+            if (page == null || usc == null) return;
+
+            page.Controls.Clear();       // Xóa control cũ trong page
+            usc.Dock = DockStyle.Fill;   // Cho control full khung
+            page.Controls.Add(usc);      // Thêm control mới vào
+        }
+
+        /// <summary>
+        /// Hiển thị 1 page rỗng (option)
+        /// </summary>
+        public void ShowEmptyPage(NavigationPage emptyPage)
         {
             if (emptyPage == null) return;
             _frame.Visible = true;
@@ -46,3 +71,4 @@ namespace StudentDashboardApp.Services
         }
     }
 }
+
