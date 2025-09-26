@@ -99,7 +99,7 @@ namespace StudentDashboardApp.Model
             // Map BarButtonItem → NavigationPage
             Dictionary<BarButtonItem, NavigationPage> buttonMap = new Dictionary<BarButtonItem, NavigationPage>
     {
-        { barButtonItemFindStudent, navigationPageFindStudent },
+        { barButtonItemFindStudent, navigationPageStudent },
         { barButtonItemAddST, navigationPageAddST }
     };
 
