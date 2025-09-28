@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace StudentDashboardApp
 {
-    public partial class AddStudentControl: UserControl
+    public partial class AddStudentControl : UserControl
     {
         public AddStudentControl()
         {
             InitializeComponent();
+        }
+
+        private void AddStudentControl_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

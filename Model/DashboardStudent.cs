@@ -68,7 +68,9 @@ namespace StudentDashboardApp.Model
             var map = new Dictionary<DevExpress.XtraBars.BarButtonItem, (DevExpress.XtraBars.Navigation.NavigationPage, UserControl)>
     {
         { barButtonItemAddST, (navigationPageStudent, new AddStudentControl()) },
-        { barButtonItemFindStudent, (navigationPageStudent, new FindStudentControl()) }
+        { barButtonItemFindStudent, (navigationPageStudent, new FindStudentControll()) },
+        { barButtonItemEditST, (navigationPageStudent, new EditStudentControl()) },
+        { barButtonItemViewTranscript, (navigationPageStudent, new ViewTranscriptStudentControl()) },
 
     };
             navHelper = new NavigationHelper(navigationFrameSTD, map);

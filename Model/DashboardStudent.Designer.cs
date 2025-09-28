@@ -60,7 +60,6 @@
             repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             barButtonItemEditST = new DevExpress.XtraBars.BarButtonItem();
             barButtonItemEditStudentScore = new DevExpress.XtraBars.BarButtonItem();
-            barButtonItemViewStudentDetails = new DevExpress.XtraBars.BarButtonItem();
             barButtonItemViewTranscript = new DevExpress.XtraBars.BarButtonItem();
             barButtonItemClassEnrollment = new DevExpress.XtraBars.BarButtonItem();
             barButtonItemAttendance = new DevExpress.XtraBars.BarButtonItem();
@@ -98,8 +97,6 @@
             simpleSeparator1 = new DevExpress.XtraLayout.SimpleSeparator();
             emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            Root = new DevExpress.XtraLayout.LayoutControlGroup();
             ((System.ComponentModel.ISupportInitialize)ribbon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemTextEdit1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1).BeginInit();
@@ -107,7 +104,6 @@
             ((System.ComponentModel.ISupportInitialize)tabbedControlGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)navigationFrameSTD).BeginInit();
             navigationFrameSTD.SuspendLayout();
-            navigationPageStudent.SuspendLayout();
             panelHeaderShowStudentFSTD.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxHeaderShowTableFST).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chartControl1).BeginInit();
@@ -117,15 +113,13 @@
             ((System.ComponentModel.ISupportInitialize)simpleSeparator1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)emptySpaceItem3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControl1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Root).BeginInit();
             SuspendLayout();
             // 
             // ribbon
             // 
             ribbon.EmptyAreaImageOptions.ImagePadding = new Padding(40, 37, 40, 37);
             ribbon.ExpandCollapseItem.Id = 0;
-            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, barButtonItem1, barButtonGroup1, barButtonItem2, barDockingMenuItem1, barDockingMenuItem2, barButtonItem3, barListItem1, barSubItem1, BarImportItem, ImportItem1, barListItem2, barButtonItem5, barButtonItem6, barButtonItem7, btnDatabase, btnParameters, btnActLog, btnCkUpdate, btnRestore, btnBackup, barButtonItem4, barButtonItem8, barButtonItem9, skinDropDownButtonItem1, barButtonItemFindStudent, barButtonItemAddST, barEditItem1, barButtonItemEditST, barButtonItemEditStudentScore, barButtonItemViewStudentDetails, barButtonItemViewTranscript, barButtonItemClassEnrollment, barButtonItemAttendance, barButtonItemListbyClassorYear, barButtonItemTopStudents, barButtonItemWarningList });
+            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, barButtonItem1, barButtonGroup1, barButtonItem2, barDockingMenuItem1, barDockingMenuItem2, barButtonItem3, barListItem1, barSubItem1, BarImportItem, ImportItem1, barListItem2, barButtonItem5, barButtonItem6, barButtonItem7, btnDatabase, btnParameters, btnActLog, btnCkUpdate, btnRestore, btnBackup, barButtonItem4, barButtonItem8, barButtonItem9, skinDropDownButtonItem1, barButtonItemFindStudent, barButtonItemAddST, barEditItem1, barButtonItemEditST, barButtonItemEditStudentScore, barButtonItemViewTranscript, barButtonItemClassEnrollment, barButtonItemAttendance, barButtonItemListbyClassorYear, barButtonItemTopStudents, barButtonItemWarningList });
             ribbon.Location = new Point(0, 0);
             ribbon.MaxItemId = 50;
             ribbon.Name = "ribbon";
@@ -327,12 +321,6 @@
             barButtonItemEditStudentScore.Id = 41;
             barButtonItemEditStudentScore.Name = "barButtonItemEditStudentScore";
             // 
-            // barButtonItemViewStudentDetails
-            // 
-            barButtonItemViewStudentDetails.Caption = "View Student Details";
-            barButtonItemViewStudentDetails.Id = 42;
-            barButtonItemViewStudentDetails.Name = "barButtonItemViewStudentDetails";
-            // 
             // barButtonItemViewTranscript
             // 
             barButtonItemViewTranscript.Caption = "View Transcript";
@@ -415,7 +403,6 @@
             // 
             RibbonPageGroupEditST.ItemLinks.Add(barButtonItemAddST);
             RibbonPageGroupEditST.ItemLinks.Add(barButtonItemEditST);
-            RibbonPageGroupEditST.ItemLinks.Add(barButtonItemViewStudentDetails);
             RibbonPageGroupEditST.Name = "RibbonPageGroupEditST";
             RibbonPageGroupEditST.Text = "Manage";
             // 
@@ -505,7 +492,6 @@
             // navigationPageStudent
             // 
             navigationPageStudent.Caption = "navigationPage2";
-            navigationPageStudent.Controls.Add(layoutControl1);
             navigationPageStudent.Name = "navigationPageStudent";
             navigationPageStudent.Size = new Size(1123, 471);
             // 
@@ -586,24 +572,6 @@
             layoutControlItem1.Name = "layoutControlItem1";
             layoutControlItem1.TextSize = new Size(50, 20);
             // 
-            // layoutControl1
-            // 
-            layoutControl1.Dock = DockStyle.Fill;
-            layoutControl1.Location = new Point(0, 0);
-            layoutControl1.Name = "layoutControl1";
-            layoutControl1.Root = Root;
-            layoutControl1.Size = new Size(1123, 471);
-            layoutControl1.TabIndex = 0;
-            layoutControl1.Text = "layoutControl1";
-            // 
-            // Root
-            // 
-            Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            Root.GroupBordersVisible = false;
-            Root.Name = "Root";
-            Root.Size = new Size(1123, 471);
-            Root.TextVisible = false;
-            // 
             // DashboardStudent
             // 
             Appearance.Options.UseFont = true;
@@ -625,7 +593,6 @@
             ((System.ComponentModel.ISupportInitialize)tabbedControlGroup1).EndInit();
             ((System.ComponentModel.ISupportInitialize)navigationFrameSTD).EndInit();
             navigationFrameSTD.ResumeLayout(false);
-            navigationPageStudent.ResumeLayout(false);
             panelHeaderShowStudentFSTD.ResumeLayout(false);
             panelHeaderShowStudentFSTD.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxHeaderShowTableFST).EndInit();
@@ -636,8 +603,6 @@
             ((System.ComponentModel.ISupportInitialize)simpleSeparator1).EndInit();
             ((System.ComponentModel.ISupportInitialize)emptySpaceItem3).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Root).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -706,7 +671,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItemEditST;
         private DevExpress.XtraBars.BarButtonItem barButtonItemEditStudentScore;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupAcademic;
-        private DevExpress.XtraBars.BarButtonItem barButtonItemViewStudentDetails;
         private DevExpress.XtraBars.BarButtonItem barButtonItemViewTranscript;
         private DevExpress.XtraBars.BarButtonItem barButtonItemClassEnrollment;
         private DevExpress.XtraBars.BarButtonItem barButtonItemAttendance;
@@ -714,7 +678,5 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItemListbyClassorYear;
         private DevExpress.XtraBars.BarButtonItem barButtonItemTopStudents;
         private DevExpress.XtraBars.BarButtonItem barButtonItemWarningList;
-        private DevExpress.XtraLayout.LayoutControl layoutControl1;
-        private DevExpress.XtraLayout.LayoutControlGroup Root;
     }
 }

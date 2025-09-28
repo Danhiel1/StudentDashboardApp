@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace StudentDashboardApp
 {
-    public partial class testusercontrol: UserControl
+    public partial class EditStudentControl: UserControl
     {
-        public testusercontrol()
+        public EditStudentControl()
         {
             InitializeComponent();
         }
