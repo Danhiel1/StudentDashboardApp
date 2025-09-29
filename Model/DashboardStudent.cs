@@ -98,8 +98,11 @@ namespace StudentDashboardApp.Model
 
             var buttonMap = new Dictionary<BarButtonItem, (NavigationPage, UserControl)>
             {
-            { barButtonItemFindStudent, (navigationPageStudent, new FindStudentControl()) },
-            { barButtonItemAddST, (navigationPageStudent, new AddStudentControl()) }
+            { barButtonItemFindStudent, (navigationPageStudent,new FindStudentControl()) },
+            { barButtonItemAddST, (navigationPageStudent, new AddStudentControl()) },
+            { barButtonItemEditST,(navigationPageStudent, new EditStudentControl()) },
+            {barButtonItemViewTranscript, (navigationPageStudent, new ViewTranscriptStudentControl()) }
+
             };
 
 

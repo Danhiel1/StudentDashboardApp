@@ -231,7 +231,6 @@
             repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             barButtonItemEditST = new DevExpress.XtraBars.BarButtonItem();
             barButtonItemEditStudentScore = new DevExpress.XtraBars.BarButtonItem();
-            barButtonItemViewStudentDetails = new DevExpress.XtraBars.BarButtonItem();
             barButtonItemViewTranscript = new DevExpress.XtraBars.BarButtonItem();
             barButtonItemClassEnrollment = new DevExpress.XtraBars.BarButtonItem();
             barButtonItemAttendance = new DevExpress.XtraBars.BarButtonItem();
@@ -334,7 +333,8 @@
             // 
             ribbon.EmptyAreaImageOptions.ImagePadding = new Padding(40, 37, 40, 37);
             ribbon.ExpandCollapseItem.Id = 0;
-            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, barButtonItem1, barButtonGroup1, barButtonItem2, barDockingMenuItem1, barDockingMenuItem2, barButtonItem3, barListItem1, barSubItem1, BarImportItem, ImportItem1, barListItem2, barButtonItem5, barButtonItem6, barButtonItem7, btnDatabase, btnParameters, btnActLog, btnCkUpdate, btnRestore, btnBackup, barButtonItem4, barButtonItem8, barButtonItem9, skinDropDownButtonItem1, barButtonItemFindStudent, barButtonItemAddST, createBarBaseItem1, createLineBaseItem1, createPieBaseItem1, createRotatedBarBaseItem1, createAreaBaseItem1, createOtherSeriesTypesBaseItem1, changePaletteGalleryBaseItem1, changeAppearanceGalleryBaseItem1, runDesignerChartItem1, saveAsTemplateChartItem1, loadTemplateChartItem1, printPreviewChartItem1, printChartItem1, createExportBaseItem1, exportTopdfChartItem1, exportTohtmlChartItem1, exportTomhtChartItem1, exportToxlsChartItem1, exportToxlsxChartItem1, exportTortfChartItem1, exportTobmpChartItem1, exportTogifChartItem1, exportTojpegChartItem1, exportTopngChartItem1, exportTotiffChartItem1, createExportToImageBaseItem1, selectSeriesBarItem1, changeSeriesViewBarItem1, drawTrendLineIndicatorBarItem1, drawFibonacciArcsIndicatorBarItem1, drawFibonacciFansIndicatorBarItem1, drawFibonacciRetracementIndicatorBarItem1, removeIndicatorBarItem1, addIndicatorBarItem1, addTextAnnotationBarItem1, addImageAnnotationBarItem1, selectAxisMeasureUnitBarItem1, selectPeriodBarItem1, addVerticalConstantLineBarItem1, addHorizontalConstantLineBarItem1, barEditItem1, barButtonItemEditST, barButtonItemEditStudentScore, barButtonItemViewStudentDetails, barButtonItemViewTranscript, barButtonItemClassEnrollment, barButtonItemAttendance, barButtonItemListbyClassorYear, barButtonItemTopStudents, barButtonItemWarningList });
+            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, barButtonItem1, barButtonGroup1, barButtonItem2, barDockingMenuItem1, barDockingMenuItem2, barButtonItem3, barListItem1, barSubItem1, BarImportItem, ImportItem1, barListItem2, barButtonItem5, barButtonItem6, barButtonItem7, btnDatabase, btnParameters, btnActLog, btnCkUpdate, btnRestore, btnBackup, barButtonItem4, barButtonItem8, barButtonItem9, skinDropDownButtonItem1, barButtonItemFindStudent, barButtonItemAddST, createBarBaseItem1, createLineBaseItem1, createPieBaseItem1, createRotatedBarBaseItem1, createAreaBaseItem1, createOtherSeriesTypesBaseItem1, changePaletteGalleryBaseItem1, changeAppearanceGalleryBaseItem1, runDesignerChartItem1, saveAsTemplateChartItem1, loadTemplateChartItem1, printPreviewChartItem1, printChartItem1, createExportBaseItem1, exportTopdfChartItem1, exportTohtmlChartItem1, exportTomhtChartItem1, exportToxlsChartItem1, exportToxlsxChartItem1, exportTortfChartItem1, exportTobmpChartItem1, exportTogifChartItem1, exportTojpegChartItem1, exportTopngChartItem1, exportTotiffChartItem1, createExportToImageBaseItem1, selectSeriesBarItem1, changeSeriesViewBarItem1, drawTrendLineIndicatorBarItem1, drawFibonacciArcsIndicatorBarItem1, drawFibonacciFansIndicatorBarItem1, drawFibonacciRetracementIndicatorBarItem1, removeIndicatorBarItem1, addIndicatorBarItem1, addTextAnnotationBarItem1, addImageAnnotationBarItem1, selectAxisMeasureUnitBarItem1, selectPeriodBarItem1, addVerticalConstantLineBarItem1, addHorizontalConstantLineBarItem1, barEditItem1, barButtonItemEditST, barButtonItemEditStudentScore, barButtonItemViewTranscript, barButtonItemClassEnrollment, barButtonItemAttendance, barButtonItemListbyClassorYear, barButtonItemTopStudents, barButtonItemWarningList });
+            ribbon.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbon.ExpandCollapseItem, barButtonItem1, barButtonGroup1, barButtonItem2, barDockingMenuItem1, barDockingMenuItem2, barButtonItem3, barListItem1, barSubItem1, BarImportItem, ImportItem1, barListItem2, barButtonItem5, barButtonItem6, barButtonItem7, btnDatabase, btnParameters, btnActLog, btnCkUpdate, btnRestore, btnBackup, barButtonItem4, barButtonItem8, barButtonItem9, skinDropDownButtonItem1, barButtonItemFindStudent, barButtonItemAddST, barEditItem1, barButtonItemEditST, barButtonItemEditStudentScore, barButtonItemViewTranscript, barButtonItemClassEnrollment, barButtonItemAttendance, barButtonItemListbyClassorYear, barButtonItemTopStudents, barButtonItemWarningList });
             ribbon.Location = new Point(0, 0);
             ribbon.MaxItemId = 50;
             ribbon.Name = "ribbon";
@@ -999,12 +999,6 @@
             barButtonItemEditStudentScore.Id = 41;
             barButtonItemEditStudentScore.Name = "barButtonItemEditStudentScore";
             // 
-            // barButtonItemViewStudentDetails
-            // 
-            barButtonItemViewStudentDetails.Caption = "View Student Details";
-            barButtonItemViewStudentDetails.Id = 42;
-            barButtonItemViewStudentDetails.Name = "barButtonItemViewStudentDetails";
-            // 
             // barButtonItemViewTranscript
             // 
             barButtonItemViewTranscript.Caption = "View Transcript";
@@ -1087,7 +1081,6 @@
             // 
             RibbonPageGroupEditST.ItemLinks.Add(barButtonItemAddST);
             RibbonPageGroupEditST.ItemLinks.Add(barButtonItemEditST);
-            RibbonPageGroupEditST.ItemLinks.Add(barButtonItemViewStudentDetails);
             RibbonPageGroupEditST.Name = "RibbonPageGroupEditST";
             RibbonPageGroupEditST.Text = "Manage";
             // 
@@ -1621,7 +1614,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItemEditST;
         private DevExpress.XtraBars.BarButtonItem barButtonItemEditStudentScore;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroupAcademic;
-        private DevExpress.XtraBars.BarButtonItem barButtonItemViewStudentDetails;
         private DevExpress.XtraBars.BarButtonItem barButtonItemViewTranscript;
         private DevExpress.XtraBars.BarButtonItem barButtonItemClassEnrollment;
         private DevExpress.XtraBars.BarButtonItem barButtonItemAttendance;

@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace StudentDashboardApp
 {
-    public partial class FindStudentControl : UserControl
+    public partial class FindStudentControl: UserControl
     {
         public FindStudentControl()
         {
             InitializeComponent();
-        }
-
-        private void textEdit1_EditValueChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

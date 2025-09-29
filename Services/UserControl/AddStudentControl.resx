@@ -117,4 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBoxHeaderFindStudent.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAABCFJREFUeF7tmk2oVVUUx9VMhIxmJhFOa1KkJU1qEmhmBGklpmHQIGgUVlSDBhIF
+        mR8ZUdTAaFBaRrOmjRtoX1ARRWbfReGgD7IP/ckf1nms+/fcd+65777n2a/zgwOXs9de++yz9177v9e5
+        Cxb09PT09PT09PT09PT0zD7AQuBqYBuwIy79Xq0yt583ACuA/cD3DEdlzwAXe/1iiRF/GPjDezsNvwMP
+        FT8jgKXAIe8d8GPc3wvsi9+65xyUD/dbBDHy3vmjwDpgUY39IuBG4H2ro5dQ3kyIaZ/RSJ/ndg6wOGJF
+        5kG36zTAcuC31IG9btME8Gyqr5iwwm06i42gpn3jyDsxE/Jy2Oc2nSTWft7q1rnNqADrk5/viogFwDXp
+        oX+oC3ijEoHxp+Rvtdt0DmBreuBDXt4W4I3kb4uXd44QMBW7vbwtwJ7kr/u7gR4yPfAeL29LiKWKB7y8
+        cwB3pgf+Xy4BnfQqJG9nGgR/Tv5WuU3nqNkG17vNqAAbkp9vi9gGRRxpKyRmFrtNEyGEPkx+WqvJc0aN
+        FN7vNk0Az6X6ksJl5QhsOxTS9o0zIUY+d17scLvOE7FAR9mMloPk7VmBMQKe1nye9uLVYta+EwkRfwlC
+        8vb1OCLr0laXo33Fa8UmRCpiJkgcaR2PiuKHkqVljnwdCmIx2jrVDUNbnZTfcq8/b4gZsSoUY5UW12/d
+        mz8j3tPTcxbAEmANsBm4F3gkrvsjDlwLXOj1iga4AngSOAL87WG/hv+AjyIRcn2RgRE4H7gH+Nh7NwYv
+        uv9OA9wFfOm9CE4DnwFvAS8BT8UlffBmyOB/rc6n3kYmXvaWUJZfAX/FdTzuKUe5xOtNHOAS4G17eCEF
+        KD1/C3CR13OAC4CbgAPAu8Amt6kAbgW+8AZr0IDc5vUnBrAWOGGN/hIBbpnbz5QQU4/HjGrD7nE+0kwL
+        cDfwT2rkVCREJt7xCmBnaq8tM07UTgHcZ6PwtSK3200S4OYxRt65w/22Jta0tqyKDxQH3G6SaPoqKKY2
+        HW2flwKXxWAM49iMAiNwpf3jQ8Fq1gVMBL3peDTZelbJ2TrofUQiZaUvvhWKsHNyfAVeTu3WMfXlyL4o
+        1THeNwvgseTkT003t5kthggr3dsVemIq/kSs0D1FfukD59ig9xGIvJ06XTGnyUrg19S20I7TOPuAq6ye
+        kFhqL7OB98LBO3XJzdmkRmvoBTSmy4e8gJPjvoBlwHXnIlkJfOK9iCUgXSDRtSbZ3hD3nhiyBI4Pei8A
+        4BXvhdEmCB4e9F4A0vPeC6PNNrh90HsBxBb8ufckISG0Ergc+MYLExJJc76EJwKw0XszBtvcb1EAT3uP
+        WvC8+yuOOBM0Bbk6XlACxf0VC3B7HGyaUDwoe9oPIzLNSnvllJhEjgKd0mzbiw14c8EZXcay5nUMXZkA
+        AAAASUVORK5CYII=
+</value>
+  </data>
 </root>
