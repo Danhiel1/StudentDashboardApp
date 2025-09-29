@@ -108,7 +108,7 @@ namespace StudentDashboardApp.Model
             // NavigationHelper (cho button)
             navHelper = new NavigationHelper(navigationFrameSTD, buttonMap);
             navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
-            navigationFrameSTD.SelectedPage = navigationPageStudent; // page mặc định
+            navigationFrameSTD.SelectedPage = navigationSystemPage1; // page mặc định
             navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True;
 
             // NavigationService (cho ribbon)
