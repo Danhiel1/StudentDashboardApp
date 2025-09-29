@@ -1,6 +1,6 @@
 ﻿namespace StudentDashboardApp
 {
-    partial class FindStudentControll
+    partial class FindStudentControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FindStudentControll));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FindStudentControl));
             layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             textEditFOSFTD = new DevExpress.XtraEditors.TextEdit();
             layoutControl6 = new DevExpress.XtraLayout.LayoutControl();
