@@ -261,6 +261,7 @@
             infoCardStudent = new StudentDashboardApp.Controls.InfoCard();
             chartControlCountPerNienKhoa = new DevExpress.XtraCharts.ChartControl();
             chartControCountPerFaculty = new DevExpress.XtraCharts.ChartControl();
+            navigationPageEmpty = new DevExpress.XtraBars.Navigation.NavigationPage();
             RootPage1 = new DevExpress.XtraLayout.LayoutControlGroup();
             emptySpaceItem1Page1 = new DevExpress.XtraLayout.EmptySpaceItem();
             emptySpaceItem2Page1 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -269,8 +270,6 @@
             layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            Root = new DevExpress.XtraLayout.LayoutControlGroup();
-            navigationPageEmpty = new DevExpress.XtraBars.Navigation.NavigationPage();
             panelHeaderShowStudentFSTD = new Panel();
             pictureBoxHeaderShowTableFST = new PictureBox();
             labelHeaderShowTableFST = new Label();
@@ -285,6 +284,7 @@
             chartBarController1 = new DevExpress.XtraCharts.UI.ChartBarController(components);
             layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             layoutControlGroup1Page1 = new DevExpress.XtraLayout.LayoutControlGroup();
+         
             ((System.ComponentModel.ISupportInitialize)ribbon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)commandBarGalleryDropDown1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)commandBarGalleryDropDown2).BeginInit();
@@ -314,7 +314,6 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)Root).BeginInit();
             panelHeaderShowStudentFSTD.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxHeaderShowTableFST).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chartControl1).BeginInit();
@@ -328,6 +327,7 @@
             ((System.ComponentModel.ISupportInitialize)chartBarController1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1Page1).BeginInit();
+          
             SuspendLayout();
             // 
             // ribbon
@@ -1151,13 +1151,13 @@
             // navigationSystemPage1
             // 
             navigationSystemPage1.Caption = "navigationSystemPage1";
+            navigationSystemPage1.Controls.Add(layoutControl1);
             navigationSystemPage1.Name = "navigationSystemPage1";
             navigationSystemPage1.Size = new Size(1123, 471);
             // 
             // navigationPageStudent
             // 
             navigationPageStudent.Caption = "navigationPage2";
-            navigationPageStudent.Controls.Add(layoutControl1);
             navigationPageStudent.Name = "navigationPageStudent";
             navigationPageStudent.Size = new Size(1123, 471);
             // 
@@ -1172,8 +1172,8 @@
             layoutControl1.Dock = DockStyle.Fill;
             layoutControl1.Location = new Point(0, 0);
             layoutControl1.Name = "layoutControl1";
-            layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new Rectangle(1146, 380, 650, 400);
-            layoutControl1.Root = Root;
+            layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new Rectangle(1110, 329, 650, 400);
+            layoutControl1.Root = RootPage1;
             layoutControl1.Size = new Size(1123, 471);
             layoutControl1.TabIndex = 0;
             layoutControl1.Text = "layoutControl1";
@@ -1214,6 +1214,12 @@
             chartControCountPerFaculty.Name = "chartControCountPerFaculty";
             chartControCountPerFaculty.Size = new Size(448, 439);
             chartControCountPerFaculty.TabIndex = 0;
+            // 
+            // navigationPageEmpty
+            // 
+            navigationPageEmpty.Caption = "navigationPageEmpty";
+            navigationPageEmpty.Name = "navigationPageEmpty";
+            navigationPageEmpty.Size = new Size(1123, 471);
             // 
             // RootPage1
             // 
@@ -1278,20 +1284,6 @@
             layoutControlItem5.Name = "layoutControlItem5";
             layoutControlItem5.Size = new Size(204, 90);
             layoutControlItem5.TextVisible = false;
-            // 
-            // Root
-            // 
-            Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
-            Root.GroupBordersVisible = false;
-            Root.Name = "Root";
-            Root.Size = new Size(1123, 471);
-            Root.TextVisible = false;
-            // 
-            // navigationPageEmpty
-            // 
-            navigationPageEmpty.Caption = "navigationPageEmpty";
-            navigationPageEmpty.Name = "navigationPageEmpty";
-            navigationPageEmpty.Size = new Size(1123, 471);
             // 
             // panelHeaderShowStudentFSTD
             // 
@@ -1429,6 +1421,7 @@
             layoutControlGroup1Page1.Size = new Size(360, 386);
             layoutControlGroup1Page1.Text = "Student in year";
             // 
+            // 
             // DashboardStudent
             // 
             Appearance.Options.UseFont = true;
@@ -1472,7 +1465,6 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)Root).EndInit();
             panelHeaderShowStudentFSTD.ResumeLayout(false);
             panelHeaderShowStudentFSTD.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxHeaderShowTableFST).EndInit();
@@ -1487,6 +1479,7 @@
             ((System.ComponentModel.ISupportInitialize)chartBarController1).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup2).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlGroup1Page1).EndInit();
+           
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1636,7 +1629,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItemListbyClassorYear;
         private DevExpress.XtraBars.BarButtonItem barButtonItemTopStudents;
         private DevExpress.XtraBars.BarButtonItem barButtonItemWarningList;
-
-        private DevExpress.XtraLayout.LayoutControlGroup Root;
+       
     }
 }
