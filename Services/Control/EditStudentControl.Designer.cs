@@ -816,7 +816,6 @@
             Controls.Add(layoutControl1);
             ForeColor = Color.White;
             Margin = new Padding(4, 3, 4, 3);
-           ;
             Size = new Size(1310, 543);
             ((System.ComponentModel.ISupportInitialize)layoutControl1).EndInit();
             layoutControl1.ResumeLayout(false);
