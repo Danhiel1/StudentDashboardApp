@@ -99,5 +99,15 @@ namespace StudentDashboardApp.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap z7011126876535_5d2a8a373984a08b54b6b6f3adcbb861 {
+            get {
+                object obj = ResourceManager.GetObject("z7011126876535_5d2a8a373984a08b54b6b6f3adcbb861", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

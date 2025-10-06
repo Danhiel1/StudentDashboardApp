@@ -21,7 +21,7 @@ namespace StudentDashboardApp.Controls
             // 
             // panel
             // 
-            panel.Appearance.BackColor = Color.FromArgb(32, 32, 32);
+            panel.Appearance.BackColor = Color.FromArgb(45, 45, 45);
             panel.Appearance.Options.UseBackColor = true;
             panel.AutoSize = true;
             panel.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;

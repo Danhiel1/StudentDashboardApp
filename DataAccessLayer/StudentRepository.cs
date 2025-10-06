@@ -59,6 +59,15 @@ namespace DataAccessLayer
                 return (int)cmd.ExecuteScalar();
             }
         }
+        public int CountMajors()
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Nganh", conn))
+            {
+                conn.Open();
+                return (int)cmd.ExecuteScalar();
+            }
+        }
 
         // ✅ Upsert (Insert nếu chưa có, Update nếu tồn tại)
         public void Upsert(string tableName, string[] keyColumns, DataTable data)

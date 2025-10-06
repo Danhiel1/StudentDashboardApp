@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Windows.Forms;
-using BusinessLayer;
+﻿using BusinessLayer;
 using BusinessLayer.Models;
 using DevExpress.XtraBars;
 using DevExpress.XtraBars.Navigation;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraCharts;
+using StudentDashboardApp.Controls;
 using StudentDashboardApp.Services;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Windows.Forms;
 
 namespace StudentDashboardApp.Model
 {
@@ -35,6 +36,7 @@ namespace StudentDashboardApp.Model
             // Load InfoCard
             infoCardStudent.SetData("Số Sinh Viên", _service.GetStudentCount().ToString(), Properties.Resources.student);
             infoCardTeacher.SetData("Số Giáo Viên", _service.GetTeacherCount().ToString(), Properties.Resources.student);
+            infoCardMajor.SetData("Số Ngành", _service.GetMajorCount().ToString(), Properties.Resources.student);
 
             // Quick Action
             AddQuickActionButtons();
@@ -116,20 +118,50 @@ namespace StudentDashboardApp.Model
 
         private void AddQuickActionButtons()
         {
-            var btnAddStudent = new StudentDashboardApp.Controls.QuickActionButton
+            // Xóa các nút cũ để không bị nhân đôi
+            flowLayoutPanel1.Controls.Clear();
+
+            // Dừng layout để thêm nút nhanh hơn, tránh nhấp nháy
+            flowLayoutPanel1.SuspendLayout();
+
+            // Thêm các nút mong muốn
+            flowLayoutPanel1.Controls.Add(CreateQuickButton(
+                "Thêm sinh viên mới",
+                "Đăng ký học sinh mới vào hệ thống"
+            ));
+
+            flowLayoutPanel1.Controls.Add(CreateQuickButton(
+                "Cập nhật dữ liệu",
+                "Làm mới thông tin từ cơ sở dữ liệu"
+            ));
+
+            flowLayoutPanel1.Controls.Add(CreateQuickButton(
+                "Xuất danh sách",
+                "Xuất danh sách sinh viên ra Excel"
+            ));
+
+            // Kích hoạt lại layout
+            flowLayoutPanel1.ResumeLayout();
+        }
+
+        private QuickActionButton CreateQuickButton(string title, string desc)
+        {
+            var btn = new QuickActionButton
             {
-                Title = "Thêm sinh viên mới",
-                Description = "Đăng ký học sinh mới vào hệ thống",
+                Title = title,
+                Description = desc,
                 Icon = Properties.Resources.close
             };
 
-            btnAddStudent.Click += (s, e) =>
-            {
-                MessageBox.Show("Bạn vừa click: " + btnAddStudent.Title);
-            };
-
-            //flowLayoutPanel1.Controls.Add(btnAddStudent);
+            btn.Click += (s, e) => MessageBox.Show($"Bạn vừa click: {title}");
+            return btn;
         }
 
+        private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var importForm = new ImportForm();
+            importForm.ShowDialog();
+
+        }
     }
 }

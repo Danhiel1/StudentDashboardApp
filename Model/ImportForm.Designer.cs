@@ -228,7 +228,7 @@
             textFileExcel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             textFileExcel.BackColor = Color.White;
             textFileExcel.BorderStyle = BorderStyle.None;
-            textFileExcel.ForeColor = SystemColors.Desktop;
+            textFileExcel.ForeColor = Color.Black;
             textFileExcel.ImeMode = ImeMode.NoControl;
             textFileExcel.Location = new Point(12, 45);
             textFileExcel.Multiline = true;

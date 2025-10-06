@@ -19,58 +19,58 @@ namespace StudentDashboardApp.Controls
 
         private void InitializeComponent()
         {
-            this.picIcon = new PictureBox();
-            this.lblTitle = new Label();
-            this.lblDescription = new Label();
-
-            ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
-            this.SuspendLayout();
-
+            picIcon = new PictureBox();
+            lblTitle = new Label();
+            lblDescription = new Label();
+            ((System.ComponentModel.ISupportInitialize)picIcon).BeginInit();
+            SuspendLayout();
             // 
             // picIcon
             // 
-            this.picIcon.Location = new Point(10, 15);
-            this.picIcon.Name = "picIcon";
-            this.picIcon.Size = new Size(40, 40);
-            this.picIcon.SizeMode = PictureBoxSizeMode.Zoom;
-            this.picIcon.TabStop = false;
-
+            picIcon.Image = Properties.Resources.z7011126876535_5d2a8a373984a08b54b6b6f3adcbb861;
+            picIcon.Location = new Point(10, 15);
+            picIcon.Name = "picIcon";
+            picIcon.Size = new Size(40, 40);
+            picIcon.SizeMode = PictureBoxSizeMode.Zoom;
+            picIcon.TabIndex = 0;
+            picIcon.TabStop = false;
             // 
             // lblTitle
             // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new Point(60, 15);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new Size(90, 19);
-            this.lblTitle.Text = "Button Title";
-
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(60, 15);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(86, 19);
+            lblTitle.TabIndex = 1;
+            lblTitle.Text = "Button Title";
             // 
             // lblDescription
             // 
-            this.lblDescription.AutoSize = true;
-            this.lblDescription.Font = new Font("Segoe UI", 8F);
-            this.lblDescription.ForeColor = Color.DimGray;
-            this.lblDescription.Location = new Point(60, 38);
-            this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new Size(140, 13);
-            this.lblDescription.Text = "Button description here...";
-
+            lblDescription.AutoSize = true;
+            lblDescription.Font = new Font("Segoe UI", 8F);
+            lblDescription.ForeColor = Color.Transparent;
+            lblDescription.Location = new Point(60, 38);
+            lblDescription.Name = "lblDescription";
+            lblDescription.Size = new Size(139, 13);
+            lblDescription.TabIndex = 2;
+            lblDescription.Text = "Button description here...";
             // 
             // QuickActionButton
             // 
-            this.AutoScaleMode = AutoScaleMode.None;
-            this.BorderStyle = BorderStyle.FixedSingle;
-            this.Controls.Add(this.picIcon);
-            this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.lblDescription);
-            this.Cursor = Cursors.Hand;
-            this.Name = "QuickActionButton";
-            this.Size = new Size(280, 70);
-
-            ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleMode = AutoScaleMode.None;
+            BackColor = Color.FromArgb(45, 45, 45);
+            BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(picIcon);
+            Controls.Add(lblTitle);
+            Controls.Add(lblDescription);
+            Cursor = Cursors.Hand;
+            Name = "QuickActionButton";
+            Size = new Size(280, 70);
+            ((System.ComponentModel.ISupportInitialize)picIcon).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
     }
 }

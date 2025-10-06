@@ -34,6 +34,10 @@ namespace BusinessLayer
         {
             return _repo.CountTeacher();
         }
+        public int GetMajorCount()
+        {
+            return _repo.CountMajors();
+        }
 
         // 1. Lấy số lượng SV theo niên khóa
         public List<StudentPerNienKhoa> GetStudentCountPerNienKhoa()

@@ -6,7 +6,7 @@ namespace StudentDashboardApp.Controls
 {
     public partial class QuickActionButton : UserControl
     {
-        private Color _defaultBackColor = Color.WhiteSmoke;
+        private Color _defaultBackColor = Color.FromArgb(45, 45, 45);
         private Color _hoverBackColor = Color.LightBlue;
 
         public QuickActionButton()
