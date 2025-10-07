@@ -25,8 +25,7 @@ namespace StudentDashboardApp.Model
         public DashboardStudent()
         {
             InitializeComponent();
-            string connectionString = "Server=.;Database=QLSV;Trusted_Connection=True;Encrypt=False;";
-            _service = new StudentService(connectionString);
+           
         }
 
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
@@ -65,56 +64,35 @@ namespace StudentDashboardApp.Model
         private StudentDashboardApp.Services.NavigationService navService;
         private void DashboardStudent_Load(object sender, EventArgs e)
         {
-            infoCardStudent.SetData("Số Sinh Viên", _service.GetStudentCount().ToString(), Properties.Resources.student);
-            infoCardTeacher.SetData("Số Giáo Viên", _service.GetTeacherCount().ToString(), Properties.Resources.student);
+           
 
-
-            ChartService.LoadChart(
-                chartControlCountPerNienKhoa,
-                _service.GetStudentCountPerNienKhoa(),
-                argumentMember: "MaNienKhoa",
-                valueMember: "StudentCount",
-                viewType: ViewType.Pie,
-                chartTitle: "Số SV theo Niên khóa"
-            );
-
-            // Bar Chart: Số SV theo Khoa
-            ChartService.LoadChart(
-                chartControCountPerFaculty,
-                _service.GetStudentCountPerFaculty(),
-                argumentMember: "FacultyName",
-                valueMember: "StudentCount",
-                viewType: ViewType.Bar,
-                chartTitle: "Số SV theo Khoa"
-            );
-
-            // Map RibbonPage → NavigationPage
-            Dictionary<RibbonPage, NavigationPage> ribbonMap = new Dictionary<RibbonPage, NavigationPage>
-    {
-        { ribbonPage1, navigationSystemPage1 },
-        { ribbonPage2, navigationPageEmpty},
-        { ribbonPage3, navigationPageStudent }
-    };
+            //Map RibbonPage → NavigationPage
+                    Dictionary<RibbonPage, NavigationPage> ribbonMap = new Dictionary<RibbonPage, NavigationPage>
+            {
+                { ribbonPage1, navigationSystemPage1 },
+                { ribbonPage3, navigationPageEmpty},
+                { ribbonPage2, navigationPageStudent }
+            };
 
             var buttonMap = new Dictionary<BarButtonItem, (NavigationPage, UserControl)>
             {
             { barButtonItemFindStudent, (navigationPageStudent,new FindStudentControl()) },
             { barButtonItemAddST, (navigationPageStudent, new AddStudentControl()) },
             { barButtonItemEditST,(navigationPageStudent, new EditStudentControl()) },
-            {barButtonItemViewTranscript, (navigationPageStudent, new ViewTranscriptStudentControl()) }
-
+            {barButtonItemViewTranscript, (navigationPageStudent, new ViewTranscriptStudentControl()) },
+            {barButtonItemTopStudents, (navigationPageStudent, new TopStudentControl()) },
+            {barButtonItemListbyClassorYear, (navigationPageStudent, new ListbyClassorYearControl()) },
+            {barButtonItemEditStudentScore, (navigationPageStudent, new EditStudentScoreControl()) },
+            {barButtonItemAttendance, (navigationPageStudent, new AttendanceControl()) },
+            {barButtonItemOverview, (navigationPageStudent, new Overviewcontrol()) },
+       
             };
 
 
+            navHelper = new NavigationHelper(navigationFrameSTD,buttonMap);
 
 
-            // NavigationHelper (cho button)
-            navHelper = new NavigationHelper(navigationFrameSTD, buttonMap);
-            navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
-            navigationFrameSTD.SelectedPage = navigationSystemPage1; // page mặc định
-            navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True;
-
-            // NavigationService (cho ribbon)
+            //NavigationService(cho ribbon)
             navService = new StudentDashboardApp.Services.NavigationService(ribbonMap);
         }
 
@@ -166,7 +144,8 @@ namespace StudentDashboardApp.Model
                 navigationFrameSTD.SelectedPage = navPage;
                 navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True;
             }
-            // navHelper.ShowEmptyPage(navigationPageEmpty);// mỗi khi chuyển page sẽ tự động trả về page rỗng
+           
+
         }
 
 

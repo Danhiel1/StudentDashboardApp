@@ -144,7 +144,7 @@
             lblSheetName.ForeColor = Color.Transparent;
             lblSheetName.Location = new Point(0, 0);
             lblSheetName.Name = "lblSheetName";
-            lblSheetName.Size = new Size(66, 13);
+            lblSheetName.Size = new Size(65, 13);
             lblSheetName.TabIndex = 0;
             lblSheetName.Text = "Name Sheet";
             // 
@@ -259,6 +259,7 @@
             Controls.Add(fluentDesignFormContainer1);
             Controls.Add(fluentDesignFormControl1);
             FluentDesignFormControl = fluentDesignFormControl1;
+            Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Name = "ImportForm";
             Text = "ImportForm";
             ((System.ComponentModel.ISupportInitialize)recentlyUsedItemsComboBox1).EndInit();
