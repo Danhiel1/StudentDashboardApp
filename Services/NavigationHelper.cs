@@ -16,7 +16,6 @@ namespace StudentDashboardApp.Services
         {
             _frame = frame;
             _map = map;
-
             foreach (var btn in _map.Keys)
                 btn.ItemClick += OnButtonClick;
         }

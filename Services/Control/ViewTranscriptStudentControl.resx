@@ -145,7 +145,7 @@
   <data name="barButtonItemExcel.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DgAACw4BQL7hQQAAA1ZJREFUaEPt2WtIU3EYBnC/52VzlzOJNPuel7k505zpzJxzE0wybZWJjjTNS2nT
+        DAAACwwBP0AiyAAAA1ZJREFUaEPt2WtIU3EYBnC/52VzlzOJNPuel7k505zpzJxzE0wybZWJjjTNS2nT
         TJ2aWpGVGDUjKBdBl28RyJAgNIQEkSKi6GYTIjKKoBJ1e+OccNW7C/tv4xyCPfB82YfD7zn772ywsLBQ
         QgkllP8qmywGTbyleiHeYgB/mjJl8qvSSZNNNmlSYw9xNo4ZbBhFUgwjqXSq+z32EAeDSItRpMUe4mAQ
         aTGItNhDHAwiLQaRFnuIg0GkxSDSYg9xMIi0GERa7CHOhnPl4Etjh/UQd7kC4q9XszuAGtRpqMGiBWpA
@@ -165,7 +165,7 @@
   <data name="barButtonItemPDF.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DgAACw4BQL7hQQAABHhJREFUaEPtmF1oW3UYxv8IjglNk/bC6abiEMcuREHx66YgCkMsfgxb2Yqts51M
+        DAAACwwBP0AiyAAABHhJREFUaEPtmF1oW3UYxv8IjglNk/bC6abiEMcuREHx66YgCkMsfgxb2Yqts51M
         FC/EojjrZMqKH0VXHatadFu1Wi+cX8UORVaUyerQYa3o2tK5pe26rs2WNO0akzxyTntOcp7/ab15038Y
         +cHvoue8Pe/z0CYnJ0oVKFCgQIELCJQq5Mznnj6Kbdsu4p1G0UJK2t4GvPjsAGpqlvNeY2ghJbUKW778
         wihqK0p5txG0kJI6hS0bt0dQXbGK9y85WkhJswtbNjXGUbN+LWdYUrSQknLh9jakdr4xi7rK2zjHkqGF
@@ -190,7 +190,7 @@
   <data name="barButtonItemWord.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DgAACw4BQL7hQQAAA3dJREFUaEPtmVtIFFEYxw16iWaUinqQHpR66PJUQi9FvdTMgiiUGNGNsJCILg9B
+        DAAACwwBP0AiyAAAA3dJREFUaEPtmVtIFFEYxw16iWaUinqQHpR66PJUQi9FvdTMgiiUGNGNsJCILg9B
         YIUogUkYIpSgWc2slzQNE0PzllZbitdMRCsrRNM0E3VXbVv1xPnWnXa/LY6nxlxjfvBnzvlm5nz/b/ec
         MzDj52dgYGDwX7Jsd0aguMccJspqnCArxaKk9OFrfINd1UuXy8pmUVKOCpKaIkpKhSArQ6KsEix86z9n
         VXiGKJjUHYKkRINZWbWIsjqJjf5OeLx5JSA0ewU1K8rKOUFSzKKktIuSOo1N8QjnmFdwcj0UnGr9IwXd

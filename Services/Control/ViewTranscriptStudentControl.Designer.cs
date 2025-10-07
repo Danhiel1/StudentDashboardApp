@@ -169,10 +169,10 @@
             panelHeaderFindStudent.BackColor = Color.FromArgb(62, 64, 149);
             panelHeaderFindStudent.Controls.Add(pictureBoxHeaderFindStudent);
             panelHeaderFindStudent.Controls.Add(labelHeaderViewTranScriptStudent);
-            panelHeaderFindStudent.Location = new Point(16, 16);
+            panelHeaderFindStudent.Location = new Point(12, 12);
             panelHeaderFindStudent.Margin = new Padding(5, 3, 5, 3);
             panelHeaderFindStudent.Name = "panelHeaderFindStudent";
-            panelHeaderFindStudent.Size = new Size(1278, 45);
+            panelHeaderFindStudent.Size = new Size(1286, 53);
             panelHeaderFindStudent.TabIndex = 51;
             // 
             // pictureBoxHeaderFindStudent
@@ -212,7 +212,7 @@
             layoutControlItem1.Control = panelHeaderFindStudent;
             layoutControlItem1.Location = new Point(0, 0);
             layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new Size(1284, 51);
+            layoutControlItem1.Size = new Size(1290, 57);
             layoutControlItem1.TextVisible = false;
             // 
             // layoutControl3
@@ -234,10 +234,10 @@
             // dropDownExport
             // 
             dropDownExport.DropDownControl = popupMenu1;
-            dropDownExport.Location = new Point(453, 16);
+            dropDownExport.Location = new Point(456, 12);
             dropDownExport.Margin = new Padding(4, 3, 4, 3);
             dropDownExport.Name = "dropDownExport";
-            dropDownExport.Size = new Size(136, 28);
+            dropDownExport.Size = new Size(141, 22);
             dropDownExport.StyleController = layoutControl3;
             dropDownExport.TabIndex = 16;
             dropDownExport.Text = "Export TranScript";
@@ -275,7 +275,6 @@
             barManager1.DockControls.Add(barDockControlBottom);
             barManager1.DockControls.Add(barDockControlLeft);
             barManager1.DockControls.Add(barDockControlRight);
-            barManager1.DockWindowTabFont = new Font("Segoe UI", 9F);
             barManager1.Form = this;
             barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { barButtonItemExcel, barButtonItemPDF, barButtonItemWord });
             barManager1.MaxItemId = 3;
@@ -314,11 +313,11 @@
             // 
             // layoutControl4
             // 
-            layoutControl4.Location = new Point(595, 16);
+            layoutControl4.Location = new Point(601, 12);
             layoutControl4.Margin = new Padding(4, 3, 4, 3);
             layoutControl4.Name = "layoutControl4";
             layoutControl4.Root = layoutControlGroup3;
-            layoutControl4.Size = new Size(682, 28);
+            layoutControl4.Size = new Size(697, 33);
             layoutControl4.TabIndex = 7;
             layoutControl4.Text = "layoutControl4";
             // 
@@ -327,34 +326,34 @@
             layoutControlGroup3.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             layoutControlGroup3.GroupBordersVisible = false;
             layoutControlGroup3.Name = "layoutControlGroup3";
-            layoutControlGroup3.Size = new Size(682, 28);
+            layoutControlGroup3.Size = new Size(697, 33);
             layoutControlGroup3.TextVisible = false;
             // 
             // simpleButtonEnter
             // 
-            simpleButtonEnter.Location = new Point(327, 16);
+            simpleButtonEnter.Location = new Point(328, 12);
             simpleButtonEnter.Margin = new Padding(4, 3, 4, 3);
             simpleButtonEnter.Name = "simpleButtonEnter";
-            simpleButtonEnter.Size = new Size(120, 28);
+            simpleButtonEnter.Size = new Size(124, 22);
             simpleButtonEnter.StyleController = layoutControl3;
             simpleButtonEnter.TabIndex = 6;
             simpleButtonEnter.Text = "Enter";
             // 
             // textEditEnterIDStudent
             // 
-            textEditEnterIDStudent.Location = new Point(137, 16);
+            textEditEnterIDStudent.Location = new Point(135, 12);
             textEditEnterIDStudent.Margin = new Padding(4, 3, 4, 3);
             textEditEnterIDStudent.Name = "textEditEnterIDStudent";
-            textEditEnterIDStudent.Size = new Size(184, 28);
+            textEditEnterIDStudent.Size = new Size(189, 20);
             textEditEnterIDStudent.StyleController = layoutControl3;
             textEditEnterIDStudent.TabIndex = 5;
             // 
             // labelIDStudententer
             // 
-            labelIDStudententer.Location = new Point(16, 16);
+            labelIDStudententer.Location = new Point(12, 12);
             labelIDStudententer.Margin = new Padding(4, 0, 4, 0);
             labelIDStudententer.Name = "labelIDStudententer";
-            labelIDStudententer.Size = new Size(115, 28);
+            labelIDStudententer.Size = new Size(119, 33);
             labelIDStudententer.TabIndex = 4;
             labelIDStudententer.Text = "Enter ID Student:";
             // 
@@ -364,7 +363,7 @@
             layoutControlGroup2.GroupBordersVisible = false;
             layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem3, layoutControlItem4, layoutControlItem5, layoutControlItem6, layoutControlItem19 });
             layoutControlGroup2.Name = "layoutControlGroup2";
-            layoutControlGroup2.Size = new Size(1293, 60);
+            layoutControlGroup2.Size = new Size(1310, 57);
             layoutControlGroup2.TextVisible = false;
             // 
             // layoutControlItem3
@@ -372,39 +371,39 @@
             layoutControlItem3.Control = labelIDStudententer;
             layoutControlItem3.Location = new Point(0, 0);
             layoutControlItem3.Name = "layoutControlItem3";
-            layoutControlItem3.Size = new Size(121, 34);
+            layoutControlItem3.Size = new Size(123, 37);
             layoutControlItem3.TextVisible = false;
             // 
             // layoutControlItem4
             // 
             layoutControlItem4.Control = textEditEnterIDStudent;
-            layoutControlItem4.Location = new Point(121, 0);
+            layoutControlItem4.Location = new Point(123, 0);
             layoutControlItem4.Name = "layoutControlItem4";
-            layoutControlItem4.Size = new Size(190, 34);
+            layoutControlItem4.Size = new Size(193, 37);
             layoutControlItem4.TextVisible = false;
             // 
             // layoutControlItem5
             // 
             layoutControlItem5.Control = simpleButtonEnter;
-            layoutControlItem5.Location = new Point(311, 0);
+            layoutControlItem5.Location = new Point(316, 0);
             layoutControlItem5.Name = "layoutControlItem5";
-            layoutControlItem5.Size = new Size(126, 34);
+            layoutControlItem5.Size = new Size(128, 37);
             layoutControlItem5.TextVisible = false;
             // 
             // layoutControlItem6
             // 
             layoutControlItem6.Control = layoutControl4;
-            layoutControlItem6.Location = new Point(579, 0);
+            layoutControlItem6.Location = new Point(589, 0);
             layoutControlItem6.Name = "layoutControlItem6";
-            layoutControlItem6.Size = new Size(688, 34);
+            layoutControlItem6.Size = new Size(701, 37);
             layoutControlItem6.TextVisible = false;
             // 
             // layoutControlItem19
             // 
             layoutControlItem19.Control = dropDownExport;
-            layoutControlItem19.Location = new Point(437, 0);
+            layoutControlItem19.Location = new Point(444, 0);
             layoutControlItem19.Name = "layoutControlItem19";
-            layoutControlItem19.Size = new Size(142, 34);
+            layoutControlItem19.Size = new Size(145, 37);
             layoutControlItem19.TextVisible = false;
             // 
             // layoutControl7
@@ -421,13 +420,14 @@
             // 
             // layoutControl5
             // 
+            layoutControl5.AutoScroll = false;
             layoutControl5.Controls.Add(layoutControl8);
             layoutControl5.Controls.Add(layoutControl6);
-            layoutControl5.Location = new Point(16, 16);
+            layoutControl5.Location = new Point(12, 12);
             layoutControl5.Margin = new Padding(4, 3, 4, 3);
             layoutControl5.Name = "layoutControl5";
             layoutControl5.Root = layoutControlGroup4;
-            layoutControl5.Size = new Size(1261, 126);
+            layoutControl5.Size = new Size(1286, 110);
             layoutControl5.TabIndex = 10;
             layoutControl5.Text = "layoutControl5";
             // 
@@ -437,51 +437,51 @@
             layoutControl8.Controls.Add(labelMajor);
             layoutControl8.Controls.Add(textEditMajor);
             layoutControl8.Controls.Add(textEditEducationLevel);
-            layoutControl8.Location = new Point(583, 16);
+            layoutControl8.Location = new Point(593, 12);
             layoutControl8.Margin = new Padding(4, 3, 4, 3);
             layoutControl8.Name = "layoutControl8";
             layoutControl8.Root = layoutControlGroup7;
-            layoutControl8.Size = new Size(662, 94);
+            layoutControl8.Size = new Size(681, 86);
             layoutControl8.TabIndex = 10;
             layoutControl8.Text = "layoutControl8";
             // 
             // labelEducationLevel
             // 
-            labelEducationLevel.Location = new Point(16, 50);
+            labelEducationLevel.Location = new Point(12, 36);
             labelEducationLevel.Margin = new Padding(4, 0, 4, 0);
             labelEducationLevel.Name = "labelEducationLevel";
-            labelEducationLevel.Size = new Size(146, 28);
+            labelEducationLevel.Size = new Size(154, 38);
             labelEducationLevel.TabIndex = 9;
             labelEducationLevel.Text = "Education Level:";
             // 
             // labelMajor
             // 
-            labelMajor.Location = new Point(16, 16);
+            labelMajor.Location = new Point(12, 12);
             labelMajor.Margin = new Padding(4, 0, 4, 0);
             labelMajor.Name = "labelMajor";
-            labelMajor.Size = new Size(146, 28);
+            labelMajor.Size = new Size(154, 20);
             labelMajor.TabIndex = 8;
             labelMajor.Text = "Major:";
             // 
             // textEditMajor
             // 
             textEditMajor.Enabled = false;
-            textEditMajor.Location = new Point(168, 16);
+            textEditMajor.Location = new Point(170, 12);
             textEditMajor.Margin = new Padding(4, 3, 4, 3);
             textEditMajor.Name = "textEditMajor";
             textEditMajor.Properties.ReadOnly = true;
-            textEditMajor.Size = new Size(478, 28);
+            textEditMajor.Size = new Size(499, 20);
             textEditMajor.StyleController = layoutControl8;
             textEditMajor.TabIndex = 7;
             // 
             // textEditEducationLevel
             // 
             textEditEducationLevel.Enabled = false;
-            textEditEducationLevel.Location = new Point(168, 50);
+            textEditEducationLevel.Location = new Point(170, 36);
             textEditEducationLevel.Margin = new Padding(4, 3, 4, 3);
             textEditEducationLevel.Name = "textEditEducationLevel";
             textEditEducationLevel.Properties.ReadOnly = true;
-            textEditEducationLevel.Size = new Size(478, 28);
+            textEditEducationLevel.Size = new Size(499, 20);
             textEditEducationLevel.StyleController = layoutControl8;
             textEditEducationLevel.TabIndex = 5;
             // 
@@ -491,23 +491,23 @@
             layoutControlGroup7.GroupBordersVisible = false;
             layoutControlGroup7.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem13, layoutControlItem14, layoutControlItem15, layoutControlItem16 });
             layoutControlGroup7.Name = "layoutControlGroup4";
-            layoutControlGroup7.Size = new Size(662, 94);
+            layoutControlGroup7.Size = new Size(681, 86);
             layoutControlGroup7.TextVisible = false;
             // 
             // layoutControlItem13
             // 
             layoutControlItem13.Control = textEditEducationLevel;
-            layoutControlItem13.Location = new Point(152, 34);
+            layoutControlItem13.Location = new Point(158, 24);
             layoutControlItem13.Name = "layoutControlItem8";
-            layoutControlItem13.Size = new Size(484, 34);
+            layoutControlItem13.Size = new Size(503, 42);
             layoutControlItem13.TextVisible = false;
             // 
             // layoutControlItem14
             // 
             layoutControlItem14.Control = textEditMajor;
-            layoutControlItem14.Location = new Point(152, 0);
+            layoutControlItem14.Location = new Point(158, 0);
             layoutControlItem14.Name = "layoutControlItem9";
-            layoutControlItem14.Size = new Size(484, 34);
+            layoutControlItem14.Size = new Size(503, 24);
             layoutControlItem14.TextVisible = false;
             // 
             // layoutControlItem15
@@ -515,15 +515,15 @@
             layoutControlItem15.Control = labelMajor;
             layoutControlItem15.Location = new Point(0, 0);
             layoutControlItem15.Name = "layoutControlItem7";
-            layoutControlItem15.Size = new Size(152, 34);
+            layoutControlItem15.Size = new Size(158, 24);
             layoutControlItem15.TextVisible = false;
             // 
             // layoutControlItem16
             // 
             layoutControlItem16.Control = labelEducationLevel;
-            layoutControlItem16.Location = new Point(0, 34);
+            layoutControlItem16.Location = new Point(0, 24);
             layoutControlItem16.Name = "layoutControlItem10";
-            layoutControlItem16.Size = new Size(152, 34);
+            layoutControlItem16.Size = new Size(158, 42);
             layoutControlItem16.TextVisible = false;
             // 
             // layoutControl6
@@ -532,51 +532,51 @@
             layoutControl6.Controls.Add(labelFullName);
             layoutControl6.Controls.Add(textEditFullName);
             layoutControl6.Controls.Add(textEditID);
-            layoutControl6.Location = new Point(16, 16);
+            layoutControl6.Location = new Point(12, 12);
             layoutControl6.Margin = new Padding(4, 3, 4, 3);
             layoutControl6.Name = "layoutControl6";
             layoutControl6.Root = layoutControlGroup5;
-            layoutControl6.Size = new Size(561, 94);
+            layoutControl6.Size = new Size(577, 86);
             layoutControl6.TabIndex = 12;
             layoutControl6.Text = "layoutControl6";
             // 
             // labelID
             // 
-            labelID.Location = new Point(16, 50);
+            labelID.Location = new Point(12, 36);
             labelID.Margin = new Padding(4, 0, 4, 0);
             labelID.Name = "labelID";
-            labelID.Size = new Size(125, 28);
+            labelID.Size = new Size(132, 38);
             labelID.TabIndex = 9;
             labelID.Text = "Student ID:";
             // 
             // labelFullName
             // 
-            labelFullName.Location = new Point(16, 16);
+            labelFullName.Location = new Point(12, 12);
             labelFullName.Margin = new Padding(4, 0, 4, 0);
             labelFullName.Name = "labelFullName";
-            labelFullName.Size = new Size(125, 28);
+            labelFullName.Size = new Size(132, 20);
             labelFullName.TabIndex = 8;
             labelFullName.Text = "Full Name:";
             // 
             // textEditFullName
             // 
             textEditFullName.Enabled = false;
-            textEditFullName.Location = new Point(147, 16);
+            textEditFullName.Location = new Point(148, 12);
             textEditFullName.Margin = new Padding(4, 3, 4, 3);
             textEditFullName.Name = "textEditFullName";
             textEditFullName.Properties.ReadOnly = true;
-            textEditFullName.Size = new Size(398, 28);
+            textEditFullName.Size = new Size(417, 20);
             textEditFullName.StyleController = layoutControl6;
             textEditFullName.TabIndex = 7;
             // 
             // textEditID
             // 
             textEditID.Enabled = false;
-            textEditID.Location = new Point(147, 50);
+            textEditID.Location = new Point(148, 36);
             textEditID.Margin = new Padding(4, 3, 4, 3);
             textEditID.Name = "textEditID";
             textEditID.Properties.ReadOnly = true;
-            textEditID.Size = new Size(398, 28);
+            textEditID.Size = new Size(417, 20);
             textEditID.StyleController = layoutControl6;
             textEditID.TabIndex = 5;
             // 
@@ -586,23 +586,23 @@
             layoutControlGroup5.GroupBordersVisible = false;
             layoutControlGroup5.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem8, layoutControlItem9, layoutControlItem7, layoutControlItem10 });
             layoutControlGroup5.Name = "layoutControlGroup4";
-            layoutControlGroup5.Size = new Size(561, 94);
+            layoutControlGroup5.Size = new Size(577, 86);
             layoutControlGroup5.TextVisible = false;
             // 
             // layoutControlItem8
             // 
             layoutControlItem8.Control = textEditID;
-            layoutControlItem8.Location = new Point(131, 34);
+            layoutControlItem8.Location = new Point(136, 24);
             layoutControlItem8.Name = "layoutControlItem8";
-            layoutControlItem8.Size = new Size(404, 34);
+            layoutControlItem8.Size = new Size(421, 42);
             layoutControlItem8.TextVisible = false;
             // 
             // layoutControlItem9
             // 
             layoutControlItem9.Control = textEditFullName;
-            layoutControlItem9.Location = new Point(131, 0);
+            layoutControlItem9.Location = new Point(136, 0);
             layoutControlItem9.Name = "layoutControlItem9";
-            layoutControlItem9.Size = new Size(404, 34);
+            layoutControlItem9.Size = new Size(421, 24);
             layoutControlItem9.TextVisible = false;
             // 
             // layoutControlItem7
@@ -610,15 +610,15 @@
             layoutControlItem7.Control = labelFullName;
             layoutControlItem7.Location = new Point(0, 0);
             layoutControlItem7.Name = "layoutControlItem7";
-            layoutControlItem7.Size = new Size(131, 34);
+            layoutControlItem7.Size = new Size(136, 24);
             layoutControlItem7.TextVisible = false;
             // 
             // layoutControlItem10
             // 
             layoutControlItem10.Control = labelID;
-            layoutControlItem10.Location = new Point(0, 34);
+            layoutControlItem10.Location = new Point(0, 24);
             layoutControlItem10.Name = "layoutControlItem10";
-            layoutControlItem10.Size = new Size(131, 34);
+            layoutControlItem10.Size = new Size(136, 42);
             layoutControlItem10.TextVisible = false;
             // 
             // layoutControlGroup4
@@ -627,7 +627,7 @@
             layoutControlGroup4.GroupBordersVisible = false;
             layoutControlGroup4.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem12, layoutControlItem17 });
             layoutControlGroup4.Name = "layoutControlGroup4";
-            layoutControlGroup4.Size = new Size(1261, 126);
+            layoutControlGroup4.Size = new Size(1286, 110);
             layoutControlGroup4.TextVisible = false;
             // 
             // layoutControlItem12
@@ -635,15 +635,15 @@
             layoutControlItem12.Control = layoutControl6;
             layoutControlItem12.Location = new Point(0, 0);
             layoutControlItem12.Name = "layoutControlItem12";
-            layoutControlItem12.Size = new Size(567, 100);
+            layoutControlItem12.Size = new Size(581, 90);
             layoutControlItem12.TextVisible = false;
             // 
             // layoutControlItem17
             // 
             layoutControlItem17.Control = layoutControl8;
-            layoutControlItem17.Location = new Point(567, 0);
+            layoutControlItem17.Location = new Point(581, 0);
             layoutControlItem17.Name = "layoutControlItem17";
-            layoutControlItem17.Size = new Size(668, 100);
+            layoutControlItem17.Size = new Size(685, 90);
             layoutControlItem17.TextVisible = false;
             // 
             // layoutControlGroup6
@@ -652,7 +652,7 @@
             layoutControlGroup6.GroupBordersVisible = false;
             layoutControlGroup6.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem11 });
             layoutControlGroup6.Name = "layoutControlGroup6";
-            layoutControlGroup6.Size = new Size(1293, 158);
+            layoutControlGroup6.Size = new Size(1310, 134);
             layoutControlGroup6.TextVisible = false;
             // 
             // layoutControlItem11
@@ -660,7 +660,7 @@
             layoutControlItem11.Control = layoutControl5;
             layoutControlItem11.Location = new Point(0, 0);
             layoutControlItem11.Name = "layoutControlItem11";
-            layoutControlItem11.Size = new Size(1267, 132);
+            layoutControlItem11.Size = new Size(1290, 114);
             layoutControlItem11.TextVisible = false;
             // 
             // layoutControl2
@@ -678,11 +678,11 @@
             // gridControl2
             // 
             gridControl2.EmbeddedNavigator.Margin = new Padding(4, 3, 4, 3);
-            gridControl2.Location = new Point(16, 16);
+            gridControl2.Location = new Point(12, 12);
             gridControl2.MainView = gridView2;
             gridControl2.Margin = new Padding(4, 3, 4, 3);
             gridControl2.Name = "gridControl2";
-            gridControl2.Size = new Size(1278, 352);
+            gridControl2.Size = new Size(1286, 360);
             gridControl2.TabIndex = 6;
             gridControl2.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView2 });
             // 
@@ -799,7 +799,7 @@
             layoutControlItem2.Control = gridControl2;
             layoutControlItem2.Location = new Point(0, 0);
             layoutControlItem2.Name = "layoutControlItem2";
-            layoutControlItem2.Size = new Size(1284, 358);
+            layoutControlItem2.Size = new Size(1290, 364);
             layoutControlItem2.TextVisible = false;
             // 
             // ViewTranscriptStudentControl
