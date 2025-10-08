@@ -42,10 +42,9 @@
             lblTitle.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             lblTitle.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             lblTitle.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            lblTitle.Location = new Point(0, 15);
-            lblTitle.Margin = new Padding(4, 3, 4, 3);
+            lblTitle.Location = new Point(3, -1);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(253, 53);
+            lblTitle.Size = new Size(160, 46);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Title";
             // 
@@ -59,25 +58,22 @@
             lblValue.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             lblValue.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             lblValue.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            lblValue.Location = new Point(0, 57);
-            lblValue.Margin = new Padding(4, 3, 4, 3);
+            lblValue.Location = new Point(3, 33);
             lblValue.Name = "lblValue";
-            lblValue.Size = new Size(253, 57);
+            lblValue.Size = new Size(164, 49);
             lblValue.TabIndex = 1;
             lblValue.Text = "Value";
             // 
             // StatCard
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(45, 45, 48);
             BorderStyle = BorderStyle.FixedSingle;
             Controls.Add(lblValue);
             Controls.Add(lblTitle);
-            Margin = new Padding(4, 3, 4, 3);
             Name = "StatCard";
-            Size = new Size(251, 171);
-            Load += StatCard_Load;
+            Size = new Size(162, 110);
             ResumeLayout(false);
         }
 

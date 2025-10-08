@@ -14,7 +14,6 @@ namespace StudentDashboardApp.Model
         {
             InitializeComponent();
 
-            // Cho phép nhập tay trong combo
             cboServer.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             cboDatabase.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
 
@@ -22,97 +21,105 @@ namespace StudentDashboardApp.Model
             ToggleAuth();
         }
 
-        private void rdoWindowsAuth_CheckedChanged(object sender, EventArgs e)
-        {
-            ToggleAuth();
-        }
+        private void rdoWindowsAuth_CheckedChanged(object sender, EventArgs e) => ToggleAuth();
 
-        private void rdoSqlAuth_CheckedChanged(object sender, EventArgs e)
-        {
-            ToggleAuth();
-        }
+        private void rdoSqlAuth_CheckedChanged(object sender, EventArgs e) => ToggleAuth();
 
         private void ToggleAuth()
         {
-            bool sqlAuth = rdoSqlAuth.Checked;
-            txtUsername.Enabled = sqlAuth;
-            txtPassword.Enabled = sqlAuth;
+            bool isSqlAuth = rdoSqlAuth.Checked;
+            txtUsername.Enabled = isSqlAuth;
+            txtPassword.Enabled = isSqlAuth;
+
+            if (!isSqlAuth)
+            {
+                txtUsername.Clear();
+                txtPassword.Clear();
+            }
         }
 
         private void btnTest_Click(object sender, EventArgs e)
         {
-            string conn = BuildConnectionString();
-            try
+            string connStr = BuildConnectionString();
+            string message;
+            MessageBoxIcon icon;
+
+            if (TryTestConnection(connStr, out string error))
             {
-                using (SqlConnection connection = new SqlConnection(conn))
-                {
-                    connection.Open();
-                    XtraMessageBox.Show("✅ Kết nối thành công!", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                message = "✅ Kết nối thành công!";
+                icon = MessageBoxIcon.Information;
             }
-            catch (Exception ex)
+            else
             {
-                XtraMessageBox.Show("❌ Kết nối thất bại:\n" + ex.Message, "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                message = $"❌ Kết nối thất bại:\n{error}";
+                icon = MessageBoxIcon.Error;
             }
+
+            XtraMessageBox.Show(message, "Kết quả kiểm tra", MessageBoxButtons.OK, icon);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             string connStr = BuildConnectionString();
 
-            // Test trước khi lưu
-            if (TestConnection(connStr))
+            if (!TryTestConnection(connStr, out string error))
             {
-                // ✅ Nếu kết nối được → Lưu connection string
-                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                XtraMessageBox.Show($"❌ Kết nối thất bại!\n{error}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                if (config.ConnectionStrings.ConnectionStrings["QLSVConnection"] == null)
+            try
+            {
+                var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var connSection = config.ConnectionStrings.ConnectionStrings;
+
+                if (connSection["QLSVConnection"] == null)
                 {
-                    config.ConnectionStrings.ConnectionStrings.Add(
-                        new ConnectionStringSettings("QLSVConnection", connStr));
+                    connSection.Add(new ConnectionStringSettings("QLSVConnection", connStr));
                 }
                 else
                 {
-                    config.ConnectionStrings.ConnectionStrings["QLSVConnection"].ConnectionString = connStr;
+                    connSection["QLSVConnection"].ConnectionString = connStr;
                 }
 
                 config.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection("connectionStrings");
 
-                // Trả về cho Program.cs
-                this.ConnectionString = connStr;
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                ConnectionString = connStr;
+                DialogResult = DialogResult.OK;
+                Close();
             }
-            else
+            catch (Exception ex)
             {
-                XtraMessageBox.Show("❌ Kết nối thất bại! Vui lòng kiểm tra lại thông tin.",
-                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show($"❌ Lỗi khi lưu cấu hình:\n{ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private bool TestConnection(string connStr)
+        /// <summary>
+        /// Kiểm tra kết nối và trả về chi tiết lỗi nếu có.
+        /// </summary>
+        private bool TryTestConnection(string connStr, out string error)
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection(connStr))
+                using (var conn = new SqlConnection(connStr))
                 {
                     conn.Open();
+                    error = string.Empty;
                     return true;
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                error = ex.Message;
                 return false;
             }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         private void btnLoadDatabase_Click(object sender, EventArgs e)
@@ -123,81 +130,109 @@ namespace StudentDashboardApp.Model
                     ? $"Server={cboServer.Text};Database=master;Trusted_Connection=True;Encrypt=False;"
                     : $"Server={cboServer.Text};Database=master;User Id={txtUsername.Text};Password={txtPassword.Text};Encrypt=False;";
 
-                using (SqlConnection sql = new SqlConnection(conn))
+                using (var sql = new SqlConnection(conn))
                 {
                     sql.Open();
-                    var cmd = new SqlCommand("SELECT name FROM sys.databases", sql);
+                    var cmd = new SqlCommand("SELECT name FROM sys.databases ORDER BY name", sql);
                     var reader = cmd.ExecuteReader();
 
                     cboDatabase.Properties.Items.Clear();
                     while (reader.Read())
                     {
-                        cboDatabase.Properties.Items.Add(reader["name"].ToString());
+                        cboDatabase.Properties.Items.Add(reader.GetString(0));
                     }
                 }
 
-                XtraMessageBox.Show("📂 Đã tải danh sách Database", "Thông báo");
+                XtraMessageBox.Show("📂 Đã tải danh sách Database thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show("❌ Không thể tải Database:\n" + ex.Message, "Lỗi");
+                XtraMessageBox.Show($"❌ Không thể tải Database:\n{ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private string BuildConnectionString()
         {
-            if (rdoWindowsAuth.Checked)
+            var builder = new SqlConnectionStringBuilder
             {
-                return $"Server={cboServer.Text};Database={cboDatabase.Text};Trusted_Connection=True;Encrypt=False;";
+                DataSource = cboServer.Text,
+                InitialCatalog = cboDatabase.Text,
+                IntegratedSecurity = rdoWindowsAuth.Checked,
+                Encrypt = false
+            };
+
+            if (!rdoWindowsAuth.Checked)
+            {
+                builder.UserID = txtUsername.Text;
+                builder.Password = txtPassword.Text;
             }
-            else
+
+            return builder.ConnectionString;
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            try
             {
-                return $"Server={cboServer.Text};Database={cboDatabase.Text};User Id={txtUsername.Text};Password={txtPassword.Text};Encrypt=False;";
+                string connStr = BuildConnectionString();
+
+                using (var conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
+
+                    var checkCmd = new SqlCommand("SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'SINH_VIEN'", conn);
+                    bool tableExists = (int)checkCmd.ExecuteScalar() > 0;
+
+                    if (!tableExists)
+                        throw new Exception("Không tìm thấy bảng SINH_VIEN trong database hiện tại!");
+
+                    var dataCmd = new SqlCommand("SELECT TOP 10 * FROM SINH_VIEN", conn);
+                    using (var reader = dataCmd.ExecuteReader())
+                    {
+                        string result = string.Empty;
+                        while (reader.Read())
+                        {
+                            result += reader[0] + "\n";
+                        }
+
+                        if (string.IsNullOrWhiteSpace(result))
+                            XtraMessageBox.Show("Không có dữ liệu trong bảng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        else
+                            XtraMessageBox.Show($"✅ Đã tải dữ liệu thành công!\n\n{result}", "Kết quả", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"❌ Lỗi khi tải dữ liệu:\n{ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void FormConnectSQL_Load(object sender, EventArgs e)
         {
-            // Gợi ý server
-            cboServer.Properties.Items.AddRange(new object[]
-            {
-                ".",
-                @"localhost\SQLEXPRESS",
-                @"MAYTINH\SQLSERVER"
-            });
+            cboServer.Properties.Items.AddRange(new object[] { ".", @"localhost\\SQLEXPRESS", @"MAYTINH\\SQLSERVER" });
+            cboDatabase.Properties.Items.AddRange(new object[] { "master", "tempdb" });
 
-            // Gợi ý database test
-            cboDatabase.Properties.Items.AddRange(new object[]
-            {
-                "master",
-                "tempdb"
-            });
-
-            // Cho phép vừa nhập vừa chọn
             cboServer.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             cboDatabase.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            cboServer.Properties.DropDownRows = cboDatabase.Properties.DropDownRows = 10;
 
-            cboServer.Properties.DropDownRows = 10;
-            cboDatabase.Properties.DropDownRows = 10;
+            string savedConn = ConfigurationManager.ConnectionStrings["QLSVConnection"]?.ConnectionString;
+            if (string.IsNullOrEmpty(savedConn)) return;
 
-            // Load connection string đã lưu (nếu có)
-            string conn = ConfigurationManager.ConnectionStrings["QLSVConnection"]?.ConnectionString;
-            if (!string.IsNullOrEmpty(conn))
+            var builder = new SqlConnectionStringBuilder(savedConn);
+            cboServer.Text = builder.DataSource;
+            cboDatabase.Text = builder.InitialCatalog;
+
+            if (builder.IntegratedSecurity)
             {
-                var builder = new SqlConnectionStringBuilder(conn);
-                cboServer.Text = builder.DataSource;
-                cboDatabase.Text = builder.InitialCatalog;
-
-                if (builder.IntegratedSecurity)
-                {
-                    rdoWindowsAuth.Checked = true;
-                }
-                else
-                {
-                    rdoSqlAuth.Checked = true;
-                    txtUsername.Text = builder.UserID;
-                    txtPassword.Text = builder.Password;
-                }
+                rdoWindowsAuth.Checked = true;
+            }
+            else
+            {
+                rdoSqlAuth.Checked = true;
+                txtUsername.Text = builder.UserID;
+                txtPassword.Text = builder.Password;
             }
         }
     }

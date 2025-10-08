@@ -43,31 +43,64 @@ namespace DataAccessLayer
         // ✅ Đếm số lượng sinh viên
         public int CountStudents()
         {
-            using (SqlConnection conn = new SqlConnection(_connectionString))
-            using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Sinh_Vien", conn))
+            try
             {
-                conn.Open();
-                return (int)cmd.ExecuteScalar();
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Sinh_Vien", conn);
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            catch (SqlException ex)
+            {
+                // Nếu bảng không tồn tại, trả về 0 để tránh crash form
+                if (ex.Number == 208) // Invalid object name
+                    return 0;
+
+                // Các lỗi khác vẫn ném ra
+                throw;
             }
         }
+
         public int CountTeacher()
         {
-            using (SqlConnection conn = new SqlConnection(_connectionString))
-            using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Giao_Vien", conn))
+            try
             {
-                conn.Open();
-                return (int)cmd.ExecuteScalar();
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Giao_Vien", conn);
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 208) // Invalid object name
+                    return 0;
+                throw;
             }
         }
+
         public int CountMajors()
         {
-            using (SqlConnection conn = new SqlConnection(_connectionString))
-            using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Nganh", conn))
+            try
             {
-                conn.Open();
-                return (int)cmd.ExecuteScalar();
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Nganh", conn);
+                    return Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 208) // Invalid object name
+                    return 0;
+                throw;
             }
         }
+
 
         // ✅ Upsert (Insert nếu chưa có, Update nếu tồn tại)
         public void Upsert(string tableName, string[] keyColumns, DataTable data)
