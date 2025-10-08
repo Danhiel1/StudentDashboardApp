@@ -82,6 +82,7 @@
             groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
             groupBox1.Text = " Authentication";
+            groupBox1.Enabled = true;
             // 
             // txtPassword
             // 
@@ -123,7 +124,6 @@
             rdoSqlAuth.Name = "rdoSqlAuth";
             rdoSqlAuth.Size = new Size(148, 17);
             rdoSqlAuth.TabIndex = 1;
-            rdoSqlAuth.TabStop = true;
             rdoSqlAuth.Text = "SQL Sever Authentication";
             rdoSqlAuth.UseVisualStyleBackColor = true;
             rdoSqlAuth.CheckedChanged += rdoSqlAuth_CheckedChanged;
@@ -131,6 +131,7 @@
             // rdoWindowsAuth
             // 
             rdoWindowsAuth.AutoSize = true;
+            rdoWindowsAuth.Checked = true;
             rdoWindowsAuth.Location = new Point(25, 33);
             rdoWindowsAuth.Name = "rdoWindowsAuth";
             rdoWindowsAuth.Size = new Size(143, 17);
@@ -202,13 +203,14 @@
             btnLoad.TabIndex = 10;
             btnLoad.Text = "Load";
             btnLoad.UseVisualStyleBackColor = true;
+            btnLoad.Click += btnLoad_Click;
             // 
             // FormConnectSQL
             // 
             Appearance.Options.UseFont = true;
             AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(366, 347);
+            ClientSize = new Size(366, 339);
             Controls.Add(btnLoad);
             Controls.Add(cboDatabase);
             Controls.Add(cboServer);

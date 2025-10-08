@@ -7,35 +7,36 @@ namespace StudentDashboardApp
 {
     public partial class StatCard : UserControl
     {
-        private Size originalSize;
-        private Point originalLocation;
-        private Color originalColor = Color.FromArgb(45, 45, 45);   // 🎨 sáng hơn
-        private Color hoverColor = Color.FromArgb(60, 60, 60);       // màu khi hover
+        private readonly Color originalColor = Color.FromArgb(32, 32, 32);   // Màu nền mặc định
+        private readonly Color hoverColor = Color.FromArgb(50, 50, 50);      // Màu khi hover
 
+        private readonly Color originalTextColor = Color.White;
+        private readonly Color hoverTextColor = Color.FromArgb(0, 122, 204); // Màu chữ khi hover
+
+        private readonly Color borderColor = Color.FromArgb(100, 100, 100);
+        private const int cornerRadius = 12;  // Bo góc
+        private const int baseBorderWidth = 2; // Viền mặc định
+
+        private float blend = 0f;
+        private float targetBlend = 0f;
         private System.Windows.Forms.Timer animationTimer;
-        private float scale = 1.0f;
-        private float targetScale = 1.0f;
-        private bool isHovered = false;
 
-        private Color originalTextColor = Color.White;
-        private Color hoverTextColor = Color.FromArgb(0, 122, 204);
-        private Color borderColor = Color.FromArgb(70, 70, 70);      // 🎨 viền nhẹ
-        private int cornerRadius = 12;                               // 🎯 bo góc
 
         public StatCard()
         {
             InitializeComponent();
 
-            // Lưu kích thước ban đầu
-            this.originalSize = this.Size;
-            this.originalLocation = this.Location;
+            // ✅ Kích thước cố định 162x110
+            this.Size = new Size(162, 110);
+            this.MinimumSize = new Size(162, 110);
+            this.MaximumSize = new Size(162, 110);
 
-            // Màu mặc định
+            // Màu chữ mặc định
             this.BackColor = originalColor;
             lblTitle.ForeColor = originalTextColor;
             lblValue.ForeColor = originalTextColor;
 
-            // Sự kiện hover cho toàn bộ card + label
+            // Hover toàn bộ card + label
             this.MouseEnter += OnAnyHoverEnter;
             this.MouseLeave += OnAnyHoverLeave;
             lblTitle.MouseEnter += OnAnyHoverEnter;
@@ -43,20 +44,17 @@ namespace StudentDashboardApp
             lblValue.MouseEnter += OnAnyHoverEnter;
             lblValue.MouseLeave += OnAnyHoverLeave;
 
-            // Timer animation
+            // Timer cho hiệu ứng chuyển màu
             animationTimer = new System.Windows.Forms.Timer();
-            animationTimer.Interval = 15;
+            animationTimer.Interval = 10; // mượt
             animationTimer.Tick += AnimationTimer_Tick;
 
-            // Bật DoubleBuffered để tránh giật khi redraw
             this.DoubleBuffered = true;
-            this.Load += StatCard_Load;
         }
 
         private void OnAnyHoverEnter(object sender, EventArgs e)
         {
-            isHovered = true;
-            targetScale = 1.05f;
+            targetBlend = 1f;
             animationTimer.Start();
         }
 
@@ -64,39 +62,28 @@ namespace StudentDashboardApp
         {
             if (!this.ClientRectangle.Contains(this.PointToClient(Cursor.Position)))
             {
-                isHovered = false;
-                targetScale = 1.0f;
+                targetBlend = 0f;
                 animationTimer.Start();
             }
         }
 
         private void AnimationTimer_Tick(object sender, EventArgs e)
         {
-            float speed = 0.2f;
-            scale += (targetScale - scale) * speed;
+            const float speed = 0.25f; // tốc độ blend
+            blend += (targetBlend - blend) * speed;
 
-            if (Math.Abs(targetScale - scale) < 0.01f)
+            if (Math.Abs(targetBlend - blend) < 0.01f)
             {
-                scale = targetScale;
+                blend = targetBlend;
                 animationTimer.Stop();
             }
 
-            int newWidth = (int)(originalSize.Width * scale);
-            int newHeight = (int)(originalSize.Height * scale);
-            this.Size = new Size(newWidth, newHeight);
-
-            int offsetX = (int)((originalSize.Width - newWidth) / 2);
-            int offsetY = (int)((originalSize.Height - newHeight) / 2);
-            this.Location = new Point(originalLocation.X - offsetX, originalLocation.Y - offsetY);
-
-            float blend = (scale - 1f) / 0.05f;
-            blend = Math.Min(1f, Math.Max(0f, blend));
+            // Blend màu nền và chữ
             this.BackColor = BlendColor(originalColor, hoverColor, blend);
-
             lblTitle.ForeColor = BlendColor(originalTextColor, hoverTextColor, blend);
             lblValue.ForeColor = BlendColor(originalTextColor, hoverTextColor, blend);
 
-            this.Invalidate(); // 🔁 redraw lại khung bo góc và viền
+            this.Invalidate(); // Vẽ lại viền
         }
 
         private Color BlendColor(Color from, Color to, float amount)
@@ -107,7 +94,6 @@ namespace StudentDashboardApp
             return Color.FromArgb(r, g, b);
         }
 
-        // ✨ Vẽ viền + bo góc
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -115,17 +101,17 @@ namespace StudentDashboardApp
 
             using (GraphicsPath path = RoundedRect(new Rectangle(0, 0, this.Width - 1, this.Height - 1), cornerRadius))
             {
-                // ✨ Bo góc thật (cắt vùng hiển thị)
                 this.Region = new Region(path);
 
-                // Viền
-                using (Pen borderPen = new Pen(borderColor, 1))
+                // Viền dày hơn khi hover
+                int borderWidth = baseBorderWidth + (int)(blend * 1.5f);
+
+                using (Pen borderPen = new Pen(borderColor, borderWidth))
                 {
                     e.Graphics.DrawPath(borderPen, path);
                 }
             }
         }
-
 
         private GraphicsPath RoundedRect(Rectangle rect, int radius)
         {
@@ -151,11 +137,6 @@ namespace StudentDashboardApp
 
             path.CloseFigure();
             return path;
-        }
-
-        private void StatCard_Load(object sender, EventArgs e)
-        {
-            this.originalLocation = this.Location;
         }
     }
 }
