@@ -1,7 +1,9 @@
 ﻿using DevExpress.XtraEditors;
 using System;
+using System.Collections.Specialized;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace StudentDashboardApp.Model
@@ -14,7 +16,10 @@ namespace StudentDashboardApp.Model
         {
             InitializeComponent();
 
+            // Cho phép nhập tay và bật AutoComplete
             cboServer.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            cboServer.Properties.AutoComplete = true;
+
             cboDatabase.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
 
             rdoWindowsAuth.Checked = true;
@@ -22,7 +27,6 @@ namespace StudentDashboardApp.Model
         }
 
         private void rdoWindowsAuth_CheckedChanged(object sender, EventArgs e) => ToggleAuth();
-
         private void rdoSqlAuth_CheckedChanged(object sender, EventArgs e) => ToggleAuth();
 
         private void ToggleAuth()
@@ -41,21 +45,19 @@ namespace StudentDashboardApp.Model
         private void btnTest_Click(object sender, EventArgs e)
         {
             string connStr = BuildConnectionString();
-            string message;
-            MessageBoxIcon icon;
 
             if (TryTestConnection(connStr, out string error))
             {
-                message = "✅ Kết nối thành công!";
-                icon = MessageBoxIcon.Information;
+                XtraMessageBox.Show("✅ Kết nối thành công!", "Kết quả kiểm tra",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                SaveRecentServer(cboServer.Text.Trim()); // ✅ Lưu server vào danh sách gần nhất
             }
             else
             {
-                message = $"❌ Kết nối thất bại:\n{error}";
-                icon = MessageBoxIcon.Error;
+                XtraMessageBox.Show($"❌ Kết nối thất bại:\n{error}", "Kết quả kiểm tra",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            XtraMessageBox.Show(message, "Kết quả kiểm tra", MessageBoxButtons.OK, icon);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -74,30 +76,26 @@ namespace StudentDashboardApp.Model
                 var connSection = config.ConnectionStrings.ConnectionStrings;
 
                 if (connSection["QLSVConnection"] == null)
-                {
                     connSection.Add(new ConnectionStringSettings("QLSVConnection", connStr));
-                }
                 else
-                {
                     connSection["QLSVConnection"].ConnectionString = connStr;
-                }
 
                 config.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection("connectionStrings");
 
                 ConnectionString = connStr;
+                SaveRecentServer(cboServer.Text.Trim()); // ✅ Lưu server đã kết nối
+
                 DialogResult = DialogResult.OK;
                 Close();
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show($"❌ Lỗi khi lưu cấu hình:\n{ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show($"❌ Lỗi khi lưu cấu hình:\n{ex.Message}", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        /// <summary>
-        /// Kiểm tra kết nối và trả về chi tiết lỗi nếu có.
-        /// </summary>
         private bool TryTestConnection(string connStr, out string error)
         {
             try
@@ -138,16 +136,16 @@ namespace StudentDashboardApp.Model
 
                     cboDatabase.Properties.Items.Clear();
                     while (reader.Read())
-                    {
                         cboDatabase.Properties.Items.Add(reader.GetString(0));
-                    }
                 }
 
-                XtraMessageBox.Show("📂 Đã tải danh sách Database thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                XtraMessageBox.Show("📂 Đã tải danh sách Database thành công!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show($"❌ Không thể tải Database:\n{ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show($"❌ Không thể tải Database:\n{ex.Message}", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -180,7 +178,8 @@ namespace StudentDashboardApp.Model
                 {
                     conn.Open();
 
-                    var checkCmd = new SqlCommand("SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'SINH_VIEN'", conn);
+                    var checkCmd = new SqlCommand(
+                        "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'SINH_VIEN'", conn);
                     bool tableExists = (int)checkCmd.ExecuteScalar() > 0;
 
                     if (!tableExists)
@@ -189,32 +188,31 @@ namespace StudentDashboardApp.Model
                     var dataCmd = new SqlCommand("SELECT TOP 10 * FROM SINH_VIEN", conn);
                     using (var reader = dataCmd.ExecuteReader())
                     {
-                        string result = string.Empty;
+                        string result = "";
                         while (reader.Read())
-                        {
                             result += reader[0] + "\n";
-                        }
 
                         if (string.IsNullOrWhiteSpace(result))
-                            XtraMessageBox.Show("Không có dữ liệu trong bảng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            XtraMessageBox.Show("Không có dữ liệu trong bảng!", "Thông báo",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
                         else
-                            XtraMessageBox.Show($"✅ Đã tải dữ liệu thành công!\n\n{result}", "Kết quả", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            XtraMessageBox.Show($"✅ Đã tải dữ liệu thành công!\n\n{result}", "Kết quả",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show($"❌ Lỗi khi tải dữ liệu:\n{ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show($"❌ Lỗi khi tải dữ liệu:\n{ex.Message}", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void FormConnectSQL_Load(object sender, EventArgs e)
         {
-            cboServer.Properties.Items.AddRange(new object[] { ".", @"localhost\\SQLEXPRESS", @"MAYTINH\\SQLSERVER" });
-            cboDatabase.Properties.Items.AddRange(new object[] { "master", "tempdb" });
+            LoadRecentServers();
 
-            cboServer.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            cboDatabase.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            cboDatabase.Properties.Items.AddRange(new object[] { "master", "tempdb" });
             cboServer.Properties.DropDownRows = cboDatabase.Properties.DropDownRows = 10;
 
             string savedConn = ConfigurationManager.ConnectionStrings["QLSVConnection"]?.ConnectionString;
@@ -225,15 +223,43 @@ namespace StudentDashboardApp.Model
             cboDatabase.Text = builder.InitialCatalog;
 
             if (builder.IntegratedSecurity)
-            {
                 rdoWindowsAuth.Checked = true;
-            }
             else
             {
                 rdoSqlAuth.Checked = true;
                 txtUsername.Text = builder.UserID;
                 txtPassword.Text = builder.Password;
             }
+        }
+
+        // ✅ Lưu tối đa 3 server gần nhất
+        private void SaveRecentServer(string server)
+        {
+            if (string.IsNullOrWhiteSpace(server)) return;
+
+            var recentServers = Properties.Settings.Default.RecentServers ?? new StringCollection();
+
+            if (recentServers.Contains(server))
+                recentServers.Remove(server);
+
+            recentServers.Insert(0, server);
+            while (recentServers.Count > 3)
+                recentServers.RemoveAt(recentServers.Count - 1);
+
+            Properties.Settings.Default.RecentServers = recentServers;
+            Properties.Settings.Default.Save();
+
+            LoadRecentServers(); // refresh combo box
+        }
+
+        // ✅ Load lại danh sách server gần nhất
+        private void LoadRecentServers()
+        {
+            var recentServers = Properties.Settings.Default.RecentServers;
+
+            cboServer.Properties.Items.Clear();
+            if (recentServers != null && recentServers.Count > 0)
+                cboServer.Properties.Items.AddRange(recentServers.Cast<string>().Take(3).ToArray());
         }
     }
 }

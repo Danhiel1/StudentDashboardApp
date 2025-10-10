@@ -14,7 +14,10 @@ using DataAccessLayer;
 namespace StudentDashboardApp.Model
 {
     public partial class ImportForm : DevExpress.XtraBars.FluentDesignSystem.FluentDesignForm
-    {
+    {   
+        // ⚡ Thêm ở đầu class ImportForm (ngoài các hàm)
+        public event EventHandler ImportCompleted;
+
         private DataSet dsSheets;           // Chứa toàn bộ sheet
         private int currentSheetIndex = 0;  // Sheet hiện tại
 
@@ -185,7 +188,15 @@ namespace StudentDashboardApp.Model
 
         private void btnImport_Click(object sender, EventArgs e)
         {
-            string connectionString = "Server=.;Database=QLSV;Trusted_Connection=True;Encrypt=False;";
+            string connectionString = System.Configuration.ConfigurationManager
+                .ConnectionStrings["QLSVConnection"]?.ConnectionString;
+
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                MessageBox.Show("⚠️ Chưa có kết nối SQL. Hãy mở lại form kết nối để chọn server & database!");
+                return;
+            }
+
             BusinessLayer.StudentService service = new BusinessLayer.StudentService(connectionString);
 
             if (dsSheets == null || dsSheets.Tables.Count == 0)
@@ -194,44 +205,71 @@ namespace StudentDashboardApp.Model
                 return;
             }
 
-            DataTable dt = dsSheets.Tables[currentSheetIndex]; // sheet hiện tại
-            string sheetName = dt.TableName;
-
             try
             {
-                // ✅ Tìm config theo tên sheet
-                (string TableName, Dictionary<string, string> Mapping, string[] KeyColumns) config;
-                if (!BusinessLayer.SheetConfig.SheetMappings.TryGetValue(sheetName, out config))
+                // Thứ tự import an toàn theo phụ thuộc FK
+                string[] importOrder = {
+    "Khoa",
+    "Nganh",
+    "Nien_Khoa",
+    "Chuong_Trinh_Dao_Tao",
+    "Giao_Vien",          // 👈 Thêm dòng này TRƯỚC Mon_Hoc
+    "Mon_Hoc",
+    "Lop",
+    "Sinh_Vien",
+    "Diem"
+};
+
+                foreach (string sheetName in importOrder)
                 {
-                    MessageBox.Show($"❌ Không tìm thấy mapping cho sheet: {sheetName}");
-                    return;
+                    DataTable dt = dsSheets.Tables
+                        .Cast<DataTable>()
+                        .FirstOrDefault(t => t.TableName.Equals(sheetName, StringComparison.OrdinalIgnoreCase));
+
+                    if (dt == null)
+                        continue; // Sheet không có thì bỏ qua
+
+                    // ✅ Lấy cấu hình mapping cho sheet
+                    if (!BusinessLayer.SheetConfig.SheetMappings.TryGetValue(sheetName, out var config))
+                    {
+                        MessageBox.Show($"⚠️ Bỏ qua sheet '{sheetName}' (không có mapping).");
+                        continue;
+                    }
+
+                    // ✅ Map cột Excel → DB
+                    dt = DataAccessLayer.ExcelMapper.MapColumns(dt, config.Mapping);
+
+                    // ✅ Upsert nếu có cột khóa, ngược lại BulkInsert
+                    if (config.KeyColumns != null && config.KeyColumns.Length > 0)
+                    {
+                        service.UpsertGeneric(config.TableName, config.KeyColumns, dt);
+                    }
+                    else
+                    {
+                        service.ImportGeneric(dt, config.TableName);
+                    }
                 }
 
-                // ✅ Map cột Excel → DB
-                dt = DataAccessLayer.ExcelMapper.MapColumns(dt, config.Mapping);
+                // ✅ Sau khi import xong, báo kết quả
+                // ✅ Sau khi import thành công tất cả sheet
+                int totalStudents = service.GetStudentCount();
+                MessageBox.Show($"🎉 Import tất cả sheet thành công!\nTổng số sinh viên hiện tại: {totalStudents}");
 
-                // ✅ Dùng Upsert nếu có cột khóa, ngược lại BulkInsert
-                if (config.KeyColumns != null && config.KeyColumns.Length > 0)
-                {
-                    service.UpsertGeneric(config.TableName, config.KeyColumns, dt);
-                    MessageBox.Show($"Upsert sheet '{sheetName}' vào bảng '{config.TableName}' thành công!");
-                }
-                else
-                {
-                    service.ImportGeneric(dt, config.TableName);
-                    MessageBox.Show($"Import sheet '{sheetName}' vào bảng '{config.TableName}' thành công!");
-                }
+                // 🔔 Gửi tín hiệu về Dashboard
+                ImportCompleted?.Invoke(this, EventArgs.Empty);
 
-                // ✅ Nếu là Sinh_Vien thì báo số lượng
-                if (config.TableName.Equals("Sinh_Vien", StringComparison.OrdinalIgnoreCase))
-                {
-                    int total = service.GetStudentCount();
-                    MessageBox.Show($"Tổng số sinh viên hiện tại: {total}");
-                }
+                // ✅ Reset form về trạng thái ban đầu
+                dsSheets?.Clear();
+                dataGridViewExcel.DataSource = null;
+                lblSheetName.Text = "Chưa có sheet nào";
+                btnNext.Enabled = false;
+                btnPrevious.Enabled = false;
+                textFileExcel.Text = string.Empty;
             }
+
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi import: " + ex.Message);
+                MessageBox.Show("❌ Lỗi khi import toàn bộ: " + ex.Message);
             }
         }
 

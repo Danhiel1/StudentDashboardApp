@@ -25,109 +25,85 @@ namespace BusinessLayer
             _repo.Upsert(tableName, keyColumns, data);
         }
 
-        public int GetStudentCount()
-        {
-            return _repo.CountStudents();
-        }
+        public int GetStudentCount() => _repo.CountStudents();
+        public int GetTeacherCount() => _repo.CountTeacher();
+        public int GetMajorCount() => _repo.CountMajors();
 
-        public int GetTeacherCount()
-        {
-            return _repo.CountTeacher();
-        }
-        public int GetMajorCount()
-        {
-            return _repo.CountMajors();
-        }
-
-        // 1. Lấy số lượng SV theo niên khóa
+        // 1️⃣ SV theo niên khóa
         public List<StudentPerNienKhoa> GetStudentCountPerNienKhoa()
         {
-            DataTable dt = _repo.GetStudentCountPerNienKhoa();
-
-            return dt.AsEnumerable()
-                .Select(r => new StudentPerNienKhoa
-                {
-                    MaNienKhoa = r.Field<string>("MaNienKhoa"),
-                    StudentCount = r.Field<int>("StudentCount")
-                }).ToList();
+            var dt = _repo.GetStudentCountPerNienKhoa();
+            return dt.AsEnumerable().Select(r => new StudentPerNienKhoa
+            {
+                MaNienKhoa = r.Field<string>("MaNienKhoa"),
+                StudentCount = r.Field<int>("StudentCount")
+            }).ToList();
         }
 
-        // 2. Lấy số lượng SV theo khoa
+        // 2️⃣ SV theo khoa
         public List<StudentPerFaculty> GetStudentCountPerFaculty()
         {
-            DataTable dt = _repo.GetStudentCountPerFaculty();
-
-            return dt.AsEnumerable()
-                .Select(r => new StudentPerFaculty
-                {
-                    FacultyName = r.Field<string>("FacultyName"),
-                    StudentCount = r.Field<int>("StudentCount")
-                }).ToList();
+            var dt = _repo.GetStudentCountPerFaculty();
+            return dt.AsEnumerable().Select(r => new StudentPerFaculty
+            {
+                FacultyName = r.Field<string>("FacultyName"),
+                StudentCount = r.Field<int>("StudentCount")
+            }).ToList();
         }
 
-        // 3. Lấy số lượng SV theo ngành
+        // 3️⃣ SV theo ngành
         public List<StudentPerMajor> GetStudentCountPerMajor()
         {
-            DataTable dt = _repo.GetStudentCountPerMajor();
-
-            return dt.AsEnumerable()
-                .Select(r => new StudentPerMajor
-                {
-                    MajorName = r.Field<string>("MajorName"),
-                    StudentCount = r.Field<int>("StudentCount")
-                }).ToList();
+            var dt = _repo.GetStudentCountPerMajor();
+            return dt.AsEnumerable().Select(r => new StudentPerMajor
+            {
+                MajorName = r.Field<string>("MajorName"),
+                StudentCount = r.Field<int>("StudentCount")
+            }).ToList();
         }
 
-        // 4. Lấy điểm trung bình GPA theo khoa
+        // 4️⃣ GPA trung bình theo khoa
         public List<AverageGPAByFaculty> GetAverageGPAByFaculty()
         {
-            DataTable dt = _repo.GetAverageGPAByFaculty();
-
-            return dt.AsEnumerable()
-                .Select(r => new AverageGPAByFaculty
-                {
-                    FacultyName = r.Field<string>("FacultyName"),
-                    AverageGPA = r.Field<decimal>("AverageGPA")
-                }).ToList();
+            var dt = _repo.GetAverageGPAByFaculty();
+            return dt.AsEnumerable().Select(r => new AverageGPAByFaculty
+            {
+                FacultyName = r.Field<string>("FacultyName"),
+                AverageGPA = r.Field<decimal>("AverageGPA")
+            }).ToList();
         }
 
-        // 5. Lấy tỷ lệ đậu/rớt
+        // 5️⃣ Tỷ lệ đậu/rớt
         public List<PassFailRatio> GetPassFailRatio()
         {
-            DataTable dt = _repo.GetPassFailRatio();
-
-            return dt.AsEnumerable()
-                .Select(r => new PassFailRatio
-                {
-                    Status = r.Field<string>("Status"),
-                    Count = r.Field<int>("Count")
-                }).ToList();
+            var dt = _repo.GetPassFailRatio();
+            return dt.AsEnumerable().Select(r => new PassFailRatio
+            {
+                Status = r.Field<string>("Status"),
+                Count = r.Field<int>("Count")
+            }).ToList();
         }
 
-        // 6. Lấy số lượng giảng viên theo khoa
+        // 6️⃣ Giảng viên theo khoa
         public List<TeacherPerFaculty> GetTeacherCountPerFaculty()
         {
-            DataTable dt = _repo.GetTeacherCountPerFaculty();
-
-            return dt.AsEnumerable()
-                .Select(r => new TeacherPerFaculty
-                {
-                    FacultyName = r.Field<string>("FacultyName"),
-                    TeacherCount = r.Field<int>("TeacherCount")
-                }).ToList();
+            var dt = _repo.GetTeacherCountPerFaculty();
+            return dt.AsEnumerable().Select(r => new TeacherPerFaculty
+            {
+                FacultyName = r.Field<string>("FacultyName"),
+                TeacherCount = r.Field<int>("TeacherCount")
+            }).ToList();
         }
 
-        // 7. Lấy Top 5 sinh viên GPA cao nhất
+        // 7️⃣ Top 5 sinh viên GPA cao nhất
         public List<TopStudent> GetTop5Students()
         {
-            DataTable dt = _repo.GetTop5Students();
-
-            return dt.AsEnumerable()
-                .Select(r => new TopStudent
-                {
-                    StudentName = r.Field<string>("StudentName"),
-                    GPA = r.Field<decimal>("GPA")
-                }).ToList();
+            var dt = _repo.GetTop5Students();
+            return dt.AsEnumerable().Select(r => new TopStudent
+            {
+                StudentName = r.Field<string>("StudentName"),
+                GPA = r.Field<decimal>("GPA")
+            }).ToList();
         }
     }
 }

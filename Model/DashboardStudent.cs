@@ -91,12 +91,17 @@ namespace StudentDashboardApp.Model
             // Map BarButtonItem → NavigationPage + UserControl
             var buttonMap = new Dictionary<BarButtonItem, (NavigationPage, UserControl)>
             {
-                { barButtonItemFindStudent, (navigationPageStudent,new FindStudentControl()) },
-                { barButtonItemAddST, (navigationPageStudent, new AddStudentControl()) },
-                { barButtonItemEditST,(navigationPageStudent, new EditStudentControl()) },
-                { barButtonItemViewTranscript, (navigationPageStudent, new ViewTranscriptStudentControl()) },
-                {barButtonItemOverview,(navigationPageEmpty, new Overviewcontrol() ) }
-            };
+            { barButtonItemFindStudent, (navigationPageStudent,new FindStudentControl()) },
+            { barButtonItemAddST, (navigationPageStudent, new AddStudentControl()) },
+            { barButtonItemEditST,(navigationPageStudent, new EditStudentControl()) },
+            {barButtonItemViewTranscript, (navigationPageStudent, new ViewTranscriptStudentControl()) },
+            {barButtonItemTopStudents, (navigationPageStudent, new TopStudentControl()) },
+            {barButtonItemListbyClassorYear, (navigationPageStudent, new ListbyClassorYearControl()) },
+            {barButtonItemEditStudentScore, (navigationPageStudent, new EditStudentScoreControl()) },
+            {barButtonItemAttendance, (navigationPageStudent, new AttendanceControl()) },
+            {barButtonItemOverview, (navigationPageStudent, new Overviewcontrol()) },
+
+};
 
             // Navigation
             navHelper = new NavigationHelper(navigationFrameSTD, buttonMap);
@@ -207,7 +212,16 @@ namespace StudentDashboardApp.Model
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {
             var importForm = new ImportForm();
+
+            // 🔔 Khi ImportForm hoàn tất, tự reload Dashboard
+            importForm.ImportCompleted += (s, args) =>
+            {
+                MessageBox.Show("🔄 Dữ liệu đã được cập nhật. Làm mới dashboard...");
+                LoadDashboardData(); // Gọi lại hàm load để cập nhật biểu đồ và số liệu
+            };
+
             importForm.ShowDialog();
         }
+
     }
 }

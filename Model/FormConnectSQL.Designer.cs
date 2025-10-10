@@ -82,7 +82,6 @@
             groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
             groupBox1.Text = " Authentication";
-            groupBox1.Enabled = true;
             // 
             // txtPassword
             // 
@@ -190,7 +189,6 @@
             cboDatabase.Location = new Point(116, 58);
             cboDatabase.Name = "cboDatabase";
             cboDatabase.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            cboDatabase.Properties.Items.AddRange(new object[] { "master", "temp", "QLSV" });
             cboDatabase.Size = new Size(238, 28);
             cboDatabase.TabIndex = 9;
             // 
@@ -220,7 +218,6 @@
             Controls.Add(groupBox1);
             Controls.Add(label2);
             Controls.Add(label1);
-            Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             MaximizeBox = false;
             MdiChildrenMinimizedAnchorBottom = false;
             MinimizeBox = false;
