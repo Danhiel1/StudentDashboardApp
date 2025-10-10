@@ -34,5 +34,16 @@ namespace StudentDashboardApp.Properties {
                 this["ConnectionString"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection RecentServers {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["RecentServers"]));
+            }
+            set {
+                this["RecentServers"] = value;
+            }
+        }
     }
 }
