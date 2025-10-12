@@ -208,7 +208,7 @@
             Appearance.Options.UseFont = true;
             AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(366, 339);
+            ClientSize = new Size(366, 337);
             Controls.Add(btnLoad);
             Controls.Add(cboDatabase);
             Controls.Add(cboServer);
@@ -218,6 +218,7 @@
             Controls.Add(groupBox1);
             Controls.Add(label2);
             Controls.Add(label1);
+            Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             MaximizeBox = false;
             MdiChildrenMinimizedAnchorBottom = false;
             MinimizeBox = false;

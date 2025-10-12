@@ -4,13 +4,15 @@ using DevExpress.XtraBars;
 using DevExpress.XtraBars.Navigation;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraCharts;
+using DevExpress.XtraPrinting;
 using StudentDashboardApp.Controls;
+using StudentDashboardApp.Forms;
 using StudentDashboardApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace StudentDashboardApp.Model
 {
@@ -116,9 +118,9 @@ namespace StudentDashboardApp.Model
         {
             try
             {
-                infoCardStudent.SetData("Số Sinh Viên", _service.GetStudentCount().ToString(), Properties.Resources.student);
-                infoCardTeacher.SetData("Số Giáo Viên", _service.GetTeacherCount().ToString(), Properties.Resources.student);
-                infoCardMajor.SetData("Số Ngành", _service.GetMajorCount().ToString(), Properties.Resources.student);
+                infoCardStudent.SetData("Students:", _service.GetStudentCount().ToString(), Properties.Resources.student);
+                infoCardTeacher.SetData("Teachers:", _service.GetTeacherCount().ToString(), Properties.Resources.student);
+                infoCardMajor.SetData("Majors:", _service.GetMajorCount().ToString(), Properties.Resources.student);
 
                 ChartService.LoadChart(
                     chartControlCountPerNienKhoa,
@@ -126,7 +128,7 @@ namespace StudentDashboardApp.Model
                     "MaNienKhoa",
                     "StudentCount",
                     ViewType.Pie,
-                    "Số SV theo Niên khóa"
+                    "Students per Academic Year Chart"
                 );
 
                 ChartService.LoadChart(
@@ -135,7 +137,7 @@ namespace StudentDashboardApp.Model
                     "FacultyName",
                     "StudentCount",
                     ViewType.Bar,
-                    "Số SV theo Khoa"
+                    "Number of Students by Faculty"
                 );
             }
             catch (Exception ex)
@@ -190,25 +192,59 @@ namespace StudentDashboardApp.Model
             flowLayoutPanel1.Controls.Clear();
             flowLayoutPanel1.SuspendLayout();
 
-            flowLayoutPanel1.Controls.Add(CreateQuickButton("Thêm sinh viên mới", "Đăng ký học sinh mới vào hệ thống"));
-            flowLayoutPanel1.Controls.Add(CreateQuickButton("Cập nhật dữ liệu", "Làm mới thông tin từ cơ sở dữ liệu"));
-            flowLayoutPanel1.Controls.Add(CreateQuickButton("Xuất danh sách", "Xuất danh sách sinh viên ra Excel"));
-
+            flowLayoutPanel1.Controls.Add(CreateQuickButton("Thêm sinh viên mới", "Đăng ký học sinh mới vào hệ thống", Properties.Resources.close));
+            flowLayoutPanel1.Controls.Add(CreateQuickButton("Cập nhật dữ liệu", "Làm mới thông tin từ cơ sở dữ liệu", Properties.Resources.Excel));
+            flowLayoutPanel1.Controls.Add(CreateQuickButton("Xuất danh sách", "Xuất danh sách sinh viên ra Excel", Properties.Resources.student));
+            flowLayoutPanel1.Controls.Add(CreateQuickButton("Load Lại Dashboard", "Làm mới thông tin từ cơ sở dữ liệu", Properties.Resources.student));
             flowLayoutPanel1.ResumeLayout();
         }
 
-        private QuickActionButton CreateQuickButton(string title, string desc)
+        private QuickActionButton CreateQuickButton(string title, string desc, Image icon)
         {
             var btn = new QuickActionButton
             {
                 Title = title,
                 Description = desc,
-                Icon = Properties.Resources.close
+                Icon = icon
             };
-            btn.Click += (s, e) => MessageBox.Show($"Bạn vừa click: {title}");
+
+            btn.Click += (s, e) =>
+            {
+                switch (title)
+                {
+                    case "Thêm sinh viên mới":
+                        ShowUserControl(new AddStudentControl());
+                        break;
+                    case "Cập nhật dữ liệu":
+                        LoadDashboardData();
+                        MessageBox.Show("🔄 Dữ liệu dashboard đã được làm mới!", "Thông báo");
+                        break;
+                        //case "Xuất danh sách":
+                        //    using (var exportForm = new ExportForm())
+                        //        exportForm.ShowDialog();
+                        //    break;
+                }
+            };
             return btn;
         }
 
+        private void ShowUserControl(UserControl control)
+        {
+            try
+            {
+                // Chuyển sang navigationPageStudent
+                navigationFrameSTD.SelectedPage = navigationPageStudent;
+                navigationPageStudent.Controls.Clear();
+
+                control.Dock = DockStyle.Fill;
+                navigationPageStudent.Controls.Add(control);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("⚠️ Lỗi khi hiển thị UserControl:\n" + ex.Message,
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {
             var importForm = new ImportForm();
@@ -222,6 +258,52 @@ namespace StudentDashboardApp.Model
 
             importForm.ShowDialog();
         }
+        private void btnRestore_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            try
+            {
+                // 🧱 1️⃣ Ngắt kết nối và reset service
+                _isDbConnected = false;
+                _connectionString = null;
+                _service = null;
 
+                // 🧹 2️⃣ Xóa dữ liệu hiển thị
+                infoCardStudent.SetData("Số Sinh Viên", "0", Properties.Resources.student);
+                infoCardTeacher.SetData("Số Giáo Viên", "0", Properties.Resources.student);
+                infoCardMajor.SetData("Số Ngành", "0", Properties.Resources.student);
+
+                chartControlCountPerNienKhoa.Series.Clear();
+                chartControCountPerFaculty.Series.Clear();
+
+                // 🧭 3️⃣ Quay về trang hệ thống mặc định
+                navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
+                navigationFrameSTD.SelectedPage = navigationSystemPage1;
+                navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True;
+
+                // 🧱 4️⃣ Làm sạch các control động
+                navigationPageStudent.Controls.Clear();
+
+                // 🪄 5️⃣ Hiển thị thông báo
+                MessageBox.Show("🔄 Ứng dụng đã được đặt lại về mặc định.\nHiện không kết nối tới máy chủ nào.",
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("⚠️ Lỗi khi đặt lại ứng dụng:\n" + ex.Message,
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnParameters_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var frm = new SystemSettingsForm();
+            frm.ShowDialog();
+        }
+
+        private void btnActLog_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var logForm = new ActivityLogForm();
+            logForm.ShowDialog();
+        }
     }
 }
