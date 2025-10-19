@@ -81,5 +81,14 @@ namespace StudentDashboardApp.Properties {
                 this["Language"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.0.0")]
+        public string AppVersion {
+            get {
+                return ((string)(this["AppVersion"]));
+            }
+        }
     }
 }

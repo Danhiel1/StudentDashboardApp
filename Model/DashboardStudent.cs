@@ -7,6 +7,7 @@ using DevExpress.XtraCharts;
 using DevExpress.XtraPrinting;
 using StudentDashboardApp.Controls;
 using StudentDashboardApp.Forms;
+using StudentDashboardApp.Resources;
 using StudentDashboardApp.Services;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,8 @@ namespace StudentDashboardApp.Model
 
         private void DashboardStudent_Load(object sender, EventArgs e)
         {
+            UILanguageHelper.ApplyLanguage(this);
+        
             // ⚡ 1️⃣ Thử kiểm tra kết nối trước
             try
             {
@@ -64,6 +67,9 @@ namespace StudentDashboardApp.Model
             if (_isDbConnected)
             {
                 LoadDashboardData();
+                
+
+
             }
             else
             {
@@ -71,9 +77,9 @@ namespace StudentDashboardApp.Model
                 infoCardStudent.SetData("Số Sinh Viên", "0", Properties.Resources.student);
                 infoCardTeacher.SetData("Số Giáo Viên", "0", Properties.Resources.student);
                 infoCardMajor.SetData("Số Ngành", "0", Properties.Resources.student);
-
                 chartControlCountPerNienKhoa.Series.Clear();
                 chartControCountPerFaculty.Series.Clear();
+                
             }
         }
 
@@ -114,21 +120,31 @@ namespace StudentDashboardApp.Model
         }
 
         // 👉 Hàm này chỉ load dữ liệu từ SQL
-        private void LoadDashboardData()
+        public void LoadDashboardData()
         {
             try
             {
-                infoCardStudent.SetData("Students:", _service.GetStudentCount().ToString(), Properties.Resources.student);
-                infoCardTeacher.SetData("Teachers:", _service.GetTeacherCount().ToString(), Properties.Resources.student);
-                infoCardMajor.SetData("Majors:", _service.GetMajorCount().ToString(), Properties.Resources.student);
+                // 🔹 Lấy text theo ngôn ngữ hiện tại
+                string studentText = LanguageHelper.GetString("Students") + ":";
+                string teacherText = LanguageHelper.GetString("Teachers") + ":";
+                string majorText = LanguageHelper.GetString("Majors") + ":";
 
+                string chartPerYear = LanguageHelper.GetString("Chart_StudentsPerYear");
+                string chartPerFaculty = LanguageHelper.GetString("Chart_StudentsPerFaculty");
+
+                // 🔹 Gán dữ liệu và text đa ngôn ngữ
+                infoCardStudent.SetData(studentText, _service.GetStudentCount().ToString(), Properties.Resources.z7011126876535_5d2a8a373984a08b54b6b6f3adcbb861);
+                infoCardTeacher.SetData(teacherText, _service.GetTeacherCount().ToString(), Properties.Resources.course);
+                infoCardMajor.SetData(majorText, _service.GetMajorCount().ToString(), Properties.Resources.Excel);
+
+                // 🔹 Biểu đồ
                 ChartService.LoadChart(
                     chartControlCountPerNienKhoa,
                     _service.GetStudentCountPerNienKhoa(),
                     "MaNienKhoa",
                     "StudentCount",
                     ViewType.Pie,
-                    "Students per Academic Year Chart"
+                    chartPerYear
                 );
 
                 ChartService.LoadChart(
@@ -137,7 +153,7 @@ namespace StudentDashboardApp.Model
                     "FacultyName",
                     "StudentCount",
                     ViewType.Bar,
-                    "Number of Students by Faculty"
+                    chartPerFaculty
                 );
             }
             catch (Exception ex)
@@ -146,6 +162,7 @@ namespace StudentDashboardApp.Model
                     "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
         // Nút đổi server
         private void btnDatabase_ItemClick(object sender, ItemClickEventArgs e)
@@ -305,5 +322,49 @@ namespace StudentDashboardApp.Model
             var logForm = new ActivityLogForm();
             logForm.ShowDialog();
         }
+
+        private void btnCkUpdate_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var frm = new CheckUpdateForm();
+            frm.ShowDialog();
+        }
+        private void ApplyLanguage(Control parent = null)
+        {
+            parent ??= this;
+
+            // 1️⃣ Duyệt toàn bộ control trong form
+            foreach (Control ctrl in parent.Controls)
+            {
+                if (ctrl.Tag is string tagKey && !string.IsNullOrEmpty(tagKey))
+                    ctrl.Text = LanguageHelper.GetString(tagKey);
+
+                if (ctrl.HasChildren)
+                    ApplyLanguage(ctrl);
+            }
+
+            // 2️⃣ Hỗ trợ cho DevExpress BarManager
+            var barManagers = parent.Controls.OfType<DevExpress.XtraBars.BarManager>();
+            foreach (var barManager in barManagers)
+            {
+                foreach (DevExpress.XtraBars.BarItem item in barManager.Items)
+                {
+                    if (item.Tag is string tagKey && !string.IsNullOrEmpty(tagKey))
+                        item.Caption = LanguageHelper.GetString(tagKey);
+                }
+            }
+
+            // 3️⃣ Hỗ trợ cho DevExpress RibbonControl
+            var ribbons = parent.Controls.OfType<DevExpress.XtraBars.Ribbon.RibbonControl>();
+            foreach (var ribbon in ribbons)
+            {
+                foreach (DevExpress.XtraBars.BarItem item in ribbon.Items)
+                {
+                    if (item.Tag is string tagKey && !string.IsNullOrEmpty(tagKey))
+                        item.Caption = LanguageHelper.GetString(tagKey);
+                }
+            }
+        }
+
+
     }
 }

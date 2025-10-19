@@ -1,7 +1,8 @@
-﻿using System;
+﻿using StudentDashboardApp.Model;
+using StudentDashboardApp.Resources;
+using System;
 using System.Configuration;
 using System.Windows.Forms;
-using StudentDashboardApp.Model;
 
 namespace StudentDashboardApp
 {
@@ -26,6 +27,7 @@ namespace StudentDashboardApp
                         connStr = form.ConnectionString;
                         // Mở Dashboard khi kết nối thành công
                         Application.Run(new DashboardStudent(connStr));
+                        LanguageHelper.ApplyLanguage(Properties.Settings.Default.Language);
                     }
                 }
             }
@@ -33,6 +35,7 @@ namespace StudentDashboardApp
             {
                 // Nếu có sẵn kết nối hợp lệ → mở Dashboard luôn
                 Application.Run(new DashboardStudent(connStr));
+                LanguageHelper.ApplyLanguage(Properties.Settings.Default.Language);
             }
         }
 

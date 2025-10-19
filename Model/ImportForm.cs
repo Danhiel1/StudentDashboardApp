@@ -1,4 +1,8 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using DataAccessLayer;
+using DevExpress.XtraBars;
+using StudentDashboardApp.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,9 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
-using DevExpress.XtraBars;
-using ClosedXML.Excel;
-using DataAccessLayer;
 
 namespace StudentDashboardApp.Model
 {
@@ -209,16 +210,16 @@ namespace StudentDashboardApp.Model
             {
                 // Thứ tự import an toàn theo phụ thuộc FK
                 string[] importOrder = {
-    "Khoa",
-    "Nganh",
-    "Nien_Khoa",
-    "Chuong_Trinh_Dao_Tao",
-    "Giao_Vien",          // 👈 Thêm dòng này TRƯỚC Mon_Hoc
-    "Mon_Hoc",
-    "Lop",
-    "Sinh_Vien",
-    "Diem"
-};
+            "Khoa",
+            "Nganh",
+            "Nien_Khoa",
+            "Chuong_Trinh_Dao_Tao",
+            "Giao_Vien",
+            "Mon_Hoc",
+            "Lop",
+            "Sinh_Vien",
+            "Diem"
+        };
 
                 foreach (string sheetName in importOrder)
                 {
@@ -227,7 +228,7 @@ namespace StudentDashboardApp.Model
                         .FirstOrDefault(t => t.TableName.Equals(sheetName, StringComparison.OrdinalIgnoreCase));
 
                     if (dt == null)
-                        continue; // Sheet không có thì bỏ qua
+                        continue;
 
                     // ✅ Lấy cấu hình mapping cho sheet
                     if (!BusinessLayer.SheetConfig.SheetMappings.TryGetValue(sheetName, out var config))
@@ -239,39 +240,44 @@ namespace StudentDashboardApp.Model
                     // ✅ Map cột Excel → DB
                     dt = DataAccessLayer.ExcelMapper.MapColumns(dt, config.Mapping);
 
-                    // ✅ Upsert nếu có cột khóa, ngược lại BulkInsert
+                    // ✅ Upsert hoặc BulkInsert
                     if (config.KeyColumns != null && config.KeyColumns.Length > 0)
-                    {
                         service.UpsertGeneric(config.TableName, config.KeyColumns, dt);
-                    }
                     else
-                    {
                         service.ImportGeneric(dt, config.TableName);
-                    }
                 }
 
                 // ✅ Sau khi import xong, báo kết quả
-                // ✅ Sau khi import thành công tất cả sheet
                 int totalStudents = service.GetStudentCount();
-                MessageBox.Show($"🎉 Import tất cả sheet thành công!\nTổng số sinh viên hiện tại: {totalStudents}");
+               
 
                 // 🔔 Gửi tín hiệu về Dashboard
                 ImportCompleted?.Invoke(this, EventArgs.Empty);
 
-                // ✅ Reset form về trạng thái ban đầu
-                dsSheets?.Clear();
-                dataGridViewExcel.DataSource = null;
-                lblSheetName.Text = "Chưa có sheet nào";
-                btnNext.Enabled = false;
-                btnPrevious.Enabled = false;
-                textFileExcel.Text = string.Empty;
+                // ✅ Ghi log import thành công
+                string userName = GetCurrentUserFromConnection();
+                string fileName = System.IO.Path.GetFileName(textFileExcel.Text);
+                ActivityLogForm.WriteLog(
+                    userName,
+                    "Import dữ liệu",
+                    $"Đã import file '{fileName}' thành công | Tổng SV: {totalStudents}"
+                );
             }
-
             catch (Exception ex)
             {
                 MessageBox.Show("❌ Lỗi khi import toàn bộ: " + ex.Message);
+
+                // ⚠️ Ghi log lỗi import
+                string userName = GetCurrentUserFromConnection();
+                string fileName = System.IO.Path.GetFileName(textFileExcel.Text);
+                ActivityLogForm.WriteLog(
+                    userName,
+                    "Import lỗi",
+                    $"File '{fileName}' | Lỗi: {ex.Message}"
+                );
             }
         }
+
 
 
 
@@ -284,6 +290,26 @@ namespace StudentDashboardApp.Model
         {
 
         }
+        private string GetCurrentUserFromConnection()
+        {
+            try
+            {
+                string conn = System.Configuration.ConfigurationManager.ConnectionStrings["QLSVConnection"]?.ConnectionString;
+                if (string.IsNullOrEmpty(conn)) return Environment.UserName;
+
+                var builder = new System.Data.SqlClient.SqlConnectionStringBuilder(conn);
+
+                if (builder.IntegratedSecurity)
+                    return $"{Environment.UserDomainName}\\{Environment.UserName}";
+                else
+                    return builder.UserID ?? "UnknownUser";
+            }
+            catch
+            {
+                return Environment.UserName;
+            }
+        }
+
     }
 
 }
