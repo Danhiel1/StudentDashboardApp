@@ -211,8 +211,6 @@
             navigationFrameSTD = new DevExpress.XtraBars.Navigation.NavigationFrame();
             navigationSystemPage1 = new DevExpress.XtraBars.Navigation.NavigationPage();
             layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            labelControl1 = new DevExpress.XtraEditors.LabelControl();
             flowLayoutPanel1 = new FlowLayoutPanel();
             calendarControl1 = new DevExpress.XtraEditors.Controls.CalendarControl();
             infoCardMajor = new StudentDashboardApp.Controls.InfoCard();
@@ -228,8 +226,6 @@
             layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             navigationPageStudent = new DevExpress.XtraBars.Navigation.NavigationPage();
             navigationPageEmpty = new DevExpress.XtraBars.Navigation.NavigationPage();
             panelHeaderShowStudentFSTD = new Panel();
@@ -275,8 +271,6 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem7).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem8).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem9).BeginInit();
             panelHeaderShowStudentFSTD.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxHeaderShowTableFST).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chartControl1).BeginInit();
@@ -1114,8 +1108,6 @@
             // layoutControl1
             // 
             layoutControl1.AllowCustomization = false;
-            layoutControl1.Controls.Add(labelControl2);
-            layoutControl1.Controls.Add(labelControl1);
             layoutControl1.Controls.Add(flowLayoutPanel1);
             layoutControl1.Controls.Add(calendarControl1);
             layoutControl1.Controls.Add(infoCardMajor);
@@ -1132,31 +1124,13 @@
             layoutControl1.TabIndex = 0;
             layoutControl1.Text = "layoutControl1";
             // 
-            // labelControl2
-            // 
-            labelControl2.Location = new Point(16, 16);
-            labelControl2.Name = "labelControl2";
-            labelControl2.Size = new Size(61, 13);
-            labelControl2.StyleController = layoutControl1;
-            labelControl2.TabIndex = 1;
-            labelControl2.Text = "labelControl2";
-            // 
-            // labelControl1
-            // 
-            labelControl1.Location = new Point(83, 16);
-            labelControl1.Name = "labelControl1";
-            labelControl1.Size = new Size(61, 13);
-            labelControl1.StyleController = layoutControl1;
-            labelControl1.TabIndex = 1;
-            labelControl1.Text = "labelControl1";
-            // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel1.Location = new Point(16, 35);
+            flowLayoutPanel1.Location = new Point(16, 16);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(285, 439);
+            flowLayoutPanel1.Size = new Size(285, 458);
             flowLayoutPanel1.TabIndex = 1;
             flowLayoutPanel1.WrapContents = false;
             // 
@@ -1164,49 +1138,49 @@
             // 
             calendarControl1.AutoSize = false;
             calendarControl1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            calendarControl1.Location = new Point(862, 170);
+            calendarControl1.Location = new Point(862, 120);
             calendarControl1.Name = "calendarControl1";
-            calendarControl1.Size = new Size(263, 304);
+            calendarControl1.Size = new Size(263, 354);
             calendarControl1.StyleController = layoutControl1;
             calendarControl1.TabIndex = 6;
             // 
             // infoCardMajor
             // 
-            infoCardMajor.Location = new Point(579, 35);
+            infoCardMajor.Location = new Point(579, 16);
             infoCardMajor.Name = "infoCardMajor";
-            infoCardMajor.Size = new Size(277, 129);
+            infoCardMajor.Size = new Size(277, 98);
             infoCardMajor.TabIndex = 2;
             infoCardMajor.Tag = "Majors";
             // 
             // infoCardTeacher
             // 
-            infoCardTeacher.Location = new Point(862, 35);
+            infoCardTeacher.Location = new Point(862, 16);
             infoCardTeacher.Name = "infoCardTeacher";
-            infoCardTeacher.Size = new Size(263, 129);
+            infoCardTeacher.Size = new Size(263, 98);
             infoCardTeacher.TabIndex = 3;
             infoCardTeacher.Tag = "Teachers";
             // 
             // infoCardStudent
             // 
             infoCardStudent.BackgroundImageLayout = ImageLayout.Stretch;
-            infoCardStudent.Location = new Point(307, 35);
+            infoCardStudent.Location = new Point(307, 16);
             infoCardStudent.Name = "infoCardStudent";
-            infoCardStudent.Size = new Size(266, 129);
+            infoCardStudent.Size = new Size(266, 98);
             infoCardStudent.TabIndex = 0;
             infoCardStudent.Tag = "Students";
             // 
             // chartControlCountPerNienKhoa
             // 
-            chartControlCountPerNienKhoa.Location = new Point(579, 170);
+            chartControlCountPerNienKhoa.Location = new Point(579, 120);
             chartControlCountPerNienKhoa.Name = "chartControlCountPerNienKhoa";
-            chartControlCountPerNienKhoa.Size = new Size(277, 304);
+            chartControlCountPerNienKhoa.Size = new Size(277, 354);
             chartControlCountPerNienKhoa.TabIndex = 5;
             // 
             // chartControCountPerFaculty
             // 
-            chartControCountPerFaculty.Location = new Point(307, 170);
+            chartControCountPerFaculty.Location = new Point(307, 120);
             chartControCountPerFaculty.Name = "chartControCountPerFaculty";
-            chartControCountPerFaculty.Size = new Size(266, 304);
+            chartControCountPerFaculty.Size = new Size(266, 354);
             chartControCountPerFaculty.TabIndex = 4;
             // 
             // RootPage1
@@ -1214,7 +1188,7 @@
             RootPage1.AllowHide = false;
             RootPage1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             RootPage1.GroupBordersVisible = false;
-            RootPage1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem5, layoutControlItem2, layoutControlItem1, layoutControlItem3, layoutControlItem6, layoutControlItem4, layoutControlItem7, layoutControlItem8, layoutControlItem9 });
+            RootPage1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem5, layoutControlItem2, layoutControlItem1, layoutControlItem3, layoutControlItem6, layoutControlItem4, layoutControlItem7 });
             RootPage1.Name = "Root";
             RootPage1.ShowInCustomizationForm = false;
             RootPage1.Size = new Size(1141, 490);
@@ -1223,74 +1197,58 @@
             // layoutControlItem5
             // 
             layoutControlItem5.Control = calendarControl1;
-            layoutControlItem5.Location = new Point(846, 154);
+            layoutControlItem5.Location = new Point(846, 104);
             layoutControlItem5.Name = "layoutControlItem5";
-            layoutControlItem5.Size = new Size(269, 310);
+            layoutControlItem5.Size = new Size(269, 360);
             layoutControlItem5.TextVisible = false;
             // 
             // layoutControlItem2
             // 
             layoutControlItem2.Control = chartControlCountPerNienKhoa;
-            layoutControlItem2.Location = new Point(563, 154);
+            layoutControlItem2.Location = new Point(563, 104);
             layoutControlItem2.Name = "layoutControlItem2";
-            layoutControlItem2.Size = new Size(283, 310);
+            layoutControlItem2.Size = new Size(283, 360);
             layoutControlItem2.TextVisible = false;
             // 
             // layoutControlItem1
             // 
             layoutControlItem1.Control = chartControCountPerFaculty;
-            layoutControlItem1.Location = new Point(291, 154);
+            layoutControlItem1.Location = new Point(291, 104);
             layoutControlItem1.Name = "layoutControlItem1";
-            layoutControlItem1.Size = new Size(272, 310);
+            layoutControlItem1.Size = new Size(272, 360);
             layoutControlItem1.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             layoutControlItem3.Control = infoCardStudent;
-            layoutControlItem3.Location = new Point(291, 19);
+            layoutControlItem3.Location = new Point(291, 0);
             layoutControlItem3.Name = "layoutControlItem3";
-            layoutControlItem3.Size = new Size(272, 135);
+            layoutControlItem3.Size = new Size(272, 104);
             layoutControlItem3.TextVisible = false;
             // 
             // layoutControlItem6
             // 
             layoutControlItem6.Control = infoCardMajor;
-            layoutControlItem6.Location = new Point(563, 19);
+            layoutControlItem6.Location = new Point(563, 0);
             layoutControlItem6.Name = "layoutControlItem6";
-            layoutControlItem6.Size = new Size(283, 135);
+            layoutControlItem6.Size = new Size(283, 104);
             layoutControlItem6.TextVisible = false;
             // 
             // layoutControlItem4
             // 
             layoutControlItem4.Control = infoCardTeacher;
-            layoutControlItem4.Location = new Point(846, 19);
+            layoutControlItem4.Location = new Point(846, 0);
             layoutControlItem4.Name = "layoutControlItem4";
-            layoutControlItem4.Size = new Size(269, 135);
+            layoutControlItem4.Size = new Size(269, 104);
             layoutControlItem4.TextVisible = false;
             // 
             // layoutControlItem7
             // 
             layoutControlItem7.Control = flowLayoutPanel1;
-            layoutControlItem7.Location = new Point(0, 19);
+            layoutControlItem7.Location = new Point(0, 0);
             layoutControlItem7.Name = "layoutControlItem7";
-            layoutControlItem7.Size = new Size(291, 445);
+            layoutControlItem7.Size = new Size(291, 464);
             layoutControlItem7.TextVisible = false;
-            // 
-            // layoutControlItem8
-            // 
-            layoutControlItem8.Control = labelControl2;
-            layoutControlItem8.Location = new Point(0, 0);
-            layoutControlItem8.Name = "layoutControlItem8";
-            layoutControlItem8.Size = new Size(67, 19);
-            layoutControlItem8.TextVisible = false;
-            // 
-            // layoutControlItem9
-            // 
-            layoutControlItem9.Control = labelControl1;
-            layoutControlItem9.Location = new Point(67, 0);
-            layoutControlItem9.Name = "layoutControlItem9";
-            layoutControlItem9.Size = new Size(1048, 19);
-            layoutControlItem9.TextVisible = false;
             // 
             // navigationPageStudent
             // 
@@ -1440,8 +1398,6 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem6).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem7).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem8).EndInit();
-            ((System.ComponentModel.ISupportInitialize)layoutControlItem9).EndInit();
             panelHeaderShowStudentFSTD.ResumeLayout(false);
             panelHeaderShowStudentFSTD.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxHeaderShowTableFST).EndInit();
@@ -1562,10 +1518,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private FlowLayoutPanel flowLayoutPanel1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraBars.BarButtonItem barButtonItemOverview;
     }
 }

@@ -205,15 +205,6 @@ namespace StudentDashboardApp.Resources.Languages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Top Students.
-        /// </summary>
-        internal static string BtnTopStudents1 {
-            get {
-                return ResourceManager.GetString("BtnTopStudents1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Transript.
         /// </summary>
         internal static string BtnTranscript {
