@@ -50,6 +50,7 @@ namespace StudentDashboardApp.Model
                 }
                 else
                 {
+                   
                     lblStatus.Text = "✅ Bạn đang dùng phiên bản mới nhất.";
                     XtraMessageBox.Show("Bạn đang dùng phiên bản mới nhất.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

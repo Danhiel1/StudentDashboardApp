@@ -177,14 +177,32 @@
   <data name="Chart_StudentsPerYear" xml:space="preserve">
     <value>Biểu đồ sinh viên theo niên khóa</value>
   </data>
+  <data name="Chart_Top5Students" xml:space="preserve">
+    <value>Top 5 Sinh Viên</value>
+  </data>
   <data name="ClassRibbon" xml:space="preserve">
     <value>Lớp-Ngành</value>
+  </data>
+  <data name="Lbl_MajorCount" xml:space="preserve">
+    <value>Số Ngành</value>
+  </data>
+  <data name="Lbl_StudentCount" xml:space="preserve">
+    <value>Số Sinh Viên</value>
+  </data>
+  <data name="Lbl_TeacherCount" xml:space="preserve">
+    <value>Số Giáo Viên</value>
   </data>
   <data name="Majors" xml:space="preserve">
     <value>Ngành Học</value>
   </data>
   <data name="MsgSaved" xml:space="preserve">
     <value>Lưu cài đặt thành công!</value>
+  </data>
+  <data name="Msg_AppResetError" xml:space="preserve">
+    <value>Lỗi khi đặt lại ứng dụng</value>
+  </data>
+  <data name="Msg_AppResetSuccess" xml:space="preserve">
+    <value>Ứng dụng đã được đặt lại về mặc định!</value>
   </data>
   <data name="StudentRibbon" xml:space="preserve">
     <value>Sinh Viên</value>
