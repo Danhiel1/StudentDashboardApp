@@ -95,15 +95,15 @@ namespace BusinessLayer
             }).ToList();
         }
 
-        // 7️⃣ Top 5 sinh viên GPA cao nhất
         public List<TopStudent> GetTop5Students()
         {
             var dt = _repo.GetTop5Students();
             return dt.AsEnumerable().Select(r => new TopStudent
             {
                 StudentName = r.Field<string>("StudentName"),
-                GPA = r.Field<decimal>("GPA")
+                GPA = Convert.ToDecimal(r["GPA"])
             }).ToList();
         }
+
     }
 }

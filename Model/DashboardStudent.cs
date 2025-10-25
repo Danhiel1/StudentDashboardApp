@@ -120,48 +120,64 @@ namespace StudentDashboardApp.Model
         }
 
         // 👉 Hàm này chỉ load dữ liệu từ SQL
-        public void LoadDashboardData()
-        {
-            try
+            public void LoadDashboardData()
             {
-                // 🔹 Lấy text theo ngôn ngữ hiện tại
-                string studentText = LanguageHelper.GetString("Students") + ":";
-                string teacherText = LanguageHelper.GetString("Teachers") + ":";
-                string majorText = LanguageHelper.GetString("Majors") + ":";
+                try
+                {
+                    // 🔹 Lấy text theo ngôn ngữ hiện tại
+                    string studentText = LanguageHelper.GetString("Students") + ":";
+                    string teacherText = LanguageHelper.GetString("Teachers") + ":";
+                    string majorText = LanguageHelper.GetString("Majors") + ":";
 
-                string chartPerYear = LanguageHelper.GetString("Chart_StudentsPerYear");
-                string chartPerFaculty = LanguageHelper.GetString("Chart_StudentsPerFaculty");
+                    string chartPerYear = LanguageHelper.GetString("Chart_StudentsPerYear");
+                    string chartPerFaculty = LanguageHelper.GetString("Chart_StudentsPerFaculty");
 
-                // 🔹 Gán dữ liệu và text đa ngôn ngữ
-                infoCardStudent.SetData(studentText, _service.GetStudentCount().ToString(), Properties.Resources.z7011126876535_5d2a8a373984a08b54b6b6f3adcbb861);
-                infoCardTeacher.SetData(teacherText, _service.GetTeacherCount().ToString(), Properties.Resources.course);
-                infoCardMajor.SetData(majorText, _service.GetMajorCount().ToString(), Properties.Resources.Excel);
+                    // 🔹 Gán dữ liệu và text đa ngôn ngữ
+                    infoCardStudent.SetData(studentText, _service.GetStudentCount().ToString(), Properties.Resources.z7011126876535_5d2a8a373984a08b54b6b6f3adcbb861);
+                    infoCardTeacher.SetData(teacherText, _service.GetTeacherCount().ToString(), Properties.Resources.course);
+                    infoCardMajor.SetData(majorText, _service.GetMajorCount().ToString(), Properties.Resources.Excel);
 
-                // 🔹 Biểu đồ
+                    // 🔹 Biểu đồ
+                    ChartService.LoadChart(
+                        chartControlCountPerNienKhoa,
+                        _service.GetStudentCountPerNienKhoa(),
+                        "MaNienKhoa",
+                        "StudentCount",
+                        ViewType.Pie,
+                        chartPerYear
+                    );
+
+                    ChartService.LoadChart(
+                        chartControCountPerFaculty,
+                        _service.GetStudentCountPerFaculty(),
+                        "FacultyName",
+                        "StudentCount",
+                        ViewType.Bar,
+                        chartPerFaculty
+                    );
+                // 🔹 Biểu đồ Top 5 sinh viên có GPA cao nhất
+                var topStudents = _service.GetTop5Students();
+
+                // Nếu bạn muốn đổi ngôn ngữ chart title
+                string chartTop5 = LanguageHelper.GetString("Chart_Top5Students");
+
+                // Nạp dữ liệu vào chart
                 ChartService.LoadChart(
-                    chartControlCountPerNienKhoa,
-                    _service.GetStudentCountPerNienKhoa(),
-                    "MaNienKhoa",
-                    "StudentCount",
-                    ViewType.Pie,
-                    chartPerYear
+                    chartTop5Students,     // ChartControl
+                    topStudents,           // Data source (List<TopStudent>)
+                    "StudentName",         // Tên cột trục X
+                    "GPA",                 // Tên cột trục Y
+                    ViewType.Bar,          // Dạng biểu đồ (có thể dùng Column, Bar, hoặc Line)
+                    chartTop5              // Tiêu đề biểu đồ
                 );
 
-                ChartService.LoadChart(
-                    chartControCountPerFaculty,
-                    _service.GetStudentCountPerFaculty(),
-                    "FacultyName",
-                    "StudentCount",
-                    ViewType.Bar,
-                    chartPerFaculty
-                );
             }
             catch (Exception ex)
-            {
-                MessageBox.Show("⚠️ Lỗi khi tải dữ liệu Dashboard:\n" + ex.Message,
-                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                {
+                    MessageBox.Show("⚠️ Lỗi khi tải dữ liệu Dashboard:\n" + ex.Message,
+                        "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
-        }
 
 
         // Nút đổi server
@@ -212,7 +228,6 @@ namespace StudentDashboardApp.Model
             flowLayoutPanel1.Controls.Add(CreateQuickButton("Thêm sinh viên mới", "Đăng ký học sinh mới vào hệ thống", Properties.Resources.close));
             flowLayoutPanel1.Controls.Add(CreateQuickButton("Cập nhật dữ liệu", "Làm mới thông tin từ cơ sở dữ liệu", Properties.Resources.Excel));
             flowLayoutPanel1.Controls.Add(CreateQuickButton("Xuất danh sách", "Xuất danh sách sinh viên ra Excel", Properties.Resources.student));
-            flowLayoutPanel1.Controls.Add(CreateQuickButton("Load Lại Dashboard", "Làm mới thông tin từ cơ sở dữ liệu", Properties.Resources.student));
             flowLayoutPanel1.ResumeLayout();
         }
 
@@ -223,7 +238,7 @@ namespace StudentDashboardApp.Model
                 Title = title,
                 Description = desc,
                 Icon = icon
-            };
+            };  
 
             btn.Click += (s, e) =>
             {
@@ -269,6 +284,7 @@ namespace StudentDashboardApp.Model
             // 🔔 Khi ImportForm hoàn tất, tự reload Dashboard
             importForm.ImportCompleted += (s, args) =>
             {
+                ToastNotification.Error("MsgSaved");
                 MessageBox.Show("🔄 Dữ liệu đã được cập nhật. Làm mới dashboard...");
                 LoadDashboardData(); // Gọi lại hàm load để cập nhật biểu đồ và số liệu
             };
@@ -279,15 +295,15 @@ namespace StudentDashboardApp.Model
         {
             try
             {
-                // 🧱 1️⃣ Ngắt kết nối và reset service
+                // 🧱 1️⃣ Ngắt kết nối & reset service
                 _isDbConnected = false;
-                _connectionString = null;
-                _service = null;
+                _connectionString = _connectionString ?? string.Empty;
+                _service = new StudentService(_connectionString);
 
                 // 🧹 2️⃣ Xóa dữ liệu hiển thị
-                infoCardStudent.SetData("Số Sinh Viên", "0", Properties.Resources.student);
-                infoCardTeacher.SetData("Số Giáo Viên", "0", Properties.Resources.student);
-                infoCardMajor.SetData("Số Ngành", "0", Properties.Resources.student);
+                infoCardStudent.SetData(LanguageHelper.GetString("Lbl_StudentCount"), "0", Properties.Resources.student);
+                infoCardTeacher.SetData(LanguageHelper.GetString("Lbl_TeacherCount"), "0", Properties.Resources.student);
+                infoCardMajor.SetData(LanguageHelper.GetString("Lbl_MajorCount"), "0", Properties.Resources.student);
 
                 chartControlCountPerNienKhoa.Series.Clear();
                 chartControCountPerFaculty.Series.Clear();
@@ -300,16 +316,23 @@ namespace StudentDashboardApp.Model
                 // 🧱 4️⃣ Làm sạch các control động
                 navigationPageStudent.Controls.Clear();
 
-                // 🪄 5️⃣ Hiển thị thông báo
-                MessageBox.Show("🔄 Ứng dụng đã được đặt lại về mặc định.\nHiện không kết nối tới máy chủ nào.",
-                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // 🪄 5️⃣ Hiển thị thông báo toast (10s, đa ngôn ngữ)
+                ToastNotification.Show(
+                    LanguageHelper.GetString("Msg_AppResetSuccess"), // dùng key từ file strings
+                    "success",
+                    10000
+                );
             }
             catch (Exception ex)
             {
-                MessageBox.Show("⚠️ Lỗi khi đặt lại ứng dụng:\n" + ex.Message,
-                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ToastNotification.Show(
+                    LanguageHelper.GetString("Msg_AppResetError") + ": " + ex.Message,
+                    "error",
+                    8000
+                );
             }
         }
+
 
         private void btnParameters_ItemClick(object sender, ItemClickEventArgs e)
         {

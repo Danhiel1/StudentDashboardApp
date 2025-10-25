@@ -241,6 +241,15 @@ namespace StudentDashboardApp.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Top 5 Students.
+        /// </summary>
+        internal static string Chart_Top5Students {
+            get {
+                return ResourceManager.GetString("Chart_Top5Students", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Class.
         /// </summary>
         internal static string ClassRibbon {
@@ -252,9 +261,54 @@ namespace StudentDashboardApp.Resources.Languages {
         /// <summary>
         ///   Looks up a localized string similar to Majors.
         /// </summary>
+        internal static string Lbl_MajorCount {
+            get {
+                return ResourceManager.GetString("Lbl_MajorCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Students.
+        /// </summary>
+        internal static string Lbl_StudentCount {
+            get {
+                return ResourceManager.GetString("Lbl_StudentCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Teachers.
+        /// </summary>
+        internal static string Lbl_TeacherCount {
+            get {
+                return ResourceManager.GetString("Lbl_TeacherCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Majors.
+        /// </summary>
         internal static string Majors {
             get {
                 return ResourceManager.GetString("Majors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error while resetting application.
+        /// </summary>
+        internal static string Msg_AppResetError {
+            get {
+                return ResourceManager.GetString("Msg_AppResetError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application has been reset to default!.
+        /// </summary>
+        internal static string Msg_AppResetSuccess {
+            get {
+                return ResourceManager.GetString("Msg_AppResetSuccess", resourceCulture);
             }
         }
         

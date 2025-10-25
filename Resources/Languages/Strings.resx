@@ -177,14 +177,32 @@
   <data name="Chart_StudentsPerYear" xml:space="preserve">
     <value>Students per Academic Year Chart</value>
   </data>
+  <data name="Chart_Top5Students" xml:space="preserve">
+    <value>Top 5 Students</value>
+  </data>
   <data name="ClassRibbon" xml:space="preserve">
     <value>Class</value>
+  </data>
+  <data name="Lbl_MajorCount" xml:space="preserve">
+    <value>Majors</value>
+  </data>
+  <data name="Lbl_StudentCount" xml:space="preserve">
+    <value>Students</value>
+  </data>
+  <data name="Lbl_TeacherCount" xml:space="preserve">
+    <value>Teachers</value>
   </data>
   <data name="Majors" xml:space="preserve">
     <value>Majors</value>
   </data>
   <data name="MsgSaved" xml:space="preserve">
     <value>Settings saved successfully!</value>
+  </data>
+  <data name="Msg_AppResetError" xml:space="preserve">
+    <value>Error while resetting application</value>
+  </data>
+  <data name="Msg_AppResetSuccess" xml:space="preserve">
+    <value>Application has been reset to default!</value>
   </data>
   <data name="StudentRibbon" xml:space="preserve">
     <value>Student </value>

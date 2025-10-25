@@ -67,7 +67,7 @@ namespace StudentDashboardApp.Controls
             Controls.Add(lblDescription);
             Cursor = Cursors.Hand;
             Name = "QuickActionButton";
-            Size = new Size(280, 70);
+            Size = new Size(255, 70);
             ((System.ComponentModel.ISupportInitialize)picIcon).EndInit();
             ResumeLayout(false);
             PerformLayout();
