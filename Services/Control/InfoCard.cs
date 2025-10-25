@@ -9,6 +9,7 @@ namespace StudentDashboardApp.Controls
         public InfoCard()
         {
             InitializeComponent();
+
         }
 
         public void SetData(string title, string value, System.Drawing.Image icon, Color? backColor = null)

@@ -148,6 +148,7 @@
             btnTest.Name = "btnTest";
             btnTest.Size = new Size(95, 23);
             btnTest.TabIndex = 5;
+            btnTest.Tag = "BtnTest";
             btnTest.Text = "Test Connection";
             btnTest.UseVisualStyleBackColor = true;
             btnTest.Click += btnTest_Click;
@@ -159,6 +160,7 @@
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(88, 23);
             btnSave.TabIndex = 6;
+            btnSave.Tag = "BtnSave";
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
@@ -171,6 +173,7 @@
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(67, 23);
             btnCancel.TabIndex = 7;
+            btnCancel.Tag = "BtnCancel";
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
@@ -199,6 +202,7 @@
             btnLoad.Name = "btnLoad";
             btnLoad.Size = new Size(71, 23);
             btnLoad.TabIndex = 10;
+            btnLoad.Tag = "BtnLoad";
             btnLoad.Text = "Load";
             btnLoad.UseVisualStyleBackColor = true;
             btnLoad.Click += btnLoad_Click;
@@ -218,7 +222,6 @@
             Controls.Add(groupBox1);
             Controls.Add(label2);
             Controls.Add(label1);
-            Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             MaximizeBox = false;
             MdiChildrenMinimizedAnchorBottom = false;
             MinimizeBox = false;

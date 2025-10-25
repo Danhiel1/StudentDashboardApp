@@ -29,76 +29,86 @@
 
         private void InitializeComponent()
         {
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.btnExport = new DevExpress.XtraEditors.SimpleButton();
-            this.btnClear = new DevExpress.XtraEditors.SimpleButton();
-            this.btnClose = new DevExpress.XtraEditors.SimpleButton();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            this.SuspendLayout();
+            gridControl1 = new DevExpress.XtraGrid.GridControl();
+            gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            btnExport = new DevExpress.XtraEditors.SimpleButton();
+            btnClear = new DevExpress.XtraEditors.SimpleButton();
+            btnClose = new DevExpress.XtraEditors.SimpleButton();
+            ((System.ComponentModel.ISupportInitialize)gridControl1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridView1).BeginInit();
+            SuspendLayout();
             // 
             // gridControl1
             // 
-            this.gridControl1.Location = new System.Drawing.Point(12, 12);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(760, 380);
-            this.gridControl1.TabIndex = 0;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            gridControl1.Dock = DockStyle.Top;
+            gridControl1.EmbeddedNavigator.Margin = new Padding(3, 2, 3, 2);
+            gridControl1.Location = new Point(0, 0);
+            gridControl1.MainView = gridView1;
+            gridControl1.Margin = new Padding(3, 2, 3, 2);
+            gridControl1.Name = "gridControl1";
+            gridControl1.Size = new Size(672, 309);
+            gridControl1.TabIndex = 0;
+            gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gridView1 });
             // 
             // gridView1
             // 
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsBehavior.Editable = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.OptionsView.ShowAutoFilterRow = true;
+            gridView1.DetailHeight = 284;
+            gridView1.GridControl = gridControl1;
+            gridView1.Name = "gridView1";
+            gridView1.OptionsBehavior.Editable = false;
+            gridView1.OptionsEditForm.PopupEditFormWidth = 686;
+            gridView1.OptionsView.ShowAutoFilterRow = true;
+            gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(20, 410);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(120, 35);
-            this.btnExport.TabIndex = 1;
-            this.btnExport.Text = "⬇ Export Logs";
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            btnExport.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnExport.Location = new Point(17, 333);
+            btnExport.Margin = new Padding(3, 2, 3, 2);
+            btnExport.Name = "btnExport";
+            btnExport.Size = new Size(103, 28);
+            btnExport.TabIndex = 1;
+            btnExport.Text = "⬇ Export Logs";
+            btnExport.Click += btnExport_Click;
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(160, 410);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(120, 35);
-            this.btnClear.TabIndex = 2;
-            this.btnClear.Text = "🧹 Clear Logs";
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            btnClear.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnClear.Location = new Point(137, 333);
+            btnClear.Margin = new Padding(3, 2, 3, 2);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(103, 28);
+            btnClear.TabIndex = 2;
+            btnClear.Text = "\U0001f9f9 Clear Logs";
+            btnClear.Click += btnClear_Click;
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(652, 410);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(120, 35);
-            this.btnClose.TabIndex = 3;
-            this.btnClose.Text = "✖ Close";
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            btnClose.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnClose.Location = new Point(559, 333);
+            btnClose.Margin = new Padding(3, 2, 3, 2);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(103, 28);
+            btnClose.TabIndex = 3;
+            btnClose.Text = "✖ Close";
+            btnClose.Click += btnClose_Click;
             // 
             // ActivityLogForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 461);
-            this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.btnClear);
-            this.Controls.Add(this.btnExport);
-            this.Controls.Add(this.gridControl1);
-            this.LookAndFeel.SkinName = "The Bezier";
-            this.Name = "ActivityLogForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "🧾 Activity Logs";
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(6F, 13F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(672, 375);
+            Controls.Add(btnClose);
+            Controls.Add(btnClear);
+            Controls.Add(btnExport);
+            Controls.Add(gridControl1);
+            Margin = new Padding(3, 2, 3, 2);
+            Name = "ActivityLogForm";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "\U0001f9fe Activity Logs";
+            ((System.ComponentModel.ISupportInitialize)gridControl1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridView1).EndInit();
+            ResumeLayout(false);
 
         }
 

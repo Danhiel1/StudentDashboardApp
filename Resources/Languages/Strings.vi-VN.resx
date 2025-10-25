@@ -117,20 +117,88 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="close" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Image\close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BtnAddStudent" xml:space="preserve">
+    <value>Thêm Sinh Viên</value>
   </data>
-  <data name="course" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Image\course.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BtnAttendance" xml:space="preserve">
+    <value>Điểm danh</value>
   </data>
-  <data name="student" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Image\student.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BtnCancel" xml:space="preserve">
+    <value>Hủy</value>
   </data>
-  <data name="Excel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Image\Excel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BtnDatabase" xml:space="preserve">
+    <value>Kết Nối CSDL</value>
   </data>
-  <data name="z7011126876535_5d2a8a373984a08b54b6b6f3adcbb861" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Image\course.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BtnEditStudent" xml:space="preserve">
+    <value>Chỉnh Sửa Sinh Viên</value>
+  </data>
+  <data name="BtnFindStudent" xml:space="preserve">
+    <value>Tìm Sinh Viên</value>
+  </data>
+  <data name="BtnImport" xml:space="preserve">
+    <value>Nhập Dữ Liệu</value>
+  </data>
+  <data name="BtnListClassOrYear" xml:space="preserve">
+    <value>Danh sách theo lớp hoặc năm</value>
+  </data>
+  <data name="BtnLoad" xml:space="preserve">
+    <value>Tải</value>
+  </data>
+  <data name="BtnLogs" xml:space="preserve">
+    <value>Nhật Ký Hoạt Động</value>
+  </data>
+  <data name="BtnOverview" xml:space="preserve">
+    <value>Tổng Quan</value>
+  </data>
+  <data name="BtnReset" xml:space="preserve">
+    <value>Cài Lại</value>
+  </data>
+  <data name="BtnSave" xml:space="preserve">
+    <value>Lưu</value>
+  </data>
+  <data name="BtnStudentScore" xml:space="preserve">
+    <value>Chỉnh Sửa Điểm</value>
+  </data>
+  <data name="BtnTest" xml:space="preserve">
+    <value>Thử Kết Nối</value>
+  </data>
+  <data name="BtnTopStudents" xml:space="preserve">
+    <value>Sinh viên xuất sắc nhất</value>
+  </data>
+  <data name="BtnTranscript" xml:space="preserve">
+    <value>Xem bảng điểm</value>
+  </data>
+  <data name="BtnUpdate" xml:space="preserve">
+    <value>Cập Nhật</value>
+  </data>
+  <data name="Chart_StudentsPerFaculty" xml:space="preserve">
+    <value>Số lượng sinh viên theo khoa</value>
+  </data>
+  <data name="Chart_StudentsPerYear" xml:space="preserve">
+    <value>Biểu đồ sinh viên theo niên khóa</value>
+  </data>
+  <data name="ClassRibbon" xml:space="preserve">
+    <value>Lớp-Ngành</value>
+  </data>
+  <data name="Majors" xml:space="preserve">
+    <value>Ngành Học</value>
+  </data>
+  <data name="MsgSaved" xml:space="preserve">
+    <value>Lưu cài đặt thành công!</value>
+  </data>
+  <data name="StudentRibbon" xml:space="preserve">
+    <value>Sinh Viên</value>
+  </data>
+  <data name="Students" xml:space="preserve">
+    <value>Sinh Viên</value>
+  </data>
+  <data name="SystemRibbon" xml:space="preserve">
+    <value>Hệ Thống</value>
+  </data>
+  <data name="Teachers" xml:space="preserve">
+    <value>Giáo viên</value>
+  </data>
+  <data name="TxtSystemParameter" xml:space="preserve">
+    <value>Cấu hình (Ngôn Ngữ , Thời gian)</value>
   </data>
 </root>

@@ -1,9 +1,11 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
+using StudentDashboardApp.Model;
+using StudentDashboardApp.Resources;
 using System;
 using System.Windows.Forms;
 using static DevExpress.Utils.Frames.FrameHelper;
-
+using StudentDashboardApp.Services;
 namespace StudentDashboardApp.Forms
 {
     public partial class SystemSettingsForm : XtraForm
@@ -31,11 +33,33 @@ namespace StudentDashboardApp.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            ToastNotification.Success("MsgSaved");
+
+
+            // 1️⃣ Lưu cài đặt
             SaveSettings(cbDateFormat.Text, cbTimeFormat.Text, cbLanguage.Text);
-            XtraMessageBox.Show("✅ Settings saved successfully!",
-                "System Parameters", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.Close();
+
+            // 2️⃣ Áp dụng ngôn ngữ
+            LanguageHelper.ApplyLanguage(cbLanguage.Text);
+
+            // 3️⃣ Duyệt toàn bộ form đang mở
+            foreach (Form frm in Application.OpenForms)
+            {
+                UILanguageHelper.ApplyLanguage(frm);
+
+                // 🔹 Nếu là Dashboard → load lại dữ liệu để cập nhật text trong chart
+                if (frm is DashboardStudent dashboard)
+                {
+                    dashboard.LoadDashboardData(); // ✅ Gọi lại hàm cập nhật chart
+                }
+            }
         }
+
+
+
+
+
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {

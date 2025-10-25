@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿                            using DevExpress.XtraEditors;
+using StudentDashboardApp.Forms;
 using System;
 using System.Collections.Specialized;
 using System.Configuration;
@@ -84,7 +85,21 @@ namespace StudentDashboardApp.Model
                 ConfigurationManager.RefreshSection("connectionStrings");
 
                 ConnectionString = connStr;
-                SaveRecentServer(cboServer.Text.Trim()); // ✅ Lưu server đã kết nối
+                SaveRecentServer(cboServer.Text.Trim());
+
+                // 🔹 Ghi log sau khi lưu thành công
+                string userName;
+                if (rdoWindowsAuth.Checked)
+                    userName = $"{Environment.UserDomainName}\\{Environment.UserName}";
+                else
+                    userName = txtUsername.Text;
+
+                string action = "Kết nối SQL";
+                string details = rdoWindowsAuth.Checked
+                    ? $"Windows Authentication | Server: {cboServer.Text} | Database: {cboDatabase.Text}"
+                    : $"SQL Authentication | User: {txtUsername.Text} | Server: {cboServer.Text} | Database: {cboDatabase.Text}";
+
+                ActivityLogForm.WriteLog(userName, action, details);
 
                 DialogResult = DialogResult.OK;
                 Close();
@@ -95,6 +110,7 @@ namespace StudentDashboardApp.Model
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private bool TryTestConnection(string connStr, out string error)
         {
