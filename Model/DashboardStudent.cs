@@ -245,8 +245,9 @@ namespace StudentDashboardApp.Model
                 switch (title)
                 {
                     case "Thêm sinh viên mới":
-                        ShowUserControl(new AddStudentControl());
+                        ShowUserControl(new AddStudentControl(), false); // ❌ Không animation
                         break;
+
                     case "Cập nhật dữ liệu":
                         LoadDashboardData();
                         MessageBox.Show("🔄 Dữ liệu dashboard đã được làm mới!", "Thông báo");
@@ -260,16 +261,23 @@ namespace StudentDashboardApp.Model
             return btn;
         }
 
-        private void ShowUserControl(UserControl control)
+        private void ShowUserControl(UserControl control, bool useAnimation = true)
         {
             try
             {
+                // ✅ Tạm tắt animation nếu không muốn dùng
+                if (!useAnimation)
+                    navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
+
                 // Chuyển sang navigationPageStudent
                 navigationFrameSTD.SelectedPage = navigationPageStudent;
                 navigationPageStudent.Controls.Clear();
 
                 control.Dock = DockStyle.Fill;
                 navigationPageStudent.Controls.Add(control);
+
+                // ✅ Bật lại animation cho các lần khác
+                navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True;
             }
             catch (Exception ex)
             {
@@ -277,6 +285,7 @@ namespace StudentDashboardApp.Model
                     "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {
             var importForm = new ImportForm();
