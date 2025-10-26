@@ -75,8 +75,8 @@ namespace StudentDashboardApp.Model
             {
                 // 🔹 Nếu không kết nối được thì để số liệu = 0
                 infoCardStudent.SetData("Số Sinh Viên", "0", Properties.Resources.student);
-                infoCardTeacher.SetData("Số Giáo Viên", "0", Properties.Resources.student);
-                infoCardMajor.SetData("Số Ngành", "0", Properties.Resources.student);
+                infoCardTeachers.SetData("Số Giáo Viên", "0", Properties.Resources.teacher);
+                infoCardMajors.SetData("Số Ngành", "0", Properties.Resources.course );
                 chartControlCountPerNienKhoa.Series.Clear();
                 chartControCountPerFaculty.Series.Clear();
                 
@@ -133,9 +133,9 @@ namespace StudentDashboardApp.Model
                     string chartPerFaculty = LanguageHelper.GetString("Chart_StudentsPerFaculty");
 
                     // 🔹 Gán dữ liệu và text đa ngôn ngữ
-                    infoCardStudent.SetData(studentText, _service.GetStudentCount().ToString(), Properties.Resources.z7011126876535_5d2a8a373984a08b54b6b6f3adcbb861);
-                    infoCardTeacher.SetData(teacherText, _service.GetTeacherCount().ToString(), Properties.Resources.course);
-                    infoCardMajor.SetData(majorText, _service.GetMajorCount().ToString(), Properties.Resources.Excel);
+                    infoCardStudent.SetData(studentText, _service.GetStudentCount().ToString(), Properties.Resources.student);
+                    infoCardTeachers.SetData(teacherText, _service.GetTeacherCount().ToString(), Properties.Resources.teacher);
+                    infoCardMajors.SetData(majorText, _service.GetMajorCount().ToString(), Properties.Resources.course);
 
                     // 🔹 Biểu đồ
                     ChartService.LoadChart(
@@ -225,9 +225,9 @@ namespace StudentDashboardApp.Model
             flowLayoutPanel1.Controls.Clear();
             flowLayoutPanel1.SuspendLayout();
 
-            flowLayoutPanel1.Controls.Add(CreateQuickButton("Thêm sinh viên mới", "Đăng ký học sinh mới vào hệ thống", Properties.Resources.close));
-            flowLayoutPanel1.Controls.Add(CreateQuickButton("Cập nhật dữ liệu", "Làm mới thông tin từ cơ sở dữ liệu", Properties.Resources.Excel));
-            flowLayoutPanel1.Controls.Add(CreateQuickButton("Xuất danh sách", "Xuất danh sách sinh viên ra Excel", Properties.Resources.student));
+            flowLayoutPanel1.Controls.Add(CreateQuickButton("Thêm sinh viên mới", "Đăng ký học sinh mới vào hệ thống", Properties.Resources.add));
+            flowLayoutPanel1.Controls.Add(CreateQuickButton("Cập nhật dữ liệu", "Làm mới thông tin từ cơ sở dữ liệu", Properties.Resources.reset));
+            flowLayoutPanel1.Controls.Add(CreateQuickButton("Xuất danh sách", "Xuất danh sách sinh viên ra Excel", Properties.Resources.export));
             flowLayoutPanel1.ResumeLayout();
         }
 
@@ -245,11 +245,11 @@ namespace StudentDashboardApp.Model
                 switch (title)
                 {
                     case "Thêm sinh viên mới":
-                        ShowUserControl(new AddStudentControl());
+                        ShowUserControl(new AddStudentControl(), false); // ❌ Không animation
                         break;
                     case "Cập nhật dữ liệu":
                         LoadDashboardData();
-                        MessageBox.Show("🔄 Dữ liệu dashboard đã được làm mới!", "Thông báo");
+                        ToastNotification.Error("MsgSaved");
                         break;
                         //case "Xuất danh sách":
                         //    using (var exportForm = new ExportForm())
@@ -260,16 +260,23 @@ namespace StudentDashboardApp.Model
             return btn;
         }
 
-        private void ShowUserControl(UserControl control)
+        private void ShowUserControl(UserControl control, bool useAnimation = true)
         {
             try
             {
+                // ✅ Tạm tắt animation nếu không muốn dùng
+                if (!useAnimation)
+                    navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
+
                 // Chuyển sang navigationPageStudent
                 navigationFrameSTD.SelectedPage = navigationPageStudent;
                 navigationPageStudent.Controls.Clear();
 
                 control.Dock = DockStyle.Fill;
                 navigationPageStudent.Controls.Add(control);
+
+                // ✅ Bật lại animation cho các lần khác
+                navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True;
             }
             catch (Exception ex)
             {
@@ -295,43 +302,31 @@ namespace StudentDashboardApp.Model
         {
             try
             {
-                // 🧱 1️⃣ Ngắt kết nối & reset service
                 _isDbConnected = false;
-                _connectionString = _connectionString ?? string.Empty;
+                _connectionString = string.Empty;
                 _service = new StudentService(_connectionString);
 
-                // 🧹 2️⃣ Xóa dữ liệu hiển thị
                 infoCardStudent.SetData(LanguageHelper.GetString("Lbl_StudentCount"), "0", Properties.Resources.student);
-                infoCardTeacher.SetData(LanguageHelper.GetString("Lbl_TeacherCount"), "0", Properties.Resources.student);
-                infoCardMajor.SetData(LanguageHelper.GetString("Lbl_MajorCount"), "0", Properties.Resources.student);
+                infoCardTeachers.SetData(LanguageHelper.GetString("Lbl_TeacherCount"), "0", Properties.Resources.teacher);
+                infoCardMajors.SetData(LanguageHelper.GetString("Lbl_MajorCount"), "0", Properties.Resources.course);
 
                 chartControlCountPerNienKhoa.Series.Clear();
                 chartControCountPerFaculty.Series.Clear();
+                chartTop5Students.Series.Clear();
 
-                // 🧭 3️⃣ Quay về trang hệ thống mặc định
                 navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
                 navigationFrameSTD.SelectedPage = navigationSystemPage1;
                 navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True;
-
-                // 🧱 4️⃣ Làm sạch các control động
                 navigationPageStudent.Controls.Clear();
 
-                // 🪄 5️⃣ Hiển thị thông báo toast (10s, đa ngôn ngữ)
-                ToastNotification.Show(
-                    LanguageHelper.GetString("Msg_AppResetSuccess"), // dùng key từ file strings
-                    "success",
-                    10000
-                );
+                ToastNotification.Show(LanguageHelper.GetString("Msg_AppResetSuccess"), "success", 10000);
             }
             catch (Exception ex)
             {
-                ToastNotification.Show(
-                    LanguageHelper.GetString("Msg_AppResetError") + ": " + ex.Message,
-                    "error",
-                    8000
-                );
+                ToastNotification.Show(LanguageHelper.GetString("Msg_AppResetError") + ": " + ex.Message, "error", 8000);
             }
         }
+
 
 
         private void btnParameters_ItemClick(object sender, ItemClickEventArgs e)

@@ -27,7 +27,7 @@ namespace StudentDashboardApp.Controls
             // 
             // picIcon
             // 
-            picIcon.Image = Properties.Resources.z7011126876535_5d2a8a373984a08b54b6b6f3adcbb861;
+            picIcon.Image = Properties.Resources.Excel;
             picIcon.Location = new Point(10, 15);
             picIcon.Name = "picIcon";
             picIcon.Size = new Size(40, 40);
