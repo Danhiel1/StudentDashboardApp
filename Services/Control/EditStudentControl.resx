@@ -117,21 +117,118 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="layoutControl1.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="panelHeaderFindStudent.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="pictureBoxHeaderFindStudent.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureBoxHeaderFindStudent.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        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
+        DAAACwwBP0AiyAAAAohJREFUaEPtmUFvTUEYhq8mLe2m8RskElv8CDa0UixsxdKuK0SwUOxsrFEk/oCl
+        DWEhsapWaWwsxAoVaRDX8858k5DUvXPmTGdO5T7Jk/TeM/N9b889c87ctjdixIh89Pv9CTyB93EFv5r6
+        We/p2IQN7xYEO4ZrOIy3OGvT6kOYMbyuZA25hmNWph6EuOHipLFgZepAAF02bZmxcmWhsRasrue2aN2U
+        X9g01R0lF3NWthw0feB7Z2HRypaDpqu+dxZWrGw5aLrue2dh3cqWQ0197yx8trLloOlr3zsLy1a2HDS9
+        53tn4Y6VLQdNt/1tdBzfuPbtqPMgEzSedRHS+YVHrFwdCJCyEw1ctTL1IIS209oaN0FnfgHrb6cDhJnB
+        mDWhJ/hRm9YtCKaFPYeLuIx62MlXeBd1bNyG/9/wi+7Ci6hP9Ttq634ZJ21IdyHkND7FzXiOUza0exBO
+        4RVyEFdseLcgWEx4sWZT4mDCFOr603X4E3PxA09aj9jwYsMFi4HBCv/MTctLanix6sLFwGCd+dy0CS8u
+        uHAxMDjHXx7+pG143Z12unAxMLgL13xA46ddsFiYsOGmtqd8eMGkd256O/QpnrJ6KeFf4G4XqClMfOhK
+        pFPnzAeYfNyVSWfe6pQPLyig/f5LVUvgPWqHKp/ojQa0Dx+g0H7Uf1qactPmaxvdhHzhAxQ8hF9UvQGH
+        be5t/zKK/OEDFN6H+qISwzecRF2CH/RGBFsXPkADXc9n8CMO4pGNP+hfDiX9VpmCmuE8LuFmnLVx5/3L
+        gWz9mR8EzffgabyFj1H7p7127F/frAK6O9ULPwzCfXIx/0ZrQgu7+1/yCXgJdQvWmT6HB3CHHR6xzen1
+        fgPkkWXqJZwfPQAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="labelHeaderEditStudent.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="layoutControl2.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="layoutControl5.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="textEditEnterStudentID.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="simpleButtonEnterStudentID.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="layoutControl7.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="layoutControl3.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="simpleButtonDeleteStudent.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="simpleButtonEditStudent.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="layoutControl6.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="EditComboBoxSemester.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="labelClassIDFTD.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="labelEmailTFTD.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="labeGenderFSTD.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="textEditCLassIDFSTD.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="textEditEmailTFTD.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="textEditGenderFSTD.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="layoutControl4.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="labelPhoneFSTD.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="labelPlaceFSTD.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="textEditPhoneFSTD.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="textEditPlaceFSTD.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="labelDateFSTD.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="labelFullName.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="labelID.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="textEditlDateFSTD.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="textEditFullNameFindSTD.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="textEditIDFindST.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

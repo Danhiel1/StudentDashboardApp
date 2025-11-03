@@ -6,6 +6,18 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Models
 {
+    public class Student
+    {
+        public string MaSV { get; set; }
+        public string TenSV { get; set; }
+        public DateTime NgaySinh { get; set; }
+        public string GioiTinh { get; set; }
+        public string DiaChi { get; set; }
+        public string Email { get; set; }
+        public string MaLop { get; set; }
+        public string SDT { get; set; }
+    }
+
     public class StudentPerNienKhoa
     {
         public string MaNienKhoa { get; set; }

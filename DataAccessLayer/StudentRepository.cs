@@ -89,7 +89,31 @@ namespace DataAccessLayer
                 new SqlCommand($"DROP TABLE {tempTable}", conn).ExecuteNonQuery();
             }
         }
+        public DataTable GetNienKhoaList()
+        {
+            string sql = "SELECT MaNienKhoa, CONCAT(NamBatDau, '-', NamKetThuc) AS TenNienKhoa FROM Nien_Khoa ORDER BY NamBatDau";
+            using (var conn = new SqlConnection(_connectionString))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                conn.Open();
+                var dt = new DataTable();
+                new SqlDataAdapter(cmd).Fill(dt);
+                return dt;
+            }
+        }
 
+        public string GetNienKhoaByClassId(string maLop)
+        {
+            const string sql = "SELECT MaNienKhoa FROM Lop WHERE MaLop = @MaLop";
+            using (var conn = new SqlConnection(_connectionString))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@MaLop", maLop);
+                conn.Open();
+                var result = cmd.ExecuteScalar();
+                return result == null || result == DBNull.Value ? null : result.ToString();
+            }
+        }
         private string GetSqlType(Type t)
         {
             if (t == typeof(int)) return "INT";
@@ -149,15 +173,138 @@ namespace DataAccessLayer
                                GROUP BY SV.TenSV
                                ORDER BY GPA DESC");
 
-        private DataTable ExecuteDataTable(string sql)
+        private DataTable ExecuteDataTable(string sql, params SqlParameter[] parameters)
         {
             using (var conn = new SqlConnection(_connectionString))
             using (var cmd = new SqlCommand(sql, conn))
             {
+                if (parameters != null) cmd.Parameters.AddRange(parameters);
                 conn.Open();
                 var dt = new DataTable();
                 new SqlDataAdapter(cmd).Fill(dt);
                 return dt;
+            }
+        }
+        public DataTable GetStudentsByCriteria(string maSV, string tenSV, string ngaySinh, string gioiTinh, string diaChi, string sdt, string email, string maLop, string maNienKhoa)
+        {
+            string sql = @"SELECT MaSV, TenSV, NgaySinh, GioiTinh, DiaChi, Email, MaLop, SDT 
+                   FROM Sinh_Vien 
+                   WHERE 1 = 1";
+
+            var parameters = new List<SqlParameter>();
+
+            if (!string.IsNullOrEmpty(maSV)) { sql += " AND MaSV LIKE @MaSV"; parameters.Add(new SqlParameter("@MaSV", $"%{maSV}%")); }
+            if (!string.IsNullOrEmpty(tenSV)) { sql += " AND TenSV LIKE @TenSV"; parameters.Add(new SqlParameter("@TenSV", $"%{tenSV}%")); }
+            if (!string.IsNullOrEmpty(ngaySinh)) { sql += " AND CONVERT(VARCHAR, NgaySinh, 23) = @NgaySinh"; parameters.Add(new SqlParameter("@NgaySinh", ngaySinh)); }
+            if (!string.IsNullOrEmpty(gioiTinh)) { sql += " AND GioiTinh = @GioiTinh"; parameters.Add(new SqlParameter("@GioiTinh", gioiTinh)); }
+            if (!string.IsNullOrEmpty(diaChi)) { sql += " AND DiaChi LIKE @DiaChi"; parameters.Add(new SqlParameter("@DiaChi", $"%{diaChi}%")); }
+            if (!string.IsNullOrEmpty(sdt)) { sql += " AND SDT LIKE @SDT"; parameters.Add(new SqlParameter("@SDT", $"%{sdt}%")); }
+            if (!string.IsNullOrEmpty(email)) { sql += " AND Email LIKE @Email"; parameters.Add(new SqlParameter("@Email", $"%{email}%")); }
+            if (!string.IsNullOrEmpty(maLop)) { sql += " AND MaLop = @MaLop"; parameters.Add(new SqlParameter("@MaLop", maLop)); }
+            if (!string.IsNullOrEmpty(maNienKhoa)) { sql += " AND MaLop IN (SELECT MaLop FROM Lop WHERE MaNienKhoa = @MaNienKhoa)"; parameters.Add(new SqlParameter("@MaNienKhoa", maNienKhoa)); }
+
+            return ExecuteDataTable(sql, parameters.ToArray());
+        }
+        public void AddStudent(string maSV, string tenSV, DateTime ngaySinh, string gioiTinh, string diaChi, string dienThoai, string email, string maLop)
+        {
+          
+            string sql = @"INSERT INTO Sinh_Vien (MaSV, TenSV, NgaySinh, GioiTinh, DiaChi, SDT, Email, MaLop)
+                   VALUES (@MaSV, @TenSV, @NgaySinh, @GioiTinh, @DiaChi, @SDT, @Email, @MaLop)";
+
+            using (var conn = new SqlConnection(_connectionString))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@MaSV", maSV);
+                cmd.Parameters.AddWithValue("@TenSV", tenSV);
+                cmd.Parameters.AddWithValue("@NgaySinh", ngaySinh);
+                cmd.Parameters.AddWithValue("@GioiTinh", gioiTinh);
+                // Xử lý giá trị null (DBNull.Value) cho các trường tùy chọn/có thể null
+                cmd.Parameters.AddWithValue("@DiaChi", (object)diaChi ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@SDT", (object)dienThoai ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Email", (object)email ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@MaLop", (object)maLop ?? DBNull.Value);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public bool StudentExists(string maSV)
+        {
+            string sql = "SELECT COUNT(1) FROM Sinh_Vien WHERE MaSV = @MaSV";
+            using (var conn = new SqlConnection(_connectionString))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@MaSV", maSV);
+                conn.Open();
+                return (int)cmd.ExecuteScalar() > 0;
+            }
+        }
+
+        public DataTable GetStudentById(string maSv)
+        {
+            string sql = @"SELECT MaSV, TenSV, NgaySinh, GioiTinh, DiaChi, Email, MaLop, SDT
+                            FROM Sinh_Vien WHERE MaSV = @MaSV";
+            using (var conn = new SqlConnection(_connectionString))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@MaSV", maSv);
+                conn.Open();
+                var dt = new DataTable();
+                new SqlDataAdapter(cmd).Fill(dt);
+                return dt;
+            }
+        }
+
+        public void UpdateStudent(string maSV, string tenSV, DateTime ngaySinh, string gioiTinh, string diaChi, string sdt, string email, string maLop)
+        {
+            string sql = @"UPDATE Sinh_Vien
+                           SET TenSV = @TenSV,
+                               NgaySinh = @NgaySinh,
+                               GioiTinh = @GioiTinh,
+                               DiaChi = @DiaChi,
+                               SDT = @SDT,
+                               Email = @Email,
+                               MaLop = @MaLop
+                           WHERE MaSV = @MaSV";
+
+            using (var conn = new SqlConnection(_connectionString))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@MaSV", maSV);
+                cmd.Parameters.AddWithValue("@TenSV", tenSV);
+                cmd.Parameters.AddWithValue("@NgaySinh", ngaySinh);
+                cmd.Parameters.AddWithValue("@GioiTinh", gioiTinh);
+                cmd.Parameters.AddWithValue("@DiaChi", (object)diaChi ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@SDT", (object)sdt ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Email", (object)email ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@MaLop", (object)maLop ?? DBNull.Value);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteStudent(string maSv)
+        {
+            const string sql = "DELETE FROM Sinh_Vien WHERE MaSV = @MaSV";
+            using (var conn = new SqlConnection(_connectionString))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@MaSV", maSv);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public bool ClassExists(string maLop)
+        {
+            string sql = "SELECT COUNT(1) FROM Lop WHERE MaLop = @MaLop";
+            using (var conn = new SqlConnection(_connectionString))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@MaLop", maLop);
+                conn.Open();
+                return (int)cmd.ExecuteScalar() > 0;
             }
         }
     }
