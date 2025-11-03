@@ -204,6 +204,30 @@
   <data name="Msg_AppResetSuccess" xml:space="preserve">
     <value>Ứng dụng đã được đặt lại về mặc định!</value>
   </data>
+  <data name="Msg_ExportComingSoon" xml:space="preserve">
+    <value>Tính năng xuất danh sách đang được phát triển.</value>
+  </data>
+  <data name="Msg_RefreshSuccess" xml:space="preserve">
+    <value>Dữ liệu dashboard đã được làm mới!</value>
+  </data>
+  <data name="Quick_AddStudent" xml:space="preserve">
+    <value>Thêm sinh viên mới</value>
+  </data>
+  <data name="Quick_AddStudent_Desc" xml:space="preserve">
+    <value>Đăng ký học sinh mới vào hệ thống</value>
+  </data>
+  <data name="Quick_ExportList" xml:space="preserve">
+    <value>Xuất danh sách</value>
+  </data>
+  <data name="Quick_ExportList_Desc" xml:space="preserve">
+    <value>Xuất danh sách sinh viên ra Excel</value>
+  </data>
+  <data name="Quick_RefreshData" xml:space="preserve">
+    <value>Cập nhật dữ liệu</value>
+  </data>
+  <data name="Quick_RefreshData_Desc" xml:space="preserve">
+    <value>Làm mới thông tin từ cơ sở dữ liệu</value>
+  </data>
   <data name="StudentRibbon" xml:space="preserve">
     <value>Sinh Viên</value>
   </data>
