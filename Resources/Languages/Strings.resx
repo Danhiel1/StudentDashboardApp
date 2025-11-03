@@ -204,6 +204,30 @@
   <data name="Msg_AppResetSuccess" xml:space="preserve">
     <value>Application has been reset to default!</value>
   </data>
+  <data name="Msg_ExportComingSoon" xml:space="preserve">
+    <value>Export feature is coming soon.</value>
+  </data>
+  <data name="Msg_RefreshSuccess" xml:space="preserve">
+    <value>Dashboard data has been refreshed!</value>
+  </data>
+  <data name="Quick_AddStudent" xml:space="preserve">
+    <value>Add new student</value>
+  </data>
+  <data name="Quick_AddStudent_Desc" xml:space="preserve">
+    <value>Register a new student </value>
+  </data>
+  <data name="Quick_ExportList" xml:space="preserve">
+    <value>Export list</value>
+  </data>
+  <data name="Quick_ExportList_Desc" xml:space="preserve">
+    <value>Export student list to Excel</value>
+  </data>
+  <data name="Quick_RefreshData" xml:space="preserve">
+    <value>Refresh data</value>
+  </data>
+  <data name="Quick_RefreshData_Desc" xml:space="preserve">
+    <value>Reload dashboard data</value>
+  </data>
   <data name="StudentRibbon" xml:space="preserve">
     <value>Student </value>
   </data>

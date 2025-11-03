@@ -35,11 +35,10 @@ namespace StudentDashboardApp.Forms
         {
             ToastNotification.Success("MsgSaved");
 
-
             // 1️⃣ Lưu cài đặt
             SaveSettings(cbDateFormat.Text, cbTimeFormat.Text, cbLanguage.Text);
 
-            // 2️⃣ Áp dụng ngôn ngữ
+            // 2️⃣ Áp dụng ngôn ngữ mới toàn hệ thống
             LanguageHelper.ApplyLanguage(cbLanguage.Text);
 
             // 3️⃣ Duyệt toàn bộ form đang mở
@@ -47,20 +46,14 @@ namespace StudentDashboardApp.Forms
             {
                 UILanguageHelper.ApplyLanguage(frm);
 
-                // 🔹 Nếu là Dashboard → load lại dữ liệu để cập nhật text trong chart
+                // 🔹 Nếu là Dashboard → cập nhật chart + quick buttons
                 if (frm is DashboardStudent dashboard)
                 {
-                    dashboard.LoadDashboardData(); // ✅ Gọi lại hàm cập nhật chart
+                    dashboard.LoadDashboardData();      // Cập nhật chart text
+                    dashboard.AddQuickActionButtons();  // ⚡ Thêm dòng này để dịch lại các nút nhanh
                 }
             }
         }
-
-
-
-
-
-
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
