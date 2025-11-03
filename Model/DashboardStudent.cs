@@ -220,46 +220,69 @@ namespace StudentDashboardApp.Model
         }
 
         // Các Quick Buttons
-        private void AddQuickActionButtons()
+         public void AddQuickActionButtons()
         {
             flowLayoutPanel1.Controls.Clear();
             flowLayoutPanel1.SuspendLayout();
 
-            flowLayoutPanel1.Controls.Add(CreateQuickButton("Thêm sinh viên mới", "Đăng ký học sinh mới vào hệ thống", Properties.Resources.close));
-            flowLayoutPanel1.Controls.Add(CreateQuickButton("Cập nhật dữ liệu", "Làm mới thông tin từ cơ sở dữ liệu", Properties.Resources.Excel));
-            flowLayoutPanel1.Controls.Add(CreateQuickButton("Xuất danh sách", "Xuất danh sách sinh viên ra Excel", Properties.Resources.student));
+            flowLayoutPanel1.Controls.Add(CreateQuickButton(
+                "addStudent",
+                LanguageHelper.GetString("Quick_AddStudent"),
+                LanguageHelper.GetString("Quick_AddStudent_Desc"),
+                Properties.Resources.close
+            ));
+
+            flowLayoutPanel1.Controls.Add(CreateQuickButton(
+                "refreshData",
+                LanguageHelper.GetString("Quick_RefreshData"),
+                LanguageHelper.GetString("Quick_RefreshData_Desc"),
+                Properties.Resources.Excel
+            ));
+
+            flowLayoutPanel1.Controls.Add(CreateQuickButton(
+                "exportList",
+                LanguageHelper.GetString("Quick_ExportList"),
+                LanguageHelper.GetString("Quick_ExportList_Desc"),
+                Properties.Resources.course
+            ));
+
             flowLayoutPanel1.ResumeLayout();
         }
 
-        private QuickActionButton CreateQuickButton(string title, string desc, Image icon)
+
+        private QuickActionButton CreateQuickButton(string actionKey, string title, string desc, Image icon)
         {
             var btn = new QuickActionButton
             {
                 Title = title,
                 Description = desc,
-                Icon = icon
-            };  
+                Icon = icon,
+                Tag = actionKey // ✅ Lưu loại hành động
+            };
 
             btn.Click += (s, e) =>
             {
-                switch (title)
+                switch (actionKey)
                 {
-                    case "Thêm sinh viên mới":
-                        ShowUserControl(new AddStudentControl(), false); // ❌ Không animation
+                    case "addStudent":
+                        ShowUserControl(new AddStudentControl(), false);
                         break;
 
-                    case "Cập nhật dữ liệu":
+                    case "refreshData":
                         LoadDashboardData();
-                        MessageBox.Show("🔄 Dữ liệu dashboard đã được làm mới!", "Thông báo");
+                        ToastNotification.Show(LanguageHelper.GetString("Msg_RefreshSuccess"), "success", 3000);
                         break;
-                        //case "Xuất danh sách":
-                        //    using (var exportForm = new ExportForm())
-                        //        exportForm.ShowDialog();
-                        //    break;
+
+                    case "exportList":
+                        // Tạm ví dụ
+                        ToastNotification.Show(LanguageHelper.GetString("Msg_ExportComingSoon"), "info", 3000);
+                        break;
                 }
             };
+
             return btn;
         }
+
 
         private void ShowUserControl(UserControl control, bool useAnimation = true)
         {
@@ -310,9 +333,9 @@ namespace StudentDashboardApp.Model
                 _service = new StudentService(_connectionString);
 
                 // 🧹 2️⃣ Xóa dữ liệu hiển thị
-                infoCardStudent.SetData(LanguageHelper.GetString("Lbl_StudentCount"), "0", Properties.Resources.student);
-                infoCardTeacher.SetData(LanguageHelper.GetString("Lbl_TeacherCount"), "0", Properties.Resources.student);
-                infoCardMajor.SetData(LanguageHelper.GetString("Lbl_MajorCount"), "0", Properties.Resources.student);
+                infoCardStudent.SetData(LanguageHelper.GetString("Lbl_StudentCount"), "0", Properties.Resources.close);
+                infoCardTeacher.SetData(LanguageHelper.GetString("Lbl_TeacherCount"), "0", Properties.Resources.course);
+                infoCardMajor.SetData(LanguageHelper.GetString("Lbl_MajorCount"), "0", Properties.Resources.course);
 
                 chartControlCountPerNienKhoa.Series.Clear();
                 chartControCountPerFaculty.Series.Clear();
@@ -364,38 +387,69 @@ namespace StudentDashboardApp.Model
         {
             parent ??= this;
 
-            // 1️⃣ Duyệt toàn bộ control trong form
+            // 🟢 1️⃣ Duyệt toàn bộ control WinForms
             foreach (Control ctrl in parent.Controls)
             {
+                // Nếu có Tag → gán text
                 if (ctrl.Tag is string tagKey && !string.IsNullOrEmpty(tagKey))
                     ctrl.Text = LanguageHelper.GetString(tagKey);
 
+                // Nếu là ChartControl → duyệt qua title
+                if (ctrl is ChartControl chart)
+                {
+                    foreach (var t in chart.Titles.OfType<ChartTitle>())
+                    {
+                        if (t.Tag is string chartKey && !string.IsNullOrEmpty(chartKey))
+                            t.Text = LanguageHelper.GetString(chartKey);
+                    }
+                }
+
+                // Đệ quy
                 if (ctrl.HasChildren)
                     ApplyLanguage(ctrl);
             }
 
-            // 2️⃣ Hỗ trợ cho DevExpress BarManager
-            var barManagers = parent.Controls.OfType<DevExpress.XtraBars.BarManager>();
-            foreach (var barManager in barManagers)
+            // 🟢 2️⃣ Duyệt RibbonControl (DevExpress)
+            var ribbonControls = parent.Controls.OfType<RibbonControl>();
+            foreach (var ribbon in ribbonControls)
             {
-                foreach (DevExpress.XtraBars.BarItem item in barManager.Items)
+                foreach (BarItem item in ribbon.Items.OfType<BarItem>())
                 {
                     if (item.Tag is string tagKey && !string.IsNullOrEmpty(tagKey))
                         item.Caption = LanguageHelper.GetString(tagKey);
+                }
+
+                foreach (RibbonPage page in ribbon.Pages)
+                {
+                    if (page.Tag is string pageKey && !string.IsNullOrEmpty(pageKey))
+                        page.Text = LanguageHelper.GetString(pageKey);
+
+                    foreach (RibbonPageGroup group in page.Groups)
+                    {
+                        if (group.Tag is string groupKey && !string.IsNullOrEmpty(groupKey))
+                            group.Text = LanguageHelper.GetString(groupKey);
+                    }
                 }
             }
 
-            // 3️⃣ Hỗ trợ cho DevExpress RibbonControl
-            var ribbons = parent.Controls.OfType<DevExpress.XtraBars.Ribbon.RibbonControl>();
-            foreach (var ribbon in ribbons)
+            // 🟢 3️⃣ Duyệt BarManager (nếu form có)
+            if (this is DevExpress.XtraEditors.XtraForm formWithBars)
             {
-                foreach (DevExpress.XtraBars.BarItem item in ribbon.Items)
+                var field = formWithBars.GetType().GetFields(System.Reflection.BindingFlags.NonPublic |
+                                                             System.Reflection.BindingFlags.Instance)
+                                        .FirstOrDefault(f => f.FieldType == typeof(BarManager));
+
+                if (field?.GetValue(formWithBars) is BarManager barManager)
                 {
-                    if (item.Tag is string tagKey && !string.IsNullOrEmpty(tagKey))
-                        item.Caption = LanguageHelper.GetString(tagKey);
+                    foreach (BarItem item in barManager.Items.OfType<BarItem>())
+                    {
+                        if (item.Tag is string tagKey && !string.IsNullOrEmpty(tagKey))
+                            item.Caption = LanguageHelper.GetString(tagKey);
+                    }
                 }
             }
         }
+
 
 
     }

@@ -313,11 +313,83 @@ namespace StudentDashboardApp.Resources.Languages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export feature is coming soon..
+        /// </summary>
+        internal static string Msg_ExportComingSoon {
+            get {
+                return ResourceManager.GetString("Msg_ExportComingSoon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dashboard data has been refreshed!.
+        /// </summary>
+        internal static string Msg_RefreshSuccess {
+            get {
+                return ResourceManager.GetString("Msg_RefreshSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings saved successfully!.
         /// </summary>
         internal static string MsgSaved {
             get {
                 return ResourceManager.GetString("MsgSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new student.
+        /// </summary>
+        internal static string Quick_AddStudent {
+            get {
+                return ResourceManager.GetString("Quick_AddStudent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Register a new student .
+        /// </summary>
+        internal static string Quick_AddStudent_Desc {
+            get {
+                return ResourceManager.GetString("Quick_AddStudent_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export list.
+        /// </summary>
+        internal static string Quick_ExportList {
+            get {
+                return ResourceManager.GetString("Quick_ExportList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export student list to Excel.
+        /// </summary>
+        internal static string Quick_ExportList_Desc {
+            get {
+                return ResourceManager.GetString("Quick_ExportList_Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh data.
+        /// </summary>
+        internal static string Quick_RefreshData {
+            get {
+                return ResourceManager.GetString("Quick_RefreshData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reload dashboard data.
+        /// </summary>
+        internal static string Quick_RefreshData_Desc {
+            get {
+                return ResourceManager.GetString("Quick_RefreshData_Desc", resourceCulture);
             }
         }
         
