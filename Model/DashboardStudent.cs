@@ -76,8 +76,8 @@ namespace StudentDashboardApp.Model
             {
                 // 🔹 Nếu không kết nối được thì để số liệu = 0
                 infoCardStudent.SetData("Số Sinh Viên", "0", Properties.Resources.student);
-                infoCardTeacher.SetData("Số Giáo Viên", "0", Properties.Resources.student);
-                infoCardMajor.SetData("Số Ngành", "0", Properties.Resources.student);
+                infoCardTeachers.SetData("Số Giáo Viên", "0", Properties.Resources.teacher);
+                infoCardMajors.SetData("Số Ngành", "0", Properties.Resources.course);
                 chartControlCountPerNienKhoa.Series.Clear();
                 chartControCountPerFaculty.Series.Clear();
             }
@@ -133,19 +133,19 @@ namespace StudentDashboardApp.Model
                 infoCardStudent.SetData(
                     studentText,
                     _service.GetStudentCount().ToString(),
-                    Properties.Resources.reset
+                    Properties.Resources.student
                 );
 
-                infoCardTeacher.SetData(
+                infoCardTeachers.SetData(
                     teacherText,
                     _service.GetTeacherCount().ToString(),
-                    Properties.Resources.course
+                    Properties.Resources.teacher
                 );
 
-                infoCardMajor.SetData(
+                infoCardMajors.SetData(
                     majorText,
                     _service.GetMajorCount().ToString(),
-                    Properties.Resources.Excel
+                    Properties.Resources.course
                 );
 
                 // Biểu đồ
@@ -241,21 +241,21 @@ namespace StudentDashboardApp.Model
                 "addStudent",
                 LanguageHelper.GetString("Quick_AddStudent"),
                 LanguageHelper.GetString("Quick_AddStudent_Desc"),
-                Properties.Resources.export
+                Properties.Resources.add
             ));
 
             flowLayoutPanel1.Controls.Add(CreateQuickButton(
                 "refreshData",
                 LanguageHelper.GetString("Quick_RefreshData"),
                 LanguageHelper.GetString("Quick_RefreshData_Desc"),
-                Properties.Resources.Excel
+                Properties.Resources.reset
             ));
 
             flowLayoutPanel1.Controls.Add(CreateQuickButton(
                 "exportList",
                 LanguageHelper.GetString("Quick_ExportList"),
                 LanguageHelper.GetString("Quick_ExportList_Desc"),
-                Properties.Resources.course
+                Properties.Resources.export
             ));
 
             flowLayoutPanel1.ResumeLayout();
@@ -341,12 +341,13 @@ namespace StudentDashboardApp.Model
                 _connectionString = _connectionString ?? string.Empty;
                 _service = new StudentService(_connectionString);
 
-                infoCardStudent.SetData(LanguageHelper.GetString("Lbl_StudentCount"), "0", Properties.Resources.course);
-                infoCardTeacher.SetData(LanguageHelper.GetString("Lbl_TeacherCount"), "0", Properties.Resources.course);
-                infoCardMajor.SetData(LanguageHelper.GetString("Lbl_MajorCount"), "0", Properties.Resources.course);
+                infoCardStudent.SetData(LanguageHelper.GetString("Lbl_StudentCount"), "0", Properties.Resources.student);
+                infoCardTeachers.SetData(LanguageHelper.GetString("Lbl_TeacherCount"), "0", Properties.Resources.teacher);
+                infoCardMajors.SetData(LanguageHelper.GetString("Lbl_MajorCount"), "0", Properties.Resources.course);
 
                 chartControlCountPerNienKhoa.Series.Clear();
                 chartControCountPerFaculty.Series.Clear();
+                chartTop5Students.Series.Clear();
 
                 navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
                 navigationFrameSTD.SelectedPage = navigationSystemPage1;
