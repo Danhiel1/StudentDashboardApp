@@ -160,5 +160,57 @@ namespace DataAccessLayer
                 return dt;
             }
         }
+    
+    private int GetCountFromDB(string tableName)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    string query = $"SELECT COUNT(*) FROM {tableName}"; // 
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    return (int)cmd.ExecuteScalar(); // 
+                }
+            }
+            catch
+            {
+                return 0; // 
+            }
+        }
+
+        public int GetKhoaCount() => GetCountFromDB("Khoa"); // 
+
+        public DataTable GetStudentDataForOverview()
+        {
+            try
+            {
+                string query = @"
+            SELECT TOP 100 
+                sv.MaSV, 
+                sv.HoTen AS TenSV, 
+                sv.NgaySinh, 
+                sv.GioiTinh, 
+                l.TenLop, 
+                k.TenKhoa 
+            FROM Sinh_Vien sv
+            LEFT JOIN Lop l ON sv.MaLop = l.MaLop
+            LEFT JOIN Nganh n ON l.MaNganh = n.MaNganh
+            LEFT JOIN Khoa k ON n.MaKhoa = k.MaKhoa
+            ORDER BY sv.MaSV DESC"; // 
+
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    return dt; // 
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi truy vấn dữ liệu sinh viên: " + ex.Message); // 
+            }
+        }
     }
 }

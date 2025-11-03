@@ -227,7 +227,6 @@
             layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             navigationPageStudent = new DevExpress.XtraBars.Navigation.NavigationPage();
             navigationPageEmpty = new DevExpress.XtraBars.Navigation.NavigationPage();
             panelHeaderShowStudentFSTD = new Panel();
@@ -273,7 +272,6 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)emptySpaceItem2).BeginInit();
             panelHeaderShowStudentFSTD.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxHeaderShowTableFST).BeginInit();
             ((System.ComponentModel.ISupportInitialize)chartControl1).BeginInit();
@@ -1147,7 +1145,7 @@
             flowLayoutPanel1.MaximumSize = new Size(260, 0);
             flowLayoutPanel1.MinimumSize = new Size(260, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(260, 255);
+            flowLayoutPanel1.Size = new Size(260, 458);
             flowLayoutPanel1.TabIndex = 1;
             flowLayoutPanel1.WrapContents = false;
             // 
@@ -1195,7 +1193,7 @@
             RootPage1.AllowHide = false;
             RootPage1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
             RootPage1.GroupBordersVisible = false;
-            RootPage1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem3, layoutControlItem7, layoutControlItem1, layoutControlItem8, layoutControlItem2, layoutControlItem6, layoutControlItem4, emptySpaceItem2 });
+            RootPage1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] { layoutControlItem3, layoutControlItem7, layoutControlItem1, layoutControlItem8, layoutControlItem2, layoutControlItem6, layoutControlItem4 });
             RootPage1.Name = "Root";
             RootPage1.ShowInCustomizationForm = false;
             RootPage1.Size = new Size(1141, 490);
@@ -1214,7 +1212,7 @@
             layoutControlItem7.Control = flowLayoutPanel1;
             layoutControlItem7.Location = new Point(0, 0);
             layoutControlItem7.Name = "layoutControlItem7";
-            layoutControlItem7.Size = new Size(266, 261);
+            layoutControlItem7.Size = new Size(266, 464);
             layoutControlItem7.TextVisible = false;
             // 
             // layoutControlItem1
@@ -1256,12 +1254,6 @@
             layoutControlItem4.Name = "layoutControlItem4";
             layoutControlItem4.Size = new Size(283, 94);
             layoutControlItem4.TextVisible = false;
-            // 
-            // emptySpaceItem2
-            // 
-            emptySpaceItem2.Location = new Point(0, 261);
-            emptySpaceItem2.Name = "emptySpaceItem2";
-            emptySpaceItem2.Size = new Size(266, 203);
             // 
             // navigationPageStudent
             // 
@@ -1411,7 +1403,6 @@
             ((System.ComponentModel.ISupportInitialize)layoutControlItem2).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem6).EndInit();
             ((System.ComponentModel.ISupportInitialize)layoutControlItem4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)emptySpaceItem2).EndInit();
             panelHeaderShowStudentFSTD.ResumeLayout(false);
             panelHeaderShowStudentFSTD.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxHeaderShowTableFST).EndInit();
@@ -1534,6 +1525,5 @@
         private DevExpress.XtraCharts.ChartControl chartTop5Students;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem1;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
     }
 }

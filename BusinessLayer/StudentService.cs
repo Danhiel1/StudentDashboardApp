@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using BusinessLayer.Models;
@@ -8,26 +9,24 @@ namespace BusinessLayer
 {
     public class StudentService
     {
+        private readonly string _connectionString;
         private readonly StudentRepository _repo;
 
         public StudentService(string connectionString)
         {
+            _connectionString = connectionString;
             _repo = new StudentRepository(connectionString);
         }
 
-        public void ImportGeneric(DataTable dt, string tableName)
-        {
-            _repo.BulkInsert(dt, tableName);
-        }
-
-        public void UpsertGeneric(string tableName, string[] keyColumns, DataTable data)
-        {
-            _repo.Upsert(tableName, keyColumns, data);
-        }
+        public void ImportGeneric(DataTable dt, string tableName) => _repo.BulkInsert(dt, tableName);
+        public void UpsertGeneric(string tableName, string[] keyColumns, DataTable data) => _repo.Upsert(tableName, keyColumns, data);
 
         public int GetStudentCount() => _repo.CountStudents();
         public int GetTeacherCount() => _repo.CountTeacher();
         public int GetMajorCount() => _repo.CountMajors();
+        public int GetKhoaCount() => _repo.GetKhoaCount(); // ✅ thêm dòng này
+
+        public DataTable GetStudentDataForOverview() => _repo.GetStudentDataForOverview(); // ✅ thêm dòng này
 
         // 1️⃣ SV theo niên khóa
         public List<StudentPerNienKhoa> GetStudentCountPerNienKhoa()
@@ -104,6 +103,5 @@ namespace BusinessLayer
                 GPA = Convert.ToDecimal(r["GPA"])
             }).ToList();
         }
-
     }
 }

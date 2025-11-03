@@ -13,7 +13,7 @@ namespace StudentDashboardApp.Forms
         public SystemSettingsForm()
         {
             InitializeComponent();
-            this.LookAndFeel.SkinName = "The Bezier"; // giao diện đẹp
+           
             LoadSettings();
         }
 
