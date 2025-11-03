@@ -5,6 +5,7 @@ using DevExpress.XtraBars.Navigation;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraCharts;
 using DevExpress.XtraPrinting;
+
 using StudentDashboardApp.Controls;
 using StudentDashboardApp.Forms;
 using StudentDashboardApp.Resources;
@@ -118,14 +119,17 @@ namespace StudentDashboardApp.Model
             navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True;
             navService = new NavigationService(ribbonMap);
         }
-
         // 👉 Hàm này chỉ load dữ liệu từ SQL
-            public void LoadDashboardData()
+        public void LoadDashboardData()
             {
                 try
                 {
-                    // 🔹 Lấy text theo ngôn ngữ hiện tại
-                    string studentText = LanguageHelper.GetString("Students") + ":";
+                    // lblStatus.Text = _isDbConnected ? "🟢 Database: Connected" : "🔴 Database: Disconnected";
+                    //lblUpdateTime.Text = $"⏰ Last Updated: {DateTime.Now:HH:mm:ss dd/MM/yyyy}";
+                    //progress.EditValue = 100;
+
+                // 🔹 Lấy text theo ngôn ngữ hiện tại
+                string studentText = LanguageHelper.GetString("Students") + ":";
                     string teacherText = LanguageHelper.GetString("Teachers") + ":";
                     string majorText = LanguageHelper.GetString("Majors") + ":";
 
