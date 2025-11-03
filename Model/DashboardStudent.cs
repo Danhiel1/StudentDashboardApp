@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace StudentDashboardApp.Model
@@ -26,7 +27,7 @@ namespace StudentDashboardApp.Model
         private NavigationHelper navHelper;
         private bool _isDbConnected = false;
 
-        // Constructor có tham số
+        // ✅ Constructor có tham số
         public DashboardStudent(string connectionString)
         {
             InitializeComponent();
@@ -34,13 +35,15 @@ namespace StudentDashboardApp.Model
             _service = new StudentService(_connectionString);
         }
 
-        // Constructor mặc định
-        public DashboardStudent() : this(ConfigurationManager.ConnectionStrings["QLSVConnection"].ConnectionString) { }
+        // ✅ Constructor mặc định
+        public DashboardStudent()
+            : this(ConfigurationManager.ConnectionStrings["QLSVConnection"].ConnectionString)
+        { }
 
         private void DashboardStudent_Load(object sender, EventArgs e)
         {
             UILanguageHelper.ApplyLanguage(this);
-        
+
             // ⚡ 1️⃣ Thử kiểm tra kết nối trước
             try
             {
@@ -68,23 +71,19 @@ namespace StudentDashboardApp.Model
             if (_isDbConnected)
             {
                 LoadDashboardData();
-                
-
-
             }
             else
             {
                 // 🔹 Nếu không kết nối được thì để số liệu = 0
                 infoCardStudent.SetData("Số Sinh Viên", "0", Properties.Resources.student);
-                infoCardTeacher.SetData("Số Giáo Viên", "0", Properties.Resources.student);
-                infoCardMajor.SetData("Số Ngành", "0", Properties.Resources.student);
+                infoCardTeachers.SetData("Số Giáo Viên", "0", Properties.Resources.teacher);
+                infoCardMajors.SetData("Số Ngành", "0", Properties.Resources.course);
                 chartControlCountPerNienKhoa.Series.Clear();
                 chartControCountPerFaculty.Series.Clear();
-                
             }
         }
 
-        // 👉 Hàm này chỉ dùng để khởi tạo UI, Navigation, Buttons
+        // 👉 Khởi tạo UI, Navigation, Buttons
         private void InitializeDashboardUI()
         {
             AddQuickActionButtons();
@@ -100,17 +99,16 @@ namespace StudentDashboardApp.Model
             // Map BarButtonItem → NavigationPage + UserControl
             var buttonMap = new Dictionary<BarButtonItem, (NavigationPage, UserControl)>
             {
-            { barButtonItemFindStudent, (navigationPageStudent,new FindStudentControl()) },
-            { barButtonItemAddST, (navigationPageStudent, new AddStudentControl()) },
-            { barButtonItemEditST,(navigationPageStudent, new EditStudentControl()) },
-            {barButtonItemViewTranscript, (navigationPageStudent, new ViewTranscriptStudentControl()) },
-            {barButtonItemTopStudents, (navigationPageStudent, new TopStudentControl()) },
-            {barButtonItemListbyClassorYear, (navigationPageStudent, new ListbyClassorYearControl()) },
-            {barButtonItemEditStudentScore, (navigationPageStudent, new EditStudentScoreControl()) },
-            {barButtonItemAttendance, (navigationPageStudent, new AttendanceControl()) },
-            {barButtonItemOverview, (navigationPageStudent, new Overviewcontrol()) },
-
-};
+                { barButtonItemFindStudent, (navigationPageStudent, new FindStudentControl()) },
+                { barButtonItemAddST, (navigationPageStudent, new AddStudentControl()) },
+                { barButtonItemEditST, (navigationPageStudent, new EditStudentControl()) },
+                { barButtonItemViewTranscript, (navigationPageStudent, new ViewTranscriptStudentControl()) },
+                { barButtonItemTopStudents, (navigationPageStudent, new TopStudentControl()) },
+                { barButtonItemListbyClassorYear, (navigationPageStudent, new ListbyClassorYearControl()) },
+                { barButtonItemEditStudentScore, (navigationPageStudent, new EditStudentScoreControl()) },
+                { barButtonItemAttendance, (navigationPageStudent, new AttendanceControl()) },
+                { barButtonItemOverview, (navigationPageStudent, new Overviewcontrol()) },
+            };
 
             // Navigation
             navHelper = new NavigationHelper(navigationFrameSTD, buttonMap);
@@ -119,70 +117,78 @@ namespace StudentDashboardApp.Model
             navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True;
             navService = new NavigationService(ribbonMap);
         }
-        // 👉 Hàm này chỉ load dữ liệu từ SQL
+
+        // 👉 Load dữ liệu từ SQL
         public void LoadDashboardData()
+        {
+            try
             {
-                try
-                {
-                    // lblStatus.Text = _isDbConnected ? "🟢 Database: Connected" : "🔴 Database: Disconnected";
-                    //lblUpdateTime.Text = $"⏰ Last Updated: {DateTime.Now:HH:mm:ss dd/MM/yyyy}";
-                    //progress.EditValue = 100;
-
-                // 🔹 Lấy text theo ngôn ngữ hiện tại
                 string studentText = LanguageHelper.GetString("Students") + ":";
-                    string teacherText = LanguageHelper.GetString("Teachers") + ":";
-                    string majorText = LanguageHelper.GetString("Majors") + ":";
+                string teacherText = LanguageHelper.GetString("Teachers") + ":";
+                string majorText = LanguageHelper.GetString("Majors") + ":";
 
-                    string chartPerYear = LanguageHelper.GetString("Chart_StudentsPerYear");
-                    string chartPerFaculty = LanguageHelper.GetString("Chart_StudentsPerFaculty");
+                string chartPerYear = LanguageHelper.GetString("Chart_StudentsPerYear");
+                string chartPerFaculty = LanguageHelper.GetString("Chart_StudentsPerFaculty");
 
-                    // 🔹 Gán dữ liệu và text đa ngôn ngữ
-                    infoCardStudent.SetData(studentText, _service.GetStudentCount().ToString(), Properties.Resources.z7011126876535_5d2a8a373984a08b54b6b6f3adcbb861);
-                    infoCardTeacher.SetData(teacherText, _service.GetTeacherCount().ToString(), Properties.Resources.course);
-                    infoCardMajor.SetData(majorText, _service.GetMajorCount().ToString(), Properties.Resources.Excel);
-
-                    // 🔹 Biểu đồ
-                    ChartService.LoadChart(
-                        chartControlCountPerNienKhoa,
-                        _service.GetStudentCountPerNienKhoa(),
-                        "MaNienKhoa",
-                        "StudentCount",
-                        ViewType.Pie,
-                        chartPerYear
-                    );
-
-                    ChartService.LoadChart(
-                        chartControCountPerFaculty,
-                        _service.GetStudentCountPerFaculty(),
-                        "FacultyName",
-                        "StudentCount",
-                        ViewType.Bar,
-                        chartPerFaculty
-                    );
-                // 🔹 Biểu đồ Top 5 sinh viên có GPA cao nhất
-                var topStudents = _service.GetTop5Students();
-
-                // Nếu bạn muốn đổi ngôn ngữ chart title
-                string chartTop5 = LanguageHelper.GetString("Chart_Top5Students");
-
-                // Nạp dữ liệu vào chart
-                ChartService.LoadChart(
-                    chartTop5Students,     // ChartControl
-                    topStudents,           // Data source (List<TopStudent>)
-                    "StudentName",         // Tên cột trục X
-                    "GPA",                 // Tên cột trục Y
-                    ViewType.Bar,          // Dạng biểu đồ (có thể dùng Column, Bar, hoặc Line)
-                    chartTop5              // Tiêu đề biểu đồ
+                infoCardStudent.SetData(
+                    studentText,
+                    _service.GetStudentCount().ToString(),
+                    Properties.Resources.student
                 );
 
+                infoCardTeachers.SetData(
+                    teacherText,
+                    _service.GetTeacherCount().ToString(),
+                    Properties.Resources.teacher
+                );
+
+                infoCardMajors.SetData(
+                    majorText,
+                    _service.GetMajorCount().ToString(),
+                    Properties.Resources.course
+                );
+
+                // Biểu đồ
+                ChartService.LoadChart(
+                    chartControlCountPerNienKhoa,
+                    _service.GetStudentCountPerNienKhoa(),
+                    "MaNienKhoa",
+                    "StudentCount",
+                    ViewType.Pie,
+                    chartPerYear
+                );
+
+                ChartService.LoadChart(
+                    chartControCountPerFaculty,
+                    _service.GetStudentCountPerFaculty(),
+                    "FacultyName",
+                    "StudentCount",
+                    ViewType.Bar,
+                    chartPerFaculty
+                );
+
+                var topStudents = _service.GetTop5Students();
+                string chartTop5 = LanguageHelper.GetString("Chart_Top5Students");
+
+                ChartService.LoadChart(
+                    chartTop5Students,
+                    topStudents,
+                    "StudentName",
+                    "GPA",
+                    ViewType.Bar,
+                    chartTop5
+                );
             }
             catch (Exception ex)
-                {
-                    MessageBox.Show("⚠️ Lỗi khi tải dữ liệu Dashboard:\n" + ex.Message,
-                        "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+            {
+                MessageBox.Show(
+                    "⚠️ Lỗi khi tải dữ liệu Dashboard:\n" + ex.Message,
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
             }
-
+        }
 
         // Nút đổi server
         private void btnDatabase_ItemClick(object sender, ItemClickEventArgs e)
@@ -193,8 +199,6 @@ namespace StudentDashboardApp.Model
                 {
                     _connectionString = form.ConnectionString;
                     _service = new StudentService(_connectionString);
-
-                    // Reload lại dashboard
                     DashboardStudent_Load(null, null);
                 }
             }
@@ -218,13 +222,17 @@ namespace StudentDashboardApp.Model
             }
             catch (Exception ex)
             {
-                MessageBox.Show("⚠️ Lỗi khi đổi trang: " + ex.Message,
-                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "⚠️ Lỗi khi đổi trang: " + ex.Message,
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
             }
         }
 
         // Các Quick Buttons
-         public void AddQuickActionButtons()
+        public void AddQuickActionButtons()
         {
             flowLayoutPanel1.Controls.Clear();
             flowLayoutPanel1.SuspendLayout();
@@ -233,26 +241,25 @@ namespace StudentDashboardApp.Model
                 "addStudent",
                 LanguageHelper.GetString("Quick_AddStudent"),
                 LanguageHelper.GetString("Quick_AddStudent_Desc"),
-                Properties.Resources.close
+                Properties.Resources.add
             ));
 
             flowLayoutPanel1.Controls.Add(CreateQuickButton(
                 "refreshData",
                 LanguageHelper.GetString("Quick_RefreshData"),
                 LanguageHelper.GetString("Quick_RefreshData_Desc"),
-                Properties.Resources.Excel
+                Properties.Resources.reset
             ));
 
             flowLayoutPanel1.Controls.Add(CreateQuickButton(
                 "exportList",
                 LanguageHelper.GetString("Quick_ExportList"),
                 LanguageHelper.GetString("Quick_ExportList_Desc"),
-                Properties.Resources.course
+                Properties.Resources.export
             ));
 
             flowLayoutPanel1.ResumeLayout();
         }
-
 
         private QuickActionButton CreateQuickButton(string actionKey, string title, string desc, Image icon)
         {
@@ -261,7 +268,7 @@ namespace StudentDashboardApp.Model
                 Title = title,
                 Description = desc,
                 Icon = icon,
-                Tag = actionKey // ✅ Lưu loại hành động
+                Tag = actionKey
             };
 
             btn.Click += (s, e) =>
@@ -278,7 +285,6 @@ namespace StudentDashboardApp.Model
                         break;
 
                     case "exportList":
-                        // Tạm ví dụ
                         ToastNotification.Show(LanguageHelper.GetString("Msg_ExportComingSoon"), "info", 3000);
                         break;
                 }
@@ -287,29 +293,29 @@ namespace StudentDashboardApp.Model
             return btn;
         }
 
-
         private void ShowUserControl(UserControl control, bool useAnimation = true)
         {
             try
             {
-                // ✅ Tạm tắt animation nếu không muốn dùng
                 if (!useAnimation)
                     navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
 
-                // Chuyển sang navigationPageStudent
                 navigationFrameSTD.SelectedPage = navigationPageStudent;
                 navigationPageStudent.Controls.Clear();
 
                 control.Dock = DockStyle.Fill;
                 navigationPageStudent.Controls.Add(control);
 
-                // ✅ Bật lại animation cho các lần khác
                 navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("⚠️ Lỗi khi hiển thị UserControl:\n" + ex.Message,
-                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "⚠️ Lỗi khi hiển thị UserControl:\n" + ex.Message,
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
 
@@ -317,44 +323,40 @@ namespace StudentDashboardApp.Model
         {
             var importForm = new ImportForm();
 
-            // 🔔 Khi ImportForm hoàn tất, tự reload Dashboard
             importForm.ImportCompleted += (s, args) =>
             {
                 ToastNotification.Error("MsgSaved");
                 MessageBox.Show("🔄 Dữ liệu đã được cập nhật. Làm mới dashboard...");
-                LoadDashboardData(); // Gọi lại hàm load để cập nhật biểu đồ và số liệu
+                LoadDashboardData();
             };
 
             importForm.ShowDialog();
         }
+
         private void btnRestore_ItemClick(object sender, ItemClickEventArgs e)
         {
             try
             {
-                // 🧱 1️⃣ Ngắt kết nối & reset service
                 _isDbConnected = false;
                 _connectionString = _connectionString ?? string.Empty;
                 _service = new StudentService(_connectionString);
 
-                // 🧹 2️⃣ Xóa dữ liệu hiển thị
-                infoCardStudent.SetData(LanguageHelper.GetString("Lbl_StudentCount"), "0", Properties.Resources.close);
-                infoCardTeacher.SetData(LanguageHelper.GetString("Lbl_TeacherCount"), "0", Properties.Resources.course);
-                infoCardMajor.SetData(LanguageHelper.GetString("Lbl_MajorCount"), "0", Properties.Resources.course);
+                infoCardStudent.SetData(LanguageHelper.GetString("Lbl_StudentCount"), "0", Properties.Resources.student);
+                infoCardTeachers.SetData(LanguageHelper.GetString("Lbl_TeacherCount"), "0", Properties.Resources.teacher);
+                infoCardMajors.SetData(LanguageHelper.GetString("Lbl_MajorCount"), "0", Properties.Resources.course);
 
                 chartControlCountPerNienKhoa.Series.Clear();
                 chartControCountPerFaculty.Series.Clear();
+                chartTop5Students.Series.Clear();
 
-                // 🧭 3️⃣ Quay về trang hệ thống mặc định
                 navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
                 navigationFrameSTD.SelectedPage = navigationSystemPage1;
                 navigationFrameSTD.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.True;
 
-                // 🧱 4️⃣ Làm sạch các control động
                 navigationPageStudent.Controls.Clear();
 
-                // 🪄 5️⃣ Hiển thị thông báo toast (10s, đa ngôn ngữ)
                 ToastNotification.Show(
-                    LanguageHelper.GetString("Msg_AppResetSuccess"), // dùng key từ file strings
+                    LanguageHelper.GetString("Msg_AppResetSuccess"),
                     "success",
                     10000
                 );
@@ -368,7 +370,6 @@ namespace StudentDashboardApp.Model
                 );
             }
         }
-
 
         private void btnParameters_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -387,6 +388,7 @@ namespace StudentDashboardApp.Model
             var frm = new CheckUpdateForm();
             frm.ShowDialog();
         }
+
         private void ApplyLanguage(Control parent = null)
         {
             parent ??= this;
@@ -394,11 +396,9 @@ namespace StudentDashboardApp.Model
             // 🟢 1️⃣ Duyệt toàn bộ control WinForms
             foreach (Control ctrl in parent.Controls)
             {
-                // Nếu có Tag → gán text
                 if (ctrl.Tag is string tagKey && !string.IsNullOrEmpty(tagKey))
                     ctrl.Text = LanguageHelper.GetString(tagKey);
 
-                // Nếu là ChartControl → duyệt qua title
                 if (ctrl is ChartControl chart)
                 {
                     foreach (var t in chart.Titles.OfType<ChartTitle>())
@@ -408,7 +408,6 @@ namespace StudentDashboardApp.Model
                     }
                 }
 
-                // Đệ quy
                 if (ctrl.HasChildren)
                     ApplyLanguage(ctrl);
             }
@@ -439,9 +438,9 @@ namespace StudentDashboardApp.Model
             // 🟢 3️⃣ Duyệt BarManager (nếu form có)
             if (this is DevExpress.XtraEditors.XtraForm formWithBars)
             {
-                var field = formWithBars.GetType().GetFields(System.Reflection.BindingFlags.NonPublic |
-                                                             System.Reflection.BindingFlags.Instance)
-                                        .FirstOrDefault(f => f.FieldType == typeof(BarManager));
+                var field = formWithBars.GetType()
+                    .GetFields(System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                    .FirstOrDefault(f => f.FieldType == typeof(BarManager));
 
                 if (field?.GetValue(formWithBars) is BarManager barManager)
                 {
@@ -453,8 +452,5 @@ namespace StudentDashboardApp.Model
                 }
             }
         }
-
-
-
     }
 }
