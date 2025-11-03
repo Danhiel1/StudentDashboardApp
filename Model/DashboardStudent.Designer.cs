@@ -1525,5 +1525,8 @@
         private DevExpress.XtraCharts.ChartControl chartTop5Students;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraBars.SkinRibbonGalleryBarItem skinRibbonGalleryBarItem1;
+        private StudentDashboardApp.Controls.InfoCard infoCardTeacher;
+        private StudentDashboardApp.Controls.InfoCard infoCardMajor;
+
     }
 }
