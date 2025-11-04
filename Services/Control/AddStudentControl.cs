@@ -22,6 +22,9 @@ namespace StudentDashboardApp
 
             simpleButtonAdd.Click += OnAddClick;
             textAddClassID.Leave += OnClassIdLeave;
+            
+            // Đăng ký event Load
+            this.Load += AddStudentControl_Load;
         }
 
         private void AddStudentControl_Load(object sender, EventArgs e)
@@ -163,6 +166,31 @@ namespace StudentDashboardApp
                 }
             }
             catch { }
+        }
+
+        // =============== LOAD DATA KHI CONTROL ĐƯỢC HIỂN THỊ ===================
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            
+            // Load dữ liệu khi control được hiển thị lần đầu tiên
+            if (Visible && !DesignMode && _service != null)
+            {
+                // Load lại niên khóa nếu chưa có hoặc cache đã hết hạn
+                if (_nienKhoaCache == null || _nienKhoaCache.Rows.Count == 0)
+                {
+                    try
+                    {
+                        _nienKhoaCache = _service.GetNienKhoaList();
+                        comboBoxAddSemester1.Properties.Items.Clear();
+                        foreach (DataRow row in _nienKhoaCache.Rows)
+                        {
+                            comboBoxAddSemester1.Properties.Items.Add(row["TenNienKhoa"].ToString());
+                        }
+                    }
+                    catch { }
+                }
+            }
         }
     }
 }

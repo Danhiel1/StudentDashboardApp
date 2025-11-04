@@ -125,6 +125,30 @@ namespace DataAccessLayer
             return "NVARCHAR(MAX)";
         }
 
+        // Helper method để check xem cột có tồn tại trong bảng không
+        private bool ColumnExists(string tableName, string columnName)
+        {
+            try
+            {
+                using (var conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    string sql = @"SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS 
+                                   WHERE TABLE_NAME = @TableName AND COLUMN_NAME = @ColumnName";
+                    using (var cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@TableName", tableName);
+                        cmd.Parameters.AddWithValue("@ColumnName", columnName);
+                        return (int)cmd.ExecuteScalar() > 0;
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         // ✅ Các truy vấn thống kê
         public DataTable GetStudentCountPerNienKhoa() =>
             ExecuteDataTable(@"SELECT L.MaNienKhoa, COUNT(*) AS StudentCount
@@ -187,9 +211,17 @@ namespace DataAccessLayer
         }
         public DataTable GetStudentsByCriteria(string maSV, string tenSV, string ngaySinh, string gioiTinh, string diaChi, string sdt, string email, string maLop, string maNienKhoa)
         {
-            string sql = @"SELECT MaSV, TenSV, NgaySinh, GioiTinh, DiaChi, Email, MaLop, SDT 
-                   FROM Sinh_Vien 
-                   WHERE 1 = 1";
+            // Build query động dựa trên các cột tồn tại
+            var columns = new List<string> { "MaSV", "TenSV", "NgaySinh", "GioiTinh", "Email", "MaLop" };
+            bool hasDiaChi = ColumnExists("Sinh_Vien", "DiaChi");
+            bool hasSDT = ColumnExists("Sinh_Vien", "SDT");
+            
+            if (hasDiaChi)
+                columns.Add("DiaChi");
+            if (hasSDT)
+                columns.Add("SDT");
+            
+            string sql = $"SELECT {string.Join(", ", columns)} FROM Sinh_Vien WHERE 1 = 1";
 
             var parameters = new List<SqlParameter>();
 
@@ -197,8 +229,8 @@ namespace DataAccessLayer
             if (!string.IsNullOrEmpty(tenSV)) { sql += " AND TenSV LIKE @TenSV"; parameters.Add(new SqlParameter("@TenSV", $"%{tenSV}%")); }
             if (!string.IsNullOrEmpty(ngaySinh)) { sql += " AND CONVERT(VARCHAR, NgaySinh, 23) = @NgaySinh"; parameters.Add(new SqlParameter("@NgaySinh", ngaySinh)); }
             if (!string.IsNullOrEmpty(gioiTinh)) { sql += " AND GioiTinh = @GioiTinh"; parameters.Add(new SqlParameter("@GioiTinh", gioiTinh)); }
-            if (!string.IsNullOrEmpty(diaChi)) { sql += " AND DiaChi LIKE @DiaChi"; parameters.Add(new SqlParameter("@DiaChi", $"%{diaChi}%")); }
-            if (!string.IsNullOrEmpty(sdt)) { sql += " AND SDT LIKE @SDT"; parameters.Add(new SqlParameter("@SDT", $"%{sdt}%")); }
+            if (!string.IsNullOrEmpty(diaChi) && hasDiaChi) { sql += " AND DiaChi LIKE @DiaChi"; parameters.Add(new SqlParameter("@DiaChi", $"%{diaChi}%")); }
+            if (!string.IsNullOrEmpty(sdt) && hasSDT) { sql += " AND SDT LIKE @SDT"; parameters.Add(new SqlParameter("@SDT", $"%{sdt}%")); }
             if (!string.IsNullOrEmpty(email)) { sql += " AND Email LIKE @Email"; parameters.Add(new SqlParameter("@Email", $"%{email}%")); }
             if (!string.IsNullOrEmpty(maLop)) { sql += " AND MaLop = @MaLop"; parameters.Add(new SqlParameter("@MaLop", maLop)); }
             if (!string.IsNullOrEmpty(maNienKhoa)) { sql += " AND MaLop IN (SELECT MaLop FROM Lop WHERE MaNienKhoa = @MaNienKhoa)"; parameters.Add(new SqlParameter("@MaNienKhoa", maNienKhoa)); }
@@ -207,9 +239,25 @@ namespace DataAccessLayer
         }
         public void AddStudent(string maSV, string tenSV, DateTime ngaySinh, string gioiTinh, string diaChi, string dienThoai, string email, string maLop)
         {
-          
-            string sql = @"INSERT INTO Sinh_Vien (MaSV, TenSV, NgaySinh, GioiTinh, DiaChi, SDT, Email, MaLop)
-                   VALUES (@MaSV, @TenSV, @NgaySinh, @GioiTinh, @DiaChi, @SDT, @Email, @MaLop)";
+            // Build query động dựa trên các cột tồn tại
+            bool hasDiaChi = ColumnExists("Sinh_Vien", "DiaChi");
+            bool hasSDT = ColumnExists("Sinh_Vien", "SDT");
+            
+            var columns = new List<string> { "MaSV", "TenSV", "NgaySinh", "GioiTinh", "Email", "MaLop" };
+            var values = new List<string> { "@MaSV", "@TenSV", "@NgaySinh", "@GioiTinh", "@Email", "@MaLop" };
+            
+            if (hasDiaChi)
+            {
+                columns.Add("DiaChi");
+                values.Add("@DiaChi");
+            }
+            if (hasSDT)
+            {
+                columns.Add("SDT");
+                values.Add("@SDT");
+            }
+            
+            string sql = $"INSERT INTO Sinh_Vien ({string.Join(", ", columns)}) VALUES ({string.Join(", ", values)})";
 
             using (var conn = new SqlConnection(_connectionString))
             using (var cmd = new SqlCommand(sql, conn))
@@ -218,11 +266,13 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@TenSV", tenSV);
                 cmd.Parameters.AddWithValue("@NgaySinh", ngaySinh);
                 cmd.Parameters.AddWithValue("@GioiTinh", gioiTinh);
-                // Xử lý giá trị null (DBNull.Value) cho các trường tùy chọn/có thể null
-                cmd.Parameters.AddWithValue("@DiaChi", (object)diaChi ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@SDT", (object)dienThoai ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@Email", (object)email ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@MaLop", (object)maLop ?? DBNull.Value);
+                
+                if (hasDiaChi)
+                    cmd.Parameters.AddWithValue("@DiaChi", (object)diaChi ?? DBNull.Value);
+                if (hasSDT)
+                    cmd.Parameters.AddWithValue("@SDT", (object)dienThoai ?? DBNull.Value);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -310,15 +360,25 @@ namespace DataAccessLayer
 
         public void UpdateStudent(string maSV, string tenSV, DateTime ngaySinh, string gioiTinh, string diaChi, string sdt, string email, string maLop)
         {
-            string sql = @"UPDATE Sinh_Vien
-                           SET TenSV = @TenSV,
-                               NgaySinh = @NgaySinh,
-                               GioiTinh = @GioiTinh,
-                               DiaChi = @DiaChi,
-                               SDT = @SDT,
-                               Email = @Email,
-                               MaLop = @MaLop
-                           WHERE MaSV = @MaSV";
+            // Build query động dựa trên các cột tồn tại
+            bool hasDiaChi = ColumnExists("Sinh_Vien", "DiaChi");
+            bool hasSDT = ColumnExists("Sinh_Vien", "SDT");
+            
+            var setClauses = new List<string>
+            {
+                "TenSV = @TenSV",
+                "NgaySinh = @NgaySinh",
+                "GioiTinh = @GioiTinh",
+                "Email = @Email",
+                "MaLop = @MaLop"
+            };
+            
+            if (hasDiaChi)
+                setClauses.Add("DiaChi = @DiaChi");
+            if (hasSDT)
+                setClauses.Add("SDT = @SDT");
+            
+            string sql = $"UPDATE Sinh_Vien SET {string.Join(", ", setClauses)} WHERE MaSV = @MaSV";
 
             using (var conn = new SqlConnection(_connectionString))
             using (var cmd = new SqlCommand(sql, conn))
@@ -327,10 +387,14 @@ namespace DataAccessLayer
                 cmd.Parameters.AddWithValue("@TenSV", tenSV);
                 cmd.Parameters.AddWithValue("@NgaySinh", ngaySinh);
                 cmd.Parameters.AddWithValue("@GioiTinh", gioiTinh);
-                cmd.Parameters.AddWithValue("@DiaChi", (object)diaChi ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@SDT", (object)sdt ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@Email", (object)email ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@MaLop", (object)maLop ?? DBNull.Value);
+                
+                if (hasDiaChi)
+                    cmd.Parameters.AddWithValue("@DiaChi", (object)diaChi ?? DBNull.Value);
+                if (hasSDT)
+                    cmd.Parameters.AddWithValue("@SDT", (object)sdt ?? DBNull.Value);
+                    
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }

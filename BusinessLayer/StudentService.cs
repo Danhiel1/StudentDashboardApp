@@ -111,16 +111,21 @@ namespace BusinessLayer
             var dt = _repo.GetStudentById(maSV);
             if (dt.Rows.Count == 0) return null;
             var r = dt.Rows[0];
+            
+            // Kiểm tra xem cột có tồn tại trong DataTable trước khi truy cập
+            bool hasDiaChi = dt.Columns.Contains("DiaChi");
+            bool hasSDT = dt.Columns.Contains("SDT");
+            
             return new Student
             {
                 MaSV = r.Field<string>("MaSV"),
                 TenSV = r.Field<string>("TenSV"),
                 NgaySinh = r.Field<DateTime>("NgaySinh"),
                 GioiTinh = r.Field<string>("GioiTinh"),
-                DiaChi = r.IsNull("DiaChi") ? null : r.Field<string>("DiaChi"),
+                DiaChi = hasDiaChi && !r.IsNull("DiaChi") ? r.Field<string>("DiaChi") : null,
                 Email = r.IsNull("Email") ? null : r.Field<string>("Email"),
                 MaLop = r.Field<string>("MaLop"),
-                SDT = r.IsNull("SDT") ? null : r.Field<string>("SDT")
+                SDT = hasSDT && !r.IsNull("SDT") ? r.Field<string>("SDT") : null
             };
         }
 

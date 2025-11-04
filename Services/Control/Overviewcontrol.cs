@@ -20,6 +20,7 @@ namespace StudentDashboardApp
             InitializeComponent();
             InitializeService();
             SetupGridView();
+            this.Load += Overviewcontrol_Load;
         }
 
         private void InitializeService()
@@ -292,6 +293,18 @@ namespace StudentDashboardApp
         public void RefreshData()
         {
             LoadOverviewData();
+        }
+
+        // =============== LOAD DATA KHI CONTROL ĐƯỢC HIỂN THỊ ===================
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            
+            // Load dữ liệu khi control được hiển thị lần đầu tiên
+            if (Visible && !DesignMode && _studentService != null && !_isLoading)
+            {
+                LoadOverviewData();
+            }
         }
     }
 }

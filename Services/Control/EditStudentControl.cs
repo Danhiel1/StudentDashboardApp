@@ -22,6 +22,9 @@ namespace StudentDashboardApp
             var connectionString = ConfigurationManager.ConnectionStrings["QLSVConnection"]?.ConnectionString;
             _studentService = new StudentService(connectionString);
 
+            // Đăng ký event Load
+            this.Load += EditStudentControl_Load;
+
             // Khởi tạo trạng thái ban đầu
             ClearEditControls();
             ToggleEditControls(false);
@@ -33,6 +36,19 @@ namespace StudentDashboardApp
             EditComboBoxSemester.Enabled = false;
 
             // Nạp danh sách niên khóa (để hiển thị và chọn theo lớp của SV)
+            LoadNienKhoaList();
+        }
+
+        private void EditStudentControl_Load(object sender, EventArgs e)
+        {
+            if (DesignMode) return;
+            
+            // Đảm bảo dữ liệu được load khi control được hiển thị
+            LoadNienKhoaList();
+        }
+
+        private void LoadNienKhoaList()
+        {
             try
             {
                 var nk = _studentService.GetNienKhoaList();
@@ -247,6 +263,19 @@ namespace StudentDashboardApp
             textEditEmailTFTD.Enabled = enabled;
             textEditCLassIDFSTD.Enabled = enabled;
             simpleButtonEditStudent.Enabled = enabled;
+        }
+
+        // =============== LOAD DATA KHI CONTROL ĐƯỢC HIỂN THỊ ===================
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            
+            // Load dữ liệu khi control được hiển thị
+            if (Visible && !DesignMode && _studentService != null)
+            {
+                // Đảm bảo niên khóa được load khi control được hiển thị
+                LoadNienKhoaList();
+            }
         }
 
         // ComboBoxEdit không cần xử lý ItemCheck; chọn trực tiếp một giá trị

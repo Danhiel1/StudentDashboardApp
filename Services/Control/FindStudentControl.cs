@@ -32,7 +32,18 @@ namespace StudentDashboardApp
             simpleButtonDeleteStudentID.Click -= OnClearClick;
             simpleButtonDeleteStudentID.Click += OnClearClick;
 
+            // Đăng ký event Load
+            this.Load += FindStudentControl_Load;
+
             // Ẩn các ô thông tin ban đầu
+            ClearStudentInfo();
+        }
+
+        private void FindStudentControl_Load(object sender, EventArgs e)
+        {
+            if (DesignMode) return;
+            
+            // Đảm bảo dữ liệu được khởi tạo khi control được load
             ClearStudentInfo();
         }
 
@@ -125,6 +136,18 @@ namespace StudentDashboardApp
             textFindEmail1.Text = string.Empty;
             textFindClassID.Text = string.Empty;
             textFindSemester1.Text = string.Empty;
+        }
+
+        // =============== LOAD DATA KHI CONTROL ĐƯỢC HIỂN THỊ ===================
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            
+            // Đảm bảo control được reset khi được hiển thị
+            if (Visible && !DesignMode)
+            {
+                ClearStudentInfo();
+            }
         }
     }
 }
