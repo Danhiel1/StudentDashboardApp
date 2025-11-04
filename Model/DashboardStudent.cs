@@ -71,6 +71,9 @@ namespace StudentDashboardApp.Model
             if (_isDbConnected)
             {
                 LoadDashboardData();
+
+
+
             }
             else
             {
@@ -80,6 +83,7 @@ namespace StudentDashboardApp.Model
                 infoCardMajors.SetData("Số Ngành", "0", Properties.Resources.course);
                 chartControlCountPerNienKhoa.Series.Clear();
                 chartControCountPerFaculty.Series.Clear();
+
             }
         }
 
@@ -189,6 +193,7 @@ namespace StudentDashboardApp.Model
                 );
             }
         }
+
 
         // Nút đổi server
         private void btnDatabase_ItemClick(object sender, ItemClickEventArgs e)
@@ -370,6 +375,8 @@ namespace StudentDashboardApp.Model
                 );
             }
         }
+
+
 
         private void btnParameters_ItemClick(object sender, ItemClickEventArgs e)
         {

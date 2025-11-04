@@ -103,5 +103,64 @@ namespace BusinessLayer
                 GPA = Convert.ToDecimal(r["GPA"])
             }).ToList();
         }
+
+        // 🔎 Tìm 1 sinh viên theo mã
+        public Student GetStudentById(string maSV)
+        {
+            if (string.IsNullOrWhiteSpace(maSV)) return null;
+            var dt = _repo.GetStudentById(maSV);
+            if (dt.Rows.Count == 0) return null;
+            var r = dt.Rows[0];
+            return new Student
+            {
+                MaSV = r.Field<string>("MaSV"),
+                TenSV = r.Field<string>("TenSV"),
+                NgaySinh = r.Field<DateTime>("NgaySinh"),
+                GioiTinh = r.Field<string>("GioiTinh"),
+                DiaChi = r.IsNull("DiaChi") ? null : r.Field<string>("DiaChi"),
+                Email = r.IsNull("Email") ? null : r.Field<string>("Email"),
+                MaLop = r.Field<string>("MaLop"),
+                SDT = r.IsNull("SDT") ? null : r.Field<string>("SDT")
+            };
+        }
+
+        // ✏️ Cập nhật thông tin sinh viên
+        public void UpdateStudent(Student s)
+        {
+            if (s == null) throw new ArgumentNullException(nameof(s));
+            _repo.UpdateStudent(s.MaSV, s.TenSV, s.NgaySinh, s.GioiTinh, s.DiaChi, s.SDT, s.Email, s.MaLop);
+        }
+
+        public void DeleteStudent(string maSV)
+        {
+            if (string.IsNullOrWhiteSpace(maSV)) throw new ArgumentException("Mã SV không hợp lệ", nameof(maSV));
+            _repo.DeleteStudent(maSV);
+        }
+
+        // ✅ Kiểm tra mã lớp có tồn tại không
+        public bool ClassExists(string maLop)
+        {
+            if (string.IsNullOrWhiteSpace(maLop)) return false;
+            return _repo.ClassExists(maLop);
+        }
+
+        // 📄 Danh sách niên khóa (MaNienKhoa, TenNienKhoa)
+        public DataTable GetNienKhoaList()
+        {
+            return _repo.GetNienKhoaList();
+        }
+
+        // 🔗 Lấy mã niên khóa theo mã lớp
+        public string GetNienKhoaByClassId(string maLop)
+        {
+            if (string.IsNullOrWhiteSpace(maLop)) return null;
+            return _repo.GetNienKhoaByClassId(maLop);
+        }
+
+        // ➕ Thêm sinh viên
+        public void AddStudent(string maSV, string tenSV, DateTime ngaySinh, string gioiTinh, string diaChi, string sdt, string email, string maLop)
+        {
+            _repo.AddStudent(maSV, tenSV, ngaySinh, gioiTinh, diaChi, sdt, email, maLop);
+        }
     }
 }
