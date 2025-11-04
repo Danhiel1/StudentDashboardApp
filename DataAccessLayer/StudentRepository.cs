@@ -283,7 +283,7 @@ namespace DataAccessLayer
                 string query = @"
             SELECT TOP 100 
                 sv.MaSV, 
-                sv.HoTen AS TenSV, 
+                sv.TenSV, 
                 sv.NgaySinh, 
                 sv.GioiTinh, 
                 l.TenLop, 
@@ -292,7 +292,7 @@ namespace DataAccessLayer
             LEFT JOIN Lop l ON sv.MaLop = l.MaLop
             LEFT JOIN Nganh n ON l.MaNganh = n.MaNganh
             LEFT JOIN Khoa k ON n.MaKhoa = k.MaKhoa
-            ORDER BY sv.MaSV DESC"; // 
+            ORDER BY sv.MaSV DESC";
 
                 using (SqlConnection conn = new SqlConnection(_connectionString))
                 {

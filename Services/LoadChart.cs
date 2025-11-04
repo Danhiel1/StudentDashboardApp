@@ -2,17 +2,19 @@
 using DevExpress.Utils;
 using System.Drawing;
 
-public static class ChartService
+namespace StudentDashboardApp.Services
 {
-    public static void LoadChart(
-        ChartControl chart,
-        object dataSource,
-        string argumentMember,
-        string valueMember,
-        ViewType viewType,
-        string chartTitle = null
-    )
+    public static class ChartService
     {
+        public static void LoadChart(
+            ChartControl chart,
+            object dataSource,
+            string argumentMember,
+            string valueMember,
+            ViewType viewType,
+            string chartTitle = null
+        )
+        {
         chart.Series.Clear();
 
         // 🟦 1. Tạo series
@@ -83,6 +85,7 @@ public static class ChartService
                 TextColor = Color.White,
                 Alignment = StringAlignment.Center
             });
+        }
         }
     }
 }

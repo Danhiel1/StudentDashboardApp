@@ -1,24 +1,28 @@
 ﻿using System.Globalization;
 using System.Resources;
+using System.Threading;
 
-public static class LanguageHelper
+namespace StudentDashboardApp.Resources
 {
-    private static ResourceManager _resourceManager =
-        new ResourceManager("StudentDashboardApp.Resources.Languages.Strings",
-            typeof(LanguageHelper).Assembly);
-
-    public static void ApplyLanguage(string language)
+    public static class LanguageHelper
     {
-        string langCode = language.ToLower();
+        private static ResourceManager _resourceManager =
+            new ResourceManager("StudentDashboardApp.Resources.Languages.Strings",
+                typeof(LanguageHelper).Assembly);
 
-        if (langCode.Contains("vi"))
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("vi-VN");
-        else
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
-    }
+        public static void ApplyLanguage(string language)
+        {
+            string langCode = language.ToLower();
 
-    public static string GetString(string key)
-    {
-        return _resourceManager.GetString(key) ?? key;
+            if (langCode.Contains("vi"))
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("vi-VN");
+            else
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+        }
+
+        public static string GetString(string key)
+        {
+            return _resourceManager.GetString(key) ?? key;
+        }
     }
 }

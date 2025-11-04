@@ -1,27 +1,24 @@
-using System.Collections.Generic;
+using System.Globalization;
+using System.Resources;
 
-namespace StudentDashboardApp
+public static class LanguageHelper
 {
-    public static class LanguageHelper
-    {
-        private static readonly Dictionary<string, string> _vi = new Dictionary<string, string>
-        {
-            { "Students", "Số Sinh Viên" },
-            { "Teachers", "Số Giáo Viên" },
-            { "Majors", "Số Ngành" },
-            { "Chart_StudentsPerYear", "Sinh viên theo Niên khóa" },
-            { "Chart_StudentsPerFaculty", "Sinh viên theo Khoa" },
-            { "Chart_Top5Students", "Top 5 sinh viên GPA cao nhất" },
-            { "Msg_AppResetSuccess", "Đã đặt lại giao diện thành công" },
-            { "Msg_AppResetError", "Lỗi khi đặt lại ứng dụng" }
-        };
+    private static ResourceManager _resourceManager =
+        new ResourceManager("StudentDashboardApp.Resources.Languages.Strings",
+            typeof(LanguageHelper).Assembly);
 
-        public static string GetString(string key)
-        {
-            if (string.IsNullOrEmpty(key)) return string.Empty;
-            return _vi.TryGetValue(key, out var value) ? value : key;
-        }
+    public static void ApplyLanguage(string language)
+    {
+        string langCode = language.ToLower();
+
+        if (langCode.Contains("vi"))
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("vi-VN");
+        else
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+    }
+
+    public static string GetString(string key)
+    {
+        return _resourceManager.GetString(key) ?? key;
     }
 }
-
-
